@@ -1,0 +1,3 @@
+[submodule "src/react-utils"]
+	path = src/react-utils
+	url = git@bitbucket.org:resaizerteam/react-utils.git
