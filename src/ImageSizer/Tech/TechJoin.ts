@@ -1,15 +1,15 @@
-import { ImageCollection, TImageItem } from 'ImageSIzer/ImageColection';
+import { ImageCollection, TImageItem } from "../ImageColection";
 
-import AutoAwesomeMosaicRoundedIcon from '@mui/icons-material/AutoAwesomeMosaicRounded';
-import { Tech } from './Tech';
-import { TechJoinComp } from 'ImageSIzer/TechComponents/TechJoinComp';
-import { joinPixels } from 'ImageSIzer/functions/join';
+import AutoAwesomeMosaicRoundedIcon from "@mui/icons-material/AutoAwesomeMosaicRounded";
+import { Tech } from "./Tech";
+import { TechJoinComp } from "../TechComponents/TechJoinComp";
+import { joinPixels } from "../functions/join";
 
 export class TechJoin extends Tech<TTechJoinConfig> {
-    name = 'Join';
-    group = 'object' as const;
+    name = "Join";
+    group = "object" as const;
     description =
-        'Join all images together into one (or multiple) images. if groupBy === 0 means join all images together. imageNumberOnRow === 0 means no limit in number of images in row. maxWidth === 0 means no limit on max pixel width of new image.';
+        "Join all images together into one (or multiple) images. if groupBy === 0 means join all images together. imageNumberOnRow === 0 means no limit in number of images in row. maxWidth === 0 means no limit on max pixel width of new image.";
     icon = AutoAwesomeMosaicRoundedIcon;
     comp = TechJoinComp;
 

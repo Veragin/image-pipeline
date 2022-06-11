@@ -1,13 +1,13 @@
-import { TRecept } from 'ImageSIzer/Const';
+import { TRecept } from "../Const";
 
 export const customRecept: TRecept = {
     id: 1,
-    name: 'custom',
+    name: "custom",
     techs: [
         {
-            tech: 'select',
+            tech: "select",
             config: {
-                type: 'neighbor',
+                type: "neighbor",
                 neighbor: {
                     x: 10,
                     y: 10,
@@ -17,7 +17,7 @@ export const customRecept: TRecept = {
             },
         },
         {
-            tech: 'object',
+            tech: "object",
             config: {
                 compactDistance: 4,
                 minimalHeight: 10,
@@ -26,34 +26,34 @@ export const customRecept: TRecept = {
             },
         },
         {
-            tech: 'cut',
+            tech: "cut",
             config: {
-                type: 'object',
+                type: "object",
             },
         },
         {
-            tech: 'select',
+            tech: "select",
             config: {
-                mode: 'newSelect',
-                type: 'old',
+                mode: "newSelect",
+                type: "old",
                 inverse: true,
             },
         },
         {
-            tech: 'color',
+            tech: "color",
             config: {
                 color: { r: 0, g: 0, b: 0, a: 0 },
             },
         },
         {
-            tech: 'scale',
+            tech: "scale",
             config: {
-                type: 'box',
+                type: "box",
                 box: { width: 50, height: 50 },
             },
         },
         {
-            tech: 'join',
+            tech: "join",
             config: { groupBy: 0 },
         },
     ],

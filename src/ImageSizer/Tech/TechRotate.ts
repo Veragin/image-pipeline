@@ -1,13 +1,13 @@
-import { ImageCollection } from 'ImageSIzer/ImageColection';
-import Rotate90DegreesCwRoundedIcon from '@mui/icons-material/Rotate90DegreesCwRounded';
-import { Tech } from './Tech';
-import { TechRotateComp } from 'ImageSIzer/TechComponents/TechRotateComp';
-import { rotatePixels } from 'ImageSIzer/functions/transformPixels';
+import { ImageCollection } from "../ImageColection";
+import Rotate90DegreesCwRoundedIcon from "@mui/icons-material/Rotate90DegreesCwRounded";
+import { Tech } from "./Tech";
+import { TechRotateComp } from "../TechComponents/TechRotateComp";
+import { rotatePixels } from "../functions/transformPixels";
 
 export class TechRotate extends Tech<TTechRotateConfig> {
-    name = 'Rotate';
-    group = 'transform' as const;
-    description = 'Rotate image by degree. ';
+    name = "Rotate";
+    group = "transform" as const;
+    description = "Rotate image by degree. ";
     icon = Rotate90DegreesCwRoundedIcon;
     comp = TechRotateComp;
 

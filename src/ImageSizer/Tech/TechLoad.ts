@@ -1,21 +1,21 @@
-import { action, makeObservable, observable } from 'mobx';
+import { action, makeObservable, observable } from "mobx";
 
-import DriveFolderUploadRoundedIcon from '@mui/icons-material/DriveFolderUploadRounded';
-import { ImageCollection } from 'ImageSIzer/ImageColection';
-import { Tech } from './Tech';
-import { TechLoadComp } from '../TechComponents/TechLoadComp';
-import { getCanvas } from 'Service/Nodes/Filter';
+import DriveFolderUploadRoundedIcon from "@mui/icons-material/DriveFolderUploadRounded";
+import { ImageCollection } from "../ImageColection";
+import { Tech } from "./Tech";
+import { TechLoadComp } from "../TechComponents/TechLoadComp";
+import { getCanvas } from "react-utils/canvas";
 
 export class TechLoad extends Tech<{}> {
     id = 0;
-    name = 'Load';
-    description = 'Load images to service. First image will be used as a preview. ';
+    name = "Load";
+    description = "Load images to service. First image will be used as a preview. ";
     icon = DriveFolderUploadRoundedIcon;
     comp = TechLoadComp;
 
     files: FileList | null = null;
     preview: ImageData | null = null;
-    previewName: string = 'default';
+    previewName: string = "default";
 
     constructor(private onStart: () => void) {
         super({});
@@ -45,7 +45,7 @@ export class TechLoad extends Tech<{}> {
         const btm = await createImageBitmap(file);
 
         const canvas = getCanvas(btm.width, btm.height);
-        const ctx = canvas.getContext('2d');
+        const ctx = canvas.getContext("2d");
         if (!ctx) return null;
 
         ctx.drawImage(btm, 0, 0);

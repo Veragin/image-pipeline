@@ -1,6 +1,6 @@
-import { ImageCollection } from '../ImageColection';
-import { TImageItem } from 'ImageSIzer/ImageColection';
-import { selectionFromRectToSelection } from './rectSelection';
+import { ImageCollection } from "../ImageColection";
+import { TImageItem } from "../ImageColection";
+import { selectionFromRectToSelection } from "./rectSelection";
 
 export const cutImageDataByObjects = (original: TImageItem) => {
     const collection = new ImageCollection();

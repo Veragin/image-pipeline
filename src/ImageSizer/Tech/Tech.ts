@@ -1,14 +1,13 @@
-import { action, makeObservable, observable } from 'mobx';
+import { action, makeObservable, observable } from "mobx";
+import { applyDeepPartial, generateRandomId } from "react-utils/misc";
 
-import { ImageCollection } from '../ImageColection';
-import { applyDeepPartial } from 'react-utils/misc';
-import { generateRandomId } from 'Service/Nodes/Utils';
+import { ImageCollection } from "../ImageColection";
 
-export abstract class Tech<Config> {
+export abstract class Tech<Config extends Object> {
     readonly id: number = generateRandomId();
-    readonly group: 'transform' | 'object' | 'basic' = 'basic';
-    readonly name: string = '';
-    readonly description: string = '';
+    readonly group: "transform" | "object" | "basic" = "basic";
+    readonly name: string = "";
+    readonly description: string = "";
 
     icon: React.FC = () => null;
     comp: React.FC<TCompProps> = () => null;

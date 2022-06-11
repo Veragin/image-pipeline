@@ -1,4 +1,4 @@
-import { TSelection } from 'ImageSIzer/ImageColection';
+import { TSelection } from "../ImageColection";
 
 export const corectSelection = (data: TSelection) => {
     if (data.length === 0) return [];

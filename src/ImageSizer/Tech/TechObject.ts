@@ -1,18 +1,18 @@
-import { TTechBBConfig, applyPaddingToRect } from 'ImageSIzer/functions/rectTricks';
-import { countPixelsInSelection, getObjectsFromSelection } from '../functions/objectFind';
+import { TTechBBConfig, applyPaddingToRect } from "../functions/rectTricks";
+import { countPixelsInSelection, getObjectsFromSelection } from "../functions/objectFind";
 
-import DataObjectRoundedIcon from '@mui/icons-material/DataObjectRounded';
-import { ImageCollection } from 'ImageSIzer/ImageColection';
-import { TSelection } from '../ImageColection';
-import { Tech } from './Tech';
-import { TechObjectComp } from '../TechComponents/TechObjectComp';
-import { applyFitToRect } from '../functions/rectTricks';
-import { selectionToRect } from '../functions/rectSelection';
+import DataObjectRoundedIcon from "@mui/icons-material/DataObjectRounded";
+import { ImageCollection } from "../ImageColection";
+import { TSelection } from "../ImageColection";
+import { Tech } from "./Tech";
+import { TechObjectComp } from "../TechComponents/TechObjectComp";
+import { applyFitToRect } from "../functions/rectTricks";
+import { selectionToRect } from "../functions/rectSelection";
 
 export class TechObject extends Tech<TTechObjectConfig> {
-    name = 'Object';
-    group = 'object' as const;
-    description = 'Find objects from selection.';
+    name = "Object";
+    group = "object" as const;
+    description = "Find objects from selection.";
     icon = DataObjectRoundedIcon;
     comp = TechObjectComp;
 
@@ -27,8 +27,8 @@ export class TechObject extends Tech<TTechObjectConfig> {
                 fitTo: {
                     width: 10,
                     height: 10,
-                    vertical: 'center',
-                    horizontal: 'center',
+                    vertical: "center",
+                    horizontal: "center",
                 },
                 padding: { top: 0, bottom: 0, left: 0, right: 0 },
             },

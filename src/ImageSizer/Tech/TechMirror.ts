@@ -1,13 +1,13 @@
-import FlipRoundedIcon from '@mui/icons-material/FlipRounded';
-import { ImageCollection } from 'ImageSIzer/ImageColection';
-import { Tech } from './Tech';
-import { TechMirrorComp } from 'ImageSIzer/TechComponents/TechMirrorComp';
-import { mirrorPixels } from 'ImageSIzer/functions/transformPixels';
+import FlipRoundedIcon from "@mui/icons-material/FlipRounded";
+import { ImageCollection } from "../ImageColection";
+import { Tech } from "./Tech";
+import { TechMirrorComp } from "../TechComponents/TechMirrorComp";
+import { mirrorPixels } from "../functions/transformPixels";
 
 export class TechMirror extends Tech<TTechMirrorConfig> {
-    name = 'Mirror';
-    group = 'transform' as const;
-    description = 'Mirror image vertically and horizontally. ';
+    name = "Mirror";
+    group = "transform" as const;
+    description = "Mirror image vertically and horizontally. ";
     icon = FlipRoundedIcon;
     comp = TechMirrorComp;
 

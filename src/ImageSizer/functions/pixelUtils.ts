@@ -1,5 +1,5 @@
-import { TColor } from '../../react-utils/Const/Types';
-import { TSelection } from 'ImageSIzer/ImageColection';
+import { TColor } from "../../react-utils/Const/Types";
+import { TSelection } from "../ImageColection";
 
 export const pixelIndex = (pixel: TPoint, width: number) => (pixel.y * width + pixel.x) * 4;
 

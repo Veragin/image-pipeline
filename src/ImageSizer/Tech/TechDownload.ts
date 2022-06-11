@@ -1,19 +1,19 @@
-import { ImageCollection, TImageItem } from 'ImageSIzer/ImageColection';
+import { ImageCollection, TImageItem } from "../ImageColection";
 
-import DownloadRoundedIcon from '@mui/icons-material/DownloadRounded';
-import { Tech } from './Tech';
-import { TechDownloadComp } from '../TechComponents/TechDownloadComp';
-import { getCanvasWithImageData } from 'ImageSIzer/functions/imageHandler';
+import DownloadRoundedIcon from "@mui/icons-material/DownloadRounded";
+import { Tech } from "./Tech";
+import { TechDownloadComp } from "../TechComponents/TechDownloadComp";
+import { getCanvasWithImageData } from "../functions/imageHandler";
 
 export class TechDownload extends Tech<TTechDownloadConfig> {
-    name = 'Download';
-    description = 'Download images into your computer.';
+    name = "Download";
+    description = "Download images into your computer.";
     icon = DownloadRoundedIcon;
     comp = TechDownloadComp;
 
     constructor() {
         super({
-            type: 'default',
+            type: "default",
             quality: 1,
         });
     }
@@ -30,13 +30,13 @@ export class TechDownload extends Tech<TTechDownloadConfig> {
     private getImageUrl = (item: TImageItem) => {
         const { canvas } = getCanvasWithImageData(item.data);
 
-        const format = this.config.type === 'default' ? item.format : this.config.type;
+        const format = this.config.type === "default" ? item.format : this.config.type;
 
-        return canvas.toDataURL('image/' + format, this.config.quality);
+        return canvas.toDataURL("image/" + format, this.config.quality);
     };
 
     private downloadImage = (imageLink: string, name: string) => {
-        const tmpLink = document.createElement('a');
+        const tmpLink = document.createElement("a");
         tmpLink.download = name;
         tmpLink.href = imageLink;
 
@@ -51,4 +51,4 @@ export type TTechDownloadConfig = {
     quality: number;
 };
 
-export type TTechDownloadType = 'default' | 'png' | 'jpeg';
+export type TTechDownloadType = "default" | "png" | "jpeg";
