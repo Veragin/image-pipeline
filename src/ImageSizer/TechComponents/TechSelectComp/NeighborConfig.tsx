@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
-
-import { Row } from 'react-utils/Components/StyledComponents';
-import { TechSelect } from 'ImageSIzer/Tech/TechSelect';
-import ToolbarColor from 'Service/tsx/Toolbar/ToolbarComponents/ToolbarColor';
-import ToolbarProperty from 'Service/tsx/Toolbar/ToolbarComponents/ToolbarProperty';
-import ToolbarSelect from 'Service/tsx/Toolbar/ToolbarComponents/ToolbarSelect';
-import ToolbarSlider from 'Service/tsx/Toolbar/ToolbarComponents/ToolbarSlider';
-import { observer } from 'mobx-react';
-import styled from 'styled-components';
+import { Row } from "react-utils/Components/StyledComponents";
+import { TechSelect } from "ImageSIzer/Tech/TechSelect";
+import ToolbarColor from "Service/tsx/Toolbar/ToolbarComponents/ToolbarColor";
+import ToolbarProperty from "Service/tsx/Toolbar/ToolbarComponents/ToolbarProperty";
+import ToolbarSelect from "Service/tsx/Toolbar/ToolbarComponents/ToolbarSelect";
+import ToolbarSlider from "Service/tsx/Toolbar/ToolbarComponents/ToolbarSlider";
+import { observer } from "mobx-react";
+import styled from "styled-components";
+import { useState } from "react";
 
 type Props = {
     tech: TechSelect;
@@ -17,7 +16,7 @@ export const NeighborConfig = observer(({ tech }: Props) => {
     const [color, setColor] = useState(tech.config.neighbor.color);
     const [threshold, setThreshold] = useState(tech.config.neighbor.threshold);
 
-    if (tech.config.type !== 'neighbor') return null;
+    if (tech.config.type !== "neighbor") return null;
 
     return (
         <>
@@ -27,7 +26,7 @@ export const NeighborConfig = observer(({ tech }: Props) => {
                 options={typeOptions}
             />
 
-            {tech.config.neighbor.type === 'pixel' && (
+            {tech.config.neighbor.type === "pixel" && (
                 <StyledRow>
                     <ToolbarProperty
                         title="X"
@@ -54,7 +53,7 @@ export const NeighborConfig = observer(({ tech }: Props) => {
                 </StyledRow>
             )}
 
-            {tech.config.neighbor.type === 'color' && (
+            {tech.config.neighbor.type === "color" && (
                 <ToolbarColor
                     label="Color"
                     value={color}
@@ -68,7 +67,7 @@ export const NeighborConfig = observer(({ tech }: Props) => {
             )}
 
             <StyledRow>
-                <StyledTitle>{_('Threshold')}</StyledTitle>
+                <StyledTitle>{_("Threshold")}</StyledTitle>
                 <ToolbarSlider
                     value={threshold}
                     onChange={(v) => {
@@ -86,16 +85,16 @@ export const NeighborConfig = observer(({ tech }: Props) => {
 
 const typeOptions = [
     {
-        name: _('Pixel'),
-        value: 'pixel',
+        name: _("Pixel"),
+        value: "pixel",
     },
     {
-        name: _('Color'),
-        value: 'color',
+        name: _("Color"),
+        value: "color",
     },
     {
-        name: _('Base color'),
-        value: 'baseColor',
+        name: _("Base color"),
+        value: "baseColor",
     },
 ];
 

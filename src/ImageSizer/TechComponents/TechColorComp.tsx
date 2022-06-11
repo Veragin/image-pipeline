@@ -1,12 +1,11 @@
-import { Column } from '../../react-utils/Components/StyledComponents';
-import { ImageCollection } from '../ImageColection';
-import React from 'react';
-import { TechColor } from '../Tech/TechColor';
-import { TechCompCollection } from './TechCompCollection';
-import ToolbarColor from 'Service/tsx/Toolbar/ToolbarComponents/ToolbarColor';
-import { observer } from 'mobx-react';
-import { spacingCss } from 'react-utils/Components/globalCss';
-import styled from 'styled-components';
+import { Column } from "../../react-utils/Components/StyledComponents";
+import { ImageCollection } from "../ImageColection";
+import { TechColor } from "../Tech/TechColor";
+import { TechCompCollection } from "./TechCompCollection";
+import ToolbarColor from "Service/tsx/Toolbar/ToolbarComponents/ToolbarColor";
+import { observer } from "mobx-react";
+import { spacingCss } from "react-utils/Components/globalCss";
+import styled from "styled-components";
 
 type Props = {
     tech: TechColor;
@@ -18,7 +17,7 @@ export const TechColorComp = observer(({ tech, collection }: Props) => {
         <StyledCont>
             <StyledConfig>
                 <ToolbarColor
-                    label={_('Color')}
+                    label={_("Color")}
                     value={tech.config.color}
                     onChange={(color) => tech.setConfig({ color })}
                 />

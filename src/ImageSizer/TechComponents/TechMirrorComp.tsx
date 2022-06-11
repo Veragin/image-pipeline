@@ -1,12 +1,11 @@
-import { Column } from '../../react-utils/Components/StyledComponents';
-import { ImageCollection } from '../ImageColection';
-import React from 'react';
-import RsSelect from 'react-utils/Components/RsInput/RsSelect';
-import { TechCompCollection } from './TechCompCollection';
-import { TechMirror } from 'ImageSIzer/Tech/TechMirror';
-import { observer } from 'mobx-react';
-import { spacingCss } from 'react-utils/Components/globalCss';
-import styled from 'styled-components';
+import { Column } from "../../react-utils/Components/StyledComponents";
+import { ImageCollection } from "../ImageColection";
+import RsSelect from "react-utils/Components/RsInput/RsSelect";
+import { TechCompCollection } from "./TechCompCollection";
+import { TechMirror } from "ImageSIzer/Tech/TechMirror";
+import { observer } from "mobx-react";
+import { spacingCss } from "react-utils/Components/globalCss";
+import styled from "styled-components";
 
 type Props = {
     tech: TechMirror;
@@ -18,13 +17,13 @@ export const TechMirrorComp = observer(({ tech, collection }: Props) => {
         <StyledCont>
             <StyledConfig>
                 <RsSelect
-                    title={_('Vertical')}
+                    title={_("Vertical")}
                     value={tech.config.vertical}
                     setValue={(vertical) => tech.setConfig({ vertical })}
                     list={techList}
                 />
                 <RsSelect
-                    title={_('Horizontal')}
+                    title={_("Horizontal")}
                     value={tech.config.horizontal}
                     setValue={(horizontal) => tech.setConfig({ horizontal })}
                     list={techList}
@@ -51,11 +50,11 @@ const StyledConfig = styled(Column)`
 
 const techList: { title: string; value: boolean }[] = [
     {
-        title: _('Yes'),
+        title: _("Yes"),
         value: true,
     },
     {
-        title: _('No'),
+        title: _("No"),
         value: false,
     },
 ];

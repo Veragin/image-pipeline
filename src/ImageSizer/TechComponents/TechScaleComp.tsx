@@ -1,14 +1,13 @@
-import { TTechScaleType, TechScale } from '../Tech/TechScale';
+import { TTechScaleType, TechScale } from "../Tech/TechScale";
 
-import { Column } from '../../react-utils/Components/StyledComponents';
-import { ImageCollection } from '../ImageColection';
-import React from 'react';
-import RsSelect from 'react-utils/Components/RsInput/RsSelect';
-import { SizeConfig } from './ConfigComp/SizeConfig';
-import { TechCompCollection } from './TechCompCollection';
-import { observer } from 'mobx-react';
-import { spacingCss } from 'react-utils/Components/globalCss';
-import styled from 'styled-components';
+import { Column } from "../../react-utils/Components/StyledComponents";
+import { ImageCollection } from "../ImageColection";
+import RsSelect from "react-utils/Components/RsInput/RsSelect";
+import { SizeConfig } from "./ConfigComp/SizeConfig";
+import { TechCompCollection } from "./TechCompCollection";
+import { observer } from "mobx-react";
+import { spacingCss } from "react-utils/Components/globalCss";
+import styled from "styled-components";
 
 type Props = {
     tech: TechScale;
@@ -20,24 +19,24 @@ export const TechScaleComp = observer(({ tech, collection }: Props) => {
         <StyledCont>
             <StyledConfig>
                 <RsSelect
-                    title={_('Type')}
+                    title={_("Type")}
                     value={tech.config.type}
                     setValue={(type) => tech.setConfig({ type })}
                     list={techTypeList}
                 />
 
                 <SizeConfig
-                    show={tech.config.type === 'box'}
+                    show={tech.config.type === "box"}
                     size={tech.config.box}
                     onChange={(box) => tech.setConfig({ box })}
                 />
                 <SizeConfig
-                    show={tech.config.type === 'padding'}
+                    show={tech.config.type === "padding"}
                     size={tech.config.padding}
                     onChange={(padding) => tech.setConfig({ padding })}
                 />
                 <SizeConfig
-                    show={tech.config.type === 'percent'}
+                    show={tech.config.type === "percent"}
                     size={tech.config.percent}
                     onChange={(percent) => tech.setConfig({ percent })}
                 />
@@ -63,15 +62,15 @@ const StyledConfig = styled(Column)`
 
 const techTypeList: { title: string; value: TTechScaleType }[] = [
     {
-        title: _('Box'),
-        value: 'box',
+        title: _("Box"),
+        value: "box",
     },
     {
-        title: _('Padding'),
-        value: 'padding',
+        title: _("Padding"),
+        value: "padding",
     },
     {
-        title: _('Percent'),
-        value: 'percent',
+        title: _("Percent"),
+        value: "percent",
     },
 ];

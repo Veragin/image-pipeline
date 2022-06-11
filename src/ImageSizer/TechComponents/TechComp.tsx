@@ -1,12 +1,11 @@
-import { Column, Row } from '../../react-utils/Components/StyledComponents';
+import { Column, Row } from "../../react-utils/Components/StyledComponents";
 
-import { ImageCollection } from '../ImageColection';
-import React from 'react';
-import { Tech } from 'ImageSIzer/Tech/Tech';
-import { Typography } from '@mui/material';
-import { observer } from 'mobx-react';
-import { spacingCss } from 'react-utils/Components/globalCss';
-import styled from 'styled-components';
+import { ImageCollection } from "../ImageColection";
+import { Tech } from "ImageSIzer/Tech/Tech";
+import { Typography } from "@mui/material";
+import { observer } from "mobx-react";
+import { spacingCss } from "react-utils/Components/globalCss";
+import styled from "styled-components";
 
 type Props<T extends Object> = {
     tech: Tech<T> | null;
@@ -21,9 +20,9 @@ export const TechComp = observer(({ tech, collection }: Props<any>) => {
         <StyledCont>
             <StyledRow>
                 <Icon />
-                {tech?.name ?? ''}
+                {tech?.name ?? ""}
             </StyledRow>
-            <StyledDescription>{tech?.description ?? ''}</StyledDescription>
+            <StyledDescription>{tech?.description ?? ""}</StyledDescription>
             <Comp tech={tech} collection={collection} />
         </StyledCont>
     );

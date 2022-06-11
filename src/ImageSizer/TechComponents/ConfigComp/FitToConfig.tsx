@@ -1,12 +1,11 @@
-import { InputTitle } from 'react-utils/Components/RsInput/InputCss';
-import React from 'react';
-import { Row } from '../../../react-utils/Components/StyledComponents';
-import { TFitTo } from '../../functions/rectTricks';
-import ToolbarProperty from 'Service/tsx/Toolbar/ToolbarComponents/ToolbarProperty';
-import ToolbarSelect from 'Service/tsx/Toolbar/ToolbarComponents/ToolbarSelect';
-import { observer } from 'mobx-react';
-import { spacingCss } from 'react-utils/Components/globalCss';
-import styled from 'styled-components';
+import { InputTitle } from "react-utils/Components/RsInput/InputCss";
+import { Row } from "../../../react-utils/Components/StyledComponents";
+import { TFitTo } from "../../functions/rectTricks";
+import ToolbarProperty from "Service/tsx/Toolbar/ToolbarComponents/ToolbarProperty";
+import ToolbarSelect from "Service/tsx/Toolbar/ToolbarComponents/ToolbarSelect";
+import { observer } from "mobx-react";
+import { spacingCss } from "react-utils/Components/globalCss";
+import styled from "styled-components";
 
 type Props = {
     type?: string;
@@ -15,14 +14,14 @@ type Props = {
 };
 
 export const FitToConfig = observer(({ type, fitTo, onChange }: Props) => {
-    if (type !== undefined && type !== 'fitTo') return null;
+    if (type !== undefined && type !== "fitTo") return null;
 
     return (
         <>
             <StyledRow>
                 <ToolbarProperty
-                    title={_('Width')}
-                    tooltip={_('Width')}
+                    title={_("Width")}
+                    tooltip={_("Width")}
                     type="number"
                     value={String(fitTo.width)}
                     onChange={(v) =>
@@ -32,8 +31,8 @@ export const FitToConfig = observer(({ type, fitTo, onChange }: Props) => {
                     }
                 />
                 <ToolbarProperty
-                    title={_('Height')}
-                    tooltip={_('Height')}
+                    title={_("Height")}
+                    tooltip={_("Height")}
                     type="number"
                     value={String(fitTo.height)}
                     onChange={(v) =>
@@ -44,22 +43,22 @@ export const FitToConfig = observer(({ type, fitTo, onChange }: Props) => {
                 />
             </StyledRow>
             <StyledRow>
-                <InputTitle>{_('Vertical')}</InputTitle>
+                <InputTitle>{_("Vertical")}</InputTitle>
                 <ToolbarSelect
                     value={fitTo.vertical}
                     onChange={(v) =>
                         onChange({
-                            vertical: v as 'top' | 'center' | 'bottom',
+                            vertical: v as "top" | "center" | "bottom",
                         })
                     }
                     options={verticalOption}
                 />
-                <InputTitle>{_('Horizontal')}</InputTitle>
+                <InputTitle>{_("Horizontal")}</InputTitle>
                 <ToolbarSelect
                     value={fitTo.horizontal}
                     onChange={(v) =>
                         onChange({
-                            horizontal: v as 'center' | 'left' | 'right',
+                            horizontal: v as "center" | "left" | "right",
                         })
                     }
                     options={horizontalOption}
@@ -71,31 +70,31 @@ export const FitToConfig = observer(({ type, fitTo, onChange }: Props) => {
 
 const verticalOption = [
     {
-        name: _('Top'),
-        value: 'top',
+        name: _("Top"),
+        value: "top",
     },
     {
-        name: _('Center'),
-        value: 'center',
+        name: _("Center"),
+        value: "center",
     },
     {
-        name: _('Bottom'),
-        value: 'bottom',
+        name: _("Bottom"),
+        value: "bottom",
     },
 ];
 
 const horizontalOption = [
     {
-        name: _('Left'),
-        value: 'left',
+        name: _("Left"),
+        value: "left",
     },
     {
-        name: _('Center'),
-        value: 'center',
+        name: _("Center"),
+        value: "center",
     },
     {
-        name: _('Right'),
-        value: 'right',
+        name: _("Right"),
+        value: "right",
     },
 ];
 

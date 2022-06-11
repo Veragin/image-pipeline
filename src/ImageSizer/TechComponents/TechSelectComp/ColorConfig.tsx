@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
-
-import { Row } from 'react-utils/Components/StyledComponents';
-import { TechSelect } from 'ImageSIzer/Tech/TechSelect';
-import ToolbarColor from 'Service/tsx/Toolbar/ToolbarComponents/ToolbarColor';
-import ToolbarProperty from 'Service/tsx/Toolbar/ToolbarComponents/ToolbarProperty';
-import ToolbarSelect from 'Service/tsx/Toolbar/ToolbarComponents/ToolbarSelect';
-import ToolbarSlider from 'Service/tsx/Toolbar/ToolbarComponents/ToolbarSlider';
-import { observer } from 'mobx-react';
-import styled from 'styled-components';
+import { Row } from "react-utils/Components/StyledComponents";
+import { TechSelect } from "ImageSIzer/Tech/TechSelect";
+import ToolbarColor from "Service/tsx/Toolbar/ToolbarComponents/ToolbarColor";
+import ToolbarProperty from "Service/tsx/Toolbar/ToolbarComponents/ToolbarProperty";
+import ToolbarSelect from "Service/tsx/Toolbar/ToolbarComponents/ToolbarSelect";
+import ToolbarSlider from "Service/tsx/Toolbar/ToolbarComponents/ToolbarSlider";
+import { observer } from "mobx-react";
+import styled from "styled-components";
+import { useState } from "react";
 
 type Props = {
     tech: TechSelect;
@@ -17,7 +16,7 @@ export const ColorConfig = observer(({ tech }: Props) => {
     const [color, setColor] = useState(tech.config.color.pivot);
     const [threshold, setThreshold] = useState(tech.config.color.threshold);
 
-    if (tech.config.type !== 'color') return null;
+    if (tech.config.type !== "color") return null;
 
     return (
         <>
@@ -26,7 +25,7 @@ export const ColorConfig = observer(({ tech }: Props) => {
                 onChange={(v) => tech.setConfigColor({ type: v as any })}
                 options={typeOptions}
             />
-            {tech.config.color.type === 'color' ? (
+            {tech.config.color.type === "color" ? (
                 <ToolbarColor
                     label="Color"
                     value={color}
@@ -47,11 +46,11 @@ export const ColorConfig = observer(({ tech }: Props) => {
                             alpha: Number(v),
                         })
                     }
-                    type={'number'}
+                    type={"number"}
                 />
             )}
             <StyledRow>
-                <StyledTitle>{_('Threshold')}</StyledTitle>
+                <StyledTitle>{_("Threshold")}</StyledTitle>
                 <ToolbarSlider
                     value={threshold}
                     onChange={(v) => {
@@ -69,12 +68,12 @@ export const ColorConfig = observer(({ tech }: Props) => {
 
 const typeOptions = [
     {
-        name: _('Color'),
-        value: 'color',
+        name: _("Color"),
+        value: "color",
     },
     {
-        name: _('Alpha'),
-        value: 'alpha',
+        name: _("Alpha"),
+        value: "alpha",
     },
 ];
 

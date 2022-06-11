@@ -1,11 +1,10 @@
-import { InputTitle } from 'react-utils/Components/RsInput/InputCss';
-import React from 'react';
-import { Row } from '../../../react-utils/Components/StyledComponents';
-import { TPadding } from '../../functions/rectTricks';
-import ToolbarProperty from 'Service/tsx/Toolbar/ToolbarComponents/ToolbarProperty';
-import { observer } from 'mobx-react';
-import { spacingCss } from 'react-utils/Components/globalCss';
-import styled from 'styled-components';
+import { InputTitle } from "react-utils/Components/RsInput/InputCss";
+import { Row } from "../../../react-utils/Components/StyledComponents";
+import { TPadding } from "../../functions/rectTricks";
+import ToolbarProperty from "Service/tsx/Toolbar/ToolbarComponents/ToolbarProperty";
+import { observer } from "mobx-react";
+import { spacingCss } from "react-utils/Components/globalCss";
+import styled from "styled-components";
 
 type Props = {
     type?: string;
@@ -14,15 +13,15 @@ type Props = {
 };
 
 export const PaddingConfig = observer(({ type, padding, onChange }: Props) => {
-    if (type !== undefined && type !== 'padding') return null;
+    if (type !== undefined && type !== "padding") return null;
 
     return (
         <>
-            <InputTitle>{_('Padding')}</InputTitle>
+            <InputTitle>{_("Padding")}</InputTitle>
             <StyledRow>
                 <ToolbarProperty
-                    title={_('Top')}
-                    tooltip={_('Top')}
+                    title={_("Top")}
+                    tooltip={_("Top")}
                     type="number"
                     value={String(padding.top)}
                     onChange={(v) =>
@@ -32,8 +31,8 @@ export const PaddingConfig = observer(({ type, padding, onChange }: Props) => {
                     }
                 />
                 <ToolbarProperty
-                    title={_('Bottom')}
-                    tooltip={_('Bottom')}
+                    title={_("Bottom")}
+                    tooltip={_("Bottom")}
                     type="number"
                     value={String(padding.bottom)}
                     onChange={(v) =>
@@ -45,8 +44,8 @@ export const PaddingConfig = observer(({ type, padding, onChange }: Props) => {
             </StyledRow>
             <StyledRow>
                 <ToolbarProperty
-                    title={_('Left')}
-                    tooltip={_('Left')}
+                    title={_("Left")}
+                    tooltip={_("Left")}
                     type="number"
                     value={String(padding.left)}
                     onChange={(v) =>
@@ -56,8 +55,8 @@ export const PaddingConfig = observer(({ type, padding, onChange }: Props) => {
                     }
                 />
                 <ToolbarProperty
-                    title={_('Right')}
-                    tooltip={_('Right')}
+                    title={_("Right")}
+                    tooltip={_("Right")}
                     type="number"
                     value={String(padding.right)}
                     onChange={(v) =>

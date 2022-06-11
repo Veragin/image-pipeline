@@ -1,9 +1,8 @@
-import React from 'react';
-import { Row } from '../../../react-utils/Components/StyledComponents';
-import ToolbarProperty from 'Service/tsx/Toolbar/ToolbarComponents/ToolbarProperty';
-import { observer } from 'mobx-react';
-import { spacingCss } from 'react-utils/Components/globalCss';
-import styled from 'styled-components';
+import { Row } from "../../../react-utils/Components/StyledComponents";
+import ToolbarProperty from "Service/tsx/Toolbar/ToolbarComponents/ToolbarProperty";
+import { observer } from "mobx-react";
+import { spacingCss } from "react-utils/Components/globalCss";
+import styled from "styled-components";
 
 type Props = {
     type?: string;
@@ -12,7 +11,7 @@ type Props = {
 };
 
 export const BoxConfig = observer(({ type, box, onChange }: Props) => {
-    if (type !== undefined && type !== 'box') return null;
+    if (type !== undefined && type !== "box") return null;
 
     return (
         <>

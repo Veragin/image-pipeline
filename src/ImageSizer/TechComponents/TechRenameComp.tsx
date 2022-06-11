@@ -1,13 +1,12 @@
-import { Column } from '../../react-utils/Components/StyledComponents';
-import { ImageCollection } from '../ImageColection';
-import { InputTitle } from 'react-utils/Components/RsInput/InputCss';
-import React from 'react';
-import RsInput from 'react-utils/Components/RsInput/RsInput';
-import { TechRename } from '../Tech/TechRename';
-import { Typography } from '@mui/material';
-import { observer } from 'mobx-react';
-import { spacingCss } from 'react-utils/Components/globalCss';
-import styled from 'styled-components';
+import { Column } from "../../react-utils/Components/StyledComponents";
+import { ImageCollection } from "../ImageColection";
+import { InputTitle } from "react-utils/Components/RsInput/InputCss";
+import RsInput from "react-utils/Components/RsInput/RsInput";
+import { TechRename } from "../Tech/TechRename";
+import { Typography } from "@mui/material";
+import { observer } from "mobx-react";
+import { spacingCss } from "react-utils/Components/globalCss";
+import styled from "styled-components";
 
 type Props = {
     tech: TechRename;
@@ -19,18 +18,18 @@ export const TechRenameComp = observer(({ tech, collection }: Props) => {
         <StyledCont>
             <StyledConfig>
                 <RsInput
-                    title={_('Name RegExp')}
+                    title={_("Name RegExp")}
                     value={tech.config.regExp}
                     onChange={(regExp) => tech.setConfig({ regExp })}
                 />
                 <RsInput
-                    title={_('Name Pattern')}
+                    title={_("Name Pattern")}
                     value={tech.config.namePattern}
                     onChange={(namePattern) => tech.setConfig({ namePattern })}
                 />
             </StyledConfig>
 
-            <InputTitle>{_('Output')}</InputTitle>
+            <InputTitle>{_("Output")}</InputTitle>
             <StyledColumn>
                 {collection.stack.map((item) => (
                     <Typography>{item.name}</Typography>

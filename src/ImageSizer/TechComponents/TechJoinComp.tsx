@@ -1,12 +1,11 @@
-import { Column } from '../../react-utils/Components/StyledComponents';
-import { ImageCollection } from '../ImageColection';
-import React from 'react';
-import RsInput from 'react-utils/Components/RsInput/RsInput';
-import { TechCompCollection } from './TechCompCollection';
-import { TechJoin } from '../Tech/TechJoin';
-import { observer } from 'mobx-react';
-import { spacingCss } from 'react-utils/Components/globalCss';
-import styled from 'styled-components';
+import { Column } from "../../react-utils/Components/StyledComponents";
+import { ImageCollection } from "../ImageColection";
+import RsInput from "react-utils/Components/RsInput/RsInput";
+import { TechCompCollection } from "./TechCompCollection";
+import { TechJoin } from "../Tech/TechJoin";
+import { observer } from "mobx-react";
+import { spacingCss } from "react-utils/Components/globalCss";
+import styled from "styled-components";
 
 type Props = {
     tech: TechJoin;
@@ -18,15 +17,13 @@ export const TechJoinComp = observer(({ tech, collection }: Props) => {
         <StyledCont>
             <StyledConfig>
                 <RsInput
-                    title={_('Group by')}
+                    title={_("Group by")}
                     value={String(tech.config.groupBy)}
                     type="number"
-                    onChange={(groupBy) =>
-                        tech.setConfig({ groupBy: Number(groupBy) })
-                    }
+                    onChange={(groupBy) => tech.setConfig({ groupBy: Number(groupBy) })}
                 />
                 <RsInput
-                    title={_('Image Number On Row')}
+                    title={_("Image Number On Row")}
                     value={String(tech.config.imageNumberOnRow)}
                     type="number"
                     onChange={(imageNumberOnRow) =>
@@ -36,12 +33,10 @@ export const TechJoinComp = observer(({ tech, collection }: Props) => {
                     }
                 />
                 <RsInput
-                    title={_('Max Width')}
+                    title={_("Max Width")}
                     value={String(tech.config.maxWidth)}
                     type="number"
-                    onChange={(maxWidth) =>
-                        tech.setConfig({ maxWidth: Number(maxWidth) })
-                    }
+                    onChange={(maxWidth) => tech.setConfig({ maxWidth: Number(maxWidth) })}
                 />
             </StyledConfig>
 

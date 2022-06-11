@@ -1,18 +1,17 @@
-import { borderRadiusCss, spacingCss } from 'react-utils/Components/globalCss';
+import { borderRadiusCss, spacingCss } from "react-utils/Components/globalCss";
 
-import { AddReceptFab } from './AddReceptFab';
-import { AddTechFab } from './AddTechFab';
-import { Column } from '../react-utils/Components/StyledComponents';
-import { DeleteIcon } from '../react-utils/Components/Icons';
-import React from 'react';
-import { ReactSortable } from 'react-sortablejs';
-import { Row } from 'react-utils/Components/StyledComponents';
-import { RsIconButton } from '../react-utils/Components/RsIconButton';
-import { Tech } from './Tech/Tech';
-import { TechTree } from './TechTree';
-import { ThePrimaryButton } from '../react-utils/Components/TheButton';
-import { observer } from 'mobx-react';
-import styled from 'styled-components';
+import { AddReceptFab } from "./AddReceptFab";
+import { AddTechFab } from "./AddTechFab";
+import { Column } from "../react-utils/Components/StyledComponents";
+import { DeleteIcon } from "../react-utils/Components/Icons";
+import { ReactSortable } from "react-sortablejs";
+import { Row } from "react-utils/Components/StyledComponents";
+import { RsIconButton } from "../react-utils/Components/RsIconButton";
+import { Tech } from "./Tech/Tech";
+import { TechTree } from "./TechTree";
+import { ThePrimaryButton } from "../react-utils/Components/TheButton";
+import { observer } from "mobx-react";
+import styled from "styled-components";
 
 type Props = {
     techTree: TechTree;
@@ -20,33 +19,23 @@ type Props = {
 
 export const TechList = observer(({ techTree }: Props) => {
     const downloadRecept = () => {
-        const dataStr =
-            'data:text/json;charset=utf-8,' +
-            encodeURIComponent(JSON.stringify(techTree.exportRecept()));
-        const downloadAnchorNode = document.createElement('a');
-        downloadAnchorNode.setAttribute('href', dataStr);
-        downloadAnchorNode.setAttribute('download', 'recept.json');
+        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(techTree.exportRecept()));
+        const downloadAnchorNode = document.createElement("a");
+        downloadAnchorNode.setAttribute("href", dataStr);
+        downloadAnchorNode.setAttribute("download", "recept.json");
         downloadAnchorNode.click();
     };
 
     return (
         <StyledCont>
-            <StyledReactSortable
-                list={techTree.stack}
-                setList={techTree.setTechStack}
-                direction="vertical"
-            >
+            <StyledReactSortable list={techTree.stack} setList={techTree.setTechStack} direction="vertical">
                 {techTree.stack.map((item) => (
                     <TechItem
                         key={item.id}
                         techItem={item}
                         selected={item.id === techTree.activeId}
                         onSelect={() => techTree.setActiveId(item.id)}
-                        onRemove={
-                            item.id !== 0
-                                ? () => techTree.removeTech(item.id)
-                                : undefined
-                        }
+                        onRemove={item.id !== 0 ? () => techTree.removeTech(item.id) : undefined}
                     />
                 ))}
             </StyledReactSortable>
@@ -54,12 +43,8 @@ export const TechList = observer(({ techTree }: Props) => {
                 <AddReceptFab techTree={techTree} />
                 <AddTechFab addTech={techTree.addTech} />
             </StyledRow>
-            <ThePrimaryButton onClick={() => techTree.run()}>
-                {_('Start process')}
-            </ThePrimaryButton>
-            <ThePrimaryButton onClick={downloadRecept}>
-                {_('Export recept')}
-            </ThePrimaryButton>
+            <ThePrimaryButton onClick={() => techTree.run()}>{_("Start process")}</ThePrimaryButton>
+            <ThePrimaryButton onClick={downloadRecept}>{_("Export recept")}</ThePrimaryButton>
         </StyledCont>
     );
 });
@@ -93,12 +78,7 @@ type TItemProps<T extends Object> = {
     onRemove?: () => void;
 };
 
-const TechItem = <T extends Object>({
-    techItem,
-    selected,
-    onRemove,
-    onSelect,
-}: TItemProps<T>) => {
+const TechItem = <T extends Object>({ techItem, selected, onRemove, onSelect }: TItemProps<T>) => {
     return (
         <StyledItem $selected={selected} onClick={onSelect}>
             <StyledName>
@@ -111,7 +91,7 @@ const TechItem = <T extends Object>({
                         e.stopPropagation();
                         onRemove();
                     }}
-                    tooltip={_('Delete')}
+                    tooltip={_("Delete")}
                 >
                     <DeleteIcon />
                 </RsIconButton>
@@ -127,7 +107,7 @@ const StyledItem = styled(Row)<{ $selected: boolean }>`
     border-radius: ${borderRadiusCss(1)};
     height: 38px;
     cursor: pointer;
-    background-color: ${({ $selected }) => ($selected ? 'green' : 'white')};
+    background-color: ${({ $selected }) => ($selected ? "green" : "white")};
     padding-left: ${spacingCss(1)};
     align-items: center;
 `;

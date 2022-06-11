@@ -1,14 +1,14 @@
-import { Button, Tooltip } from '@mui/material';
-import { Column, Row } from 'react-utils/Components/StyledComponents';
-import React, { useState } from 'react';
+import { Button, Tooltip } from "@mui/material";
+import { Column, Row } from "react-utils/Components/StyledComponents";
 
-import AddIcon from '@mui/icons-material/Add';
-import { Fab } from '@mui/material';
-import { IMAGE_SIZER_TECH_CLASSES } from './Const';
-import { RsModal } from 'react-utils/Components/RsModal';
-import { Tech } from './Tech/Tech';
-import { spacingCss } from 'react-utils/Components/globalCss';
-import styled from 'styled-components';
+import AddIcon from "@mui/icons-material/Add";
+import { Fab } from "@mui/material";
+import { IMAGE_SIZER_TECH_CLASSES } from "./Const";
+import { RsModal } from "react-utils/Components/RsModal";
+import { Tech } from "./Tech/Tech";
+import { spacingCss } from "react-utils/Components/globalCss";
+import styled from "styled-components";
+import { useState } from "react";
 
 type Props = {
     addTech: <T extends Object>(tech: Tech<T>) => void;
@@ -32,38 +32,22 @@ export const AddTechFab = ({ addTech }: Props) => {
 
     const techs = IMAGE_SIZER_TECH_CLASSES.map((Item) => new Item());
 
-    const basicTechs = techs.filter((tech) => tech.group === 'basic');
-    const objectTechs = techs.filter((tech) => tech.group === 'object');
-    const transformTechs = techs.filter((tech) => tech.group === 'transform');
+    const basicTechs = techs.filter((tech) => tech.group === "basic");
+    const objectTechs = techs.filter((tech) => tech.group === "object");
+    const transformTechs = techs.filter((tech) => tech.group === "transform");
 
     return (
         <>
-            <Tooltip title={_('Add Tech')}>
-                <Fab
-                    color="primary"
-                    aria-label="addTech"
-                    onClick={() => setOpen(true)}
-                >
+            <Tooltip title={_("Add Tech")}>
+                <Fab color="primary" aria-label="addTech" onClick={() => setOpen(true)}>
                     <AddIcon />
                 </Fab>
             </Tooltip>
-            <RsModal
-                open={open}
-                onClose={() => setOpen(false)}
-                title={_('Add tech')}
-            >
+            <RsModal open={open} onClose={() => setOpen(false)} title={_("Add tech")}>
                 <StyledRow>
-                    <StyledCont>
-                        {basicTechs.map((tech) => renderButton(tech as any))}
-                    </StyledCont>
-                    <StyledCont>
-                        {objectTechs.map((tech) => renderButton(tech as any))}
-                    </StyledCont>
-                    <StyledCont>
-                        {transformTechs.map((tech) =>
-                            renderButton(tech as any)
-                        )}
-                    </StyledCont>
+                    <StyledCont>{basicTechs.map((tech) => renderButton(tech as any))}</StyledCont>
+                    <StyledCont>{objectTechs.map((tech) => renderButton(tech as any))}</StyledCont>
+                    <StyledCont>{transformTechs.map((tech) => renderButton(tech as any))}</StyledCont>
                 </StyledRow>
             </RsModal>
         </>

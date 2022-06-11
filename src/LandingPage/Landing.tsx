@@ -1,24 +1,20 @@
-import { Button } from '@mui/material';
-import React from 'react';
-import { Row } from 'react-utils/Components/StyledComponents';
-import logo from 'Assets/logo/logo.png';
-import { spacingCss } from 'react-utils/Components/globalCss';
-import styled from 'styled-components';
+import { Button } from "@mui/material";
+import { Row } from "react-utils/Components/StyledComponents";
+import logo from "Assets/logo/logo.png";
+import { spacingCss } from "react-utils/Components/globalCss";
+import styled from "styled-components";
 
 export const Landing = () => {
     return (
         <>
             <StyledTop>
-                <StyledLogo
-                    src={logo}
-                    onClick={() => window.location.replace('resaizer.com')}
-                />
+                <StyledLogo src={logo} onClick={() => window.location.replace("resaizer.com")} />
                 <StyledButtonRow>
                     <Button color="primary" variant="contained">
-                        {_('Sign in')}
+                        {_("Sign in")}
                     </Button>
                     <Button color="secondary" variant="text">
-                        {_('Sign up')}
+                        {_("Sign up")}
                     </Button>
                 </StyledButtonRow>
             </StyledTop>

@@ -1,11 +1,11 @@
-import { Column, Row } from 'react-utils/Components/StyledComponents';
-import React, { useState } from 'react';
+import { Column, Row } from "react-utils/Components/StyledComponents";
 
-import { TechComp } from './TechComponents/TechComp';
-import { TechList } from './TechList';
-import { TechTree } from './TechTree';
-import { observer } from 'mobx-react';
-import styled from 'styled-components';
+import { TechComp } from "./TechComponents/TechComp";
+import { TechList } from "./TechList";
+import { TechTree } from "./TechTree";
+import { observer } from "mobx-react";
+import styled from "styled-components";
+import { useState } from "react";
 
 export const ImageSizer = observer(() => {
     const [techTree] = useState(new TechTree());
