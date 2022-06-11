@@ -1,0 +1,20 @@
+import { Column } from "react-utils/Components/StyledComponents";
+import { Landing } from "./Landing";
+import styled from "styled-components";
+
+type Props = {
+    onStart: () => void;
+};
+
+export const LandingPage = ({ onStart }: Props) => {
+    return (
+        <StyledCont>
+            <Landing />
+        </StyledCont>
+    );
+};
+
+const StyledCont = styled(Column)`
+    width: 100vw;
+    background: linear-gradient(198deg, rgba(68, 87, 255, 0.2) 56%, rgba(204, 68, 255, 0.2) 100%);
+`;
