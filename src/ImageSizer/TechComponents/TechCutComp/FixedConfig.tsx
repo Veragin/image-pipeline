@@ -1,6 +1,6 @@
 import { Row } from "../../../react-utils/Components/StyledComponents";
 import { TechCut } from "../../Tech/TechCut";
-import ToolbarProperty from "Service/tsx/Toolbar/ToolbarComponents/ToolbarProperty";
+import ToolbarProperty from "ImageSizer/Components/ToolbarProperty";
 import { observer } from "mobx-react";
 import { spacingCss } from "react-utils/Components/globalCss";
 import styled from "styled-components";

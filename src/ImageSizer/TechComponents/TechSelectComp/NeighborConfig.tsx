@@ -1,9 +1,9 @@
 import { Row } from "react-utils/Components/StyledComponents";
 import { TechSelect } from "ImageSIzer/Tech/TechSelect";
-import ToolbarColor from "Service/tsx/Toolbar/ToolbarComponents/ToolbarColor";
-import ToolbarProperty from "Service/tsx/Toolbar/ToolbarComponents/ToolbarProperty";
-import ToolbarSelect from "Service/tsx/Toolbar/ToolbarComponents/ToolbarSelect";
-import ToolbarSlider from "Service/tsx/Toolbar/ToolbarComponents/ToolbarSlider";
+import ToolbarColor from "ImageSizer/Components/ToolbarColor";
+import ToolbarProperty from "ImageSizer/Components/ToolbarProperty";
+import ToolbarSelect from "ImageSizer/Components/ToolbarSelect";
+import ToolbarSlider from "ImageSizer/Components/ToolbarSlider";
 import { observer } from "mobx-react";
 import styled from "styled-components";
 import { useState } from "react";

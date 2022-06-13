@@ -1,8 +1,8 @@
 import { InputTitle } from "react-utils/Components/RsInput/InputCss";
 import { Row } from "../../../react-utils/Components/StyledComponents";
 import { TFitTo } from "../../functions/rectTricks";
-import ToolbarProperty from "Service/tsx/Toolbar/ToolbarComponents/ToolbarProperty";
-import ToolbarSelect from "Service/tsx/Toolbar/ToolbarComponents/ToolbarSelect";
+import ToolbarProperty from "ImageSizer/Components/ToolbarProperty";
+import ToolbarSelect from "ImageSizer/Components/ToolbarSelect";
 import { observer } from "mobx-react";
 import { spacingCss } from "react-utils/Components/globalCss";
 import styled from "styled-components";

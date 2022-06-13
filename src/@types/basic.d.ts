@@ -15,7 +15,7 @@ declare type TSize = {
     height: number;
 };
 
-declare type TColor = null | {
+declare type TColor = {
     r: number;
     g: number;
     b: number;

@@ -2,7 +2,7 @@ import { FitToConfig } from "./FitToConfig";
 import { InputTitle } from "react-utils/Components/RsInput/InputCss";
 import { PaddingConfig } from "./PaddingConfig";
 import { TTechBBConfig } from "../../functions/rectTricks";
-import ToolbarSelect from "Service/tsx/Toolbar/ToolbarComponents/ToolbarSelect";
+import ToolbarSelect from "ImageSizer/Components/ToolbarSelect";
 import { observer } from "mobx-react";
 
 type Props = {
