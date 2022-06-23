@@ -3,10 +3,13 @@ import { Row } from "react-utils/Components/StyledComponents";
 import logo from "Assets/logo/logo.png";
 import { spacingCss } from "react-utils/Components/globalCss";
 import styled from "styled-components";
+import { Highlight } from "./Components";
 
-import { ReactComponent as PipeEnter } from "Assets/landing/pipeEnter1.svg";
+type Props = {
+    onStart: () => void;
+};
 
-export const Landing = () => {
+export const Landing = ({ onStart }: Props) => {
     return (
         <>
             <StyledTop>
@@ -24,15 +27,17 @@ export const Landing = () => {
                 </StyledButtonRow>
             </StyledTop>
             <StyledTitle>
-                Image <StyledPrimary>Pipeline</StyledPrimary>
+                Image <Highlight>Pipeline</Highlight>
             </StyledTitle>
             <StyledMenu>
                 <StyledMenuItem>Docs</StyledMenuItem>
                 <StyledMenuItem>Docs</StyledMenuItem>
+                <Button color="primary" variant="contained" onClick={onStart}>
+                    {_("Start")}
+                </Button>
                 <StyledMenuItem>Docs</StyledMenuItem>
                 <StyledMenuItem>Docs</StyledMenuItem>
             </StyledMenu>
-            <StyledPipeEnter />
         </>
     );
 };
@@ -54,16 +59,12 @@ const StyledLogo = styled.img`
 
 const StyledTitle = styled(Row)`
     width: 100%;
-    height: 60vh;
+    height: 70vh;
     justify-content: center;
     align-items: center;
     gap: ${spacingCss(2)};
     font-size: 64px;
     text-transform: uppercase;
-`;
-
-const StyledPrimary = styled.span`
-    color: ${({ theme }) => theme.palette.primary.dark};
 `;
 
 const StyledMenu = styled(Row)`
@@ -78,11 +79,4 @@ const StyledMenu = styled(Row)`
 
 const StyledMenuItem = styled(Button)`
     color: white;
-`;
-
-const StyledPipeEnter = styled(PipeEnter)`
-    width: 100%;
-    & g {
-        fill: red;
-    }
 `;
