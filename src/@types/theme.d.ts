@@ -1,9 +1,9 @@
-import * as createMuiTheme from '@material-ui/core/styles/createMuiTheme';
-import * as createPalette from '@material-ui/core/styles/createPalette';
-import { DarkTheme as DT } from './theme';
-import 'styled-components';
+import * as createMuiTheme from "@material-ui/core/styles/createMuiTheme";
+import * as createPalette from "@material-ui/core/styles/createPalette";
+import { DarkTheme as DT } from "./theme";
+import "styled-components";
 
-declare module 'styled-components' {
+declare module "styled-components" {
     interface DarkTheme extends DT {}
 }
 
@@ -12,7 +12,7 @@ interface Measurements {
     borderRadius: number;
     fontSize: number;
 }
-declare module '@mui/material/styles/createTheme' {
+declare module "@mui/material/styles/createTheme" {
     interface Theme {
         measurements: Measurements;
     }
@@ -20,7 +20,7 @@ declare module '@mui/material/styles/createTheme' {
         measurements: Measurements;
     }
 }
-declare module '@mui/material/styles/createPalette' {
+declare module "@mui/material/styles/createPalette" {
     interface PaletteOptions extends createPalette.PaletteOptions {
         input: {
             selected: string;
@@ -30,6 +30,7 @@ declare module '@mui/material/styles/createPalette' {
         };
         backgr: {
             default: string;
+            dark: string;
         };
     }
     interface Palette extends createPalette.Palette {}

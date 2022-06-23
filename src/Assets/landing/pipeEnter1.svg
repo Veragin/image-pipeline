@@ -1,0 +1,13 @@
+<svg viewBox="0 0 800 330" xmlns="http://www.w3.org/2000/svg" style="vector-effect: non-scaling-stroke;">
+ <defs style="vector-effect: non-scaling-stroke;">
+  <radialGradient gradientTransform="rotate(-45,0.6015625,0.6570312976837158) translate(0,0.15111719846725463) scale(1,0.77)" r="1.04219" cy="0.65703" cx="0.60156" spreadMethod="pad" id="svg_11">
+   <stop offset="0" stop-opacity="0.98828" stop-color="#f2f2f2"/>
+   <stop offset="1" stop-opacity="0.99609" stop-color="#6b6c7f"/>
+  </radialGradient>
+ </defs>
+ <g>
+  <title>Layer 1</title>
+  <path stroke-width="0" id="svg_3" d="m794.46124,0.49029c-207.40844,212.59429 -482.19243,174.26878 -666.38966,328.53245c-45.45363,0.61742 -83.8677,-0.45928 -129.5404,0.0357c-0.15554,-38.58389 -0.08965,-167.45735 -0.38351,-330.23822l796.31357,1.67007z" stroke="#ffffff" fill="url(#svg_11)"/>
+  <path id="svg_4" d="m247.90697,285.58138" opacity="NaN" stroke="#000" fill="none"/>
+ </g>
+</svg>
