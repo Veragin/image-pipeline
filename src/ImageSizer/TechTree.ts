@@ -1,11 +1,11 @@
-import { IMAGE_SIZER_TECHS, IMAGE_SIZER_TECH_NAMES, TRecept } from './Const';
-import { ImageCollection, copyImageColection } from './ImageColection';
-import { action, computed, makeObservable, observable } from 'mobx';
+import { IMAGE_SIZER_TECHS, IMAGE_SIZER_TECH_NAMES, TRecept } from "./Const";
+import { ImageCollection, copyImageColection } from "./ImageColection";
+import { action, computed, makeObservable, observable } from "mobx";
 
-import { Tech } from './Tech/Tech';
-import { TechLoad } from './Tech/TechLoad';
-import { assertNotNullish } from '../react-utils/typeguards';
-import { generateRandomId } from '../Service/Nodes/Utils';
+import { Tech } from "./Tech/Tech";
+import { TechLoad } from "./Tech/TechLoad";
+import { assertNotNullish } from "../react-utils/typeguards";
+import { generateRandomId } from "react-utils/misc";
 
 export class TechTree {
     techLoad: TechLoad;
@@ -41,7 +41,11 @@ export class TechTree {
         if (stack.some((tech, i) => tech.id !== this.stack[i]?.id)) {
             // load need to stay first
             const ids = [0, ...stack.map((tech) => tech.id)];
-            this.stack.sort((a, b) => ids.findIndex((id) => a.id === id) - ids.findIndex((id) => b.id === id));
+            this.stack.sort(
+                (a, b) =>
+                    ids.findIndex((id) => a.id === id) -
+                    ids.findIndex((id) => b.id === id)
+            );
             this.updateTmpCollection(this.activeId);
         }
     };
@@ -74,7 +78,7 @@ export class TechTree {
 
     run = async () => {
         const files = this.techLoad.files;
-        console.log('run', files);
+        console.log("run", files);
         if (files === null || files.length === 0) return;
 
         for (let i = 0; i < files.length; i++) {
@@ -92,15 +96,20 @@ export class TechTree {
     exportRecept = () => {
         const recept: TRecept = {
             id: generateRandomId(),
-            name: 'custom',
+            name: "custom",
             techs: [],
         };
 
         for (let tech of this.stack) {
             if (tech instanceof TechLoad) continue;
 
-            const techName = IMAGE_SIZER_TECH_NAMES.find((key) => tech instanceof IMAGE_SIZER_TECHS[key]);
-            assertNotNullish(techName, 'Tech is not registered in IMAGE_SIZER_TECHS');
+            const techName = IMAGE_SIZER_TECH_NAMES.find(
+                (key) => tech instanceof IMAGE_SIZER_TECHS[key]
+            );
+            assertNotNullish(
+                techName,
+                "Tech is not registered in IMAGE_SIZER_TECHS"
+            );
 
             recept.techs.push({
                 tech: techName,
@@ -117,7 +126,10 @@ export class TechTree {
             return;
         }
 
-        const col = this.computeCollection(this.techLoad.preview, this.techLoad.previewName);
+        const col = this.computeCollection(
+            this.techLoad.preview,
+            this.techLoad.previewName
+        );
 
         for (let i = 0; i < this.stack.length; i++) {
             if (this.stack[i].id === stopTechId) break;
@@ -130,12 +142,12 @@ export class TechTree {
     private computeCollection = (imgData: ImageData, fileName: string) => {
         const col = new ImageCollection();
 
-        const fileNameSplit = fileName.split('.');
-        const format = fileNameSplit.pop() ?? 'png';
+        const fileNameSplit = fileName.split(".");
+        const format = fileNameSplit.pop() ?? "png";
         col.stack.push({
             data: imgData,
             index: 0,
-            name: fileNameSplit.join('.'),
+            name: fileNameSplit.join("."),
             format,
             selection: [],
             objects: [],

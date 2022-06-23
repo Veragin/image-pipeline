@@ -1,5 +1,5 @@
 import { ImageCollection, TImageItem, TImageObject } from "../ImageColection";
-import { applyColorToImage, getRandomColor } from "ImageSIzer/functions/pixelUtils";
+import { applyColorToImage, getRandomColor } from "../functions/pixelUtils";
 import { useEffect, useRef } from "react";
 
 import { Row } from "react-utils/Components/StyledComponents";
@@ -91,7 +91,10 @@ const getColoredImage = (data: TImageItem, show: TItemShow) => {
     return newData;
 };
 
-const drawObjects = (ctx: CanvasRenderingContext2D, objects: TImageObject[]) => {
+const drawObjects = (
+    ctx: CanvasRenderingContext2D,
+    objects: TImageObject[]
+) => {
     for (let obj of objects) {
         ctx.strokeStyle = "black";
         ctx.strokeRect(obj.rect.x, obj.rect.y, obj.rect.width, obj.rect.height);

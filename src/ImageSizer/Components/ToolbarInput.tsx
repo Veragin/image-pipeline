@@ -1,12 +1,12 @@
-import { inputCss } from './ToolbarComp';
-import { roundNumber } from './Utils';
-import styled from 'styled-components';
+import { inputCss } from "./ToolbarComp";
+import { roundNumber } from "./Utils";
+import styled from "styled-components";
 
 type Props = {
     onChange: (v: string) => void;
     onBlur?: (v: string) => void;
     value: string;
-    type: 'text' | 'number';
+    type: "text" | "number";
     min?: number;
     max?: number;
 
@@ -30,7 +30,7 @@ const ToolbarInput = ({
 }: Props) => {
     const convert = (e: React.ChangeEvent<HTMLInputElement>) => {
         let value: string | number = e.target.value;
-        if (type === 'number') {
+        if (type === "number") {
             value = Number(value);
             if (min && value < min) value = min;
             if (max && value > max) value = max;
@@ -39,11 +39,11 @@ const ToolbarInput = ({
     };
 
     const onKeyDown = (e: React.KeyboardEvent) => {
-        if (onEnter && e.key === 'ENTER') onEnter();
+        if (onEnter && e.key === "ENTER") onEnter();
         e.stopPropagation();
     };
 
-    if (type === 'number') value = String(roundNumber(Number(value)));
+    if (type === "number") value = String(roundNumber(Number(value)));
 
     return (
         <StyledInput
