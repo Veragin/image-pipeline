@@ -1,7 +1,11 @@
-import { pixelIndex } from './pixelUtils';
-import { rotatePoint } from 'Service/Editor/Math';
+import { pixelIndex } from "./pixelUtils";
+import { rotatePoint } from "react-utils/Math";
 
-export const mirrorPixels = (imgData: ImageData, vertical: boolean, horizontal: boolean) => {
+export const mirrorPixels = (
+    imgData: ImageData,
+    vertical: boolean,
+    horizontal: boolean
+) => {
     if (!vertical && !horizontal) return imgData;
 
     const arr = new Uint8ClampedArray(imgData.width * imgData.height * 4);
@@ -73,7 +77,12 @@ export const scalePixels = (imgData: ImageData, size: TSize) => {
 };
 
 export const getInterpolarColorFromPos = (imgData: ImageData, pos: TPoint) => {
-    if (pos.x < 0 || pos.y < 0 || pos.x >= imgData.width || pos.y >= imgData.height) {
+    if (
+        pos.x < 0 ||
+        pos.y < 0 ||
+        pos.x >= imgData.width ||
+        pos.y >= imgData.height
+    ) {
         return { r: 0, g: 0, b: 0, a: 0 };
     }
 

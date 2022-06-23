@@ -1,4 +1,4 @@
-import { Column } from "../../react-utils/Components/StyledComponents";
+import { Column } from "react-utils/Components/StyledComponents";
 import { ImageCollection } from "../ImageColection";
 import { TechColor } from "../Tech/TechColor";
 import { TechCompCollection } from "./TechCompCollection";

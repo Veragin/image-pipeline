@@ -1,7 +1,7 @@
 import { Column, Row } from "../../react-utils/Components/StyledComponents";
 
 import { ImageCollection } from "../ImageColection";
-import { Tech } from "ImageSIzer/Tech/Tech";
+import { Tech } from "../Tech/Tech";
 import { Typography } from "@mui/material";
 import { observer } from "mobx-react";
 import { spacingCss } from "react-utils/Components/globalCss";

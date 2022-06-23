@@ -1,10 +1,13 @@
+import { COLOR } from "react-utils/Const/Color";
 import { TColor } from "../../react-utils/Const/Types";
 import { TSelection } from "../ImageColection";
 
-export const pixelIndex = (pixel: TPoint, width: number) => (pixel.y * width + pixel.x) * 4;
+export const pixelIndex = (pixel: TPoint, width: number) =>
+    (pixel.y * width + pixel.x) * 4;
 
 export const colorFromPixel = (pixel: TPoint, imgData: ImageData): TColor => {
-    if (pixel.x >= imgData.width || pixel.y >= imgData.height) return null;
+    if (pixel.x >= imgData.width || pixel.y >= imgData.height)
+        return COLOR.INVISIBLE;
     const index = pixelIndex(pixel, imgData.width);
     return {
         r: imgData.data[index],
@@ -19,7 +22,11 @@ export const getPixelFormPos = (i: number, width: number) => ({
     y: Math.floor(i / width),
 });
 
-export const applyColorToImage = (data: ImageData, selection: TSelection, color: TColor) => {
+export const applyColorToImage = (
+    data: ImageData,
+    selection: TSelection,
+    color: TColor
+) => {
     for (let r of selection) {
         for (let i = r[0]; i <= r[1]; i++) {
             data.data[i * 4] = color?.r ?? 0;

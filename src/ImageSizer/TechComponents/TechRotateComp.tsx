@@ -1,8 +1,8 @@
-import { Column } from "../../react-utils/Components/StyledComponents";
+import { Column } from "react-utils/Components/StyledComponents";
 import { ImageCollection } from "../ImageColection";
-import RsInput from "../../react-utils/Components/RsInput/RsInput";
+import RsInput from "react-utils/Components/RsInput/RsInput";
 import { TechCompCollection } from "./TechCompCollection";
-import { TechRotate } from "ImageSIzer/Tech/TechRotate";
+import { TechRotate } from "../Tech/TechRotate";
 import { observer } from "mobx-react";
 import { spacingCss } from "react-utils/Components/globalCss";
 import styled from "styled-components";
@@ -20,7 +20,9 @@ export const TechRotateComp = observer(({ tech, collection }: Props) => {
                     title={_("Degree")}
                     value={String(tech.config.angle)}
                     type="number"
-                    onChange={(angle) => tech.setConfig({ angle: Number(angle) })}
+                    onChange={(angle) =>
+                        tech.setConfig({ angle: Number(angle) })
+                    }
                 />
             </StyledConfig>
 

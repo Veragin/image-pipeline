@@ -1,5 +1,5 @@
 import { Row } from "react-utils/Components/StyledComponents";
-import { TechSelect } from "ImageSIzer/Tech/TechSelect";
+import { TechSelect } from "ImageSizer/Tech/TechSelect";
 import ToolbarColor from "ImageSizer/Components/ToolbarColor";
 import ToolbarProperty from "ImageSizer/Components/ToolbarProperty";
 import ToolbarSelect from "ImageSizer/Components/ToolbarSelect";

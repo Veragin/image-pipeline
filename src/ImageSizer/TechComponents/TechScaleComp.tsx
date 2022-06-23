@@ -1,6 +1,6 @@
 import { TTechScaleType, TechScale } from "../Tech/TechScale";
 
-import { Column } from "../../react-utils/Components/StyledComponents";
+import { Column } from "react-utils/Components/StyledComponents";
 import { ImageCollection } from "../ImageColection";
 import RsSelect from "react-utils/Components/RsInput/RsSelect";
 import { SizeConfig } from "./ConfigComp/SizeConfig";

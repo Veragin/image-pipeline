@@ -2,7 +2,7 @@ import { TTechCutType, TechCut } from "../../Tech/TechCut";
 
 import { Column } from "react-utils/Components/StyledComponents";
 import { FixedConfig } from "./FixedConfig";
-import { ImageCollection } from "ImageSIzer/ImageColection";
+import { ImageCollection } from "../../ImageColection";
 import { InputTitle } from "react-utils/Components/RsInput/InputCss";
 import { PercentConfig } from "./PercentConfig";
 import RsSelect from "react-utils/Components/RsInput/RsSelect";

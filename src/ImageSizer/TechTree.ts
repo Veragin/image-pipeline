@@ -4,8 +4,8 @@ import { action, computed, makeObservable, observable } from "mobx";
 
 import { Tech } from "./Tech/Tech";
 import { TechLoad } from "./Tech/TechLoad";
-import { assertNotNullish } from "../react-utils/typeguards";
-import { generateRandomId } from "react-utils/misc";
+import { assertNotNullish } from "../react-utils/basic/typeguards";
+import { generateRandomId } from "react-utils/basic/misc";
 
 export class TechTree {
     techLoad: TechLoad;

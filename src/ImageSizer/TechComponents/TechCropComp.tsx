@@ -1,4 +1,4 @@
-import { TTechCropType, TechCrop } from "ImageSIzer/Tech/TechCrop";
+import { TTechCropType, TechCrop } from "../Tech/TechCrop";
 
 import { BbConfig } from "./ConfigComp/BbConfig";
 import { BoxConfig } from "./ConfigComp/BoxConfig";
@@ -25,8 +25,15 @@ export const TechCropComp = observer(({ tech, collection }: Props) => {
                     setValue={(type) => tech.setConfig({ type })}
                     list={techTypeList}
                 />
-                <BoxConfig type={tech.config.type} box={tech.config.box} onChange={(box) => tech.setConfig({ box })} />
-                <BbConfig bbConfig={tech.config.bbConfig} onChange={(bbConfig) => tech.setConfig({ bbConfig })} />
+                <BoxConfig
+                    type={tech.config.type}
+                    box={tech.config.box}
+                    onChange={(box) => tech.setConfig({ box })}
+                />
+                <BbConfig
+                    bbConfig={tech.config.bbConfig}
+                    onChange={(bbConfig) => tech.setConfig({ bbConfig })}
+                />
             </StyledConfig>
 
             <TechCompCollection collection={collection} show="objects" />

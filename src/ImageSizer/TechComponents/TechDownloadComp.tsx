@@ -1,4 +1,4 @@
-import { TTechDownloadType, TechDownload } from "ImageSIzer/Tech/TechDownload";
+import { TTechDownloadType, TechDownload } from "../Tech/TechDownload";
 
 import { Column } from "../../react-utils/Components/StyledComponents";
 import { ImageCollection } from "../ImageColection";
@@ -33,7 +33,9 @@ export const TechDownloadComp = observer(({ tech, collection }: Props) => {
                     onChange={(v) => tech.setConfig({ quality: Number(v) })}
                 />
 
-                <ThePrimaryButton onClick={() => tech.do(collection)}>{_("Download")}</ThePrimaryButton>
+                <ThePrimaryButton onClick={() => tech.do(collection)}>
+                    {_("Download")}
+                </ThePrimaryButton>
             </StyledConfig>
 
             <TechCompCollection collection={collection} show="objects" />

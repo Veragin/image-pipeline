@@ -1,7 +1,7 @@
-import { IMAGE_SIZER_TECHS, TImageSizerTechNames, TRecept } from '../Const';
+import { IMAGE_SIZER_TECHS, TImageSizerTechNames, TRecept } from "../Const";
 
-import { TechTree } from '../TechTree';
-import { generateRandomId } from '../../Service/Nodes/Utils';
+import { TechTree } from "../TechTree";
+import { generateRandomId } from "react-utils/basic/misc";
 
 export const loadReceptToTechTree = (techTree: TechTree, recept: TRecept) => {
     recept.techs.forEach((item) => {

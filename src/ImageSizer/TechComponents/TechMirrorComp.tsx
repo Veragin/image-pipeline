@@ -2,7 +2,7 @@ import { Column } from "../../react-utils/Components/StyledComponents";
 import { ImageCollection } from "../ImageColection";
 import RsSelect from "react-utils/Components/RsInput/RsSelect";
 import { TechCompCollection } from "./TechCompCollection";
-import { TechMirror } from "ImageSIzer/Tech/TechMirror";
+import { TechMirror } from "../Tech/TechMirror";
 import { observer } from "mobx-react";
 import { spacingCss } from "react-utils/Components/globalCss";
 import styled from "styled-components";

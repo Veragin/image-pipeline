@@ -1,4 +1,9 @@
-import { addSelection, interSelection, inverseSelection, subSelection } from "../functions/selections";
+import {
+    addSelection,
+    interSelection,
+    inverseSelection,
+    subSelection,
+} from "../functions/selections";
 import {
     alphaToSelection,
     colorToSelection,
@@ -14,7 +19,7 @@ import { TImageItem } from "./../ImageColection";
 import { Tech } from "./Tech";
 import { TechSelectComp } from "../TechComponents/TechSelectComp/TechSelectComp";
 import { rectToSelection } from "../functions/rectSelection";
-import { throttle } from "react-utils/throttle";
+import { throttle } from "react-utils/basic/throttle";
 
 export class TechSelect extends Tech<TTechSelectConfig> {
     name = "Select";
@@ -29,8 +34,9 @@ export class TechSelect extends Tech<TTechSelectConfig> {
     setConfigColor = throttle((config: Partial<TTechSelectConfig["color"]>) =>
         this.setConfig({ color: { ...this.config.color, ...config } })
     );
-    setConfigNeighbor = throttle((config: Partial<TTechSelectConfig["neighbor"]>) =>
-        this.setConfig({ neighbor: { ...this.config.neighbor, ...config } })
+    setConfigNeighbor = throttle(
+        (config: Partial<TTechSelectConfig["neighbor"]>) =>
+            this.setConfig({ neighbor: { ...this.config.neighbor, ...config } })
     );
 
     do = async (imgCol: ImageCollection) => {
@@ -63,14 +69,25 @@ export class TechSelect extends Tech<TTechSelectConfig> {
                 return rectToSelection(this.config.box, item.data);
             case "color":
                 if (this.config.color.type === "color") {
-                    return colorToSelection(this.config.color.pivot, this.config.color.threshold, item.data);
+                    return colorToSelection(
+                        this.config.color.pivot,
+                        this.config.color.threshold,
+                        item.data
+                    );
                 } else {
-                    return alphaToSelection(this.config.color.alpha, this.config.color.threshold, item.data);
+                    return alphaToSelection(
+                        this.config.color.alpha,
+                        this.config.color.threshold,
+                        item.data
+                    );
                 }
             case "neighbor":
                 if (this.config.neighbor.type === "pixel") {
                     return neighborToSelection(
-                        { x: this.config.neighbor.x, y: this.config.neighbor.y },
+                        {
+                            x: this.config.neighbor.x,
+                            y: this.config.neighbor.y,
+                        },
                         this.config.neighbor.threshold,
                         item.data
                     );
@@ -81,7 +98,10 @@ export class TechSelect extends Tech<TTechSelectConfig> {
                         item.data
                     );
                 } else {
-                    return neighborToSelectionByBaseColor(this.config.neighbor.threshold, item.data);
+                    return neighborToSelectionByBaseColor(
+                        this.config.neighbor.threshold,
+                        item.data
+                    );
                 }
             case "old":
                 return item.selection;
@@ -89,7 +109,11 @@ export class TechSelect extends Tech<TTechSelectConfig> {
     };
 }
 
-export type TTechSelectMode = "newSelect" | "modifyAdd" | "modifySub" | "modifyInter";
+export type TTechSelectMode =
+    | "newSelect"
+    | "modifyAdd"
+    | "modifySub"
+    | "modifyInter";
 export type TTechSelectType = "box" | "color" | "neighbor" | "old";
 
 export type TTechSelectConfig = {

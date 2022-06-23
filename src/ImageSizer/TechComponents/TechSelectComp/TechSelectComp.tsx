@@ -1,8 +1,12 @@
-import { TTechSelectMode, TTechSelectType, TechSelect } from "ImageSIzer/Tech/TechSelect";
+import {
+    TTechSelectMode,
+    TTechSelectType,
+    TechSelect,
+} from "ImageSizer/Tech/TechSelect";
 
 import { BoxConfig } from "../ConfigComp/BoxConfig";
 import { ColorConfig } from "./ColorConfig";
-import { Column } from "../../../react-utils/Components/StyledComponents";
+import { Column } from "react-utils/Components/StyledComponents";
 import { ImageCollection } from "../../ImageColection";
 import { InputTitle } from "react-utils/Components/RsInput/InputCss";
 import { NeighborConfig } from "./NeighborConfig";
@@ -41,7 +45,11 @@ export const TechSelectComp = observer(({ tech, collection }: Props) => {
                 />
 
                 <InputTitle>{_("Config")}</InputTitle>
-                <BoxConfig type={tech.config.type} box={tech.config.box} onChange={(box) => tech.setConfig({ box })} />
+                <BoxConfig
+                    type={tech.config.type}
+                    box={tech.config.box}
+                    onChange={(box) => tech.setConfig({ box })}
+                />
                 <ColorConfig tech={tech} />
                 <NeighborConfig tech={tech} />
             </StyledConfig>
