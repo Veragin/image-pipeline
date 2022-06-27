@@ -30,13 +30,13 @@ export const Landing = ({ onStart }: Props) => {
                 Image <Highlight>Pipeline</Highlight>
             </StyledTitle>
             <StyledMenu>
-                <StyledMenuItem>Docs</StyledMenuItem>
-                <StyledMenuItem>Docs</StyledMenuItem>
+                <StyledMenuItem>Tutorial</StyledMenuItem>
+                <StyledMenuItem>Examples</StyledMenuItem>
                 <Button color="primary" variant="contained" onClick={onStart}>
-                    {_("Start")}
+                    {_("Start right now")}
                 </Button>
                 <StyledMenuItem>Docs</StyledMenuItem>
-                <StyledMenuItem>Docs</StyledMenuItem>
+                <StyledMenuItem>SizeFire</StyledMenuItem>
             </StyledMenu>
         </>
     );

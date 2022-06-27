@@ -2,6 +2,7 @@ import { Column } from "react-utils/Components/StyledComponents";
 import { Landing } from "./Landing";
 import styled from "styled-components";
 import { LandingPipe } from "./LandingPipe";
+import { Body } from "./Body";
 
 type Props = {
     onStart: () => void;
@@ -12,6 +13,7 @@ export const LandingPage = ({ onStart }: Props) => {
         <StyledCont>
             <Landing onStart={onStart} />
             <LandingPipe />
+            <Body />
         </StyledCont>
     );
 };
