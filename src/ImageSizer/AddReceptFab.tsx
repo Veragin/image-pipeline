@@ -6,17 +6,17 @@ import FormatListBulletedRoundedIcon from "@mui/icons-material/FormatListBullete
 import { RECEPT_LIST } from "./recepies/receptList";
 import { RsModal } from "react-utils/Components/RsModal";
 import { TRecept } from "./Const";
-import { TechTree } from "./TechTree";
+import { TubeTree } from "./TubeTree";
 import { ThePrimaryButton } from "../react-utils/Components/TheButton";
-import { loadReceptToTechTree } from "./recepies/receptLoader";
+import { loadReceptToTubeTree } from "./recepies/receptLoader";
 import { spacingCss } from "react-utils/Components/globalCss";
 import styled from "styled-components";
 
 type Props = {
-    techTree: TechTree;
+    tubeTree: TubeTree;
 };
 
-export const AddReceptFab = ({ techTree }: Props) => {
+export const AddReceptFab = ({ tubeTree }: Props) => {
     const [open, setOpen] = useState(false);
     const fileRef = useRef<HTMLInputElement>(null);
 
@@ -31,7 +31,8 @@ export const AddReceptFab = ({ techTree }: Props) => {
 
         reader.onload = (evt) => {
             try {
-                if (typeof evt.target?.result !== "string") throw new Error("result of FIleReader is not a string");
+                if (typeof evt.target?.result !== "string")
+                    throw new Error("result of FIleReader is not a string");
 
                 const recept = JSON.parse(evt.target.result);
                 loadRecept(recept);
@@ -45,21 +46,34 @@ export const AddReceptFab = ({ techTree }: Props) => {
     };
 
     const loadRecept = (recept: TRecept) => {
-        loadReceptToTechTree(techTree, recept);
+        loadReceptToTubeTree(tubeTree, recept);
         setOpen(false);
     };
 
     return (
         <>
             <Tooltip title={_("Add Recept")}>
-                <Fab color="primary" aria-label="fabRecept" onClick={() => setOpen(true)}>
+                <Fab
+                    color="primary"
+                    aria-label="fabRecept"
+                    onClick={() => setOpen(true)}
+                >
                     <FormatListBulletedRoundedIcon />
                 </Fab>
             </Tooltip>
-            <RsModal open={open} onClose={() => setOpen(false)} title={_("Add recept")}>
+            <RsModal
+                open={open}
+                onClose={() => setOpen(false)}
+                title={_("Add recept")}
+            >
                 <StyledCont>
                     {RECEPT_LIST.map((recept) => (
-                        <Button key={recept.id} color="primary" variant="contained" onClick={() => loadRecept(recept)}>
+                        <Button
+                            key={recept.id}
+                            color="primary"
+                            variant="contained"
+                            onClick={() => loadRecept(recept)}
+                        >
                             {recept.name}
                         </Button>
                     ))}
@@ -69,7 +83,10 @@ export const AddReceptFab = ({ techTree }: Props) => {
                         accept="application/JSON"
                         onChange={(ev) => readReceptFile(ev.target.files)}
                     />
-                    <ThePrimaryButton color="primary" onClick={() => fileRef.current?.click()}>
+                    <ThePrimaryButton
+                        color="primary"
+                        onClick={() => fileRef.current?.click()}
+                    >
                         {_("Load recept from file")}
                     </ThePrimaryButton>
                 </StyledCont>

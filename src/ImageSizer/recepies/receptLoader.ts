@@ -1,30 +1,30 @@
-import { IMAGE_SIZER_TECHS, TImageSizerTechNames, TRecept } from "../Const";
+import { IMAGE_SIZER_TECHS, TImageSizerTubeNames, TRecept } from "../Const";
 
-import { TechTree } from "../TechTree";
+import { TubeTree } from "../TubeTree";
 import { generateRandomId } from "react-utils/basic/misc";
 
-export const loadReceptToTechTree = (techTree: TechTree, recept: TRecept) => {
-    recept.techs.forEach((item) => {
-        const tech = new IMAGE_SIZER_TECHS[item.tech]();
-        tech.setConfig(item.config as any);
-        techTree.addTech(tech);
+export const loadReceptToTubeTree = (tubeTree: TubeTree, recept: TRecept) => {
+    recept.tubes.forEach((item) => {
+        const tube = new IMAGE_SIZER_TECHS[item.tube]();
+        tube.setConfig(item.config as any);
+        tubeTree.addTube(tube);
     });
 };
 
-export const exportReceptFromTechTree = (techTree: TechTree, name: string) => {
+export const exportReceptFromTubeTree = (tubeTree: TubeTree, name: string) => {
     const recept: TRecept = {
         id: generateRandomId(),
         name,
-        techs: [],
+        tubes: [],
     };
-    const techNames = Object.keys(IMAGE_SIZER_TECHS) as TImageSizerTechNames[];
+    const tubeNames = Object.keys(IMAGE_SIZER_TECHS) as TImageSizerTubeNames[];
 
-    techTree.stack.forEach((tech) => {
-        for (let techName of techNames) {
-            if (tech instanceof IMAGE_SIZER_TECHS[techName]) {
-                recept.techs.push({
-                    tech: techName,
-                    config: tech.config as any,
+    tubeTree.stack.forEach((tube) => {
+        for (let tubeName of tubeNames) {
+            if (tube instanceof IMAGE_SIZER_TECHS[tubeName]) {
+                recept.tubes.push({
+                    tube: tubeName,
+                    config: tube.config as any,
                 });
                 break;
             }

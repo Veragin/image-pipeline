@@ -1,8 +1,8 @@
 import { Column, Row } from "react-utils/Components/StyledComponents";
 
-import { TechComp } from "./TechComponents/TechComp";
-import { TechList } from "./TechList";
-import { TechTree } from "./TechTree";
+import { TubeComp } from "./TubeComponents/TubeComp";
+import { TubeList } from "./TubeList";
+import { TubeTree } from "./TubeTree";
 import { observer } from "mobx-react";
 import styled from "styled-components";
 import { useState } from "react";
@@ -14,22 +14,22 @@ type Props = {
 };
 
 export const ImageSizer = observer(({ openLandingPage }: Props) => {
-    const [techTree] = useState(new TechTree());
+    const [tubeTree] = useState(new TubeTree());
 
-    const tech = techTree.activeTech;
-    const collection = techTree.activeColection;
+    const tube = tubeTree.activeTube;
+    const collection = tubeTree.activeColection;
 
     return (
         <StyledCont>
             <TopBar
                 onHome={openLandingPage}
                 onUser={() => console.log("open user")}
-                logoComp={<TopControl techTree={techTree} />}
+                logoComp={<TopControl tubeTree={tubeTree} />}
             />
             <StyledRow>
-                <TechList techTree={techTree} />
+                <TubeList tubeTree={tubeTree} />
                 <StyledBody>
-                    <TechComp tech={tech} collection={collection} />
+                    <TubeComp tube={tube} collection={collection} />
                 </StyledBody>
             </StyledRow>
         </StyledCont>

@@ -1,81 +1,83 @@
-import { TTechColorConfig, TechColor } from './Tech/TechColor';
-import { TTechCropConfig, TechCrop } from './Tech/TechCrop';
-import { TTechCutConfig, TechCut } from './Tech/TechCut';
-import { TTechDownloadConfig, TechDownload } from './Tech/TechDownload';
-import { TTechJoinConfig, TechJoin } from './Tech/TechJoin';
-import { TTechMirrorConfig, TechMirror } from './Tech/TechMirror';
-import { TTechObjectConfig, TechObject } from './Tech/TechObject';
-import { TTechRenameConfig, TechRename } from './Tech/TechRename';
-import { TTechRotateConfig, TechRotate } from './Tech/TechRotate';
-import { TTechScaleConfig, TechScale } from './Tech/TechScale';
-import { TTechSelectConfig, TechSelect } from './Tech/TechSelect';
+import { TTubeColorConfig, TubeColor } from "./Tube/TubeColor";
+import { TTubeCropConfig, TubeCrop } from "./Tube/TubeCrop";
+import { TTubeCutConfig, TubeCut } from "./Tube/TubeCut";
+import { TTubeDownloadConfig, TubeDownload } from "./Tube/TubeDownload";
+import { TTubeJoinConfig, TubeJoin } from "./Tube/TubeJoin";
+import { TTubeMirrorConfig, TubeMirror } from "./Tube/TubeMirror";
+import { TTubeObjectConfig, TubeObject } from "./Tube/TubeObject";
+import { TTubeRenameConfig, TubeRename } from "./Tube/TubeRename";
+import { TTubeRotateConfig, TubeRotate } from "./Tube/TubeRotate";
+import { TTubeScaleConfig, TubeScale } from "./Tube/TubeScale";
+import { TTubeSelectConfig, TubeSelect } from "./Tube/TubeSelect";
 
 export const IMAGE_SIZER_TECHS = {
-    select: TechSelect,
-    color: TechColor,
-    rename: TechRename,
-    object: TechObject,
-    download: TechDownload,
-    cut: TechCut,
-    crop: TechCrop,
-    scale: TechScale,
-    rotate: TechRotate,
-    mirror: TechMirror,
-    join: TechJoin,
+    select: TubeSelect,
+    color: TubeColor,
+    rename: TubeRename,
+    object: TubeObject,
+    download: TubeDownload,
+    cut: TubeCut,
+    crop: TubeCrop,
+    scale: TubeScale,
+    rotate: TubeRotate,
+    mirror: TubeMirror,
+    join: TubeJoin,
 } as const;
 
-export type TImageSizerTechConfig =
+export type TImageSizerTubeConfig =
     | {
-          tech: 'select';
-          config: DeepPartial<TTechSelectConfig>;
+          tube: "select";
+          config: DeepPartial<TTubeSelectConfig>;
       }
     | {
-          tech: 'rename';
-          config: DeepPartial<TTechRenameConfig>;
+          tube: "rename";
+          config: DeepPartial<TTubeRenameConfig>;
       }
     | {
-          tech: 'object';
-          config: DeepPartial<TTechObjectConfig>;
+          tube: "object";
+          config: DeepPartial<TTubeObjectConfig>;
       }
     | {
-          tech: 'download';
-          config: DeepPartial<TTechDownloadConfig>;
+          tube: "download";
+          config: DeepPartial<TTubeDownloadConfig>;
       }
     | {
-          tech: 'cut';
-          config: DeepPartial<TTechCutConfig>;
+          tube: "cut";
+          config: DeepPartial<TTubeCutConfig>;
       }
     | {
-          tech: 'crop';
-          config: DeepPartial<TTechCropConfig>;
+          tube: "crop";
+          config: DeepPartial<TTubeCropConfig>;
       }
     | {
-          tech: 'color';
-          config: DeepPartial<TTechColorConfig>;
+          tube: "color";
+          config: DeepPartial<TTubeColorConfig>;
       }
     | {
-          tech: 'scale';
-          config: DeepPartial<TTechScaleConfig>;
+          tube: "scale";
+          config: DeepPartial<TTubeScaleConfig>;
       }
     | {
-          tech: 'rotate';
-          config: DeepPartial<TTechRotateConfig>;
+          tube: "rotate";
+          config: DeepPartial<TTubeRotateConfig>;
       }
     | {
-          tech: 'mirror';
-          config: DeepPartial<TTechMirrorConfig>;
+          tube: "mirror";
+          config: DeepPartial<TTubeMirrorConfig>;
       }
     | {
-          tech: 'join';
-          config: DeepPartial<TTechJoinConfig>;
+          tube: "join";
+          config: DeepPartial<TTubeJoinConfig>;
       };
 
 export type TRecept = {
     id: number;
     name: string;
-    techs: TImageSizerTechConfig[];
+    tubes: TImageSizerTubeConfig[];
 };
 
-export type TImageSizerTechNames = keyof typeof IMAGE_SIZER_TECHS;
-export const IMAGE_SIZER_TECH_NAMES = Object.keys(IMAGE_SIZER_TECHS) as TImageSizerTechNames[];
+export type TImageSizerTubeNames = keyof typeof IMAGE_SIZER_TECHS;
+export const IMAGE_SIZER_TECH_NAMES = Object.keys(
+    IMAGE_SIZER_TECHS
+) as TImageSizerTubeNames[];
 export const IMAGE_SIZER_TECH_CLASSES = Object.values(IMAGE_SIZER_TECHS);

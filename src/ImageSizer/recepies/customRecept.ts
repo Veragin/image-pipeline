@@ -3,9 +3,9 @@ import { TRecept } from "../Const";
 export const customRecept: TRecept = {
     id: 1,
     name: "custom",
-    techs: [
+    tubes: [
         {
-            tech: "select",
+            tube: "select",
             config: {
                 type: "neighbor",
                 neighbor: {
@@ -17,7 +17,7 @@ export const customRecept: TRecept = {
             },
         },
         {
-            tech: "object",
+            tube: "object",
             config: {
                 compactDistance: 4,
                 minimalHeight: 10,
@@ -26,13 +26,13 @@ export const customRecept: TRecept = {
             },
         },
         {
-            tech: "cut",
+            tube: "cut",
             config: {
                 type: "object",
             },
         },
         {
-            tech: "select",
+            tube: "select",
             config: {
                 mode: "newSelect",
                 type: "old",
@@ -40,20 +40,20 @@ export const customRecept: TRecept = {
             },
         },
         {
-            tech: "color",
+            tube: "color",
             config: {
                 color: { r: 0, g: 0, b: 0, a: 0 },
             },
         },
         {
-            tech: "scale",
+            tube: "scale",
             config: {
                 type: "box",
                 box: { width: 50, height: 50 },
             },
         },
         {
-            tech: "join",
+            tube: "join",
             config: { groupBy: 0 },
         },
     ],

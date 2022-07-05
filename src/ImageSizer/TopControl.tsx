@@ -3,17 +3,17 @@ import { Fab, Tooltip } from "@mui/material";
 import { spacingCss } from "react-utils/Components/globalCss";
 import { Row } from "react-utils/Components/StyledComponents";
 import styled from "styled-components";
-import { TechTree } from "./TechTree";
+import { TubeTree } from "./TubeTree";
 
 type Props = {
-    techTree: TechTree;
+    tubeTree: TubeTree;
 };
 
-export const TopControl = ({ techTree }: Props) => {
+export const TopControl = ({ tubeTree }: Props) => {
     const downloadRecept = () => {
         const dataStr =
             "data:text/json;charset=utf-8," +
-            encodeURIComponent(JSON.stringify(techTree.exportRecept()));
+            encodeURIComponent(JSON.stringify(tubeTree.exportRecept()));
         const downloadAnchorNode = document.createElement("a");
         downloadAnchorNode.setAttribute("href", dataStr);
         downloadAnchorNode.setAttribute("download", "recept.json");
@@ -26,7 +26,7 @@ export const TopControl = ({ techTree }: Props) => {
                 <Fab
                     color="primary"
                     size="small"
-                    onClick={() => techTree.run()}
+                    onClick={() => tubeTree.run()}
                 >
                     <PlayArrow />
                 </Fab>
