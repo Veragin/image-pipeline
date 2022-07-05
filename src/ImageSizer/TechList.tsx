@@ -9,7 +9,6 @@ import { Row } from "react-utils/Components/StyledComponents";
 import { RsIconButton } from "../react-utils/Components/RsIconButton";
 import { Tech } from "./Tech/Tech";
 import { TechTree } from "./TechTree";
-import { ThePrimaryButton } from "../react-utils/Components/TheButton";
 import { observer } from "mobx-react";
 import styled from "styled-components";
 
@@ -18,33 +17,31 @@ type Props = {
 };
 
 export const TechList = observer(({ techTree }: Props) => {
-    const downloadRecept = () => {
-        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(techTree.exportRecept()));
-        const downloadAnchorNode = document.createElement("a");
-        downloadAnchorNode.setAttribute("href", dataStr);
-        downloadAnchorNode.setAttribute("download", "recept.json");
-        downloadAnchorNode.click();
-    };
-
     return (
         <StyledCont>
-            <StyledReactSortable list={techTree.stack} setList={techTree.setTechStack} direction="vertical">
+            <StyledReactSortable
+                list={techTree.stack}
+                setList={techTree.setTechStack}
+                direction="vertical"
+            >
                 {techTree.stack.map((item) => (
                     <TechItem
                         key={item.id}
                         techItem={item}
                         selected={item.id === techTree.activeId}
                         onSelect={() => techTree.setActiveId(item.id)}
-                        onRemove={item.id !== 0 ? () => techTree.removeTech(item.id) : undefined}
+                        onRemove={
+                            item.id !== 0
+                                ? () => techTree.removeTech(item.id)
+                                : undefined
+                        }
                     />
                 ))}
             </StyledReactSortable>
             <StyledRow>
-                <AddReceptFab techTree={techTree} />
                 <AddTechFab addTech={techTree.addTech} />
+                <AddReceptFab techTree={techTree} />
             </StyledRow>
-            <ThePrimaryButton onClick={() => techTree.run()}>{_("Start process")}</ThePrimaryButton>
-            <ThePrimaryButton onClick={downloadRecept}>{_("Export recept")}</ThePrimaryButton>
         </StyledCont>
     );
 });
@@ -78,7 +75,12 @@ type TItemProps<T extends Object> = {
     onRemove?: () => void;
 };
 
-const TechItem = <T extends Object>({ techItem, selected, onRemove, onSelect }: TItemProps<T>) => {
+const TechItem = <T extends Object>({
+    techItem,
+    selected,
+    onRemove,
+    onSelect,
+}: TItemProps<T>) => {
     return (
         <StyledItem $selected={selected} onClick={onSelect}>
             <StyledName>

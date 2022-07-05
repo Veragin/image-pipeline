@@ -38,16 +38,32 @@ export const AddTechFab = ({ addTech }: Props) => {
 
     return (
         <>
-            <Tooltip title={_("Add Tech")}>
-                <Fab color="primary" aria-label="addTech" onClick={() => setOpen(true)}>
+            <Tooltip title={_("Add Tube")}>
+                <Fab
+                    color="primary"
+                    aria-label="addTube"
+                    onClick={() => setOpen(true)}
+                >
                     <AddIcon />
                 </Fab>
             </Tooltip>
-            <RsModal open={open} onClose={() => setOpen(false)} title={_("Add tech")}>
+            <RsModal
+                open={open}
+                onClose={() => setOpen(false)}
+                title={_("Add Tube")}
+            >
                 <StyledRow>
-                    <StyledCont>{basicTechs.map((tech) => renderButton(tech as any))}</StyledCont>
-                    <StyledCont>{objectTechs.map((tech) => renderButton(tech as any))}</StyledCont>
-                    <StyledCont>{transformTechs.map((tech) => renderButton(tech as any))}</StyledCont>
+                    <StyledCont>
+                        {basicTechs.map((tech) => renderButton(tech as any))}
+                    </StyledCont>
+                    <StyledCont>
+                        {objectTechs.map((tech) => renderButton(tech as any))}
+                    </StyledCont>
+                    <StyledCont>
+                        {transformTechs.map((tech) =>
+                            renderButton(tech as any)
+                        )}
+                    </StyledCont>
                 </StyledRow>
             </RsModal>
         </>

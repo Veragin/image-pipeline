@@ -8,7 +8,7 @@ export const App = () => {
     const [isStarted, setIsStarted] = useState(false);
 
     if (isStarted) {
-        return <ImageSizer />;
+        return <ImageSizer openLandingPage={() => setIsStarted(false)} />;
     }
 
     return <LandingPage onStart={() => setIsStarted(true)} />;
