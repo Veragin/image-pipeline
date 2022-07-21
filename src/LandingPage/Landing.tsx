@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import { Row } from "react-utils/Components/StyledComponents";
-import logo from "Assets/logo/logo.png";
+import logo from "Assets/logo/logo.svg";
 import { spacingCss } from "react-utils/Components/globalCss";
 import styled from "styled-components";
 import { Highlight } from "./Components";
