@@ -37,13 +37,13 @@ export const ImageSizer = observer(({ openLandingPage }: Props) => {
 });
 
 const StyledCont = styled(Column)`
-    width: 100vw;
+    width: 100%;
     height: 100vh;
 `;
 
 const StyledRow = styled(Row)`
     height: 100vh;
-    width: 100vw;
+    width: 100%;
     overflow: hidden;
 `;
 

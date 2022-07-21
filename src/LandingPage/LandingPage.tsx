@@ -19,7 +19,7 @@ export const LandingPage = ({ onStart }: Props) => {
 };
 
 const StyledCont = styled(Column)`
-    width: 100vw;
+    width: 100%;
     background: linear-gradient(
         198deg,
         rgba(68, 87, 255, 0.2) 56%,

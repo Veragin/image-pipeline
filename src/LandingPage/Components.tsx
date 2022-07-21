@@ -27,7 +27,7 @@ const StyledTube = styled.div`
     height: 100%;
     left: 0;
     width: 16%;
-    background-color: #9fa0a6;
+    background: linear-gradient(90deg, #9a9ca5 20%, #a3a5ad 100%);
 `;
 
 const StyledTubeJoin = styled(TubeJoin)`

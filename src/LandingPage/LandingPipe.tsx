@@ -42,8 +42,8 @@ const StyledTextOne = styled.p`
 
 const StyledTextTwo = styled.p`
     position: absolute;
-    left: 50%;
-    top: 60%;
+    right: 0%;
+    bottom: 20%;
     width: 50%;
     font-size: 32px;
     text-align: center;

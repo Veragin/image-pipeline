@@ -1,4 +1,4 @@
-import { borderRadiusCss, spacingCss } from "react-utils/Components/globalCss";
+import { spacingCss } from "react-utils/Components/globalCss";
 
 import { AddReceptFab } from "./AddReceptFab";
 import { AddTubeFab } from "./AddTubeFab";
@@ -10,7 +10,7 @@ import { RsIconButton } from "../react-utils/Components/RsIconButton";
 import { Tube } from "./Tube/Tube";
 import { TubeTree } from "./TubeTree";
 import { observer } from "mobx-react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 type Props = {
     tubeTree: TubeTree;
@@ -54,8 +54,9 @@ const StyledReactSortable = styled(ReactSortable)`
 
 const StyledCont = styled(Column)`
     gap: ${spacingCss(2)};
-    padding: ${spacingCss(1)};
+    padding: ${spacingCss(1)} 0;
     align-items: center;
+    background: linear-gradient(90deg, #9a9ca5 20%, #a3a5ad 100%);
 `;
 
 const StyledRow = styled(Row)`
@@ -103,13 +104,16 @@ const TubeItem = <T extends Object>({
 };
 
 const StyledItem = styled(Row)<{ $selected: boolean }>`
-    border: 1px solid black;
     justify-content: space-between;
     width: 200px;
-    border-radius: ${borderRadiusCss(1)};
     height: 38px;
     cursor: pointer;
-    background-color: ${({ $selected }) => ($selected ? "green" : "white")};
+    border-bottom: 3px dashed;
+    ${({ $selected, theme }) => css`
+        border-color: ${$selected ? theme.palette.secondary.main : "white"};
+        color: ${$selected ? theme.palette.primary.main : "white"};
+    `}
+
     padding-left: ${spacingCss(1)};
     align-items: center;
 `;
