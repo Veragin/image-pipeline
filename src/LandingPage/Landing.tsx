@@ -13,10 +13,9 @@ export const Landing = ({ onStart }: Props) => {
     return (
         <>
             <StyledTop>
-                <StyledLogo
-                    src={logo}
-                    onClick={() => window.location.replace("resaizer.com")}
-                />
+                <a href="https://sizefire.com">
+                    <StyledLogo src={logo} />
+                </a>
                 <StyledButtonRow>
                     <Button color="primary" variant="contained">
                         {_("Sign up")}
