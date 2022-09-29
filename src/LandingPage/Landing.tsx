@@ -4,30 +4,45 @@ import logo from "Assets/logo/logo.svg";
 import { spacingCss } from "react-utils/Components/globalCss";
 import styled from "styled-components";
 import { Highlight } from "./Components";
+import { useRef } from "react";
+import { PaintEngine } from "./PaintEngine/PaintEngine";
+import { useRunOnlyOnce } from "react-utils/basic/hooks";
 
 type Props = {
     onStart: () => void;
 };
 
 export const Landing = ({ onStart }: Props) => {
+    const canvasRef = useRef<HTMLCanvasElement>(null);
+    const paint = useRef<PaintEngine | null>(null);
+
+    useRunOnlyOnce(() => {
+        if (canvasRef.current) {
+            paint.current = new PaintEngine(canvasRef.current);
+        }
+    });
+
     return (
         <>
-            <StyledTop>
-                <a href="https://sizefire.com">
-                    <StyledLogo src={logo} />
-                </a>
-                <StyledButtonRow>
-                    <Button color="primary" variant="contained">
-                        {_("Sign up")}
-                    </Button>
-                    <Button color="secondary" variant="text">
-                        {_("Sign in")}
-                    </Button>
-                </StyledButtonRow>
-            </StyledTop>
-            <StyledTitle>
-                Image <Highlight>Pipeline</Highlight>
-            </StyledTitle>
+            <StyledDiv>
+                <StyledCanvas ref={canvasRef} />
+                <StyledTop>
+                    <a href="https://sizefire.com">
+                        <StyledLogo src={logo} />
+                    </a>
+                    <StyledButtonRow>
+                        <Button color="primary" variant="contained">
+                            {_("Sign up")}
+                        </Button>
+                        <Button color="secondary" variant="text">
+                            {_("Sign in")}
+                        </Button>
+                    </StyledButtonRow>
+                </StyledTop>
+                <StyledTitle>
+                    Image <Highlight>Pipeline</Highlight>
+                </StyledTitle>
+            </StyledDiv>
             <StyledMenu>
                 <StyledMenuItem>Tutorial</StyledMenuItem>
                 <StyledMenuItem>Examples</StyledMenuItem>
@@ -40,6 +55,20 @@ export const Landing = ({ onStart }: Props) => {
         </>
     );
 };
+
+const StyledDiv = styled.div`
+    overflow: hidden;
+    position: relative;
+`;
+
+const StyledCanvas = styled.canvas`
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+`;
 
 const StyledTop = styled(Row)`
     width: calc(100% - ${spacingCss(4)});

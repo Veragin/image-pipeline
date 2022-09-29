@@ -22,6 +22,8 @@ type Props = {
 };
 
 export const TubeSelectComp = observer(({ tube, collection }: Props) => {
+    const isWithConfig = tube.config.type !== "old";
+
     return (
         <StyledCont>
             <StyledConfig>
@@ -44,7 +46,7 @@ export const TubeSelectComp = observer(({ tube, collection }: Props) => {
                     list={tubeTypeList}
                 />
 
-                <InputTitle>{_("Config")}</InputTitle>
+                {isWithConfig && <InputTitle>{_("Config")}</InputTitle>}
                 <BoxConfig
                     type={tube.config.type}
                     box={tube.config.box}

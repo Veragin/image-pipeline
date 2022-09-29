@@ -17,6 +17,8 @@ type Props = {
 };
 
 export const TubeCutComp = observer(({ tube, collection }: Props) => {
+    const isWithConfig = tube.config.type !== "object";
+
     return (
         <StyledCont>
             <StyledConfig>
@@ -27,7 +29,7 @@ export const TubeCutComp = observer(({ tube, collection }: Props) => {
                     list={tubeTypeList}
                 />
 
-                <InputTitle>{_("Config")}</InputTitle>
+                {isWithConfig && <InputTitle>{_("Config")}</InputTitle>}
                 <FixedConfig tube={tube} />
                 <PercentConfig tube={tube} />
             </StyledConfig>

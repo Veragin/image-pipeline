@@ -12,9 +12,9 @@ import { cutImageDataByObjects } from "../functions/cutter";
 export class TubeCut extends Tube<TTubeCutConfig> {
     name = "Cut";
     group = "object" as const;
-    description = `Cut the image to the pieces. \n
-        Fixed ... split into pixel fixed pieces. \n
-        Object ... split based by objects \n
+    description = `Cut the image to the pieces. <br>\n
+        Fixed ... split into pixel fixed pieces. <br>\n
+        Object ... split based by objects <br>\n
         Percent ... not implemented yet`;
     icon = CarpenterRoundedIcon;
     comp = TubeCutComp;
@@ -30,6 +30,7 @@ export class TubeCut extends Tube<TTubeCutConfig> {
                 columns: [],
                 rows: [],
             },
+            sort: "none",
         });
     }
 
@@ -72,7 +73,10 @@ export type TTubeCutConfig = {
     type: TTubeCutType;
     fixed: TSize;
     percent: TPercentConfig;
+    sort: TTubeCutSort;
 };
+
+type TTubeCutSort = "none" | "random" | "vertical";
 
 export type TTubeCutType = "fixed" | "percent" | "object";
 

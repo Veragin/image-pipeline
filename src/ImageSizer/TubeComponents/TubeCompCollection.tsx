@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 import { Row } from "react-utils/Components/StyledComponents";
 import { spacingCss } from "react-utils/Components/globalCss";
 import styled from "styled-components";
+import { InputTitle } from "react-utils/Components/RsInput/InputCss";
 
 type Props = {
     collection: ImageCollection;
@@ -13,11 +14,14 @@ type Props = {
 
 export const TubeCompCollection = ({ collection, show }: Props) => {
     return (
-        <StyledCont>
-            {collection.stack.map((item, i) => (
-                <TubeCompCollectionItem key={i} data={item} show={show} />
-            ))}
-        </StyledCont>
+        <>
+            <InputTitle>{_("Output")}</InputTitle>
+            <StyledCont>
+                {collection.stack.map((item, i) => (
+                    <TubeCompCollectionItem key={i} data={item} show={show} />
+                ))}
+            </StyledCont>
+        </>
     );
 };
 
