@@ -34,25 +34,16 @@ export class TubeScale extends Tube<TTubeScaleConfig> {
                     break;
                 case "padding":
                     size = {
-                        width: Math.max(
-                            0,
-                            item.data.width + this.config.padding.width
-                        ),
-                        height: Math.max(
-                            0,
-                            item.data.height + this.config.padding.height
-                        ),
+                        width: Math.max(0, item.data.width + this.config.padding.width),
+                        height: Math.max(0, item.data.height + this.config.padding.height),
                     };
                     break;
                 case "percent":
                     size = {
-                        width: Math.max(
-                            0,
-                            item.data.width * this.config.percent.width
-                        ),
+                        width: Math.max(0, Math.ceil(item.data.width * this.config.percent.width)),
                         height: Math.max(
                             0,
-                            item.data.height * this.config.percent.height
+                            Math.ceil(item.data.height * this.config.percent.height)
                         ),
                     };
                     break;

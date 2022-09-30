@@ -28,10 +28,10 @@ export const joinPixels = (imgDatas: ImageData[], config: TTubeJoinConfig) => {
             const pixel = getPixelFormPos(i / 4, imgData.width);
             const index = pixelIndex({ x: pixel.x + rowLeft, y: pixel.y + rowTop }, size.width);
 
-            arr[index] = imgData.data[i];
-            arr[index + 1] = imgData.data[i + 1];
-            arr[index + 2] = imgData.data[i + 2];
-            arr[index + 3] = imgData.data[i + 3];
+            arr[index] += imgData.data[i];
+            arr[index + 1] += imgData.data[i + 1];
+            arr[index + 2] += imgData.data[i + 2];
+            arr[index + 3] += imgData.data[i + 3];
         }
 
         rowLeft += imgData.width;
