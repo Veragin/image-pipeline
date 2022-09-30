@@ -6,8 +6,8 @@ import {
     SPRITE_MIN_SPEED,
     SPRITE_PROGRESS_LENGTH,
     SPRITE_SIZE,
-    TSpriteType,
 } from "./const";
+import { SPRITE_IMAGES, TSpriteType } from "./images";
 
 export class Sprite {
     x: number;
@@ -27,10 +27,7 @@ export class Sprite {
     constructor(maxX: number, maxY: number) {
         this.type = randomSpriteType();
         this.rotation = Math.random() * Math.PI;
-        this.rotationSpeed = randomFromRange(
-            -SPRITE_MAX_ROTATION_SPEED,
-            SPRITE_MAX_ROTATION_SPEED
-        );
+        this.rotationSpeed = randomFromRange(-SPRITE_MAX_ROTATION_SPEED, SPRITE_MAX_ROTATION_SPEED);
 
         const side = Math.random();
         const speed = randomFromRange(SPRITE_MIN_SPEED, SPRITE_MAX_SPEED);
@@ -80,8 +77,8 @@ export class Sprite {
         ctx.save();
         ctx.translate(this.x, this.y);
         ctx.rotate(this.rotation);
-        ctx.fillStyle = setColor(this.type);
-        ctx.fillRect(
+        ctx.drawImage(
+            SPRITE_IMAGES[this.type],
             -this.width / 2,
             -this.height / 2,
             this.width,
@@ -90,18 +87,3 @@ export class Sprite {
         ctx.restore();
     };
 }
-
-const setColor = (type: TSpriteType) => {
-    switch (type) {
-        case "image":
-            return "red";
-        case "split":
-            return "green";
-        case "crop":
-            return "blue";
-        case "join":
-            return "lime";
-        case "objects":
-            return "black";
-    }
-};
