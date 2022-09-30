@@ -6,7 +6,7 @@ import { TubeTree } from "./TubeTree";
 import { observer } from "mobx-react";
 import styled from "styled-components";
 import { useState } from "react";
-import { TopBar } from "react-utils/Components/Common/TopBar";
+import { TopBar } from "react-utils/Patterns/TopBar";
 import { TopControl } from "./TopControl";
 
 type Props = {

@@ -80,7 +80,7 @@ export class Sprite {
         ctx.save();
         ctx.translate(this.x, this.y);
         ctx.rotate(this.rotation);
-        ctx.fillStyle = this.type === "image" ? "red" : "green";
+        ctx.fillStyle = setColor(this.type);
         ctx.fillRect(
             -this.width / 2,
             -this.height / 2,
@@ -90,3 +90,18 @@ export class Sprite {
         ctx.restore();
     };
 }
+
+const setColor = (type: TSpriteType) => {
+    switch (type) {
+        case "image":
+            return "red";
+        case "split":
+            return "green";
+        case "crop":
+            return "blue";
+        case "join":
+            return "lime";
+        case "objects":
+            return "black";
+    }
+};

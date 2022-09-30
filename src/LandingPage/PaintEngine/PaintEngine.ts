@@ -36,7 +36,7 @@ export class PaintEngine {
     }
 
     private async run(time: number) {
-        await sleep(100);
+        await sleep(25);
         this.spriteCollection.run(this.ctx);
         this.raf = requestAnimationFrame((time) => this.run(time));
     }
