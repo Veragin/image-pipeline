@@ -1,8 +1,5 @@
-import { TTubeBBConfig, applyPaddingToRect } from "../functions/rectTricks";
-import {
-    countPixelsInSelection,
-    getObjectsFromSelection,
-} from "../functions/objectFind";
+import { TTubeBBConfig, applyPaddingToRect, floorRect } from "../functions/rectTricks";
+import { countPixelsInSelection, getObjectsFromSelection } from "../functions/objectFind";
 
 import DataObjectRoundedIcon from "@mui/icons-material/DataObjectRounded";
 import { ImageCollection } from "../ImageColection";
@@ -47,13 +44,12 @@ export class TubeObject extends Tube<TTubeObjectConfig> {
 
             const selectionGroups = getObjectsFromSelection(
                 item.selection,
-                item.data,
+                { ...size },
                 this.config.compactDistance
             );
 
             const largeSelectionGroups = selectionGroups.filter(
-                (o) =>
-                    countPixelsInSelection(o) >= this.config.minimalPixelCount
+                (o) => countPixelsInSelection(o) >= this.config.minimalPixelCount
             );
 
             const objects = largeSelectionGroups.map((o) => ({
@@ -76,7 +72,8 @@ export class TubeObject extends Tube<TTubeObjectConfig> {
             rect = applyFitToRect(rect, this.config.bbConfig.fitTo);
         }
 
-        return applyPaddingToRect(rect, this.config.bbConfig.padding);
+        rect = applyPaddingToRect(rect, this.config.bbConfig.padding);
+        return floorRect(rect);
     };
 }
 

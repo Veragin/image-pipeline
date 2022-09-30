@@ -59,3 +59,10 @@ export const getBoundingBoxOfRects = (rects: TRect[]) => {
 
     return res;
 };
+
+export const floorRect = (rect: TRect): TRect => ({
+    width: Math.floor(rect.width),
+    height: Math.floor(rect.height),
+    x: Math.floor(rect.x),
+    y: Math.floor(rect.y),
+});
