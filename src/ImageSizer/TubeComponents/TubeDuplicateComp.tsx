@@ -2,31 +2,32 @@ import { Column } from "../../react-utils/Components/StyledComponents";
 import { ImageCollection } from "../ImageColection";
 import RsSelect from "react-utils/Components/RsInput/RsSelect";
 import { TubeCompCollection } from "./TubeCompCollection";
-import { TubeMirror } from "../Tube/TubeMirror";
 import { observer } from "mobx-react";
 import { spacingCss } from "react-utils/Components/globalCss";
 import styled from "styled-components";
+import { TubeDuplicate } from "ImageSizer/Tube/TubeDuplicate";
 import { booleanList } from "./ConfigComp/SelectLists";
+import RsInput from "react-utils/Components/RsInput/RsInput";
 
 type Props = {
-    tube: TubeMirror;
+    tube: TubeDuplicate;
     collection: ImageCollection;
 };
 
-export const TubeMirrorComp = observer(({ tube, collection }: Props) => {
+export const TubeDuplicateComp = observer(({ tube, collection }: Props) => {
     return (
         <StyledCont>
             <StyledConfig>
-                <RsSelect
-                    title={_("Vertical")}
-                    value={tube.config.vertical}
-                    setValue={(vertical) => tube.setConfig({ vertical })}
-                    list={booleanList}
+                <RsInput
+                    title={_("Count")}
+                    value={String(tube.config.count)}
+                    type="number"
+                    onChange={(count) => tube.setConfig({ count: Number(count) })}
                 />
                 <RsSelect
-                    title={_("Horizontal")}
-                    value={tube.config.horizontal}
-                    setValue={(horizontal) => tube.setConfig({ horizontal })}
+                    title={_("Should inverse selection")}
+                    value={tube.config.inverseSelection}
+                    setValue={(inverseSelection) => tube.setConfig({ inverseSelection })}
                     list={booleanList}
                 />
             </StyledConfig>

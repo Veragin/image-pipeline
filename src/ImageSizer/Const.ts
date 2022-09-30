@@ -2,6 +2,7 @@ import { TTubeColorConfig, TubeColor } from "./Tube/TubeColor";
 import { TTubeCropConfig, TubeCrop } from "./Tube/TubeCrop";
 import { TTubeCutConfig, TubeCut } from "./Tube/TubeCut";
 import { TTubeDownloadConfig, TubeDownload } from "./Tube/TubeDownload";
+import { TTubeDuplicateConfig, TubeDuplicate } from "./Tube/TubeDuplicate";
 import { TTubeJoinConfig, TubeJoin } from "./Tube/TubeJoin";
 import { TTubeMirrorConfig, TubeMirror } from "./Tube/TubeMirror";
 import { TTubeObjectConfig, TubeObject } from "./Tube/TubeObject";
@@ -22,6 +23,7 @@ export const IMAGE_SIZER_TECHS = {
     rotate: TubeRotate,
     mirror: TubeMirror,
     join: TubeJoin,
+    duplicate: TubeDuplicate,
 } as const;
 
 export type TImageSizerTubeConfig =
@@ -68,6 +70,10 @@ export type TImageSizerTubeConfig =
     | {
           tube: "join";
           config: DeepPartial<TTubeJoinConfig>;
+      }
+    | {
+          tube: "duplicate";
+          config: DeepPartial<TTubeDuplicateConfig>;
       };
 
 export type TRecept = {
@@ -77,7 +83,5 @@ export type TRecept = {
 };
 
 export type TImageSizerTubeNames = keyof typeof IMAGE_SIZER_TECHS;
-export const IMAGE_SIZER_TECH_NAMES = Object.keys(
-    IMAGE_SIZER_TECHS
-) as TImageSizerTubeNames[];
+export const IMAGE_SIZER_TECH_NAMES = Object.keys(IMAGE_SIZER_TECHS) as TImageSizerTubeNames[];
 export const IMAGE_SIZER_TECH_CLASSES = Object.values(IMAGE_SIZER_TECHS);
