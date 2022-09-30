@@ -1,10 +1,19 @@
-import { countSizeOfJoindElements } from './join';
+import { TTubeJoinConfig } from "ImageSizer/Tube/TubeJoin";
+import { countSizeOfJoinedElements } from "./join";
 
-describe('join', () => {
-    it('countSizeOfJoindElements no limitss', () => {
+const createBasicConfig = (): TTubeJoinConfig => ({
+    maxWidth: 0,
+    imageNumberOnRow: 0,
+    groupBy: 0,
+    verticalGap: 0,
+    horizontalGap: 0,
+});
+
+describe("join", () => {
+    it("countSizeOfJoindElements no limitss", () => {
         const sizes: TSize[] = Array<TSize>(10).fill({ width: 10, height: 10 });
 
-        const res = countSizeOfJoindElements(sizes, 0, 0);
+        const res = countSizeOfJoinedElements(sizes, createBasicConfig());
 
         expect(res).toMatchInlineSnapshot(`
             Object {
@@ -14,10 +23,12 @@ describe('join', () => {
         `);
     });
 
-    it('countSizeOfJoindElements max items on row limit', () => {
+    it("countSizeOfJoindElements max items on row limit", () => {
         const sizes: TSize[] = Array<TSize>(10).fill({ width: 10, height: 10 });
 
-        const res = countSizeOfJoindElements(sizes, 3, 0);
+        const config = createBasicConfig();
+        config.imageNumberOnRow = 3;
+        const res = countSizeOfJoinedElements(sizes, config);
 
         expect(res).toMatchInlineSnapshot(`
             Object {
@@ -27,10 +38,12 @@ describe('join', () => {
         `);
     });
 
-    it('countSizeOfJoindElements max width of row', () => {
+    it("countSizeOfJoindElements max width of row", () => {
         const sizes: TSize[] = Array<TSize>(10).fill({ width: 10, height: 10 });
 
-        const res = countSizeOfJoindElements(sizes, 0, 27);
+        const config = createBasicConfig();
+        config.maxWidth = 27;
+        const res = countSizeOfJoinedElements(sizes, config);
 
         expect(res).toMatchInlineSnapshot(`
             Object {
@@ -40,15 +53,52 @@ describe('join', () => {
         `);
     });
 
-    it('countSizeOfJoindElements both limites', () => {
+    it("countSizeOfJoindElements both limites", () => {
         const sizes: TSize[] = Array<TSize>(12).fill({ width: 18, height: 4 });
 
-        const res = countSizeOfJoindElements(sizes, 5, 37);
+        const config = createBasicConfig();
+        config.imageNumberOnRow = 5;
+        config.maxWidth = 37;
+        const res = countSizeOfJoinedElements(sizes, config);
 
         expect(res).toMatchInlineSnapshot(`
             Object {
               "height": 24,
               "width": 36,
+            }
+        `);
+    });
+
+    it("countSizeOfJoindElements max width of row with gap", () => {
+        const sizes: TSize[] = Array<TSize>(10).fill({ width: 10, height: 10 });
+
+        const config = createBasicConfig();
+        config.maxWidth = 27;
+        config.horizontalGap = 5;
+        config.verticalGap = 5;
+        const res = countSizeOfJoinedElements(sizes, config);
+
+        expect(res).toMatchInlineSnapshot(`
+            Object {
+              "height": 70,
+              "width": 25,
+            }
+        `);
+    });
+
+    it("countSizeOfJoindElements gap change layout", () => {
+        const sizes: TSize[] = Array<TSize>(10).fill({ width: 10, height: 10 });
+
+        const config = createBasicConfig();
+        config.maxWidth = 3;
+        config.horizontalGap = 5;
+        config.verticalGap = 5;
+        const res = countSizeOfJoinedElements(sizes, config);
+
+        expect(res).toMatchInlineSnapshot(`
+            Object {
+              "height": 150,
+              "width": 10,
             }
         `);
     });

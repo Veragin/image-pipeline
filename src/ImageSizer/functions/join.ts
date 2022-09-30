@@ -1,28 +1,26 @@
-import { getPixelFormPos, pixelIndex } from './pixelUtils';
+import { TTubeJoinConfig } from "ImageSizer/Tube/TubeJoin";
+import { getPixelFormPos, pixelIndex } from "./pixelUtils";
 
-export const joinPixels = (imgDatas: ImageData[], imageNumberOnRow: number, maxWidth: number) => {
-    const size = countSizeOfJoindElements(imgDatas, imageNumberOnRow, maxWidth);
+export const joinPixels = (imgDatas: ImageData[], config: TTubeJoinConfig) => {
+    const size = countSizeOfJoinedElements(imgDatas, config);
 
     const arr = new Uint8ClampedArray(size.width * size.height * 4);
 
     let rowTop = 0;
-    let rowItemsNumber = 0;
+    let rowItemCount = 0;
     let rowLeft = 0;
     let nextTop = 0;
     for (let imgData of imgDatas) {
-        if (
-            (imageNumberOnRow === 0 || rowItemsNumber < imageNumberOnRow) &&
-            (maxWidth === 0 || rowLeft + imgData.width <= maxWidth)
-        ) {
-            rowItemsNumber++;
-            if (rowTop + imgData.height > nextTop) {
-                nextTop = rowTop + imgData.height;
-            }
-        } else {
+        // check if new row should be started
+        if (shouldStartNewRow(rowLeft, rowItemCount, imgData.width, config)) {
             rowLeft = 0;
-            rowTop = nextTop;
-            rowItemsNumber = 1;
-            nextTop = nextTop + imgData.height;
+            rowTop = nextTop + config.horizontalGap;
+            rowItemCount = 1;
+            nextTop = nextTop + imgData.height + config.horizontalGap;
+        } else {
+            rowItemCount++;
+            rowLeft += rowItemCount === 1 ? 0 : config.verticalGap;
+            nextTop = Math.max(rowTop + imgData.height, nextTop);
         }
 
         // copy the pixel
@@ -42,36 +40,38 @@ export const joinPixels = (imgDatas: ImageData[], imageNumberOnRow: number, maxW
     return new ImageData(arr, size.width, size.height);
 };
 
-export const countSizeOfJoindElements = (sizes: TSize[], imageNumberOnRow: number, maxWidth: number) => {
+export const countSizeOfJoinedElements = (sizes: TSize[], config: TTubeJoinConfig) => {
     const res: TSize = {
         width: 0,
         height: 0,
     };
 
     let rowTop = 0;
-    let rowItemsNumber = 0;
+    let rowItemCount = 0;
     let rowWidth = 0;
     for (let size of sizes) {
-        if (
-            (imageNumberOnRow === 0 || rowItemsNumber < imageNumberOnRow) &&
-            (maxWidth === 0 || rowWidth + size.width <= maxWidth)
-        ) {
-            rowItemsNumber++;
-            rowWidth += size.width;
-            if (rowTop + size.height > res.height) {
-                res.height = rowTop + size.height;
-            }
-        } else {
+        if (shouldStartNewRow(rowWidth, rowItemCount, size.width, config)) {
             rowWidth = size.width;
-            rowTop = res.height;
-            rowItemsNumber = 1;
-            res.height = res.height + size.height;
+            rowTop = res.height + config.horizontalGap;
+            rowItemCount = 1;
+            res.height = res.height + size.height + config.horizontalGap;
+        } else {
+            rowItemCount++;
+            rowWidth += rowItemCount === 1 ? size.width : size.width + config.verticalGap;
+            res.height = Math.max(rowTop + size.height, res.height);
         }
 
-        if (res.width < rowWidth) {
-            res.width = rowWidth;
-        }
+        res.width = Math.max(res.width, rowWidth);
     }
 
     return res;
 };
+
+export const shouldStartNewRow = (
+    rowWidth: number,
+    rowItemCount: number,
+    nextImageWidth: number,
+    config: TTubeJoinConfig
+) =>
+    (config.imageNumberOnRow !== 0 && rowItemCount >= config.imageNumberOnRow) ||
+    (config.maxWidth !== 0 && rowWidth + config.horizontalGap + nextImageWidth > config.maxWidth);

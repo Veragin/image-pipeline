@@ -18,6 +18,8 @@ export class TubeJoin extends Tube<TTubeJoinConfig> {
             groupBy: 0,
             imageNumberOnRow: 4,
             maxWidth: 500,
+            verticalGap: 0,
+            horizontalGap: 0,
         });
     }
 
@@ -50,8 +52,7 @@ export class TubeJoin extends Tube<TTubeJoinConfig> {
                 index,
                 data: joinPixels(
                     group.map((item) => item.data),
-                    this.config.imageNumberOnRow,
-                    this.config.maxWidth
+                    this.config
                 ),
                 objects: [],
                 selection: [],
@@ -67,4 +68,6 @@ export type TTubeJoinConfig = {
     groupBy: number;
     imageNumberOnRow: number;
     maxWidth: number;
+    verticalGap: number;
+    horizontalGap: number;
 };
