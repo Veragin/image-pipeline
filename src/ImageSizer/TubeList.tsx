@@ -11,6 +11,7 @@ import { Tube } from "./Tube/Tube";
 import { TubeTree } from "./TubeTree";
 import { observer } from "mobx-react";
 import styled, { css } from "styled-components";
+import { COLOR_PIPE_DARK } from "./Const";
 
 type Props = {
     tubeTree: TubeTree;
@@ -30,11 +31,7 @@ export const TubeList = observer(({ tubeTree }: Props) => {
                         tubeItem={item}
                         selected={item.id === tubeTree.activeId}
                         onSelect={() => tubeTree.setActiveId(item.id)}
-                        onRemove={
-                            item.id !== 0
-                                ? () => tubeTree.removeTube(item.id)
-                                : undefined
-                        }
+                        onRemove={item.id !== 0 ? () => tubeTree.removeTube(item.id) : undefined}
                     />
                 ))}
             </StyledReactSortable>
@@ -47,7 +44,6 @@ export const TubeList = observer(({ tubeTree }: Props) => {
 });
 
 const StyledReactSortable = styled(ReactSortable)`
-    row-gap: ${spacingCss(1)};
     display: flex;
     flex-direction: column;
 `;
@@ -56,7 +52,11 @@ const StyledCont = styled(Column)`
     gap: ${spacingCss(2)};
     padding: ${spacingCss(1)} 0;
     align-items: center;
-    background: linear-gradient(90deg, #9a9ca5 20%, #a3a5ad 100%);
+    background: linear-gradient(
+        90deg,
+        ${({ theme }) => theme.palette.backgr.dark} 20%,
+        ${COLOR_PIPE_DARK} 100%
+    );
 `;
 
 const StyledRow = styled(Row)`
@@ -76,12 +76,7 @@ type TItemProps<T extends Object> = {
     onRemove?: () => void;
 };
 
-const TubeItem = <T extends Object>({
-    tubeItem,
-    selected,
-    onRemove,
-    onSelect,
-}: TItemProps<T>) => {
+const TubeItem = <T extends Object>({ tubeItem, selected, onRemove, onSelect }: TItemProps<T>) => {
     return (
         <StyledItem $selected={selected} onClick={onSelect}>
             <StyledName>
@@ -96,7 +91,7 @@ const TubeItem = <T extends Object>({
                     }}
                     tooltip={_("Delete")}
                 >
-                    <DeleteIcon />
+                    <StyledDelete />
                 </RsIconButton>
             )}
         </StyledItem>
@@ -109,16 +104,23 @@ const StyledItem = styled(Row)<{ $selected: boolean }>`
     height: 38px;
     cursor: pointer;
     border-bottom: 3px dashed;
+    border-color: white;
+    color: white;
     ${({ $selected, theme }) => css`
-        border-color: ${$selected ? theme.palette.secondary.main : "white"};
-        color: ${$selected ? theme.palette.primary.main : "white"};
+        background-color: ${$selected ? theme.palette.primary.main : "transparent"};
     `}
 
-    padding-left: ${spacingCss(1)};
+    padding: ${spacingCss(1)};
     align-items: center;
 `;
 
 const StyledName = styled(Row)`
     gap: ${spacingCss(1)};
     align-items: center;
+`;
+
+const StyledDelete = styled(DeleteIcon)`
+    &.MuiSvgIcon-root {
+        fill: white;
+    }
 `;

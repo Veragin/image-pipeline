@@ -14,6 +14,7 @@ export const loadReceptToTubeTree = (tubeTree: TubeTree, recept: TRecept) => {
 export const exportReceptFromTubeTree = (tubeTree: TubeTree, name: string) => {
     const recept: TRecept = {
         id: generateRandomId(),
+        version: "1",
         name,
         tubes: [],
     };

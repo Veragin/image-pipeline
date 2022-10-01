@@ -25,6 +25,7 @@ export const ImageSizer = observer(({ openLandingPage }: Props) => {
                 onHome={openLandingPage}
                 onUser={() => console.log("open user")}
                 logoComp={<TopControl tubeTree={tubeTree} />}
+                darkMode
             />
             <StyledRow>
                 <TubeList tubeTree={tubeTree} />

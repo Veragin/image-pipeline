@@ -3,6 +3,7 @@ import { TRecept } from "../Const";
 export const scissorsRecept: TRecept = {
     id: 0,
     name: "scissors",
+    version: "1",
     tubes: [
         {
             tube: "select",

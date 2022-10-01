@@ -3,6 +3,7 @@ import { TRecept } from "../Const";
 export const customRecept: TRecept = {
     id: 1,
     name: "custom",
+    version: "1",
     tubes: [
         {
             tube: "select",
