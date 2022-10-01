@@ -42,9 +42,7 @@ export class TubeTree {
             // load need to stay first
             const ids = [0, ...stack.map((tube) => tube.id)];
             this.stack.sort(
-                (a, b) =>
-                    ids.findIndex((id) => a.id === id) -
-                    ids.findIndex((id) => b.id === id)
+                (a, b) => ids.findIndex((id) => a.id === id) - ids.findIndex((id) => b.id === id)
             );
             this.updateTmpCollection(this.activeId);
         }
@@ -96,6 +94,7 @@ export class TubeTree {
     exportRecept = () => {
         const recept: TRecept = {
             id: generateRandomId(),
+            version: "1",
             name: "custom",
             tubes: [],
         };
@@ -106,10 +105,7 @@ export class TubeTree {
             const tubeName = IMAGE_SIZER_TECH_NAMES.find(
                 (key) => tube instanceof IMAGE_SIZER_TECHS[key]
             );
-            assertNotNullish(
-                tubeName,
-                "Tube is not registered in IMAGE_SIZER_TECHS"
-            );
+            assertNotNullish(tubeName, "Tube is not registered in IMAGE_SIZER_TECHS");
 
             recept.tubes.push({
                 tube: tubeName,
@@ -126,10 +122,7 @@ export class TubeTree {
             return;
         }
 
-        const col = this.computeCollection(
-            this.tubeLoad.preview,
-            this.tubeLoad.previewName
-        );
+        const col = this.computeCollection(this.tubeLoad.preview, this.tubeLoad.previewName);
 
         for (let i = 0; i < this.stack.length; i++) {
             if (this.stack[i].id === stopTubeId) break;

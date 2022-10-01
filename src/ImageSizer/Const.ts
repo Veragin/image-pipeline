@@ -79,6 +79,7 @@ export type TImageSizerTubeConfig =
 export type TRecept = {
     id: number;
     name: string;
+    version: string;
     tubes: TImageSizerTubeConfig[];
 };
 
