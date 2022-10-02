@@ -30,7 +30,7 @@ export const TubeComp = observer(({ tube, collection }: Props<any>) => {
 
 const StyledCont = styled(Column)`
     overflow: auto;
-    padding: ${spacingCss(1)};
+    padding: ${spacingCss(4)};
     row-gap: ${spacingCss(1)};
 `;
 

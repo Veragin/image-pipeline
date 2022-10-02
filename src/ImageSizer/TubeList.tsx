@@ -11,7 +11,7 @@ import { Tube } from "./Tube/Tube";
 import { TubeTree } from "./TubeTree";
 import { observer } from "mobx-react";
 import styled, { css } from "styled-components";
-import { COLOR_PIPE_DARK } from "./Const";
+import { COLOR_PIPE_DARK, COLOR_PRIMARY_MEDIUM } from "./Const";
 
 type Props = {
     tubeTree: TubeTree;
@@ -54,7 +54,7 @@ const StyledCont = styled(Column)`
     align-items: center;
     background: linear-gradient(
         90deg,
-        ${({ theme }) => theme.palette.backgr.dark} 20%,
+        ${({ theme }) => theme.palette.backgr.dark} 25%,
         ${COLOR_PIPE_DARK} 100%
     );
 `;
@@ -107,7 +107,13 @@ const StyledItem = styled(Row)<{ $selected: boolean }>`
     border-color: white;
     color: white;
     ${({ $selected, theme }) => css`
-        background-color: ${$selected ? theme.palette.primary.main : "transparent"};
+        background: ${$selected
+            ? `linear-gradient(
+                90deg,
+                ${theme.palette.primary.main} 25%,
+                ${COLOR_PRIMARY_MEDIUM} 100%
+            )`
+            : "transparent"};
     `}
 
     padding: ${spacingCss(1)};

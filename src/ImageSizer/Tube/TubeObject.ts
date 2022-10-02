@@ -1,5 +1,9 @@
 import { TTubeBBConfig, applyPaddingToRect, floorRect } from "../functions/rectTricks";
-import { countPixelsInSelection, getObjectsFromSelection } from "../functions/objectFind";
+import {
+    countPixelsInSelection,
+    getObjectsFromSelection,
+    sortObjects,
+} from "../functions/objectFind";
 
 import DataObjectRoundedIcon from "@mui/icons-material/DataObjectRounded";
 import { ImageCollection } from "../ImageColection";
@@ -62,6 +66,8 @@ export class TubeObject extends Tube<TTubeObjectConfig> {
                     o.rect.width >= this.config.minimalWidth &&
                     o.rect.height >= this.config.minimalHeight
             );
+
+            item.objects = sortObjects(item.objects);
         });
     };
 

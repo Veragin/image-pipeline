@@ -39,9 +39,11 @@ export const Landing = ({ onStart }: Props) => {
                         </Button>
                     </StyledButtonRow>
                 </StyledTop>
-                <StyledTitle>
-                    Image <Highlight>Pipeline</Highlight>
-                </StyledTitle>
+                <StyledTitleCont>
+                    <StyledTitle>
+                        Image <Highlight>Pipeline</Highlight>
+                    </StyledTitle>
+                </StyledTitleCont>
             </StyledDiv>
             <StyledMenu>
                 <StyledMenuItem>Tutorial</StyledMenuItem>
@@ -85,14 +87,20 @@ const StyledLogo = styled.img`
     cursor: pointer;
 `;
 
-const StyledTitle = styled(Row)`
+const StyledTitleCont = styled(Row)`
     width: 100%;
     height: 70vh;
     justify-content: center;
     align-items: center;
+`;
+
+const StyledTitle = styled(Row)`
     gap: ${spacingCss(2)};
     font-size: 64px;
     text-transform: uppercase;
+    background-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 100px 100px rgba(255, 255, 255, 0.3);
+    border-radius: 40%;
 `;
 
 const StyledMenu = styled(Row)`

@@ -8,6 +8,7 @@ import objectCutImage from "Assets/landing/sprites/lowRes/object_cut.png";
 import rotateImage from "Assets/landing/sprites/lowRes/rotate.png";
 import split1Image from "Assets/landing/sprites/lowRes/split1.png";
 import split2Image from "Assets/landing/sprites/lowRes/split2.png";
+import changeSpriteSheetImage from "Assets/landing/sprites/change.png";
 
 const SPRITE_IMAGES_SRC = {
     base: baseImage,
@@ -31,3 +32,6 @@ SPRITE_TYPES.forEach((type) => {
     image.src = SPRITE_IMAGES_SRC[type];
     SPRITE_IMAGES[type] = image;
 });
+
+export const CHNAGE_SPRITE_SHEET_IMAGE = new Image();
+CHNAGE_SPRITE_SHEET_IMAGE.src = changeSpriteSheetImage;

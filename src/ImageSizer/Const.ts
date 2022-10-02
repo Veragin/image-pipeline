@@ -89,3 +89,4 @@ export const IMAGE_SIZER_TECH_CLASSES = Object.values(IMAGE_SIZER_TECHS);
 
 export const COLOR_PIPE_DARK = "#9a9ca5";
 export const COLOR_PIPE_MEDIUM = "#a3a5ad";
+export const COLOR_PRIMARY_MEDIUM = "#D692EF";

@@ -1,7 +1,11 @@
-import { TSelection } from '../ImageColection';
-import { getPixelFormPos } from './pixelUtils';
+import { TImageObject, TSelection } from "../ImageColection";
+import { getPixelFormPos } from "./pixelUtils";
 
-export const getObjectsFromSelection = (selection: TSelection, size: TSize, compactDistance: number) => {
+export const getObjectsFromSelection = (
+    selection: TSelection,
+    size: TSize,
+    compactDistance: number
+) => {
     const cuttedSelection = cutSelectionBySize(selection, size);
 
     let res: TSelection[] = [];
@@ -44,6 +48,18 @@ export const getObjectsFromSelection = (selection: TSelection, size: TSize, comp
     }
 
     return res;
+};
+
+export const sortObjects = (objects: TImageObject[]) => {
+    objects.sort((rectA, rectB) => {
+        if (rectA.rect.y + rectA.rect.height < rectB.rect.y) return -1;
+        if (rectB.rect.y + rectB.rect.height < rectA.rect.y) return 1;
+        if (rectA.rect.x + rectA.rect.width < rectB.rect.x) return -1;
+        if (rectB.rect.x + rectB.rect.width < rectA.rect.x) return 1;
+        return 0;
+    });
+
+    return objects;
 };
 
 export const cutSelectionBySize = (selection: TSelection, size: TSize) => {

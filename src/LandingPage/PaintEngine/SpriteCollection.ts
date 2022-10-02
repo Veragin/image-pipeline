@@ -1,12 +1,11 @@
-import { isOutOfBounds, MAX_SPRITE_COUNT, SPRITE_SPAWN_CHANCE } from "./const";
+import { MAX_SPRITE_COUNT, SPRITE_SPAWN_CHANCE } from "./const";
 import { Sprite } from "./Sprite";
+import { isOutOfBounds } from "./utils";
 
 export class SpriteCollection {
     stack: Sprite[] = [];
 
     constructor(public data: TSize) {
-        this.spawnNewSprite(0);
-        this.spawnNewSprite(0);
         this.spawnNewSprite(0);
     }
 
