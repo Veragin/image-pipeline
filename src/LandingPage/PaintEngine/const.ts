@@ -3,12 +3,12 @@ import { SPRITE_TYPES } from "./images";
 export const MAX_SPRITE_COUNT = 8;
 export const SPRITE_SPAWN_CHANCE = 0.01;
 
-export const SPRITE_SIZE = 50;
-export const SPRITE_PROGRESS_LENGTH = 70;
+export const SPRITE_SIZE = 70;
+export const SPRITE_PROGRESS_LENGTH_MS = 5_000;
 
-export const SPRITE_MAX_SPEED = 6;
-export const SPRITE_MIN_SPEED = 3;
-export const SPRITE_MAX_ROTATION_SPEED = 0.03;
+export const SPRITE_MAX_SPEED = 120;
+export const SPRITE_MIN_SPEED = 60;
+export const SPRITE_MAX_ROTATION_SPEED = 0.5;
 
 export const randomFromRange = (a: number, b: number) => {
     return Math.random() * Math.abs(a - b) + Math.min(a, b);

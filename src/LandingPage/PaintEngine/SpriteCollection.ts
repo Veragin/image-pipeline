@@ -5,19 +5,19 @@ export class SpriteCollection {
     stack: Sprite[] = [];
 
     constructor(public data: TSize) {
-        this.spawnNewSprite();
-        this.spawnNewSprite();
-        this.spawnNewSprite();
+        this.spawnNewSprite(0);
+        this.spawnNewSprite(0);
+        this.spawnNewSprite(0);
     }
 
-    run = (ctx: CanvasRenderingContext2D) => {
+    run = (ctx: CanvasRenderingContext2D, timeMs: number) => {
         this.stack = this.stack.filter(this.checkIfSurvive);
-        this.stack.forEach((sprite) => sprite.move());
+        this.stack.forEach((sprite) => sprite.move(timeMs));
 
         ctx.clearRect(0, 0, this.data.width, this.data.height);
         this.stack.forEach((sprite) => sprite.draw(ctx));
 
-        if (this.checkForSpawn()) this.spawnNewSprite();
+        if (this.checkForSpawn()) this.spawnNewSprite(timeMs);
     };
 
     checkIfSurvive = (sprite: Sprite) => {
@@ -25,9 +25,8 @@ export class SpriteCollection {
     };
 
     checkForSpawn = () =>
-        this.stack.length < MAX_SPRITE_COUNT &&
-        Math.random() > SPRITE_SPAWN_CHANCE;
+        this.stack.length < MAX_SPRITE_COUNT && Math.random() > SPRITE_SPAWN_CHANCE;
 
-    spawnNewSprite = () =>
-        this.stack.push(new Sprite(this.data.width, this.data.height));
+    spawnNewSprite = (timeMs: number) =>
+        this.stack.push(new Sprite(this.data.width, this.data.height, timeMs));
 }

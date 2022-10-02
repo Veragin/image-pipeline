@@ -4,7 +4,7 @@ import {
     SPRITE_MAX_ROTATION_SPEED,
     SPRITE_MAX_SPEED,
     SPRITE_MIN_SPEED,
-    SPRITE_PROGRESS_LENGTH,
+    SPRITE_PROGRESS_LENGTH_MS,
     SPRITE_SIZE,
 } from "./const";
 import { SPRITE_IMAGES, TSpriteType } from "./images";
@@ -21,10 +21,13 @@ export class Sprite {
     rotationSpeed: number;
 
     type: TSpriteType;
-    progress: number = 0;
+    progressEndTime: number;
+    timeMs: number;
     imortality = true;
 
-    constructor(maxX: number, maxY: number) {
+    constructor(maxX: number, maxY: number, timeMs: number) {
+        this.timeMs = timeMs;
+        this.progressEndTime = timeMs + SPRITE_PROGRESS_LENGTH_MS;
         this.type = randomSpriteType();
         this.rotation = Math.random() * Math.PI;
         this.rotationSpeed = randomFromRange(-SPRITE_MAX_ROTATION_SPEED, SPRITE_MAX_ROTATION_SPEED);
@@ -59,17 +62,18 @@ export class Sprite {
         }
     }
 
-    move = () => {
-        this.rotation += this.rotationSpeed;
-        this.x += this.speedX;
-        this.y += this.speedY;
+    move = (timeMs: number) => {
+        const deltaTime = (timeMs - this.timeMs) / 1000;
 
-        if (this.progress > SPRITE_PROGRESS_LENGTH) {
-            this.progress = 0;
+        this.rotation += this.rotationSpeed * deltaTime;
+        this.x += this.speedX * deltaTime;
+        this.y += this.speedY * deltaTime;
+        this.timeMs = timeMs;
+
+        if (this.progressEndTime < timeMs) {
+            this.progressEndTime = timeMs + SPRITE_PROGRESS_LENGTH_MS;
             this.type = randomSpriteType();
             this.imortality = false;
-        } else {
-            this.progress++;
         }
     };
 

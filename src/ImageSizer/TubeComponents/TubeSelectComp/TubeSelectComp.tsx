@@ -1,8 +1,4 @@
-import {
-    TTubeSelectMode,
-    TTubeSelectType,
-    TubeSelect,
-} from "ImageSizer/Tube/TubeSelect";
+import { TTubeSelectMode, TTubeSelectType, TubeSelect } from "ImageSizer/Tube/TubeSelect";
 
 import { BoxConfig } from "../ConfigComp/BoxConfig";
 import { ColorConfig } from "./ColorConfig";
@@ -15,6 +11,7 @@ import { TubeCompCollection } from "../TubeCompCollection";
 import { observer } from "mobx-react";
 import { spacingCss } from "react-utils/Components/globalCss";
 import styled from "styled-components";
+import { RsSwitch } from "react-utils/Components/RsInput/RsSwitch";
 
 type Props = {
     tube: TubeSelect;
@@ -33,11 +30,10 @@ export const TubeSelectComp = observer(({ tube, collection }: Props) => {
                     setValue={(mode) => tube.setConfig({ mode })}
                     list={tubeModeList}
                 />
-                <RsSelect
+                <RsSwitch
                     title={_("Inverse")}
                     value={tube.config.inverse}
-                    setValue={(inverse) => tube.setConfig({ inverse })}
-                    list={tubeInverseList}
+                    onChange={(inverse) => tube.setConfig({ inverse })}
                 />
                 <RsSelect
                     title={_("Type")}
@@ -109,16 +105,5 @@ const tubeTypeList: { title: string; value: TTubeSelectType }[] = [
     {
         title: _("Use already selected (old)"),
         value: "old",
-    },
-];
-
-const tubeInverseList: { title: string; value: boolean }[] = [
-    {
-        title: _("Yes"),
-        value: true,
-    },
-    {
-        title: _("No"),
-        value: false,
     },
 ];

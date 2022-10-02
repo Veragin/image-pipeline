@@ -1,6 +1,5 @@
 import { throttle } from "react-utils/basic/throttle";
 import { assertNotNullish } from "react-utils/basic/typeguards";
-import { sleep } from "./const";
 import { SpriteCollection } from "./SpriteCollection";
 
 export const RESOLUTION_FACTOR = window.devicePixelRatio || 1;
@@ -26,19 +25,16 @@ export class PaintEngine {
 
         this.spriteCollection = new SpriteCollection(this.data);
 
-        this.resizeObserver = new ResizeObserver(
-            throttle<any>(() => this.onCanvasResize(), 1000)
-        );
+        this.resizeObserver = new ResizeObserver(throttle<any>(() => this.onCanvasResize(), 1000));
         this.resizeObserver.observe(this.canvas);
 
         // start animation
         this.run(0);
     }
 
-    private async run(time: number) {
-        await sleep(25);
-        this.spriteCollection.run(this.ctx);
-        this.raf = requestAnimationFrame((time) => this.run(time));
+    private async run(timeMs: number) {
+        this.spriteCollection.run(this.ctx, timeMs);
+        this.raf = requestAnimationFrame((newTimeMs) => this.run(newTimeMs));
     }
 
     onCanvasResize() {
