@@ -1,11 +1,10 @@
-import { Column } from "../../react-utils/Components/StyledComponents";
 import { ImageCollection } from "../ImageColection";
 import { TubeCompCollection } from "./TubeCompCollection";
 import { TubeLoad } from "../Tube/TubeLoad";
 import { Typography } from "@mui/material";
 import { observer } from "mobx-react";
-import { spacingCss } from "react-utils/Components/globalCss";
 import styled from "styled-components";
+import { TubeCompCont } from "./ConfigComp/ConfigUtils";
 
 type Props = {
     tube: TubeLoad;
@@ -16,7 +15,7 @@ export const TubeLoadComp = observer(({ tube, collection }: Props) => {
     const names = tube.getFileNames();
 
     return (
-        <StyledCont>
+        <TubeCompCont>
             <input
                 type="file"
                 accept="image/*"
@@ -27,15 +26,9 @@ export const TubeLoadComp = observer(({ tube, collection }: Props) => {
             {names.map((name, i) => (
                 <StyledFileName key={i}>{name}</StyledFileName>
             ))}
-        </StyledCont>
+        </TubeCompCont>
     );
 });
-
-const StyledCont = styled(Column)`
-    flex: 1;
-    row-gap: ${spacingCss(1)};
-    overflow: hidden;
-`;
 
 const StyledFileName = styled(Typography)`
     font-size: 12px;

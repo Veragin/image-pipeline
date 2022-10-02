@@ -1,12 +1,9 @@
-import { Column } from "../../react-utils/Components/StyledComponents";
 import { ImageCollection } from "../ImageColection";
 import RsSelect from "react-utils/Components/RsInput/RsSelect";
 import { TubeCompCollection } from "./TubeCompCollection";
 import { observer } from "mobx-react";
-import { spacingCss } from "react-utils/Components/globalCss";
-import styled from "styled-components";
 import { TubeDuplicate } from "ImageSizer/Tube/TubeDuplicate";
-import { booleanList } from "./ConfigComp/SelectLists";
+import { booleanList, ConfigComp, TubeCompCont } from "./ConfigComp/ConfigUtils";
 import RsInput from "react-utils/Components/RsInput/RsInput";
 
 type Props = {
@@ -16,8 +13,8 @@ type Props = {
 
 export const TubeDuplicateComp = observer(({ tube, collection }: Props) => {
     return (
-        <StyledCont>
-            <StyledConfig>
+        <TubeCompCont>
+            <ConfigComp>
                 <RsInput
                     title={_("Count")}
                     value={String(tube.config.count)}
@@ -30,22 +27,9 @@ export const TubeDuplicateComp = observer(({ tube, collection }: Props) => {
                     setValue={(inverseSelection) => tube.setConfig({ inverseSelection })}
                     list={booleanList}
                 />
-            </StyledConfig>
+            </ConfigComp>
 
             <TubeCompCollection collection={collection} show="selection" />
-        </StyledCont>
+        </TubeCompCont>
     );
 });
-
-const StyledCont = styled(Column)`
-    flex: 1;
-    row-gap: ${spacingCss(1)};
-    overflow: hidden;
-    padding-top: ${spacingCss(1)};
-`;
-
-const StyledConfig = styled(Column)`
-    row-gap: ${spacingCss(1)};
-    overflow: hidden;
-    width: 400px;
-`;

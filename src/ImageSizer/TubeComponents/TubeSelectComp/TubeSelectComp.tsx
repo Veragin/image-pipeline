@@ -2,16 +2,14 @@ import { TTubeSelectMode, TTubeSelectType, TubeSelect } from "ImageSizer/Tube/Tu
 
 import { BoxConfig } from "../ConfigComp/BoxConfig";
 import { ColorConfig } from "./ColorConfig";
-import { Column } from "react-utils/Components/StyledComponents";
 import { ImageCollection } from "../../ImageColection";
 import { InputTitle } from "react-utils/Components/RsInput/InputCss";
 import { NeighborConfig } from "./NeighborConfig";
 import RsSelect from "react-utils/Components/RsInput/RsSelect";
 import { TubeCompCollection } from "../TubeCompCollection";
 import { observer } from "mobx-react";
-import { spacingCss } from "react-utils/Components/globalCss";
-import styled from "styled-components";
 import { RsSwitch } from "react-utils/Components/RsInput/RsSwitch";
+import { ConfigComp, TubeCompCont } from "../ConfigComp/ConfigUtils";
 
 type Props = {
     tube: TubeSelect;
@@ -22,8 +20,8 @@ export const TubeSelectComp = observer(({ tube, collection }: Props) => {
     const isWithConfig = tube.config.type !== "old";
 
     return (
-        <StyledCont>
-            <StyledConfig>
+        <TubeCompCont>
+            <ConfigComp>
                 <RsSelect
                     title={_("Mode")}
                     value={tube.config.mode}
@@ -50,25 +48,12 @@ export const TubeSelectComp = observer(({ tube, collection }: Props) => {
                 />
                 <ColorConfig tube={tube} />
                 <NeighborConfig tube={tube} />
-            </StyledConfig>
+            </ConfigComp>
 
             <TubeCompCollection collection={collection} show="selection" />
-        </StyledCont>
+        </TubeCompCont>
     );
 });
-
-const StyledCont = styled(Column)`
-    flex: 1;
-    row-gap: ${spacingCss(1)};
-    overflow: hidden;
-    padding-top: ${spacingCss(1)};
-`;
-
-const StyledConfig = styled(Column)`
-    row-gap: ${spacingCss(1)};
-    overflow: hidden;
-    width: 400px;
-`;
 
 const tubeModeList: { title: string; value: TTubeSelectMode }[] = [
     {

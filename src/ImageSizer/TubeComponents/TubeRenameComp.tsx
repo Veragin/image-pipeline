@@ -7,6 +7,7 @@ import { Typography } from "@mui/material";
 import { observer } from "mobx-react";
 import { spacingCss } from "react-utils/Components/globalCss";
 import styled from "styled-components";
+import { TubeCompCont, ConfigComp } from "./ConfigComp/ConfigUtils";
 
 type Props = {
     tube: TubeRename;
@@ -15,8 +16,8 @@ type Props = {
 
 export const TubeRenameComp = observer(({ tube, collection }: Props) => {
     return (
-        <StyledCont>
-            <StyledConfig>
+        <TubeCompCont>
+            <ConfigComp>
                 <RsInput
                     title={_("Name RegExp")}
                     value={tube.config.regExp}
@@ -27,7 +28,7 @@ export const TubeRenameComp = observer(({ tube, collection }: Props) => {
                     value={tube.config.namePattern}
                     onChange={(namePattern) => tube.setConfig({ namePattern })}
                 />
-            </StyledConfig>
+            </ConfigComp>
 
             <InputTitle>{_("Output")}</InputTitle>
             <StyledColumn>
@@ -35,22 +36,9 @@ export const TubeRenameComp = observer(({ tube, collection }: Props) => {
                     <Typography>{item.name}</Typography>
                 ))}
             </StyledColumn>
-        </StyledCont>
+        </TubeCompCont>
     );
 });
-
-const StyledCont = styled(Column)`
-    flex: 1;
-    row-gap: ${spacingCss(1)};
-    overflow: hidden;
-    padding-top: ${spacingCss(1)};
-`;
-
-const StyledConfig = styled(Column)`
-    row-gap: ${spacingCss(1)};
-    width: 400px;
-    padding-bottom: ${spacingCss(1)};
-`;
 
 const StyledColumn = styled(Column)`
     row-gap: ${spacingCss(1)};
