@@ -7,7 +7,7 @@ export abstract class Tube<Config extends Object> {
     readonly id: number = generateRandomId();
     readonly group: "transform" | "object" | "basic" = "basic";
     readonly name: string = "";
-    readonly description: string = "";
+    readonly description: string | string[] = "";
 
     icon: React.FC = () => null;
     comp: React.FC<TCompProps> = () => null;

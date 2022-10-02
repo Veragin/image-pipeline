@@ -6,7 +6,10 @@ import { applyColorToImage } from "../functions/pixelUtils";
 
 export class TubeColor extends Tube<TTubeColorConfig> {
     name = "Color";
-    description = "Change color of selected pixels.";
+    description = [
+        _("Change color of selected pixels."),
+        _("In the future change only opacity, hue, lightness"),
+    ];
     icon = BrushRoundedIcon;
     comp = TubeColorComp;
 

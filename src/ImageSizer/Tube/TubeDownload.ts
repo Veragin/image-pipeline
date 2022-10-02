@@ -7,7 +7,10 @@ import { getCanvasWithImageData } from "../functions/imageHandler";
 
 export class TubeDownload extends Tube<TTubeDownloadConfig> {
     name = "Download";
-    description = "Download images into your computer.";
+    description = [
+        _("Download images into your computer."),
+        _("Multiple downloads can be used in pipeline"),
+    ];
     icon = DownloadRoundedIcon;
     comp = TubeDownloadComp;
 
@@ -30,8 +33,7 @@ export class TubeDownload extends Tube<TTubeDownloadConfig> {
     private getImageUrl = (item: TImageItem) => {
         const { canvas } = getCanvasWithImageData(item.data);
 
-        const format =
-            this.config.type === "default" ? item.format : this.config.type;
+        const format = this.config.type === "default" ? item.format : this.config.type;
 
         return canvas.toDataURL("image/" + format, this.config.quality);
     };

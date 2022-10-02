@@ -15,8 +15,14 @@ import { selectionToRect } from "../functions/rectSelection";
 
 export class TubeObject extends Tube<TTubeObjectConfig> {
     name = "Object";
-    group = "object" as const;
-    description = "Find objects from selection.";
+    readonly group = "object";
+    description = [
+        _(
+            "Find objects in selection. Compact selected pixels defines an object that is bounding box of them."
+        ),
+        _("Define requirements for an object or modify its bounderies"),
+        _("Objects can be used in cut or crop tube."),
+    ];
     icon = DataObjectRoundedIcon;
     comp = TubeObjectComp;
 

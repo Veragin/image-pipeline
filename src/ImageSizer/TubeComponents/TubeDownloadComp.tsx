@@ -32,7 +32,7 @@ export const TubeDownloadComp = observer(({ tube, collection }: Props) => {
                 />
 
                 <ThePrimaryButton onClick={() => tube.do(collection)}>
-                    {_("Download")}
+                    {_("Download preview")}
                 </ThePrimaryButton>
             </ConfigComp>
 

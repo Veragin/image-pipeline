@@ -73,5 +73,5 @@ export const shouldStartNewRow = (
     nextImageWidth: number,
     config: TTubeJoinConfig
 ) =>
-    (config.imageNumberOnRow !== 0 && rowItemCount >= config.imageNumberOnRow) ||
+    (config.imageCountInRow !== 0 && rowItemCount >= config.imageCountInRow) ||
     (config.maxWidth !== 0 && rowWidth + config.horizontalGap + nextImageWidth > config.maxWidth);

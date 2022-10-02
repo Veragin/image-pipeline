@@ -1,7 +1,4 @@
-import {
-    cutImageDataByFixed,
-    cutImageDataByPercent,
-} from "../functions/cutter";
+import { cutImageDataByFixed, cutImageDataByPercent } from "../functions/cutter";
 
 import CarpenterRoundedIcon from "@mui/icons-material/CarpenterRounded";
 import { ImageCollection } from "../ImageColection";
@@ -11,11 +8,15 @@ import { cutImageDataByObjects } from "../functions/cutter";
 
 export class TubeCut extends Tube<TTubeCutConfig> {
     name = "Cut";
-    group = "object" as const;
-    description = `Cut the image to the pieces. <br>\n
-        Fixed ... split into pixel fixed pieces. <br>\n
-        Object ... split based by objects <br>\n
-        Percent ... not implemented yet`;
+    readonly group = "object";
+    description = [
+        _("Cut the image to the pieces."),
+        _("Fixed ... split into pixel fixed size pieces."),
+        _("Object ... split based on objects"),
+        _(
+            'Percent ... split percentually, define columns and rows as numbers separeted by ",", eg.: "1,1,2" will split as 25% 25% 50%'
+        ),
+    ];
     icon = CarpenterRoundedIcon;
     comp = TubeCutComp;
 
@@ -41,23 +42,19 @@ export class TubeCut extends Tube<TTubeCutConfig> {
             case "fixed":
                 for (let imageItem of imgCol.stack) {
                     collection.stack.push(
-                        ...cutImageDataByFixed(imageItem, this.config.fixed)
-                            .stack
+                        ...cutImageDataByFixed(imageItem, this.config.fixed).stack
                     );
                 }
                 break;
             case "object":
                 for (let imageItem of imgCol.stack) {
-                    collection.stack.push(
-                        ...cutImageDataByObjects(imageItem).stack
-                    );
+                    collection.stack.push(...cutImageDataByObjects(imageItem).stack);
                 }
                 break;
             case "percent":
                 for (let imageItem of imgCol.stack) {
                     collection.stack.push(
-                        ...cutImageDataByPercent(imageItem, this.config.percent)
-                            .stack
+                        ...cutImageDataByPercent(imageItem, this.config.percent).stack
                     );
                 }
                 break;

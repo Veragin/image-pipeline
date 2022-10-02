@@ -1,12 +1,13 @@
-import ToolbarInput from './ToolbarInput';
-import { Tooltip } from '@mui/material';
-import { observer } from 'mobx-react';
-import styled from 'styled-components';
+import ToolbarInput from "./ToolbarInput";
+import { Tooltip } from "@mui/material";
+import { observer } from "mobx-react";
+import styled from "styled-components";
+import { spacingCss } from "react-utils/Components/globalCss";
 
 type Props = {
     onChange: (v: string) => void;
     value: string;
-    type: 'text' | 'number';
+    type: "text" | "number";
     tooltip: string;
     title: React.ReactNode;
     min?: number;
@@ -27,8 +28,9 @@ const ToolbarProperty = ({ tooltip, title, ...props }: Props) => {
 const StyledLabel = styled.label`
     display: flex;
     flex-direction: row;
-    max-width: 85px;
     align-items: center;
+    gap: ${spacingCss(1)};
+    font-size: 12px;
 `;
 
 export default observer(ToolbarProperty);

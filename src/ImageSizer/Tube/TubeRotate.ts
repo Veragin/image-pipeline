@@ -6,8 +6,8 @@ import { rotatePixels } from "../functions/transformPixels";
 
 export class TubeRotate extends Tube<TTubeRotateConfig> {
     name = "Rotate";
-    group = "transform" as const;
-    description = "Rotate image by degree. ";
+    readonly group = "transform";
+    description = _("Rotate image by degree. Angle should be number between 0 and 360");
     icon = Rotate90DegreesCwRoundedIcon;
     comp = TubeRotateComp;
 

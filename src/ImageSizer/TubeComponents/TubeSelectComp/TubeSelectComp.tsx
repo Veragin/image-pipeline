@@ -3,7 +3,6 @@ import { TTubeSelectMode, TTubeSelectType, TubeSelect } from "ImageSizer/Tube/Tu
 import { BoxConfig } from "../ConfigComp/BoxConfig";
 import { ColorConfig } from "./ColorConfig";
 import { ImageCollection } from "../../ImageColection";
-import { InputTitle } from "react-utils/Components/RsInput/InputCss";
 import { NeighborConfig } from "./NeighborConfig";
 import RsSelect from "react-utils/Components/RsInput/RsSelect";
 import { TubeCompCollection } from "../TubeCompCollection";
@@ -23,24 +22,11 @@ export const TubeSelectComp = observer(({ tube, collection }: Props) => {
         <TubeCompCont>
             <ConfigComp>
                 <RsSelect
-                    title={_("Mode")}
-                    value={tube.config.mode}
-                    setValue={(mode) => tube.setConfig({ mode })}
-                    list={tubeModeList}
-                />
-                <RsSwitch
-                    title={_("Inverse")}
-                    value={tube.config.inverse}
-                    onChange={(inverse) => tube.setConfig({ inverse })}
-                />
-                <RsSelect
                     title={_("Type")}
                     value={tube.config.type}
                     setValue={(type) => tube.setConfig({ type })}
                     list={tubeTypeList}
                 />
-
-                {isWithConfig && <InputTitle>{_("Config")}</InputTitle>}
                 <BoxConfig
                     type={tube.config.type}
                     box={tube.config.box}
@@ -48,6 +34,21 @@ export const TubeSelectComp = observer(({ tube, collection }: Props) => {
                 />
                 <ColorConfig tube={tube} />
                 <NeighborConfig tube={tube} />
+
+                <RsSwitch
+                    title={_("Inverse")}
+                    value={tube.config.inverse}
+                    onChange={(inverse) => tube.setConfig({ inverse })}
+                />
+
+                {isWithConfig && (
+                    <RsSelect
+                        title={_("Mode")}
+                        value={tube.config.mode}
+                        setValue={(mode) => tube.setConfig({ mode })}
+                        list={tubeModeList}
+                    />
+                )}
             </ConfigComp>
 
             <TubeCompCollection collection={collection} show="selection" />

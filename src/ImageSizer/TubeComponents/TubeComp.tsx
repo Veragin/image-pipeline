@@ -15,6 +15,9 @@ type Props<T extends Object> = {
 export const TubeComp = observer(({ tube, collection }: Props<any>) => {
     const Icon = tube?.icon ?? (() => null);
     const Comp = tube?.comp ?? (() => null);
+    const des = tube?.description ?? "";
+
+    const description = Array.isArray(des) ? des.flatMap((d) => [d, <br />]) : des;
 
     return (
         <StyledCont>
@@ -22,7 +25,7 @@ export const TubeComp = observer(({ tube, collection }: Props<any>) => {
                 <Icon />
                 {tube?.name ?? ""}
             </StyledRow>
-            <StyledDescription>{tube?.description ?? ""}</StyledDescription>
+            <StyledDescription>{description}</StyledDescription>
             <Comp tube={tube} collection={collection} />
         </StyledCont>
     );

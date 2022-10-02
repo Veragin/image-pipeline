@@ -9,8 +9,7 @@ import { getCanvas } from "react-utils/canvas";
 export class TubeLoad extends Tube<{}> {
     id = 0;
     name = "Load";
-    description =
-        "Load images to service. First image will be used as a preview. ";
+    description = [_("Load images to service."), _("First image will be used as a preview.")];
     icon = DriveFolderUploadRoundedIcon;
     comp = TubeLoadComp;
 

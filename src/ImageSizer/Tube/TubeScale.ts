@@ -6,9 +6,13 @@ import { scalePixels } from "../functions/transformPixels";
 
 export class TubeScale extends Tube<TTubeScaleConfig> {
     name = "Scale";
-    group = "transform" as const;
-    description =
-        "Scale image. Box ... scale to given size. Padding ... add/remove amout of pixel from size. Percent ... scale by given ratio.";
+    readonly group = "transform";
+    description = [
+        _("Scale image."),
+        _("Box ... scale to fixed size. "),
+        _("Padding ... add/remove amout of pixel from the final size."),
+        _("Percent ... scale by given ratio."),
+    ];
     icon = FitScreenRoundedIcon;
     comp = TubeScaleComp;
 

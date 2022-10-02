@@ -21,12 +21,12 @@ export const TubeJoinComp = observer(({ tube, collection }: Props) => {
                     onChange={(groupBy) => tube.setConfig({ groupBy: Number(groupBy) })}
                 />
                 <RsInput
-                    title={_("Image Number On Row")}
-                    value={String(tube.config.imageNumberOnRow)}
+                    title={_("Image count in row")}
+                    value={String(tube.config.imageCountInRow)}
                     type="number"
                     onChange={(imageNumberOnRow) =>
                         tube.setConfig({
-                            imageNumberOnRow: Number(imageNumberOnRow),
+                            imageCountInRow: Number(imageNumberOnRow),
                         })
                     }
                 />

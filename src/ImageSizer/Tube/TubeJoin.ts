@@ -7,16 +7,22 @@ import { joinPixels } from "../functions/join";
 
 export class TubeJoin extends Tube<TTubeJoinConfig> {
     name = "Join";
-    group = "object" as const;
-    description =
-        "Join all images together into one (or multiple) images. if groupBy === 0 means join all images together. imageNumberOnRow === 0 means no limit in number of images in row. maxWidth === 0 means no limit on max pixel width of new image.";
+    readonly group = "object";
+    description = [
+        _(
+            "Join pieces/images together into one (or multiple) images. (you can create pieces via cut or duplicate)"
+        ),
+        _("Group by === 0 means join all images together."),
+        _("Image count in row === 0 means no limit in number of images in row."),
+        _("Max Width === 0 means no limit on max pixel width of new image."),
+    ];
     icon = AutoAwesomeMosaicRoundedIcon;
     comp = TubeJoinComp;
 
     constructor() {
         super({
             groupBy: 0,
-            imageNumberOnRow: 4,
+            imageCountInRow: 4,
             maxWidth: 500,
             verticalGap: 0,
             horizontalGap: 0,
@@ -66,7 +72,7 @@ export class TubeJoin extends Tube<TTubeJoinConfig> {
 
 export type TTubeJoinConfig = {
     groupBy: number;
-    imageNumberOnRow: number;
+    imageCountInRow: number;
     maxWidth: number;
     verticalGap: number;
     horizontalGap: number;

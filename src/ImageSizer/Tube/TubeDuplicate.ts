@@ -7,7 +7,7 @@ import { Tube } from "./Tube";
 export class TubeDuplicate extends Tube<TTubeDuplicateConfig> {
     name = "Duplicate";
     readonly group = "object";
-    description = "Mirror image vertically and horizontally. ";
+    description = _("Duplicate image multiple times. Duplicates can have inverted selection.");
     icon = ContentCopyRoundedIcon;
     comp = TubeDuplicateComp;
 

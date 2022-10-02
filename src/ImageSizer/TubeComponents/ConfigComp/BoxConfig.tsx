@@ -1,4 +1,4 @@
-import { Row } from "../../../react-utils/Components/StyledComponents";
+import { Column, Row } from "../../../react-utils/Components/StyledComponents";
 import ToolbarProperty from "ImageSizer/Components/ToolbarProperty";
 import { observer } from "mobx-react";
 import { spacingCss } from "react-utils/Components/globalCss";
@@ -14,7 +14,7 @@ export const BoxConfig = observer(({ type, box, onChange }: Props) => {
     if (type !== undefined && type !== "box") return null;
 
     return (
-        <>
+        <Column>
             <StyledRow>
                 <ToolbarProperty
                     title="X"
@@ -63,7 +63,7 @@ export const BoxConfig = observer(({ type, box, onChange }: Props) => {
                     }
                 />
             </StyledRow>
-        </>
+        </Column>
     );
 });
 

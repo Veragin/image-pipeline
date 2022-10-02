@@ -3,7 +3,7 @@ import { countSizeOfJoinedElements } from "./join";
 
 const createBasicConfig = (): TTubeJoinConfig => ({
     maxWidth: 0,
-    imageNumberOnRow: 0,
+    imageCountInRow: 0,
     groupBy: 0,
     verticalGap: 0,
     horizontalGap: 0,
@@ -27,7 +27,7 @@ describe("join", () => {
         const sizes: TSize[] = Array<TSize>(10).fill({ width: 10, height: 10 });
 
         const config = createBasicConfig();
-        config.imageNumberOnRow = 3;
+        config.imageCountInRow = 3;
         const res = countSizeOfJoinedElements(sizes, config);
 
         expect(res).toMatchInlineSnapshot(`
@@ -57,7 +57,7 @@ describe("join", () => {
         const sizes: TSize[] = Array<TSize>(12).fill({ width: 18, height: 4 });
 
         const config = createBasicConfig();
-        config.imageNumberOnRow = 5;
+        config.imageCountInRow = 5;
         config.maxWidth = 37;
         const res = countSizeOfJoinedElements(sizes, config);
 

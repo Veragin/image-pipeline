@@ -4,10 +4,7 @@ import {
     applyPaddingToRect,
     getBoundingBoxOfRects,
 } from "../functions/rectTricks";
-import {
-    selectionFromRectToSelection,
-    selectionToRect,
-} from "../functions/rectSelection";
+import { selectionFromRectToSelection, selectionToRect } from "../functions/rectSelection";
 
 import CropRoundedIcon from "@mui/icons-material/CropRounded";
 import { ImageCollection } from "../ImageColection";
@@ -17,8 +14,8 @@ import { cutImageDataByRect } from "../functions/cutter";
 
 export class TubeCrop extends Tube<TTubeCropConfig> {
     name = "Crop";
-    group = "transform" as const;
-    description = "Crop or cut image based on selection/objects.";
+    readonly group = "transform";
+    description = [_("Crop image based on the settings.")];
     icon = CropRoundedIcon;
     comp = TubeCropComp;
 
@@ -58,25 +55,19 @@ export class TubeCrop extends Tube<TTubeCropConfig> {
                     rect = { ...this.config.box };
                     break;
                 case "objects":
-                    rect = getBoundingBoxOfRects(
-                        item.objects.map((o) => o.rect)
-                    );
+                    rect = getBoundingBoxOfRects(item.objects.map((o) => o.rect));
                     break;
             }
             rect = this.modifyRect(rect);
 
             item.data = cutImageDataByRect(rect, item.data);
 
-            item.selection = selectionFromRectToSelection(
-                item.selection,
-                size,
-                {
-                    x: 0,
-                    y: 0,
-                    width: item.data.width,
-                    height: item.data.height,
-                }
-            );
+            item.selection = selectionFromRectToSelection(item.selection, size, {
+                x: 0,
+                y: 0,
+                width: item.data.width,
+                height: item.data.height,
+            });
         });
     };
 

@@ -77,7 +77,7 @@ export const spriteRecept: TRecept = {
             tube: "join",
             config: {
                 groupBy: 0,
-                imageNumberOnRow: 4,
+                imageCountInRow: 4,
                 maxWidth: 500,
                 verticalGap: 0,
                 horizontalGap: 0,

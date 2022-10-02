@@ -23,7 +23,7 @@ import { throttle } from "react-utils/basic/throttle";
 
 export class TubeSelect extends Tube<TTubeSelectConfig> {
     name = "Select";
-    description = _("Select area that you want to edit.");
+    description = _("Select pixels that you want to edit.");
     icon = PhotoSizeSelectLargeRoundedIcon;
     comp = TubeSelectComp;
 
@@ -34,9 +34,8 @@ export class TubeSelect extends Tube<TTubeSelectConfig> {
     setConfigColor = throttle((config: Partial<TTubeSelectConfig["color"]>) =>
         this.setConfig({ color: { ...this.config.color, ...config } })
     );
-    setConfigNeighbor = throttle(
-        (config: Partial<TTubeSelectConfig["neighbor"]>) =>
-            this.setConfig({ neighbor: { ...this.config.neighbor, ...config } })
+    setConfigNeighbor = throttle((config: Partial<TTubeSelectConfig["neighbor"]>) =>
+        this.setConfig({ neighbor: { ...this.config.neighbor, ...config } })
     );
 
     do = async (imgCol: ImageCollection) => {
@@ -47,16 +46,18 @@ export class TubeSelect extends Tube<TTubeSelectConfig> {
                 sel = inverseSelection(sel, item.data.width * item.data.height);
             }
 
-            switch (this.config.mode) {
-                case "modifyAdd":
-                    sel = addSelection(item.selection, sel);
-                    break;
-                case "modifySub":
-                    sel = subSelection(item.selection, sel);
-                    break;
-                case "modifyInter":
-                    sel = interSelection(item.selection, sel);
-                    break;
+            if (this.config.type !== "old") {
+                switch (this.config.mode) {
+                    case "modifyAdd":
+                        sel = addSelection(item.selection, sel);
+                        break;
+                    case "modifySub":
+                        sel = subSelection(item.selection, sel);
+                        break;
+                    case "modifyInter":
+                        sel = interSelection(item.selection, sel);
+                        break;
+                }
             }
 
             item.selection = sel;
@@ -109,11 +110,7 @@ export class TubeSelect extends Tube<TTubeSelectConfig> {
     };
 }
 
-export type TTubeSelectMode =
-    | "newSelect"
-    | "modifyAdd"
-    | "modifySub"
-    | "modifyInter";
+export type TTubeSelectMode = "newSelect" | "modifyAdd" | "modifySub" | "modifyInter";
 export type TTubeSelectType = "box" | "color" | "neighbor" | "old";
 
 export type TTubeSelectConfig = {

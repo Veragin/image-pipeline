@@ -11,12 +11,8 @@ type Props = {
 };
 
 export const PercentConfig = observer(({ tube }: Props) => {
-    const [columnsInput, setColumnsInput] = useState(
-        tube.config.percent.columns.join(", ")
-    );
-    const [rowsInput, setRowsInput] = useState(
-        tube.config.percent.rows.join(", ")
-    );
+    const [columnsInput, setColumnsInput] = useState(tube.config.percent.columns.join(", "));
+    const [rowsInput, setRowsInput] = useState(tube.config.percent.rows.join(", "));
 
     if (tube.config.type !== "percent") return null;
 
@@ -30,9 +26,7 @@ export const PercentConfig = observer(({ tube }: Props) => {
 
         if (
             data.length !== tube.config.percent.columns.length ||
-            tube.config.percent.columns.some(
-                (value, index) => value !== data[index]
-            )
+            tube.config.percent.columns.some((value, index) => value !== data[index])
         ) {
             // there is some change
             tube.setConfig({
@@ -47,15 +41,14 @@ export const PercentConfig = observer(({ tube }: Props) => {
         setRowsInput(v);
 
         const data = v
-            .split(", ")
+            .split(",")
+            .map((s) => s.trim())
             .map((v) => parseFloat(v))
             .filter((n) => !Number.isNaN(n));
 
         if (
             data.length !== tube.config.percent.rows.length ||
-            tube.config.percent.rows.some(
-                (value, index) => value !== data[index]
-            )
+            tube.config.percent.rows.some((value, index) => value !== data[index])
         ) {
             // there is some change
             tube.setConfig({
@@ -75,12 +68,7 @@ export const PercentConfig = observer(({ tube }: Props) => {
                     value={columnsInput}
                     onChange={changeColumns}
                 />
-                <RsInput
-                    title={_("Rows")}
-                    type="text"
-                    value={rowsInput}
-                    onChange={changeRows}
-                />
+                <RsInput title={_("Rows")} type="text" value={rowsInput} onChange={changeRows} />
             </StyledRow>
         </>
     );

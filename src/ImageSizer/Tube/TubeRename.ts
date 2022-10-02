@@ -5,8 +5,13 @@ import { TubeRenameComp } from "../TubeComponents/TubeRenameComp";
 
 export class TubeRename extends Tube<TTubeRenameConfig> {
     name = "Rename";
-    description =
-        "Rename images (for save). Use regExp to modify oldName. Name pattern: use {name} to insert new name, {index} to insert index of image, {width} width of image, {height} height og image";
+    description = [
+        _("Rename images (for download)."),
+        _("Use regExp to modify oldName. In Name pattern you can use:"),
+        _(
+            "{name} to insert new name, {index} to insert index of image, {width} width of image, {height} height of image"
+        ),
+    ];
     icon = AbcRoundedIcon;
     comp = TubeRenameComp;
 

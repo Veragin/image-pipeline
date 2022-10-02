@@ -5,7 +5,7 @@ import styled from "styled-components";
 export const ConfigComp = styled(Column)`
     row-gap: ${spacingCss(1)};
     overflow: hidden;
-    width: 400px;
+    width: 260px;
 `;
 
 export const TubeCompCont = styled(Column)`
