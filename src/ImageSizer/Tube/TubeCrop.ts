@@ -15,7 +15,7 @@ import { cutImageDataByRect } from "../functions/cutter";
 export class TubeCrop extends Tube<TTubeCropConfig> {
     name = "Crop";
     readonly group = "transform";
-    description = [_("Crop image based on the settings.")];
+    description = [_("Crop the image")];
     icon = CropRoundedIcon;
     comp = TubeCropComp;
 

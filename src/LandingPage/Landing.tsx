@@ -46,12 +46,12 @@ export const Landing = ({ onStart }: Props) => {
                 </StyledTitleCont>
             </StyledDiv>
             <StyledMenu>
-                <StyledMenuItem>Tutorial</StyledMenuItem>
-                <StyledMenuItem>Examples</StyledMenuItem>
+                <StyledMenuItem>{_("Get started")}</StyledMenuItem>
+                <StyledMenuItem>{_("Examples")}</StyledMenuItem>
                 <Button color="primary" variant="contained" onClick={onStart}>
                     {_("Start right now")}
                 </Button>
-                <StyledMenuItem>Docs</StyledMenuItem>
+                <StyledMenuItem>{_("Docs")}</StyledMenuItem>
                 <StyledMenuItem>SizeFire</StyledMenuItem>
             </StyledMenu>
         </>

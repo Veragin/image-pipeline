@@ -1,15 +1,14 @@
 import { Column } from "react-utils/Components/StyledComponents";
 import styled from "styled-components";
-import { BoxContent } from "./Components";
+import { BoxContent } from "./BoxContent";
 
 export const Body = () => {
     return (
         <StyledPipeCont>
             <StyledPipeTube />
             <Column>
-                <BoxContent>
-                    <StyledContent>Content</StyledContent>
-                </BoxContent>
+                <BoxContent title={_("Get started")}>Conetnt</BoxContent>
+                <BoxContent title={_("Give us feedback")}>Conetnt</BoxContent>
             </Column>
         </StyledPipeCont>
     );
@@ -27,5 +26,3 @@ const StyledPipeTube = styled.div`
     width: 20%;
     height: 100%;
 `;
-
-const StyledContent = styled(Column)``;
