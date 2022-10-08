@@ -42,7 +42,7 @@ export class TubeSelect extends Tube<TTubeSelectConfig> {
         imgCol.stack.forEach((item) => {
             let sel = this.computeSelection(item);
 
-            if (this.config.inverse) {
+            if (this.config.inverse || this.config.type === "old") {
                 sel = inverseSelection(sel, item.data.width * item.data.height);
             }
 

@@ -1,8 +1,8 @@
-import { Key } from 'react';
-import { Tooltip } from '@mui/material';
-import { inputCss } from './ToolbarComp';
-import { observer } from 'mobx-react';
-import styled from 'styled-components';
+import { Key } from "react";
+import { Tooltip } from "@mui/material";
+import { inputCss } from "./ToolbarComp";
+import { observer } from "mobx-react";
+import styled from "styled-components";
 
 type TOption = { name: string; value: string };
 
@@ -14,13 +14,7 @@ type Props = {
     tooltip?: string;
 };
 
-const ToolbarSelect = ({
-    value,
-    onChange,
-    options,
-    renderOption,
-    tooltip,
-}: Props) => {
+const ToolbarSelect = ({ value, onChange, options, renderOption, tooltip }: Props) => {
     const onChangeHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
         onChange(e.target.value);
     };
@@ -48,7 +42,9 @@ const ToolbarSelect = ({
                     renderOption ? (
                         renderOption(o, key)
                     ) : (
-                        <option value={o.value}>{o.name}</option>
+                        <option value={o.value} key={key}>
+                            {o.name}
+                        </option>
                     )
                 )}
             </StyledSelect>

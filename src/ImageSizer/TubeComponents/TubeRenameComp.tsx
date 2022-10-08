@@ -32,8 +32,8 @@ export const TubeRenameComp = observer(({ tube, collection }: Props) => {
 
             <InputTitle>{_("Output")}</InputTitle>
             <StyledColumn>
-                {collection.stack.map((item) => (
-                    <Typography>{item.name}</Typography>
+                {collection.stack.map((item, i) => (
+                    <Typography key={i}>{item.name}</Typography>
                 ))}
             </StyledColumn>
         </TubeCompCont>
