@@ -9,14 +9,17 @@ export class TubeDownload extends Tube<TTubeDownloadConfig> {
     name = "Download";
     description = [
         _("Download images into your computer."),
-        _("Multiple downloads can be used in pipeline"),
+        _("Multiple download tubes can be used in the pipeline"),
+        _(
+            "Choose format of the generated output image. Default format means that the format of the loaded image will be used."
+        ),
     ];
     icon = DownloadRoundedIcon;
     comp = TubeDownloadComp;
 
     constructor() {
         super({
-            type: "default",
+            format: "default",
             quality: 1,
         });
     }
@@ -33,7 +36,7 @@ export class TubeDownload extends Tube<TTubeDownloadConfig> {
     private getImageUrl = (item: TImageItem) => {
         const { canvas } = getCanvasWithImageData(item.data);
 
-        const format = this.config.type === "default" ? item.format : this.config.type;
+        const format = this.config.format === "default" ? item.format : this.config.format;
 
         return canvas.toDataURL("image/" + format, this.config.quality);
     };
@@ -50,8 +53,8 @@ export class TubeDownload extends Tube<TTubeDownloadConfig> {
 }
 
 export type TTubeDownloadConfig = {
-    type: TTubeDownloadType;
+    format: TTubeDownloadFormat;
     quality: number;
 };
 
-export type TTubeDownloadType = "default" | "png" | "jpeg";
+export type TTubeDownloadFormat = "default" | "png" | "jpeg";

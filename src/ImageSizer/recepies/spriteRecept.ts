@@ -83,6 +83,6 @@ export const spriteRecept: TRecept = {
                 horizontalGap: 0,
             },
         },
-        { tube: "download", config: { type: "png", quality: 1 } },
+        { tube: "download", config: { format: "png", quality: 1 } },
     ],
 };

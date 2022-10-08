@@ -54,7 +54,7 @@ export const scissorsRecept: TRecept = {
         },
         {
             tube: "download",
-            config: { type: "png" },
+            config: { format: "png" },
         },
     ],
 };

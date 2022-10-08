@@ -1,4 +1,4 @@
-import { TTubeDownloadType, TubeDownload } from "../Tube/TubeDownload";
+import { TTubeDownloadFormat, TubeDownload } from "../Tube/TubeDownload";
 
 import { ImageCollection } from "../ImageColection";
 import RsInput from "react-utils/Components/RsInput/RsInput";
@@ -18,9 +18,9 @@ export const TubeDownloadComp = observer(({ tube, collection }: Props) => {
         <TubeCompCont>
             <ConfigComp>
                 <RsSelect
-                    title={_("Type")}
-                    value={tube.config.type}
-                    setValue={(type) => tube.setConfig({ type })}
+                    title={_("Format")}
+                    value={tube.config.format}
+                    setValue={(format) => tube.setConfig({ format })}
                     list={tubeTypeList}
                 />
 
@@ -29,6 +29,9 @@ export const TubeDownloadComp = observer(({ tube, collection }: Props) => {
                     value={String(tube.config.quality)}
                     type="number"
                     onChange={(v) => tube.setConfig({ quality: Number(v) })}
+                    helpTooltip={_(
+                        "Number between 0 and 1. Value 1 means that the generated image will be without any compression"
+                    )}
                 />
 
                 <ThePrimaryButton onClick={() => tube.do(collection)}>
@@ -41,7 +44,7 @@ export const TubeDownloadComp = observer(({ tube, collection }: Props) => {
     );
 });
 
-const tubeTypeList: { title: string; value: TTubeDownloadType }[] = [
+const tubeTypeList: { title: string; value: TTubeDownloadFormat }[] = [
     {
         title: _("Default"),
         value: "default",
