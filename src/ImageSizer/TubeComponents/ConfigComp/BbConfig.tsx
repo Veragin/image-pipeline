@@ -1,5 +1,5 @@
 import { FitToConfig } from "./FitToConfig";
-import { InputTitle } from "react-utils/Components/RsInput/InputCss";
+import { InputTitle } from "react-utils/Components/RsInput/InputTitle";
 import { PaddingConfig } from "./PaddingConfig";
 import { TTubeBBConfig } from "../../functions/rectTricks";
 import ToolbarSelect from "ImageSizer/Components/ToolbarSelect";

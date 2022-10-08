@@ -1,4 +1,4 @@
-import { InputTitle } from "react-utils/Components/RsInput/InputCss";
+import { InputTitle } from "react-utils/Components/RsInput/InputTitle";
 import { Row } from "../../../react-utils/Components/StyledComponents";
 import { TFitTo } from "../../functions/rectTricks";
 import ToolbarProperty from "ImageSizer/Components/ToolbarProperty";

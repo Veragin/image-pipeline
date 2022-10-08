@@ -9,7 +9,7 @@ export const spriteRecept: TRecept = {
             tube: "select",
             config: {
                 mode: "newSelect",
-                type: "neighbor",
+                method: "neighbor",
                 inverse: true,
                 box: { x: 0, y: 0, width: 500, height: 500 },
                 color: {
@@ -54,7 +54,7 @@ export const spriteRecept: TRecept = {
             tube: "select",
             config: {
                 mode: "newSelect",
-                type: "old",
+                method: "old",
                 inverse: true,
                 box: { x: 0, y: 0, width: 500, height: 500 },
                 color: {

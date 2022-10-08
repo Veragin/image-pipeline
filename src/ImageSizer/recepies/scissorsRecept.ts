@@ -8,7 +8,7 @@ export const scissorsRecept: TRecept = {
         {
             tube: "select",
             config: {
-                type: "neighbor",
+                method: "neighbor",
                 neighbor: {
                     x: 10,
                     y: 10,
@@ -36,7 +36,7 @@ export const scissorsRecept: TRecept = {
             tube: "select",
             config: {
                 mode: "newSelect",
-                type: "old",
+                method: "old",
                 inverse: true,
             },
         },

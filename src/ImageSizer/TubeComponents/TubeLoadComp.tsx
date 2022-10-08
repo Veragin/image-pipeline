@@ -7,7 +7,7 @@ import styled from "styled-components";
 import { TubeCompCont } from "./ConfigComp/ConfigUtils";
 import { RsFile } from "react-utils/Components/RsInput/RsFile";
 import { spacingCss } from "react-utils/Components/globalCss";
-import { InputTitle } from "react-utils/Components/RsInput/InputCss";
+import { InputTitle } from "react-utils/Components/RsInput/InputTitle";
 import { Row } from "react-utils/Components/StyledComponents";
 import { WarningChip } from "./WarningChip";
 

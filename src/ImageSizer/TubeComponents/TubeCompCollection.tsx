@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react";
 import { Row } from "react-utils/Components/StyledComponents";
 import { spacingCss } from "react-utils/Components/globalCss";
 import styled from "styled-components";
-import { InputTitle } from "react-utils/Components/RsInput/InputCss";
+import { InputTitle } from "react-utils/Components/RsInput/InputTitle";
 
 type Props = {
     collection: ImageCollection;
@@ -95,10 +95,7 @@ const getColoredImage = (data: TImageItem, show: TItemShow) => {
     return newData;
 };
 
-const drawObjects = (
-    ctx: CanvasRenderingContext2D,
-    objects: TImageObject[]
-) => {
+const drawObjects = (ctx: CanvasRenderingContext2D, objects: TImageObject[]) => {
     for (let obj of objects) {
         ctx.strokeStyle = "black";
         ctx.strokeRect(obj.rect.x, obj.rect.y, obj.rect.width, obj.rect.height);

@@ -1,4 +1,4 @@
-import { TTubeSelectMode, TTubeSelectType, TubeSelect } from "ImageSizer/Tube/TubeSelect";
+import { TTubeSelectMode, TTubeSelectMethod, TubeSelect } from "ImageSizer/Tube/TubeSelect";
 
 import { BoxConfig } from "../ConfigComp/BoxConfig";
 import { ColorConfig } from "./ColorConfig";
@@ -9,6 +9,9 @@ import { TubeCompCollection } from "../TubeCompCollection";
 import { observer } from "mobx-react";
 import { RsSwitch } from "react-utils/Components/RsInput/RsSwitch";
 import { ConfigComp, TubeCompCont } from "../ConfigComp/ConfigUtils";
+import { Row } from "react-utils/Components/StyledComponents";
+import { spacingCss } from "react-utils/Components/globalCss";
+import styled from "styled-components";
 
 type Props = {
     tube: TubeSelect;
@@ -16,40 +19,49 @@ type Props = {
 };
 
 export const TubeSelectComp = observer(({ tube, collection }: Props) => {
-    const isWithConfig = tube.config.type !== "old";
+    const isWithConfig = tube.config.method !== "old";
 
     return (
         <TubeCompCont>
-            <ConfigComp>
-                <RsSelect
-                    title={_("Type")}
-                    value={tube.config.type}
-                    setValue={(type) => tube.setConfig({ type })}
-                    list={tubeTypeList}
-                />
-                <BoxConfig
-                    type={tube.config.type}
-                    box={tube.config.box}
-                    onChange={(box) => tube.setConfig({ box })}
-                />
-                <ColorConfig tube={tube} />
-                <NeighborConfig tube={tube} />
-
-                <RsSwitch
-                    title={_("Inverse")}
-                    value={tube.config.inverse}
-                    onChange={(inverse) => tube.setConfig({ inverse })}
-                />
-
-                {isWithConfig && (
+            <StyledRow>
+                <ConfigComp>
                     <RsSelect
-                        title={_("Mode")}
-                        value={tube.config.mode}
-                        setValue={(mode) => tube.setConfig({ mode })}
-                        list={tubeModeList}
+                        title={_("Selecting method")}
+                        value={tube.config.method}
+                        setValue={(method) => tube.setConfig({ method })}
+                        list={tubeMethodList}
+                        helpTooltip={_("Choose how the pixels will be selected")}
                     />
-                )}
-            </ConfigComp>
+
+                    {isWithConfig && (
+                        <>
+                            <RsSwitch
+                                title={_("Inverse")}
+                                value={tube.config.inverse}
+                                onChange={(inverse) => tube.setConfig({ inverse })}
+                                helpTooltip={_(
+                                    "Invert selection. Selected pixels become unselected and vice versa."
+                                )}
+                            />
+                            <RsSelect
+                                title={_("Interaction with the previous selection")}
+                                value={tube.config.mode}
+                                setValue={(mode) => tube.setConfig({ mode })}
+                                list={tubeModeList}
+                            />
+                        </>
+                    )}
+                </ConfigComp>
+                <ConfigComp>
+                    <BoxConfig
+                        type={tube.config.method}
+                        box={tube.config.box}
+                        onChange={(box) => tube.setConfig({ box })}
+                    />
+                    <ColorConfig tube={tube} />
+                    <NeighborConfig tube={tube} />
+                </ConfigComp>
+            </StyledRow>
 
             <TubeCompCollection collection={collection} show="selection" />
         </TubeCompCont>
@@ -75,7 +87,7 @@ const tubeModeList: { title: string; value: TTubeSelectMode }[] = [
     },
 ];
 
-const tubeTypeList: { title: string; value: TTubeSelectType }[] = [
+const tubeMethodList: { title: string; value: TTubeSelectMethod }[] = [
     {
         title: _("Selection by Box "),
         value: "box",
@@ -89,7 +101,11 @@ const tubeTypeList: { title: string; value: TTubeSelectType }[] = [
         value: "neighbor",
     },
     {
-        title: _("Use already selected (old)"),
+        title: _("Invert already selected pixels"),
         value: "old",
     },
 ];
+
+const StyledRow = styled(Row)`
+    gap: ${spacingCss(2)};
+`;

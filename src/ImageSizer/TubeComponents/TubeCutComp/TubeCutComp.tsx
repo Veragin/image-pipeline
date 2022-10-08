@@ -2,7 +2,7 @@ import { TTubeCutType, TubeCut } from "../../Tube/TubeCut";
 
 import { FixedConfig } from "./FixedConfig";
 import { ImageCollection } from "../../ImageColection";
-import { InputTitle } from "react-utils/Components/RsInput/InputCss";
+import { InputTitle } from "react-utils/Components/RsInput/InputTitle";
 import { PercentConfig } from "./PercentConfig";
 import RsSelect from "react-utils/Components/RsInput/RsSelect";
 import { TubeCompCollection } from "../TubeCompCollection";

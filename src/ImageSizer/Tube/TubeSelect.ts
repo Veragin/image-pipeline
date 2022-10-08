@@ -42,11 +42,11 @@ export class TubeSelect extends Tube<TTubeSelectConfig> {
         imgCol.stack.forEach((item) => {
             let sel = this.computeSelection(item);
 
-            if (this.config.inverse || this.config.type === "old") {
+            if (this.config.inverse || this.config.method === "old") {
                 sel = inverseSelection(sel, item.data.width * item.data.height);
             }
 
-            if (this.config.type !== "old") {
+            if (this.config.method !== "old") {
                 switch (this.config.mode) {
                     case "modifyAdd":
                         sel = addSelection(item.selection, sel);
@@ -65,7 +65,7 @@ export class TubeSelect extends Tube<TTubeSelectConfig> {
     };
 
     computeSelection = (item: TImageItem) => {
-        switch (this.config.type) {
+        switch (this.config.method) {
             case "box":
                 return rectToSelection(this.config.box, item.data);
             case "color":
@@ -111,11 +111,11 @@ export class TubeSelect extends Tube<TTubeSelectConfig> {
 }
 
 export type TTubeSelectMode = "newSelect" | "modifyAdd" | "modifySub" | "modifyInter";
-export type TTubeSelectType = "box" | "color" | "neighbor" | "old";
+export type TTubeSelectMethod = "box" | "color" | "neighbor" | "old";
 
 export type TTubeSelectConfig = {
     mode: TTubeSelectMode;
-    type: TTubeSelectType;
+    method: TTubeSelectMethod;
     inverse: boolean;
 
     box: TRect;
@@ -136,7 +136,7 @@ export type TTubeSelectConfig = {
 
 const initConfig = (size: TSize): TTubeSelectConfig => ({
     mode: "newSelect",
-    type: "box",
+    method: "box",
     inverse: false,
     box: {
         x: 0,

@@ -2,11 +2,11 @@ import { Row } from "react-utils/Components/StyledComponents";
 import { TubeSelect } from "ImageSizer/Tube/TubeSelect";
 import ToolbarColor from "ImageSizer/Components/ToolbarColor";
 import ToolbarProperty from "ImageSizer/Components/ToolbarProperty";
-import ToolbarSelect from "ImageSizer/Components/ToolbarSelect";
 import ToolbarSlider from "ImageSizer/Components/ToolbarSlider";
 import { observer } from "mobx-react";
 import styled from "styled-components";
 import { useState } from "react";
+import RsSelect from "react-utils/Components/RsInput/RsSelect";
 
 type Props = {
     tube: TubeSelect;
@@ -16,14 +16,15 @@ export const NeighborConfig = observer(({ tube }: Props) => {
     const [color, setColor] = useState(tube.config.neighbor.color);
     const [threshold, setThreshold] = useState(tube.config.neighbor.threshold);
 
-    if (tube.config.type !== "neighbor") return null;
+    if (tube.config.method !== "neighbor") return null;
 
     return (
         <>
-            <ToolbarSelect
+            <RsSelect
+                title={_("Neighbor config")}
                 value={tube.config.neighbor.type}
-                onChange={(v) => tube.setConfigNeighbor({ type: v as any })}
-                options={typeOptions}
+                setValue={(v) => tube.setConfigNeighbor({ type: v as any })}
+                list={typeOptions}
             />
 
             {tube.config.neighbor.type === "pixel" && (
@@ -85,15 +86,15 @@ export const NeighborConfig = observer(({ tube }: Props) => {
 
 const typeOptions = [
     {
-        name: _("Pixel"),
+        title: _("Pixel"),
         value: "pixel",
     },
     {
-        name: _("Color"),
+        title: _("Color"),
         value: "color",
     },
     {
-        name: _("Base color"),
+        title: _("Background color"),
         value: "baseColor",
     },
 ];
@@ -106,6 +107,7 @@ const StyledRow = styled(Row)`
 `;
 
 const StyledTitle = styled.div`
-    color: ${({ theme }) => theme.palette.grey[500]};
+    color: black;
+    font-size: 14px;
     padding-right: ${({ theme }) => theme.spacing(0.5)};
 `;

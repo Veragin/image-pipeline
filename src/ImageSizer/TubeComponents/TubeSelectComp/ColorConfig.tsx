@@ -2,11 +2,11 @@ import { Row } from "react-utils/Components/StyledComponents";
 import { TubeSelect } from "ImageSizer/Tube/TubeSelect";
 import ToolbarColor from "ImageSizer/Components/ToolbarColor";
 import ToolbarProperty from "ImageSizer/Components/ToolbarProperty";
-import ToolbarSelect from "ImageSizer/Components/ToolbarSelect";
 import ToolbarSlider from "ImageSizer/Components/ToolbarSlider";
 import { observer } from "mobx-react";
 import styled from "styled-components";
 import { useState } from "react";
+import RsSelect from "react-utils/Components/RsInput/RsSelect";
 
 type Props = {
     tube: TubeSelect;
@@ -16,14 +16,15 @@ export const ColorConfig = observer(({ tube }: Props) => {
     const [color, setColor] = useState(tube.config.color.pivot);
     const [threshold, setThreshold] = useState(tube.config.color.threshold);
 
-    if (tube.config.type !== "color") return null;
+    if (tube.config.method !== "color") return null;
 
     return (
         <>
-            <ToolbarSelect
+            <RsSelect
+                title={_("Color config")}
                 value={tube.config.color.type}
-                onChange={(v) => tube.setConfigColor({ type: v as any })}
-                options={typeOptions}
+                setValue={(v) => tube.setConfigColor({ type: v as any })}
+                list={typeOptions}
             />
             {tube.config.color.type === "color" ? (
                 <ToolbarColor
@@ -68,11 +69,11 @@ export const ColorConfig = observer(({ tube }: Props) => {
 
 const typeOptions = [
     {
-        name: _("Color"),
+        title: _("Color"),
         value: "color",
     },
     {
-        name: _("Alpha"),
+        title: _("Alpha"),
         value: "alpha",
     },
 ];
@@ -85,6 +86,7 @@ const StyledRow = styled(Row)`
 `;
 
 const StyledTitle = styled.div`
-    color: ${({ theme }) => theme.palette.grey[500]};
+    color: black;
+    font-size: 14px;
     padding-right: ${({ theme }) => theme.spacing(0.5)};
 `;

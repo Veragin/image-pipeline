@@ -1,6 +1,6 @@
 import { Column } from "../../react-utils/Components/StyledComponents";
 import { ImageCollection } from "../ImageColection";
-import { InputTitle } from "react-utils/Components/RsInput/InputCss";
+import { InputTitle } from "react-utils/Components/RsInput/InputTitle";
 import RsInput from "react-utils/Components/RsInput/RsInput";
 import { TubeRename } from "../Tube/TubeRename";
 import { Typography } from "@mui/material";
