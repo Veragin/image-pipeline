@@ -8,10 +8,7 @@ import RsSelect from "react-utils/Components/RsInput/RsSelect";
 import { TubeCompCollection } from "../TubeCompCollection";
 import { observer } from "mobx-react";
 import { RsSwitch } from "react-utils/Components/RsInput/RsSwitch";
-import { ConfigComp, TubeCompCont } from "../ConfigComp/ConfigUtils";
-import { Row } from "react-utils/Components/StyledComponents";
-import { spacingCss } from "react-utils/Components/globalCss";
-import styled from "styled-components";
+import { ConfigComp, ConfigRow, TubeCompCont } from "../ConfigComp/ConfigUtils";
 
 type Props = {
     tube: TubeSelect;
@@ -23,7 +20,7 @@ export const TubeSelectComp = observer(({ tube, collection }: Props) => {
 
     return (
         <TubeCompCont>
-            <StyledRow>
+            <ConfigRow>
                 <ConfigComp>
                     <RsSelect
                         title={_("Selecting method")}
@@ -61,7 +58,7 @@ export const TubeSelectComp = observer(({ tube, collection }: Props) => {
                     <ColorConfig tube={tube} />
                     <NeighborConfig tube={tube} />
                 </ConfigComp>
-            </StyledRow>
+            </ConfigRow>
 
             <TubeCompCollection collection={collection} show="selection" />
         </TubeCompCont>
@@ -105,7 +102,3 @@ const tubeMethodList: { title: string; value: TTubeSelectMethod }[] = [
         value: "old",
     },
 ];
-
-const StyledRow = styled(Row)`
-    gap: ${spacingCss(2)};
-`;

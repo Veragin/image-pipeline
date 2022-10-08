@@ -7,10 +7,12 @@ export class TubeRename extends Tube<TTubeRenameConfig> {
     name = "Rename";
     description = [
         _("Rename images (for download)."),
-        _("Use regExp to modify oldName. In Name pattern you can use:"),
+        _("Use regular expression to modify name of the loaded image file."),
+        _("By NAME PATTERN define new name for image. You can use:"),
         _(
-            "{name} to insert new name, {index} to insert index of image, {width} width of image, {height} height of image"
+            "{name} to insert REGEXP NAME, {index} to insert pice index of the image (image could be cutted into pieces via tube cut)"
         ),
+        _("{width} pixel width of the image, {height} pixel height of the image"),
     ];
     icon = AbcRoundedIcon;
     comp = TubeRenameComp;

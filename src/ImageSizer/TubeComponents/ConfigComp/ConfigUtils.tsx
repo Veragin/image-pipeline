@@ -1,6 +1,10 @@
 import { spacingCss } from "react-utils/Components/globalCss";
-import { Column } from "react-utils/Components/StyledComponents";
+import { Column, Row } from "react-utils/Components/StyledComponents";
 import styled from "styled-components";
+
+export const ConfigRow = styled(Row)`
+    gap: ${spacingCss(2)};
+`;
 
 export const ConfigComp = styled(Column)`
     row-gap: ${spacingCss(1)};
