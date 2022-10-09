@@ -1,10 +1,10 @@
 import { ImageCollection } from "../ImageColection";
-import RsSelect from "react-utils/Components/RsInput/RsSelect";
 import { TubeCompCollection } from "./TubeCompCollection";
 import { observer } from "mobx-react";
 import { TubeDuplicate } from "ImageSizer/Tube/TubeDuplicate";
-import { booleanList, ConfigComp, TubeCompCont } from "./ConfigComp/ConfigUtils";
+import { ConfigComp, TubeCompCont } from "./ConfigComp/ConfigUtils";
 import RsInput from "react-utils/Components/RsInput/RsInput";
+import { RsSwitch } from "react-utils/Components/RsInput/RsSwitch";
 
 type Props = {
     tube: TubeDuplicate;
@@ -21,11 +21,13 @@ export const TubeDuplicateComp = observer(({ tube, collection }: Props) => {
                     type="number"
                     onChange={(count) => tube.setConfig({ count: Number(count) })}
                 />
-                <RsSelect
+                <RsSwitch
                     title={_("Should inverse selection")}
                     value={tube.config.inverseSelection}
-                    setValue={(inverseSelection) => tube.setConfig({ inverseSelection })}
-                    list={booleanList}
+                    onChange={(inverseSelection) => tube.setConfig({ inverseSelection })}
+                    helpTooltip={_(
+                        "In duplicated pieces will be selection inverted (selected pixels become unselected and vice versa)"
+                    )}
                 />
             </ConfigComp>
 
