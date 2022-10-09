@@ -19,7 +19,7 @@ export const BbConfig = observer(({ type, bbConfig, onChange }: Props) => {
                 title={_("Fit to")}
                 value={bbConfig.isFitActive}
                 onChange={(isFitActive) => onChange({ isFitActive })}
-                helpTooltip={_("Allows you to fit object into defined box.")}
+                helpTooltip={_("Allows you to fit it into defined box.")}
             />
 
             <FitToConfig

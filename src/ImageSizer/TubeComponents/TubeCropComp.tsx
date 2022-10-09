@@ -6,7 +6,7 @@ import { ImageCollection } from "../ImageColection";
 import RsSelect from "react-utils/Components/RsInput/RsSelect";
 import { TubeCompCollection } from "./TubeCompCollection";
 import { observer } from "mobx-react";
-import { TubeCompCont, ConfigComp } from "./ConfigComp/ConfigUtils";
+import { TubeCompCont, ConfigComp, ConfigRow } from "./ConfigComp/ConfigUtils";
 
 type Props = {
     tube: TubeCrop;
@@ -16,23 +16,28 @@ type Props = {
 export const TubeCropComp = observer(({ tube, collection }: Props) => {
     return (
         <TubeCompCont>
-            <ConfigComp>
-                <RsSelect
-                    title={_("Type")}
-                    value={tube.config.type}
-                    setValue={(type) => tube.setConfig({ type })}
-                    list={tubeTypeList}
-                />
-                <BoxConfig
-                    type={tube.config.type}
-                    box={tube.config.box}
-                    onChange={(box) => tube.setConfig({ box })}
-                />
-                <BbConfig
-                    bbConfig={tube.config.bbConfig}
-                    onChange={(bbConfig) => tube.setConfig({ bbConfig })}
-                />
-            </ConfigComp>
+            <ConfigRow>
+                <ConfigComp>
+                    <RsSelect
+                        title={_("Type")}
+                        value={tube.config.type}
+                        setValue={(type) => tube.setConfig({ type })}
+                        list={tubeTypeList}
+                    />
+
+                    <BbConfig
+                        bbConfig={tube.config.bbConfig}
+                        onChange={(bbConfig) => tube.setConfig({ bbConfig })}
+                    />
+                </ConfigComp>
+                <ConfigComp>
+                    <BoxConfig
+                        type={tube.config.type}
+                        box={tube.config.box}
+                        onChange={(box) => tube.setConfig({ box })}
+                    />
+                </ConfigComp>
+            </ConfigRow>
 
             <TubeCompCollection collection={collection} show="objects" />
         </TubeCompCont>

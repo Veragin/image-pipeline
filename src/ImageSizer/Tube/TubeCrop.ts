@@ -15,7 +15,16 @@ import { cutImageDataByRect } from "../functions/cutter";
 export class TubeCrop extends Tube<TTubeCropConfig> {
     name = "Crop";
     readonly group = "transform";
-    description = [_("Crop the image")];
+    description = [
+        _("Crop the image"),
+        _(
+            "Choose what will be default size and than fit size into box or apply some fixed padding"
+        ),
+        _("Image ... default size is whole image"),
+        _("Box ... default size is defined box"),
+        _("Selection ... default size is bounding box of selected pixels"),
+        _("Objects ... default size is bounding box of all object in the image"),
+    ];
     icon = CropRoundedIcon;
     comp = TubeCropComp;
 
