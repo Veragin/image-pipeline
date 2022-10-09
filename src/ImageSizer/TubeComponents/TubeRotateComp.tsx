@@ -1,6 +1,6 @@
 import { ImageCollection } from "../ImageColection";
 import RsInput from "react-utils/Components/RsInput/RsInput";
-import { TubeCompCollection } from "./TubeCompCollection";
+import { DisplayPreviewCollection } from "./DisplayPreviewCollection";
 import { TubeRotate } from "../Tube/TubeRotate";
 import { observer } from "mobx-react";
 import { TubeCompCont, ConfigComp } from "./ConfigComp/ConfigUtils";
@@ -22,7 +22,7 @@ export const TubeRotateComp = observer(({ tube, collection }: Props) => {
                 />
             </ConfigComp>
 
-            <TubeCompCollection collection={collection} show="objects" />
+            <DisplayPreviewCollection collection={collection} showInit="objects" />
         </TubeCompCont>
     );
 });

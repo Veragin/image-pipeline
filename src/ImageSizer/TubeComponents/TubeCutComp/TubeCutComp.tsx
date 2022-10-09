@@ -4,7 +4,7 @@ import { FixedConfig } from "./FixedConfig";
 import { ImageCollection } from "../../ImageColection";
 import { PercentConfig } from "./PercentConfig";
 import RsSelect from "react-utils/Components/RsInput/RsSelect";
-import { TubeCompCollection } from "../TubeCompCollection";
+import { DisplayPreviewCollection } from "../DisplayPreviewCollection";
 import { observer } from "mobx-react";
 import { TubeCompCont, ConfigComp, ConfigRow } from "../ConfigComp/ConfigUtils";
 
@@ -31,7 +31,7 @@ export const TubeCutComp = observer(({ tube, collection }: Props) => {
                 </ConfigComp>
             </ConfigRow>
 
-            <TubeCompCollection collection={collection} />
+            <DisplayPreviewCollection collection={collection} />
         </TubeCompCont>
     );
 });

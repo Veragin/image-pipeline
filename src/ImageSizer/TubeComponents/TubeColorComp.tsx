@@ -1,6 +1,6 @@
 import { ImageCollection } from "../ImageColection";
 import { TubeColor } from "../Tube/TubeColor";
-import { TubeCompCollection } from "./TubeCompCollection";
+import { DisplayPreviewCollection } from "./DisplayPreviewCollection";
 import ToolbarColor from "ImageSizer/Components/ToolbarColor";
 import { observer } from "mobx-react";
 import { TubeCompCont, ConfigComp } from "./ConfigComp/ConfigUtils";
@@ -21,7 +21,7 @@ export const TubeColorComp = observer(({ tube, collection }: Props) => {
                 />
             </ConfigComp>
 
-            <TubeCompCollection collection={collection} show="objects" />
+            <DisplayPreviewCollection collection={collection} showInit="objects" />
         </TubeCompCont>
     );
 });

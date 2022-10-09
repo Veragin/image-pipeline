@@ -1,7 +1,7 @@
 import { BbConfig } from "./ConfigComp/BbConfig";
 import { ImageCollection } from "../ImageColection";
 import RsInput from "../../react-utils/Components/RsInput/RsInput";
-import { TubeCompCollection } from "./TubeCompCollection";
+import { DisplayPreviewCollection } from "./DisplayPreviewCollection";
 import { TubeObject } from "../Tube/TubeObject";
 import { observer } from "mobx-react";
 import { ConfigComp, ConfigRow, TubeCompCont } from "./ConfigComp/ConfigUtils";
@@ -59,7 +59,7 @@ export const TubeObjectComp = observer(({ tube, collection }: Props) => {
                 </ConfigComp>
             </ConfigRow>
 
-            <TubeCompCollection collection={collection} show="objects" />
+            <DisplayPreviewCollection collection={collection} showInit="objects" />
 
             <Column>
                 <InputTitle>{_("Number of found objects in each piece")}</InputTitle>

@@ -5,7 +5,7 @@ import { ColorConfig } from "./ColorConfig";
 import { ImageCollection } from "../../ImageColection";
 import { NeighborConfig } from "./NeighborConfig";
 import RsSelect from "react-utils/Components/RsInput/RsSelect";
-import { TubeCompCollection } from "../TubeCompCollection";
+import { DisplayPreviewCollection } from "../DisplayPreviewCollection";
 import { observer } from "mobx-react";
 import { RsSwitch } from "react-utils/Components/RsInput/RsSwitch";
 import { ConfigComp, ConfigRow, TubeCompCont } from "../ConfigComp/ConfigUtils";
@@ -60,7 +60,7 @@ export const TubeSelectComp = observer(({ tube, collection }: Props) => {
                 </ConfigComp>
             </ConfigRow>
 
-            <TubeCompCollection collection={collection} show="selection" />
+            <DisplayPreviewCollection collection={collection} showInit="selection" />
         </TubeCompCont>
     );
 });

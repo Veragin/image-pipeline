@@ -1,31 +1,77 @@
 import { ImageCollection, TImageItem, TImageObject } from "../ImageColection";
 import { applyColorToImage, getRandomColor } from "../functions/pixelUtils";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
-import { Row } from "react-utils/Components/StyledComponents";
+import { Column, Row } from "react-utils/Components/StyledComponents";
 import { spacingCss } from "react-utils/Components/globalCss";
 import styled from "styled-components";
 import { InputTitle } from "react-utils/Components/RsInput/InputTitle";
+import { Radio } from "@mui/material";
+
+type TItemShow = "none" | "selection" | "objects";
 
 type Props = {
     collection: ImageCollection;
-    show?: TItemShow;
+    showInit?: TItemShow;
 };
 
-export const TubeCompCollection = ({ collection, show }: Props) => {
+export const DisplayPreviewCollection = ({ collection, showInit }: Props) => {
+    const [show, setShow] = useState<TItemShow>(showInit ?? "none");
+
     return (
-        <>
+        <StyledCont>
             <InputTitle>{_("Output")}</InputTitle>
-            <StyledCont>
+            <StyledOptions>
+                <StyledOption>
+                    <Radio
+                        size="small"
+                        onChange={() => setShow("none")}
+                        checked={show === "none"}
+                    />
+                    {_("None")}
+                </StyledOption>
+                <StyledOption>
+                    <Radio
+                        size="small"
+                        onChange={() => setShow("selection")}
+                        checked={show === "selection"}
+                    />
+                    {_("Selection")}
+                </StyledOption>
+                <StyledOption>
+                    <Radio
+                        size="small"
+                        onChange={() => setShow("objects")}
+                        checked={show === "objects"}
+                    />
+                    {_("objects")}
+                </StyledOption>
+            </StyledOptions>
+            <StyledDisplayCont>
                 {collection.stack.map((item, i) => (
-                    <TubeCompCollectionItem key={i} data={item} show={show} />
+                    <DisplayItem key={i} data={item} show={show} />
                 ))}
-            </StyledCont>
-        </>
+            </StyledDisplayCont>
+        </StyledCont>
     );
 };
 
-const StyledCont = styled(Row)`
+const StyledCont = styled(Column)`
+    gap: ${spacingCss(0.5)};
+`;
+
+const StyledOptions = styled(Row)`
+    gap: ${spacingCss(3)};
+`;
+
+const StyledOption = styled.label`
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    font-size: 14px;
+`;
+
+const StyledDisplayCont = styled(Row)`
     gap: ${spacingCss(1)};
     padding: ${spacingCss(1)};
     border: 1px black solid;
@@ -38,14 +84,12 @@ const StyledCont = styled(Row)`
  ****** Item
  ******************************************/
 
-type TItemShow = "selection" | "objects";
-
 type ItemProps = {
     data: TImageItem;
     show?: TItemShow;
 };
 
-export const TubeCompCollectionItem = ({ data, show }: ItemProps) => {
+const DisplayItem = ({ data, show }: ItemProps) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
     useEffect(() => {

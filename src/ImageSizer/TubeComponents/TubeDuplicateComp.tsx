@@ -1,5 +1,5 @@
 import { ImageCollection } from "../ImageColection";
-import { TubeCompCollection } from "./TubeCompCollection";
+import { DisplayPreviewCollection } from "./DisplayPreviewCollection";
 import { observer } from "mobx-react";
 import { TubeDuplicate } from "ImageSizer/Tube/TubeDuplicate";
 import { ConfigComp, TubeCompCont } from "./ConfigComp/ConfigUtils";
@@ -31,7 +31,7 @@ export const TubeDuplicateComp = observer(({ tube, collection }: Props) => {
                 />
             </ConfigComp>
 
-            <TubeCompCollection collection={collection} show="selection" />
+            <DisplayPreviewCollection collection={collection} showInit="selection" />
         </TubeCompCont>
     );
 });

@@ -3,7 +3,7 @@ import { TTubeScaleType, TubeScale } from "../Tube/TubeScale";
 import { ImageCollection } from "../ImageColection";
 import RsSelect from "react-utils/Components/RsInput/RsSelect";
 import { SizeConfig } from "./ConfigComp/SizeConfig";
-import { TubeCompCollection } from "./TubeCompCollection";
+import { DisplayPreviewCollection } from "./DisplayPreviewCollection";
 import { observer } from "mobx-react";
 import { ConfigComp, TubeCompCont } from "./ConfigComp/ConfigUtils";
 
@@ -40,7 +40,7 @@ export const TubeScaleComp = observer(({ tube, collection }: Props) => {
                 />
             </ConfigComp>
 
-            <TubeCompCollection collection={collection} show="objects" />
+            <DisplayPreviewCollection collection={collection} showInit="objects" />
         </TubeCompCont>
     );
 });

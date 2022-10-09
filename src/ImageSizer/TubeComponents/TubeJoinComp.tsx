@@ -1,6 +1,6 @@
 import { ImageCollection } from "../ImageColection";
 import RsInput from "react-utils/Components/RsInput/RsInput";
-import { TubeCompCollection } from "./TubeCompCollection";
+import { DisplayPreviewCollection } from "./DisplayPreviewCollection";
 import { TubeJoin } from "../Tube/TubeJoin";
 import { observer } from "mobx-react";
 import { ConfigComp, TubeCompCont } from "./ConfigComp/ConfigUtils";
@@ -61,7 +61,7 @@ export const TubeJoinComp = observer(({ tube, collection }: Props) => {
                 />
             </ConfigComp>
 
-            <TubeCompCollection collection={collection} show="selection" />
+            <DisplayPreviewCollection collection={collection} showInit="selection" />
         </TubeCompCont>
     );
 });

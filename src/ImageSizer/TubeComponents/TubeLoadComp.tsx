@@ -1,5 +1,5 @@
 import { ImageCollection } from "../ImageColection";
-import { TubeCompCollection } from "./TubeCompCollection";
+import { DisplayPreviewCollection } from "./DisplayPreviewCollection";
 import { TubeLoad } from "../Tube/TubeLoad";
 import { Radio } from "@mui/material";
 import { observer } from "mobx-react";
@@ -58,7 +58,7 @@ export const TubeLoadComp = observer(({ tube, collection }: Props) => {
                 </StyledCont>
             </div>
 
-            <TubeCompCollection collection={collection} />
+            <DisplayPreviewCollection collection={collection} />
         </TubeCompCont>
     );
 });

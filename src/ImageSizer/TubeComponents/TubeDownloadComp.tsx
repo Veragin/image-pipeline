@@ -3,7 +3,7 @@ import { TTubeDownloadFormat, TubeDownload } from "../Tube/TubeDownload";
 import { ImageCollection } from "../ImageColection";
 import RsInput from "react-utils/Components/RsInput/RsInput";
 import RsSelect from "react-utils/Components/RsInput/RsSelect";
-import { TubeCompCollection } from "./TubeCompCollection";
+import { DisplayPreviewCollection } from "./DisplayPreviewCollection";
 import { ThePrimaryButton } from "../../react-utils/Components/TheButton";
 import { observer } from "mobx-react";
 import { TubeCompCont, ConfigComp } from "./ConfigComp/ConfigUtils";
@@ -39,7 +39,7 @@ export const TubeDownloadComp = observer(({ tube, collection }: Props) => {
                 </ThePrimaryButton>
             </ConfigComp>
 
-            <TubeCompCollection collection={collection} show="objects" />
+            <DisplayPreviewCollection collection={collection} showInit="objects" />
         </TubeCompCont>
     );
 });
