@@ -2,12 +2,11 @@ import { TTubeCutType, TubeCut } from "../../Tube/TubeCut";
 
 import { FixedConfig } from "./FixedConfig";
 import { ImageCollection } from "../../ImageColection";
-import { InputTitle } from "react-utils/Components/RsInput/InputTitle";
 import { PercentConfig } from "./PercentConfig";
 import RsSelect from "react-utils/Components/RsInput/RsSelect";
 import { TubeCompCollection } from "../TubeCompCollection";
 import { observer } from "mobx-react";
-import { TubeCompCont, ConfigComp } from "../ConfigComp/ConfigUtils";
+import { TubeCompCont, ConfigComp, ConfigRow } from "../ConfigComp/ConfigUtils";
 
 type Props = {
     tube: TubeCut;
@@ -15,22 +14,22 @@ type Props = {
 };
 
 export const TubeCutComp = observer(({ tube, collection }: Props) => {
-    const isWithConfig = tube.config.type !== "object";
-
     return (
         <TubeCompCont>
-            <ConfigComp>
-                <RsSelect
-                    title={_("Type")}
-                    value={tube.config.type}
-                    setValue={(type) => tube.setConfig({ type })}
-                    list={tubeTypeList}
-                />
-
-                {isWithConfig && <InputTitle>{_("Config")}</InputTitle>}
-                <FixedConfig tube={tube} />
-                <PercentConfig tube={tube} />
-            </ConfigComp>
+            <ConfigRow>
+                <ConfigComp>
+                    <RsSelect
+                        title={_("Type")}
+                        value={tube.config.type}
+                        setValue={(type) => tube.setConfig({ type })}
+                        list={tubeTypeList}
+                    />
+                </ConfigComp>
+                <ConfigComp>
+                    <FixedConfig tube={tube} />
+                    <PercentConfig tube={tube} />
+                </ConfigComp>
+            </ConfigRow>
 
             <TubeCompCollection collection={collection} />
         </TubeCompCont>

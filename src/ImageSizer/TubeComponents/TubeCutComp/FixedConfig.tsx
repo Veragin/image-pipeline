@@ -4,6 +4,7 @@ import ToolbarProperty from "ImageSizer/Components/ToolbarProperty";
 import { observer } from "mobx-react";
 import { spacingCss } from "react-utils/Components/globalCss";
 import styled from "styled-components";
+import { InputTitle } from "react-utils/Components/RsInput/InputTitle";
 
 type Props = {
     tube: TubeCut;
@@ -14,6 +15,9 @@ export const FixedConfig = observer(({ tube }: Props) => {
 
     return (
         <>
+            <InputTitle helpTitle={_("Every piece will have this size in pixels")}>
+                {_("Fixed config")}
+            </InputTitle>
             <StyledRow>
                 <ToolbarProperty
                     title={_("Width")}

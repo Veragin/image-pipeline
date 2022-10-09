@@ -5,6 +5,8 @@ import { TubeCompCollection } from "./TubeCompCollection";
 import { TubeObject } from "../Tube/TubeObject";
 import { observer } from "mobx-react";
 import { ConfigComp, ConfigRow, TubeCompCont } from "./ConfigComp/ConfigUtils";
+import { Column } from "react-utils/Components/StyledComponents";
+import { InputTitle } from "react-utils/Components/RsInput/InputTitle";
 
 type Props = {
     tube: TubeObject;
@@ -12,6 +14,8 @@ type Props = {
 };
 
 export const TubeObjectComp = observer(({ tube, collection }: Props) => {
+    const numbers = collection.stack.map((item) => item.objects.length).join(", ");
+
     return (
         <TubeCompCont>
             <ConfigRow>
@@ -57,7 +61,10 @@ export const TubeObjectComp = observer(({ tube, collection }: Props) => {
 
             <TubeCompCollection collection={collection} show="objects" />
 
-            {"Found " + collection.stack.map((item) => item.objects.length).join(", ")}
+            <Column>
+                <InputTitle>{_("Number of found objects in each piece")}</InputTitle>
+                {numbers}
+            </Column>
         </TubeCompCont>
     );
 });

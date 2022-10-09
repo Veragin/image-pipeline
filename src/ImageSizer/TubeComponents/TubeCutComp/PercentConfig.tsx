@@ -1,9 +1,6 @@
-import { Row } from "../../../react-utils/Components/StyledComponents";
 import RsInput from "react-utils/Components/RsInput/RsInput";
 import { TubeCut } from "../../Tube/TubeCut";
 import { observer } from "mobx-react";
-import { spacingCss } from "react-utils/Components/globalCss";
-import styled from "styled-components";
 import { useState } from "react";
 
 type Props = {
@@ -61,19 +58,13 @@ export const PercentConfig = observer(({ tube }: Props) => {
 
     return (
         <>
-            <StyledRow>
-                <RsInput
-                    title={_("Columns")}
-                    type="text"
-                    value={columnsInput}
-                    onChange={changeColumns}
-                />
-                <RsInput title={_("Rows")} type="text" value={rowsInput} onChange={changeRows} />
-            </StyledRow>
+            <RsInput
+                title={_("Columns")}
+                type="text"
+                value={columnsInput}
+                onChange={changeColumns}
+            />
+            <RsInput title={_("Rows")} type="text" value={rowsInput} onChange={changeRows} />
         </>
     );
 });
-
-const StyledRow = styled(Row)`
-    column-gap: ${spacingCss(2)};
-`;
