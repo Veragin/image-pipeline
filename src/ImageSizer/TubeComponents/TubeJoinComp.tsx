@@ -19,6 +19,7 @@ export const TubeJoinComp = observer(({ tube, collection }: Props) => {
                     value={String(tube.config.groupBy)}
                     type="number"
                     onChange={(groupBy) => tube.setConfig({ groupBy: Number(groupBy) })}
+                    helpTooltip={_("Number of pieces joined together. 0 means no limit.")}
                 />
                 <RsInput
                     title={_("Image count in row")}
@@ -29,18 +30,25 @@ export const TubeJoinComp = observer(({ tube, collection }: Props) => {
                             imageCountInRow: Number(imageNumberOnRow),
                         })
                     }
+                    helpTooltip={_(
+                        "Define max number of piecies in each row in resulted image. Overfloating pieces will be wrapped. 0 means no limit."
+                    )}
                 />
                 <RsInput
                     title={_("Max Width")}
                     value={String(tube.config.maxWidth)}
                     type="number"
                     onChange={(maxWidth) => tube.setConfig({ maxWidth: Number(maxWidth) })}
+                    helpTooltip={_(
+                        "Define max width of resulted image. Overfloating pieces will be wrapped. 0 means no limit."
+                    )}
                 />
                 <RsInput
                     title={_("Vertical gap")}
                     value={String(tube.config.verticalGap)}
                     type="number"
                     onChange={(verticalGap) => tube.setConfig({ verticalGap: Number(verticalGap) })}
+                    helpTooltip={_("Adds vertival gap between joined pieces")}
                 />
                 <RsInput
                     title={_("Horizontal gap")}
@@ -49,6 +57,7 @@ export const TubeJoinComp = observer(({ tube, collection }: Props) => {
                     onChange={(horizontalGap) =>
                         tube.setConfig({ horizontalGap: Number(horizontalGap) })
                     }
+                    helpTooltip={_("Adds horizontal gap between joined pieces")}
                 />
             </ConfigComp>
 

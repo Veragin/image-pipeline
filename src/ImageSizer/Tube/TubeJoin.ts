@@ -10,7 +10,7 @@ export class TubeJoin extends Tube<TTubeJoinConfig> {
     readonly group = "object";
     description = [
         _(
-            "Join pieces/images together into one (or multiple) images. (you can create pieces via cut or duplicate)"
+            "Join pieces together into one (or multiple) images. (you can create pieces via cut or duplicate)"
         ),
         _("Group by === 0 means join all images together."),
         _("Image count in row === 0 means no limit in number of images in row."),
