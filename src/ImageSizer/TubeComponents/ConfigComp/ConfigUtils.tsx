@@ -18,14 +18,3 @@ export const TubeCompCont = styled(Column)`
     overflow: hidden;
     padding-top: ${spacingCss(1)};
 `;
-
-export const booleanList: { title: string; value: boolean }[] = [
-    {
-        title: _("Yes"),
-        value: true,
-    },
-    {
-        title: _("No"),
-        value: false,
-    },
-];

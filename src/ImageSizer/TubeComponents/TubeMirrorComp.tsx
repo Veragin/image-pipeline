@@ -1,9 +1,9 @@
 import { ImageCollection } from "../ImageColection";
-import RsSelect from "react-utils/Components/RsInput/RsSelect";
 import { TubeCompCollection } from "./TubeCompCollection";
 import { TubeMirror } from "../Tube/TubeMirror";
 import { observer } from "mobx-react";
-import { booleanList, ConfigComp, TubeCompCont } from "./ConfigComp/ConfigUtils";
+import { ConfigComp, TubeCompCont } from "./ConfigComp/ConfigUtils";
+import { RsSwitch } from "react-utils/Components/RsInput/RsSwitch";
 
 type Props = {
     tube: TubeMirror;
@@ -14,17 +14,15 @@ export const TubeMirrorComp = observer(({ tube, collection }: Props) => {
     return (
         <TubeCompCont>
             <ConfigComp>
-                <RsSelect
+                <RsSwitch
                     title={_("Vertical")}
                     value={tube.config.vertical}
-                    setValue={(vertical) => tube.setConfig({ vertical })}
-                    list={booleanList}
+                    onChange={(vertical) => tube.setConfig({ vertical })}
                 />
-                <RsSelect
+                <RsSwitch
                     title={_("Horizontal")}
                     value={tube.config.horizontal}
-                    setValue={(horizontal) => tube.setConfig({ horizontal })}
-                    list={booleanList}
+                    onChange={(horizontal) => tube.setConfig({ horizontal })}
                 />
             </ConfigComp>
 
