@@ -1,9 +1,8 @@
 import { FitToConfig } from "./FitToConfig";
-import { InputTitle } from "react-utils/Components/RsInput/InputTitle";
 import { PaddingConfig } from "./PaddingConfig";
 import { TTubeBBConfig } from "../../functions/rectTricks";
-import ToolbarSelect from "ImageSizer/Components/ToolbarSelect";
 import { observer } from "mobx-react";
+import { RsSwitch } from "react-utils/Components/RsInput/RsSwitch";
 
 type Props = {
     type?: string;
@@ -16,20 +15,17 @@ export const BbConfig = observer(({ type, bbConfig, onChange }: Props) => {
 
     return (
         <>
-            <InputTitle>{_("Fit to")}</InputTitle>
-            <ToolbarSelect
-                value={bbConfig.isFitActive ? "active" : "deactive"}
-                onChange={(v) =>
-                    onChange({
-                        isFitActive: v === "active",
-                    })
-                }
-                options={activeOption}
+            <RsSwitch
+                title={_("Fit to")}
+                value={bbConfig.isFitActive}
+                onChange={(isFitActive) => onChange({ isFitActive })}
+                helpTooltip={_("Allows you to fit object into defined box.")}
             />
+
             <FitToConfig
                 fitTo={bbConfig.fitTo}
                 onChange={(fitTo) => onChange({ fitTo })}
-                type={bbConfig.isFitActive ? "fitTo" : "mull"}
+                type={bbConfig.isFitActive ? "fitTo" : "null"}
             />
             <PaddingConfig
                 padding={bbConfig.padding}
@@ -38,14 +34,3 @@ export const BbConfig = observer(({ type, bbConfig, onChange }: Props) => {
         </>
     );
 });
-
-const activeOption = [
-    {
-        name: _("Active"),
-        value: "active",
-    },
-    {
-        name: _("Deactive"),
-        value: "deactive",
-    },
-];

@@ -1,4 +1,3 @@
-import { InputTitle } from "react-utils/Components/RsInput/InputTitle";
 import { Row } from "../../../react-utils/Components/StyledComponents";
 import { TFitTo } from "../../functions/rectTricks";
 import ToolbarProperty from "ImageSizer/Components/ToolbarProperty";
@@ -43,7 +42,7 @@ export const FitToConfig = observer(({ type, fitTo, onChange }: Props) => {
                 />
             </StyledRow>
             <StyledRow>
-                <InputTitle>{_("Vertical")}</InputTitle>
+                {_("Vertical")}
                 <ToolbarSelect
                     value={fitTo.vertical}
                     onChange={(v) =>
@@ -53,7 +52,7 @@ export const FitToConfig = observer(({ type, fitTo, onChange }: Props) => {
                     }
                     options={verticalOption}
                 />
-                <InputTitle>{_("Horizontal")}</InputTitle>
+                {_("Horizontal")}
                 <ToolbarSelect
                     value={fitTo.horizontal}
                     onChange={(v) =>
@@ -99,6 +98,7 @@ const horizontalOption = [
 ];
 
 const StyledRow = styled(Row)`
-    column-gap: ${spacingCss(2)};
+    column-gap: ${spacingCss(1)};
     align-items: center;
+    font-size: 12px;
 `;

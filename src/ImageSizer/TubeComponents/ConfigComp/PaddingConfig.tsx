@@ -17,7 +17,9 @@ export const PaddingConfig = observer(({ type, padding, onChange }: Props) => {
 
     return (
         <>
-            <InputTitle>{_("Padding")}</InputTitle>
+            <InputTitle helpTitle={_("Add some padding (can be negative), enter signed integer")}>
+                {_("Padding")}
+            </InputTitle>
             <StyledRow>
                 <ToolbarProperty
                     title={_("Top")}

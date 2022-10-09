@@ -18,9 +18,11 @@ export class TubeObject extends Tube<TTubeObjectConfig> {
     readonly group = "object";
     description = [
         _(
-            "Find objects in selection. Compact selected pixels defines an object that is bounding box of them."
+            "Find objects based on selected pixels. Compact selected pixels defines an object that is bounding box of them."
         ),
-        _("Define requirements for an object or modify its bounderies"),
+        _(
+            "Define requirements for an object or modify its bounderies. FIT TO allows you to fit object into defined box. Padding is applied after FIT TO."
+        ),
         _("Objects can be used in cut or crop tube."),
     ];
     icon = DataObjectRoundedIcon;

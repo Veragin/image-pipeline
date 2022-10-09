@@ -9,7 +9,7 @@ export class TubeDownload extends Tube<TTubeDownloadConfig> {
     name = "Download";
     description = [
         _("Download images into your computer."),
-        _("Multiple download tubes can be used in the pipeline"),
+        _("Multiple download tubes can be used in the pipeline."),
         _(
             "Choose format of the generated output image. Default format means that the format of the loaded image will be used."
         ),
