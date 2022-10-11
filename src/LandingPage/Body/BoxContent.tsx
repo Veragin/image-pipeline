@@ -42,7 +42,7 @@ const StyledTube = styled.div`
 
 const StyledTitleCont = styled(Row)`
     margin-top: ${spacingCss(1)};
-    margin-left: -25vw;
+    margin-left: -20vw;
 `;
 
 const StyledTubeJoin = styled(TubeJoin)`
@@ -54,11 +54,11 @@ const StyledTubeJoin = styled(TubeJoin)`
 const StyledContentBody = styled(Column)`
     flex: 1;
     gap: ${spacingCss(2)};
-    margin-left: 25vw;
+    margin-left: 20vw;
 `;
 
 const StyledTitle = styled(Highlight)`
-    font-size: 64px;
+    font-size: 32px;
     display: flex;
     align-items: center;
     justify-content: center;

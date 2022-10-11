@@ -31,7 +31,10 @@ export class Sprite {
 
     constructor(maxX: number, maxY: number, timeMs: number) {
         this.timeMs = timeMs;
-        this.progressEndTime = timeMs + SPRITE_PROGRESS_DURATION_MS;
+        this.progressEndTime =
+            timeMs +
+            (Math.random() * SPRITE_PROGRESS_DURATION_MS) / 2 +
+            SPRITE_PROGRESS_DURATION_MS / 2;
         this.type = randomSpriteType();
         this.rotation = Math.random() * Math.PI;
         this.rotationSpeed = randomFromRange(-SPRITE_MAX_ROTATION_SPEED, SPRITE_MAX_ROTATION_SPEED);
