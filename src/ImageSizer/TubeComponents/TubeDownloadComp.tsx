@@ -7,6 +7,7 @@ import { DisplayPreviewCollection } from "./DisplayPreviewCollection";
 import { ThePrimaryButton } from "../../react-utils/Components/TheButton";
 import { observer } from "mobx-react";
 import { TubeCompCont, ConfigComp } from "./ConfigComp/ConfigUtils";
+import { RsSwitch } from "react-utils/Components/RsInput/RsSwitch";
 
 type Props = {
     tube: TubeDownload;
@@ -31,6 +32,15 @@ export const TubeDownloadComp = observer(({ tube, collection }: Props) => {
                     onChange={(v) => tube.setConfig({ quality: Number(v) })}
                     helpTooltip={_(
                         "Number between 0 and 1. Value 1 means that the generated image will be without any compression"
+                    )}
+                />
+
+                <RsSwitch
+                    title={_("Wrap into zip/folder")}
+                    value={tube.config.zip}
+                    onChange={(zip) => tube.setConfig({ zip })}
+                    helpTooltip={_(
+                        "Wrap image pieces into zip file. If pipeline is run in zip mode folder will be use instead"
                     )}
                 />
 
