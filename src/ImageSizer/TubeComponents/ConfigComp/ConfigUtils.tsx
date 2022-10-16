@@ -15,6 +15,5 @@ export const ConfigComp = styled(Column)`
 export const TubeCompCont = styled(Column)`
     flex: 1;
     row-gap: ${spacingCss(2)};
-    overflow: hidden;
     padding-top: ${spacingCss(1)};
 `;

@@ -17,7 +17,7 @@ export const TubeComp = observer(({ tube, collection }: Props<any>) => {
     const Comp = tube?.comp ?? (() => null);
     const des = tube?.description ?? "";
 
-    const description = Array.isArray(des) ? des.flatMap((d) => [d, <br />]) : des;
+    const description = Array.isArray(des) ? des.flatMap((d, i) => [d, <br key={i} />]) : des;
 
     return (
         <StyledCont>
