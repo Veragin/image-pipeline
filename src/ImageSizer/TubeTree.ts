@@ -137,14 +137,16 @@ export class TubeTree {
 
         const fileNameSplit = fileName.split(".");
         const format = fileNameSplit.pop() ?? "png";
+        const name = fileNameSplit.join(".");
         col.stack.push({
             data: imgData,
             index: 0,
-            name: fileNameSplit.join("."),
+            name,
             format,
             selection: [],
             objects: [],
         });
+        col.folderName = name;
 
         return col;
     };

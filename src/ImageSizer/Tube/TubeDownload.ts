@@ -35,7 +35,7 @@ export class TubeDownload extends Tube<TTubeDownloadConfig> {
         if (globalZip !== null) {
             let zip = globalZip;
             if (this.config.zip) {
-                zip = globalZip.folder("name");
+                zip = globalZip.folder(imgCol.folderName);
             }
             await this.addImagesToZipFolder(zip, imgCol);
             return;
@@ -60,8 +60,7 @@ export class TubeDownload extends Tube<TTubeDownloadConfig> {
         await this.addImagesToZipFolder(zip, imgCol);
         const blob = await zip.generateAsync({ type: "blob" });
 
-        const fileName = "name";
-        saveAs(blob, `${fileName}.zip`);
+        saveAs(blob, `${imgCol.folderName}.zip`);
     };
 
     private addImagesToZipFolder = (zip: JSZip, imgCol: ImageCollection) => {

@@ -7,7 +7,7 @@ import { Typography } from "@mui/material";
 import { observer } from "mobx-react";
 import { spacingCss } from "react-utils/Components/globalCss";
 import styled from "styled-components";
-import { TubeCompCont, ConfigComp } from "./ConfigComp/ConfigUtils";
+import { TubeCompCont, ConfigComp, ConfigRow } from "./ConfigComp/ConfigUtils";
 import { RegExpCheetSheet } from "./RegExpCheetSheet";
 
 type Props = {
@@ -20,26 +20,54 @@ export const TubeRenameComp = observer(({ tube, collection }: Props) => {
         <TubeCompCont>
             <StyledRow>
                 <StyledColumn>
-                    <ConfigComp>
-                        <RsInput
-                            title={_("Name RegExp")}
-                            value={tube.config.regExp}
-                            onChange={(regExp) => tube.setConfig({ regExp })}
-                            helpTooltip={_(
-                                "Use regexp to modify name of the file. This name is inserted in NAME PATTERN via {name}"
-                            )}
-                        />
-                        <RsInput
-                            title={_("Name Pattern")}
-                            value={tube.config.namePattern}
-                            onChange={(namePattern) => tube.setConfig({ namePattern })}
-                            helpTooltip={_(
-                                "Define how the image should be named while is downloaded"
-                            )}
-                        />
-                    </ConfigComp>
+                    <ConfigRow>
+                        <ConfigComp>
+                            <InputTitle>{_("Folder Name")}</InputTitle>
+                            <RsInput
+                                title={_("Name RegExp")}
+                                value={tube.config.folder.regExp}
+                                onChange={(regExp) => tube.setConfig({ folder: { regExp } })}
+                                helpTooltip={_(
+                                    "Use regexp to modify name of the file. This name is inserted in NAME PATTERN via {name}"
+                                )}
+                            />
+                            <RsInput
+                                title={_("Name Pattern")}
+                                value={tube.config.folder.pattern}
+                                onChange={(pattern) => tube.setConfig({ folder: { pattern } })}
+                                helpTooltip={_(
+                                    "Define how the folder should be named while is downloaded"
+                                )}
+                            />
+                        </ConfigComp>
+                        <ConfigComp>
+                            <InputTitle>{_("Image Name")}</InputTitle>
+                            <RsInput
+                                title={_("Name RegExp")}
+                                value={tube.config.image.regExp}
+                                onChange={(regExp) => tube.setConfig({ image: { regExp } })}
+                                helpTooltip={_(
+                                    "Use regexp to modify name of the file. This name is inserted in NAME PATTERN via {name}"
+                                )}
+                            />
+                            <RsInput
+                                title={_("Name Pattern")}
+                                value={tube.config.image.pattern}
+                                onChange={(pattern) => tube.setConfig({ image: { pattern } })}
+                                helpTooltip={_(
+                                    "Define how the image should be named while is downloaded"
+                                )}
+                            />
+                        </ConfigComp>
+                    </ConfigRow>
+
                     <StyledOutput>
                         <InputTitle>{_("Output")}</InputTitle>
+
+                        <InputTitle>{_("Folder Name")}</InputTitle>
+                        <Typography>{collection.folderName}</Typography>
+
+                        <InputTitle>{_("Images Names")}</InputTitle>
                         {collection.stack.map((item, i) => (
                             <Typography key={i}>{item.name}</Typography>
                         ))}

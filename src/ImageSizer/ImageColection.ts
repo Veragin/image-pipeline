@@ -1,5 +1,6 @@
 export type TSelection = [number, number][];
 export class ImageCollection {
+    folderName: string = "";
     stack: TImageItem[] = [];
 }
 
@@ -28,6 +29,7 @@ export const copyImageColection = (col: ImageCollection) => {
         selection: copySelection(item.selection),
         objects: copyObjects(item.objects),
     }));
+    res.folderName = col.folderName;
 
     return res;
 };

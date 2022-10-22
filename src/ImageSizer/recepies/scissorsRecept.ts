@@ -49,7 +49,7 @@ export const scissorsRecept: TRecept = {
         {
             tube: "rename",
             config: {
-                namePattern: "{name}_{index}",
+                image: { pattern: "{name}_{index}" },
             },
         },
         {
