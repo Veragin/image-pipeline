@@ -1,0 +1,71 @@
+import { saveAs } from "file-saver";
+import JSZip from "jszip";
+import { generateRandomId } from "react-utils/basic/misc";
+import { assertNotNullish } from "react-utils/basic/typeguards";
+import { TRecept, IMAGE_SIZER_TECH_NAMES, IMAGE_SIZER_TECHS } from "./Const";
+import { TubeDownload } from "./Tube/TubeDownload";
+import { TubeLoad } from "./Tube/TubeLoad";
+import { TubeTree } from "./TubeTree";
+
+export class Pipeline {
+    tubeTree = new TubeTree();
+
+    run = async (zipName: string | null) => {
+        if (zipName === null) {
+            return await this.processTree(null);
+        }
+
+        const zip = new JSZip();
+        await this.processTree(zip);
+        const blob = await zip.generateAsync({ type: "blob" });
+
+        saveAs(blob, `${zipName}.zip`);
+    };
+
+    private processTree = async (zip: JSZip | null) => {
+        const files = this.tubeTree.tubeLoad.files;
+        if (files === null || files.length === 0) return;
+
+        for (let i = 0; i < files.length; i++) {
+            const imgData = await this.tubeTree.tubeLoad.readFile(files[i]);
+            if (imgData === null) continue;
+
+            const col = this.tubeTree.computeCollection(imgData, files[i].name);
+
+            for (let i = 0; i < this.tubeTree.stack.length; i++) {
+                const tube = this.tubeTree.stack[i];
+
+                if (tube instanceof TubeDownload) {
+                    await tube.do(col, zip);
+                } else {
+                    await tube.do(col);
+                }
+            }
+        }
+    };
+
+    exportRecept = () => {
+        const recept: TRecept = {
+            id: generateRandomId(),
+            version: "1",
+            name: "custom",
+            tubes: [],
+        };
+
+        for (let tube of this.tubeTree.stack) {
+            if (tube instanceof TubeLoad) continue;
+
+            const tubeName = IMAGE_SIZER_TECH_NAMES.find(
+                (key) => tube instanceof IMAGE_SIZER_TECHS[key]
+            );
+            assertNotNullish(tubeName, "Tube is not registered in IMAGE_SIZER_TECHS");
+
+            recept.tubes.push({
+                tube: tubeName,
+                config: tube.config,
+            });
+        }
+
+        saveAs(JSON.stringify(recept), "recept.json");
+    };
+}

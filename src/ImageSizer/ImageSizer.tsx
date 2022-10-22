@@ -1,34 +1,34 @@
 import { Column, Row } from "react-utils/Components/StyledComponents";
 
 import { TubeComp } from "./TubeComponents/TubeComp";
-import { TubeList } from "./TubeList";
-import { TubeTree } from "./TubeTree";
+import { TubeList } from "./TubeList/TubeList";
 import { observer } from "mobx-react";
 import styled from "styled-components";
 import { useState } from "react";
 import { TopBar } from "react-utils/Patterns/TopBar";
 import { TopControl } from "./TopControl";
+import { Pipeline } from "./Pipeline";
 
 type Props = {
     openLandingPage: () => void;
 };
 
 export const ImageSizer = observer(({ openLandingPage }: Props) => {
-    const [tubeTree] = useState(new TubeTree());
+    const [pipeline] = useState(new Pipeline());
 
-    const tube = tubeTree.activeTube;
-    const collection = tubeTree.activeColection;
+    const tube = pipeline.tubeTree.activeTube;
+    const collection = pipeline.tubeTree.activeColection;
 
     return (
         <StyledCont>
             <TopBar
                 onHome={openLandingPage}
                 onUser={() => console.log("open user")}
-                logoComp={<TopControl tubeTree={tubeTree} />}
+                logoComp={<TopControl pipeline={pipeline} />}
                 darkMode
             />
             <StyledRow>
-                <TubeList tubeTree={tubeTree} />
+                <TubeList tubeTree={pipeline.tubeTree} />
                 <StyledBody>
                     <TubeComp tube={tube} collection={collection} />
                 </StyledBody>

@@ -29,9 +29,7 @@ export class TubeDownload extends Tube<TTubeDownloadConfig> {
 
     show = async (imgCol: ImageCollection) => {};
 
-    do = async (imgCol: ImageCollection) => {
-        const globalZip: any | null = null;
-
+    do = async (imgCol: ImageCollection, globalZip: any | null = null) => {
         if (globalZip !== null) {
             let zip = globalZip;
             if (this.config.zip) {

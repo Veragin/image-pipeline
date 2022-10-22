@@ -1,11 +1,8 @@
-import { IMAGE_SIZER_TECHS, IMAGE_SIZER_TECH_NAMES, TRecept } from "./Const";
 import { ImageCollection, copyImageColection } from "./ImageColection";
-import { action, computed, makeObservable, observable } from "mobx";
+import { action, computed, makeObservable, observable, runInAction } from "mobx";
 
 import { Tube } from "./Tube/Tube";
 import { TubeLoad } from "./Tube/TubeLoad";
-import { assertNotNullish } from "../react-utils/basic/typeguards";
-import { generateRandomId } from "react-utils/basic/misc";
 
 export class TubeTree {
     tubeLoad: TubeLoad;
@@ -21,7 +18,6 @@ export class TubeTree {
             stack: observable.shallow,
             activeId: observable,
             tmpCollection: observable,
-            updateTmpCollection: action,
             removeTube: action,
             addTube: action,
             setActiveId: action,
@@ -74,51 +70,11 @@ export class TubeTree {
         return res;
     }
 
-    run = async () => {
-        const files = this.tubeLoad.files;
-        console.log("run", files);
-        if (files === null || files.length === 0) return;
-
-        for (let i = 0; i < files.length; i++) {
-            const imgData = await this.tubeLoad.readFile(files[i]);
-            if (imgData === null) continue;
-
-            const col = this.computeCollection(imgData, files[i].name);
-
-            for (let i = 0; i < this.stack.length; i++) {
-                await this.stack[i].do(col);
-            }
-        }
-    };
-
-    exportRecept = () => {
-        const recept: TRecept = {
-            id: generateRandomId(),
-            version: "1",
-            name: "custom",
-            tubes: [],
-        };
-
-        for (let tube of this.stack) {
-            if (tube instanceof TubeLoad) continue;
-
-            const tubeName = IMAGE_SIZER_TECH_NAMES.find(
-                (key) => tube instanceof IMAGE_SIZER_TECHS[key]
-            );
-            assertNotNullish(tubeName, "Tube is not registered in IMAGE_SIZER_TECHS");
-
-            recept.tubes.push({
-                tube: tubeName,
-                config: tube.config,
-            });
-        }
-
-        return recept;
-    };
-
-    updateTmpCollection = async (stopTubeId: number) => {
+    private updateTmpCollection = async (stopTubeId: number) => {
         if (this.tubeLoad.preview === null) {
-            this.tmpCollection = new ImageCollection();
+            runInAction(() => {
+                this.tmpCollection = new ImageCollection();
+            });
             return;
         }
 
@@ -129,10 +85,12 @@ export class TubeTree {
             await this.stack[i].show(col);
         }
 
-        this.tmpCollection = col;
+        runInAction(() => {
+            this.tmpCollection = col;
+        });
     };
 
-    private computeCollection = (imgData: ImageData, fileName: string) => {
+    computeCollection = (imgData: ImageData, fileName: string) => {
         const col = new ImageCollection();
 
         const fileNameSplit = fileName.split(".");

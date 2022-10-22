@@ -3,12 +3,12 @@ import { useRef, useState } from "react";
 
 import { Column } from "react-utils/Components/StyledComponents";
 import FormatListBulletedRoundedIcon from "@mui/icons-material/FormatListBulletedRounded";
-import { RECEPT_LIST } from "./recepies/receptList";
+import { RECEPT_LIST } from "../recepies/receptList";
 import { RsModal } from "react-utils/Components/RsModal";
-import { TRecept } from "./Const";
-import { TubeTree } from "./TubeTree";
-import { ThePrimaryButton } from "../react-utils/Components/TheButton";
-import { loadReceptToTubeTree } from "./recepies/receptLoader";
+import { TRecept } from "../Const";
+import { TubeTree } from "../TubeTree";
+import { ThePrimaryButton } from "react-utils/Components/TheButton";
+import { loadReceptToTubeTree } from "../recepies/receptLoader";
 import { spacingCss } from "react-utils/Components/globalCss";
 import styled from "styled-components";
 
@@ -53,19 +53,11 @@ export const AddReceptFab = ({ tubeTree }: Props) => {
     return (
         <>
             <Tooltip title={_("Add Recept")}>
-                <Fab
-                    color="primary"
-                    aria-label="fabRecept"
-                    onClick={() => setOpen(true)}
-                >
+                <Fab color="primary" aria-label="fabRecept" onClick={() => setOpen(true)}>
                     <FormatListBulletedRoundedIcon />
                 </Fab>
             </Tooltip>
-            <RsModal
-                open={open}
-                onClose={() => setOpen(false)}
-                title={_("Add recept")}
-            >
+            <RsModal open={open} onClose={() => setOpen(false)} title={_("Add recept")}>
                 <StyledCont>
                     {RECEPT_LIST.map((recept) => (
                         <Button
@@ -83,10 +75,7 @@ export const AddReceptFab = ({ tubeTree }: Props) => {
                         accept="application/JSON"
                         onChange={(ev) => readReceptFile(ev.target.files)}
                     />
-                    <ThePrimaryButton
-                        color="primary"
-                        onClick={() => fileRef.current?.click()}
-                    >
+                    <ThePrimaryButton color="primary" onClick={() => fileRef.current?.click()}>
                         {_("Load recept from file")}
                     </ThePrimaryButton>
                 </StyledCont>

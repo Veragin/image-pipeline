@@ -3,9 +3,9 @@ import { Column, Row } from "react-utils/Components/StyledComponents";
 
 import AddIcon from "@mui/icons-material/Add";
 import { Fab } from "@mui/material";
-import { IMAGE_SIZER_TECH_CLASSES } from "./Const";
+import { IMAGE_SIZER_TECH_CLASSES } from "../Const";
 import { RsModal } from "react-utils/Components/RsModal";
-import { Tube } from "./Tube/Tube";
+import { Tube } from "../Tube/Tube";
 import { spacingCss } from "react-utils/Components/globalCss";
 import styled from "styled-components";
 import { useState } from "react";
@@ -39,30 +39,16 @@ export const AddTubeFab = ({ addTube }: Props) => {
     return (
         <>
             <Tooltip title={_("Add Tube")}>
-                <Fab
-                    color="primary"
-                    aria-label="addTube"
-                    onClick={() => setOpen(true)}
-                >
+                <Fab color="primary" aria-label="addTube" onClick={() => setOpen(true)}>
                     <AddIcon />
                 </Fab>
             </Tooltip>
-            <RsModal
-                open={open}
-                onClose={() => setOpen(false)}
-                title={_("Add Tube")}
-            >
+            <RsModal open={open} onClose={() => setOpen(false)} title={_("Add Tube")}>
                 <StyledRow>
+                    <StyledCont>{basicTubes.map((tube) => renderButton(tube as any))}</StyledCont>
+                    <StyledCont>{objectTubes.map((tube) => renderButton(tube as any))}</StyledCont>
                     <StyledCont>
-                        {basicTubes.map((tube) => renderButton(tube as any))}
-                    </StyledCont>
-                    <StyledCont>
-                        {objectTubes.map((tube) => renderButton(tube as any))}
-                    </StyledCont>
-                    <StyledCont>
-                        {transformTubes.map((tube) =>
-                            renderButton(tube as any)
-                        )}
+                        {transformTubes.map((tube) => renderButton(tube as any))}
                     </StyledCont>
                 </StyledRow>
             </RsModal>

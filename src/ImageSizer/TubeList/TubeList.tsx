@@ -2,16 +2,16 @@ import { spacingCss } from "react-utils/Components/globalCss";
 
 import { AddReceptFab } from "./AddReceptFab";
 import { AddTubeFab } from "./AddTubeFab";
-import { Column } from "../react-utils/Components/StyledComponents";
-import { DeleteIcon } from "../react-utils/Components/Icons";
+import { Column } from "../../react-utils/Components/StyledComponents";
+import { DeleteIcon } from "../../react-utils/Components/Icons";
 import { ReactSortable } from "react-sortablejs";
 import { Row } from "react-utils/Components/StyledComponents";
-import { RsIconButton } from "../react-utils/Components/RsIconButton";
-import { Tube } from "./Tube/Tube";
-import { TubeTree } from "./TubeTree";
+import { RsIconButton } from "../../react-utils/Components/RsIconButton";
+import { Tube } from "../Tube/Tube";
+import { TubeTree } from "../TubeTree";
 import { observer } from "mobx-react";
 import styled, { css } from "styled-components";
-import { COLOR_PIPE_DARK, COLOR_PRIMARY_MEDIUM } from "./Const";
+import { COLOR_PIPE_DARK, COLOR_PRIMARY_MEDIUM } from "../Const";
 
 type Props = {
     tubeTree: TubeTree;
