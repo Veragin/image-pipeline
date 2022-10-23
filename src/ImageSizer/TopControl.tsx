@@ -1,10 +1,12 @@
 import { Download, PlayArrow } from "@mui/icons-material";
 import { Fab, Tooltip } from "@mui/material";
+import { observer } from "mobx-react";
 import { useState } from "react";
 import { spacingCss } from "react-utils/Components/globalCss";
 import RsInput from "react-utils/Components/RsInput/RsInput";
 import { RsSwitch } from "react-utils/Components/RsInput/RsSwitch";
 import { RsModal } from "react-utils/Components/RsModal";
+import { Spinner } from "react-utils/Components/Spinner";
 import { Column, Row } from "react-utils/Components/StyledComponents";
 import { ThePrimaryButton } from "react-utils/Components/TheButton";
 import styled from "styled-components";
@@ -14,7 +16,7 @@ type Props = {
     pipeline: Pipeline;
 };
 
-export const TopControl = ({ pipeline }: Props) => {
+export const TopControl = observer(({ pipeline }: Props) => {
     const [openStartModal, setOpenStartModal] = useState(false);
     const [useZip, setUseZip] = useState(false);
     const [zipName, setZipName] = useState("pipeline");
@@ -56,9 +58,19 @@ export const TopControl = ({ pipeline }: Props) => {
                     <Download />
                 </Fab>
             </Tooltip>
+
+            {pipeline.processCounter !== null ? (
+                <Spinner
+                    msg={_(
+                        "Processed %d/%d",
+                        pipeline.processCounter,
+                        pipeline.tubeTree.tubeLoad.files?.length ?? 0
+                    )}
+                />
+            ) : null}
         </StyledRow>
     );
-};
+});
 
 const StyledRow = styled(Row)`
     gap: ${spacingCss(1)};

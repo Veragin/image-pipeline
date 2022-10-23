@@ -15,6 +15,7 @@ export class TubeLoad extends Tube<{}> {
         ),
         _("Selected image file will be used as a preview."),
         _("While you start the pipeline, all loaded files will be proccessed."),
+        _("!! Using image with high resolution as an preview will may slow down configuration !!"),
     ];
     icon = DriveFolderUploadRoundedIcon;
     comp = TubeLoadComp;

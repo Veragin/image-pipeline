@@ -35,6 +35,7 @@ export class TubeDownload extends Tube<TTubeDownloadConfig> {
             if (this.config.zip) {
                 zip = globalZip.folder(imgCol.folderName);
             }
+
             await this.addImagesToZipFolder(zip, imgCol);
             return;
         }

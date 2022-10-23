@@ -1,5 +1,6 @@
 import { saveAs } from "file-saver";
 import JSZip from "jszip";
+import { makeObservable, observable, runInAction } from "mobx";
 import { generateRandomId } from "react-utils/basic/misc";
 import { assertNotNullish } from "react-utils/basic/typeguards";
 import { TRecept, IMAGE_SIZER_TECH_NAMES, IMAGE_SIZER_TECHS } from "./Const";
@@ -9,6 +10,13 @@ import { TubeTree } from "./TubeTree";
 
 export class Pipeline {
     tubeTree = new TubeTree();
+    processCounter: number | null = null;
+
+    constructor() {
+        makeObservable(this, {
+            processCounter: observable,
+        });
+    }
 
     run = async (zipName: string | null) => {
         if (zipName === null) {
@@ -26,6 +34,10 @@ export class Pipeline {
         const files = this.tubeTree.tubeLoad.files;
         if (files === null || files.length === 0) return;
 
+        runInAction(() => {
+            this.processCounter = 0;
+        });
+
         for (let i = 0; i < files.length; i++) {
             const imgData = await this.tubeTree.tubeLoad.readFile(files[i]);
             if (imgData === null) continue;
@@ -41,7 +53,15 @@ export class Pipeline {
                     await tube.do(col);
                 }
             }
+
+            runInAction(() => {
+                this.processCounter = i + 1;
+            });
         }
+
+        runInAction(() => {
+            this.processCounter = null;
+        });
     };
 
     exportRecept = () => {
