@@ -20,6 +20,8 @@ export const TopControl = observer(({ pipeline }: Props) => {
     const [openStartModal, setOpenStartModal] = useState(false);
     const [useZip, setUseZip] = useState(false);
     const [zipName, setZipName] = useState("pipeline");
+    const [openTemplateModal, setOpenTemplateModal] = useState(false);
+    const [fileName, setFileName] = useState("template");
 
     const start = () => {
         pipeline.run(useZip ? zipName : null);
@@ -53,11 +55,31 @@ export const TopControl = observer(({ pipeline }: Props) => {
                     </ThePrimaryButton>
                 </StyledCont>
             </RsModal>
+
             <Tooltip title={_("Export template")}>
-                <Fab color="primary" size="small" onClick={pipeline.exportRecept}>
+                <Fab color="primary" size="small" onClick={() => setOpenTemplateModal(true)}>
                     <Download />
                 </Fab>
             </Tooltip>
+            <RsModal
+                open={openTemplateModal}
+                onClose={() => setOpenTemplateModal(false)}
+                title={_("Download template")}
+            >
+                <StyledCont>
+                    <RsInput title={_("File name")} value={fileName} onChange={setFileName} />
+
+                    <ThePrimaryButton
+                        color="primary"
+                        onClick={() => {
+                            pipeline.exportRecept(fileName);
+                            setOpenTemplateModal(false);
+                        }}
+                    >
+                        {_("Download")}
+                    </ThePrimaryButton>
+                </StyledCont>
+            </RsModal>
 
             {pipeline.processCounter !== null ? (
                 <Spinner

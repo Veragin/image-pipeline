@@ -64,7 +64,7 @@ export class Pipeline {
         });
     };
 
-    exportRecept = () => {
+    exportRecept = (fileName: string) => {
         const recept: TTemplate = {
             id: generateRandomId(),
             version: "1",
@@ -86,6 +86,6 @@ export class Pipeline {
             });
         }
 
-        saveAs(JSON.stringify(recept), "recept.json");
+        saveAs(JSON.stringify(recept), `${fileName}.json`);
     };
 }
