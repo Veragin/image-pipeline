@@ -76,7 +76,7 @@ export type TImageSizerTubeConfig =
           config: DeepPartial<TTubeDuplicateConfig>;
       };
 
-export type TRecept = {
+export type TTemplate = {
     id: number;
     name: string;
     version: string;

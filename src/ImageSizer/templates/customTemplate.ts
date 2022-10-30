@@ -1,6 +1,6 @@
-import { TRecept } from "../Const";
+import { TTemplate } from "../Const";
 
-export const customRecept: TRecept = {
+export const customRecept: TTemplate = {
     id: 1,
     name: "custom",
     version: "1",

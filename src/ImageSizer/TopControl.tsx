@@ -53,7 +53,7 @@ export const TopControl = observer(({ pipeline }: Props) => {
                     </ThePrimaryButton>
                 </StyledCont>
             </RsModal>
-            <Tooltip title={_("Export recept")}>
+            <Tooltip title={_("Export template")}>
                 <Fab color="primary" size="small" onClick={pipeline.exportRecept}>
                     <Download />
                 </Fab>

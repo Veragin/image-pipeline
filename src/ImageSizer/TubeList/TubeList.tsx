@@ -1,6 +1,6 @@
 import { spacingCss } from "react-utils/Components/globalCss";
 
-import { AddReceptFab } from "./AddReceptFab";
+import { AddTemplateFab } from "./AddTemplateFab";
 import { AddTubeFab } from "./AddTubeFab";
 import { Column } from "../../react-utils/Components/StyledComponents";
 import { DeleteIcon } from "../../react-utils/Components/Icons";
@@ -37,7 +37,7 @@ export const TubeList = observer(({ tubeTree }: Props) => {
             </StyledReactSortable>
             <StyledRow>
                 <AddTubeFab addTube={tubeTree.addTube} />
-                <AddReceptFab tubeTree={tubeTree} />
+                <AddTemplateFab tubeTree={tubeTree} />
             </StyledRow>
         </StyledCont>
     );

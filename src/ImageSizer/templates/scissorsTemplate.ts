@@ -1,6 +1,6 @@
-import { TRecept } from "../Const";
+import { TTemplate } from "../Const";
 
-export const scissorsRecept: TRecept = {
+export const scissorsTemplate: TTemplate = {
     id: 0,
     name: "scissors",
     version: "1",

@@ -3,7 +3,7 @@ import JSZip from "jszip";
 import { makeObservable, observable, runInAction } from "mobx";
 import { generateRandomId } from "react-utils/basic/misc";
 import { assertNotNullish } from "react-utils/basic/typeguards";
-import { TRecept, IMAGE_SIZER_TECH_NAMES, IMAGE_SIZER_TECHS } from "./Const";
+import { TTemplate, IMAGE_SIZER_TECH_NAMES, IMAGE_SIZER_TECHS } from "./Const";
 import { TubeDownload } from "./Tube/TubeDownload";
 import { TubeLoad } from "./Tube/TubeLoad";
 import { TubeTree } from "./TubeTree";
@@ -65,7 +65,7 @@ export class Pipeline {
     };
 
     exportRecept = () => {
-        const recept: TRecept = {
+        const recept: TTemplate = {
             id: generateRandomId(),
             version: "1",
             name: "custom",

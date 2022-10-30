@@ -3,12 +3,12 @@ import { useRef, useState } from "react";
 
 import { Column } from "react-utils/Components/StyledComponents";
 import FormatListBulletedRoundedIcon from "@mui/icons-material/FormatListBulletedRounded";
-import { RECEPT_LIST } from "../recepies/receptList";
+import { TEMPLATE_LIST } from "../templates/templateList";
 import { RsModal } from "react-utils/Components/RsModal";
-import { TRecept } from "../Const";
+import { TTemplate } from "../Const";
 import { TubeTree } from "../TubeTree";
 import { ThePrimaryButton } from "react-utils/Components/TheButton";
-import { loadReceptToTubeTree } from "../recepies/receptLoader";
+import { loadTemplateToTubeTree } from "../templates/templateLoader";
 import { spacingCss } from "react-utils/Components/globalCss";
 import styled from "styled-components";
 
@@ -16,7 +16,7 @@ type Props = {
     tubeTree: TubeTree;
 };
 
-export const AddReceptFab = ({ tubeTree }: Props) => {
+export const AddTemplateFab = ({ tubeTree }: Props) => {
     const [open, setOpen] = useState(false);
     const fileRef = useRef<HTMLInputElement>(null);
 
@@ -45,21 +45,21 @@ export const AddReceptFab = ({ tubeTree }: Props) => {
         };
     };
 
-    const loadRecept = (recept: TRecept) => {
-        loadReceptToTubeTree(tubeTree, recept);
+    const loadRecept = (recept: TTemplate) => {
+        loadTemplateToTubeTree(tubeTree, recept);
         setOpen(false);
     };
 
     return (
         <>
-            <Tooltip title={_("Add Recept")}>
+            <Tooltip title={_("Add Template")}>
                 <Fab color="primary" aria-label="fabRecept" onClick={() => setOpen(true)}>
                     <FormatListBulletedRoundedIcon />
                 </Fab>
             </Tooltip>
-            <RsModal open={open} onClose={() => setOpen(false)} title={_("Add recept")}>
+            <RsModal open={open} onClose={() => setOpen(false)} title={_("Add template")}>
                 <StyledCont>
-                    {RECEPT_LIST.map((recept) => (
+                    {TEMPLATE_LIST.map((recept) => (
                         <Button
                             key={recept.id}
                             color="primary"

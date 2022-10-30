@@ -1,6 +1,6 @@
-import { TRecept } from "../Const";
+import { TTemplate } from "../Const";
 
-export const spriteRecept: TRecept = {
+export const spriteTemplate: TTemplate = {
     id: 1,
     version: "1",
     name: "sprite",
