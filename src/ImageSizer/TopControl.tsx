@@ -50,9 +50,9 @@ export const TopControl = observer(({ pipeline }: Props) => {
                     {useZip && (
                         <RsInput title={_("Zip name")} value={zipName} onChange={setZipName} />
                     )}
-                    <ThePrimaryButton color="primary" onClick={() => start()}>
+                    <StyledPrimButton color="primary" onClick={() => start()}>
                         {_("Start")}
-                    </ThePrimaryButton>
+                    </StyledPrimButton>
                 </StyledCont>
             </RsModal>
 
@@ -69,7 +69,7 @@ export const TopControl = observer(({ pipeline }: Props) => {
                 <StyledCont>
                     <RsInput title={_("File name")} value={fileName} onChange={setFileName} />
 
-                    <ThePrimaryButton
+                    <StyledPrimButton
                         color="primary"
                         onClick={() => {
                             pipeline.exportRecept(fileName);
@@ -77,7 +77,7 @@ export const TopControl = observer(({ pipeline }: Props) => {
                         }}
                     >
                         {_("Download")}
-                    </ThePrimaryButton>
+                    </StyledPrimButton>
                 </StyledCont>
             </RsModal>
 
@@ -102,4 +102,8 @@ const StyledRow = styled(Row)`
 const StyledCont = styled(Column)`
     align-items: center;
     row-gap: ${spacingCss(1)};
+`;
+
+const StyledPrimButton = styled(ThePrimaryButton)`
+    margin-top: ${spacingCss(1)};
 `;

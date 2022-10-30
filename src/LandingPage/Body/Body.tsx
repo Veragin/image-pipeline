@@ -15,6 +15,7 @@ export const Body = () => {
                         </p>
                     </StyledCenterColumn>
                 </BoxContent>
+                <BoxContent title={_("Examples")}>{}</BoxContent>
                 <BoxContent title={_("Give us feedback")}>Conetnt</BoxContent>
             </Column>
         </StyledPipeCont>

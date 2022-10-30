@@ -76,7 +76,7 @@ export const AddTemplateFab = ({ tubeTree }: Props) => {
                         onChange={(ev) => readReceptFile(ev.target.files)}
                     />
                     <ThePrimaryButton color="primary" onClick={() => fileRef.current?.click()}>
-                        {_("Load recept from file")}
+                        {_("Load template from file")}
                     </ThePrimaryButton>
                 </StyledCont>
             </RsModal>
