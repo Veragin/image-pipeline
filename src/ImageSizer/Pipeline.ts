@@ -86,6 +86,7 @@ export class Pipeline {
             });
         }
 
-        saveAs(JSON.stringify(recept), `${fileName}.json`);
+        const blob = new Blob([JSON.stringify(recept)], { type: "text/plain;charset=utf-8" });
+        saveAs(blob, `${fileName}.json`);
     };
 }
