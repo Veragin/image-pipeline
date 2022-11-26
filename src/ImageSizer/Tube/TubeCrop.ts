@@ -47,7 +47,7 @@ export class TubeCrop extends Tube<TTubeCropConfig> {
 
     do = async (imgCol: ImageCollection) => {
         imgCol.stack.forEach((item) => {
-            const size = {
+            const oldSize = {
                 width: item.data.width,
                 height: item.data.height,
             };
@@ -55,10 +55,10 @@ export class TubeCrop extends Tube<TTubeCropConfig> {
             let rect: TRect;
             switch (this.config.type) {
                 case "image":
-                    rect = { x: 0, y: 0, ...size };
+                    rect = { x: 0, y: 0, ...oldSize };
                     break;
                 case "selection":
-                    rect = selectionToRect(item.selection, size);
+                    rect = selectionToRect(item.selection, oldSize);
                     break;
                 case "box":
                     rect = { ...this.config.box };
@@ -71,7 +71,7 @@ export class TubeCrop extends Tube<TTubeCropConfig> {
 
             item.data = cutImageDataByRect(rect, item.data);
 
-            item.selection = selectionFromRectToSelection(item.selection, size, {
+            item.selection = selectionFromRectToSelection(item.selection, oldSize, {
                 x: 0,
                 y: 0,
                 width: item.data.width,

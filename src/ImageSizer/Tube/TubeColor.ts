@@ -2,7 +2,7 @@ import BrushRoundedIcon from "@mui/icons-material/BrushRounded";
 import { ImageCollection } from "../ImageColection";
 import { Tube } from "./Tube";
 import { TubeColorComp } from "../TubeComponents/TubeColorComp";
-import { applyColorToImage } from "../functions/pixelUtils";
+import { applyColorToImage, invertColorInImage } from "../functions/pixelUtils";
 
 export class TubeColor extends Tube<TTubeColorConfig> {
     name = "Color";
@@ -15,6 +15,7 @@ export class TubeColor extends Tube<TTubeColorConfig> {
 
     constructor() {
         super({
+            mode: "color",
             color: {
                 r: 0,
                 g: 0,
@@ -26,11 +27,18 @@ export class TubeColor extends Tube<TTubeColorConfig> {
 
     do = async (imgCol: ImageCollection) => {
         imgCol.stack.forEach((item) => {
-            applyColorToImage(item.data, item.selection, this.config.color);
+            if (this.config.mode === "color") {
+                applyColorToImage(item.data, item.selection, this.config.color);
+            } else {
+                invertColorInImage(item.data, item.selection);
+            }
         });
     };
 }
 
+export type TTubeColorMode = "color" | "invert";
+
 export type TTubeColorConfig = {
+    mode: TTubeColorMode;
     color: TColor;
 };

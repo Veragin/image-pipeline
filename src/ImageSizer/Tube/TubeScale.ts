@@ -9,6 +9,7 @@ export class TubeScale extends Tube<TTubeScaleConfig> {
     readonly group = "transform";
     description = [
         _("Scale image."),
+        _("!!! This action will unselect all pixels and remove all objects !!!"),
         _("Box ... scale to fixed size. "),
         _("Padding ... add/remove amout of pixel from the final size."),
         _("Percent ... scale by given ratio."),
@@ -54,6 +55,8 @@ export class TubeScale extends Tube<TTubeScaleConfig> {
             }
 
             item.data = scalePixels(item.data, size);
+            item.selection = [];
+            item.objects = [];
         });
 
         await Promise.all(promises);

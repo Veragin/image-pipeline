@@ -1,9 +1,10 @@
 import { ImageCollection } from "../ImageColection";
-import { TubeColor } from "../Tube/TubeColor";
+import { TTubeColorMode, TubeColor } from "../Tube/TubeColor";
 import { DisplayPreviewCollection } from "./DisplayPreviewCollection";
 import ToolbarColor from "ImageSizer/Components/ToolbarColor";
 import { observer } from "mobx-react";
 import { TubeCompCont, ConfigComp } from "./ConfigComp/ConfigUtils";
+import RsSelect from "react-utils/Components/RsInput/RsSelect";
 
 type Props = {
     tube: TubeColor;
@@ -14,6 +15,13 @@ export const TubeColorComp = observer(({ tube, collection }: Props) => {
     return (
         <TubeCompCont>
             <ConfigComp>
+                <RsSelect
+                    title={_("Mode")}
+                    value={tube.config.mode}
+                    setValue={(mode) => tube.setConfig({ mode })}
+                    list={tubeModeList}
+                    helpTooltip={_("Choose how to modify selected pixels")}
+                />
                 <ToolbarColor
                     label={_("Color")}
                     value={tube.config.color}
@@ -25,3 +33,14 @@ export const TubeColorComp = observer(({ tube, collection }: Props) => {
         </TubeCompCont>
     );
 });
+
+const tubeModeList: { title: string; value: TTubeColorMode }[] = [
+    {
+        title: _("Color"),
+        value: "color",
+    },
+    {
+        title: _("Invert color"),
+        value: "invert",
+    },
+];
