@@ -22,6 +22,15 @@ export const Landing = ({ onStart }: Props) => {
         }
     });
 
+    const scrollTo = (id: string) => {
+        const element = document.getElementById(id);
+        const y = (element?.getBoundingClientRect().top ?? 0) + window.scrollY;
+        window.scroll({
+            top: y,
+            behavior: "smooth",
+        });
+    };
+
     return (
         <>
             <StyledDiv>
@@ -46,8 +55,12 @@ export const Landing = ({ onStart }: Props) => {
                 </StyledTitleCont>
             </StyledDiv>
             <StyledMenu>
-                <StyledMenuItem>{_("Get started")}</StyledMenuItem>
-                <StyledMenuItem>{_("Examples")}</StyledMenuItem>
+                <StyledMenuItem onClick={() => scrollTo("tutorial")}>
+                    {_("Get started")}
+                </StyledMenuItem>
+                <StyledMenuItem onClick={() => scrollTo("examples")}>
+                    {_("Examples")}
+                </StyledMenuItem>
                 <Button color="primary" variant="contained" onClick={onStart}>
                     {_("Start right now")}
                 </Button>

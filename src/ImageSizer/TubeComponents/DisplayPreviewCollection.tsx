@@ -129,7 +129,7 @@ const getColoredImage = (data: TImageItem, show: TItemShow) => {
             b: 0,
             a: 1,
         });
-    } else {
+    } else if (show === "objects") {
         for (let obj of data.objects) {
             const color = getRandomColor();
             applyColorToImage(newData, obj.selection, color);

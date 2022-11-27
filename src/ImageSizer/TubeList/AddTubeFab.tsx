@@ -53,6 +53,9 @@ export const AddTubeFab = ({ addTube }: Props) => {
                         {transformTubes.map((tube) => renderButton(tube as any))}
                     </StyledCont>
                 </StyledRow>
+                <StyledTip>
+                    {_("Hold down the ctrl key to prevent this modal from closing.")}
+                </StyledTip>
             </RsModal>
         </>
     );
@@ -70,4 +73,10 @@ const StyledRow = styled(Row)`
 
 const StyledButton = styled(Button)`
     width: 100%;
+`;
+
+const StyledTip = styled(Row)`
+    justify-content: center;
+    row-gap: ${spacingCss(1)};
+    color: grey;
 `;

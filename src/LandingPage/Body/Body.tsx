@@ -1,25 +1,42 @@
+import { Button } from "@mui/material";
 import { Highlight } from "LandingPage/Components";
+import { spacingCss } from "react-utils/Components/globalCss";
 import { Column } from "react-utils/Components/StyledComponents";
 import styled from "styled-components";
 import { BoxContent } from "./BoxContent";
 import { Examples } from "./Examples";
 
-export const Body = () => {
+type Props = {
+    onStart: () => void;
+};
+
+export const Body = ({ onStart }: Props) => {
     return (
         <StyledPipeCont>
             <StyledPipeTube />
             <Column>
-                <BoxContent title={_("Get started")}>
+                <BoxContent title={_("Get started")} id="tutorial">
                     <StyledCenterColumn>
-                        <p>
-                            Watch <Highlight>3 minute tutorial</Highlight> and get started right now
-                        </p>
+                        <StyledText>
+                            Watch <Highlight>5 minute tutorial</Highlight> and get started right now
+                        </StyledText>
+                        <iframe
+                            title="youtube tutorial"
+                            width="600"
+                            height="400"
+                            src="https://www.youtube.com/embed/1lua66lpmyg"
+                        ></iframe>
+                        <Button color="primary" variant="contained" onClick={onStart}>
+                            {_("Start now")}
+                        </Button>
                     </StyledCenterColumn>
                 </BoxContent>
-                <BoxContent title={_("Examples")}>
+                <BoxContent title={_("Examples")} id="examples">
                     <Examples />
                 </BoxContent>
-                <BoxContent title={_("Give us feedback")}>Conetnt</BoxContent>
+                <BoxContent title={_("Give us feedback")} id="feedback">
+                    Conetnt
+                </BoxContent>
             </Column>
         </StyledPipeCont>
     );
@@ -41,4 +58,9 @@ const StyledPipeTube = styled.div`
 const StyledCenterColumn = styled(Column)`
     width: 100%;
     align-items: center;
+    gap: ${spacingCss(3)};
+`;
+
+const StyledText = styled.p`
+    margin: 0;
 `;

@@ -14,7 +14,7 @@ export const LandingPage = ({ onStart }: Props) => {
         <StyledCont>
             <Landing onStart={onStart} />
             <LandingPipe />
-            <Body />
+            <Body onStart={onStart} />
             <Footer />
         </StyledCont>
     );

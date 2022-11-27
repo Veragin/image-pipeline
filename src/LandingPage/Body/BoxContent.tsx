@@ -6,12 +6,13 @@ import { Highlight } from "LandingPage/Components";
 
 type Props = {
     title: string;
+    id: string;
     children: React.ReactNode;
 };
 
-export const BoxContent = ({ children, title }: Props) => {
+export const BoxContent = ({ children, title, id }: Props) => {
     return (
-        <StyledBox>
+        <StyledBox id={id}>
             <StyledTube />
             <StyledContentBody>
                 <StyledTitleCont>
@@ -28,6 +29,7 @@ export const BoxContent = ({ children, title }: Props) => {
 const StyledBox = styled(Row)`
     position: relative;
     gap: ${spacingCss(2)};
+    padding-bottom: ${spacingCss(10)};
     min-height: 500px;
 `;
 
