@@ -19,9 +19,11 @@ export const AddTubeFab = ({ addTube }: Props) => {
     const renderButton = <T extends Object>(tube: Tube<T>) => (
         <StyledButton
             key={tube.id}
-            onClick={() => {
+            onClick={(e) => {
                 addTube(tube);
-                setOpen(false);
+                if (!e.ctrlKey) {
+                    setOpen(false);
+                }
             }}
             startIcon={<tube.icon />}
             variant="contained"
