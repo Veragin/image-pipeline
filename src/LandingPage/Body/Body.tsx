@@ -2,9 +2,11 @@ import { Button } from "@mui/material";
 import { Highlight } from "LandingPage/Components";
 import { spacingCss } from "react-utils/Components/globalCss";
 import { Column } from "react-utils/Components/StyledComponents";
+import { ThePrimaryButton } from "react-utils/Components/TheButton";
 import styled from "styled-components";
 import { BoxContent } from "./BoxContent";
 import { Examples } from "./Examples";
+import { Sizefire } from "./Sizefire";
 
 type Props = {
     onStart: () => void;
@@ -35,7 +37,10 @@ export const Body = ({ onStart }: Props) => {
                     <Examples />
                 </BoxContent>
                 <BoxContent title={_("Give us feedback")} id="feedback">
-                    Conetnt
+                    feed
+                </BoxContent>
+                <BoxContent title={_("Sizefire")} id="sizefire">
+                    <Sizefire />
                 </BoxContent>
             </Column>
         </StyledPipeCont>

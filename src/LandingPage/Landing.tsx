@@ -65,7 +65,7 @@ export const Landing = ({ onStart }: Props) => {
                     {_("Start right now")}
                 </Button>
                 <StyledMenuItem>{_("Docs")}</StyledMenuItem>
-                <StyledMenuItem>SizeFire</StyledMenuItem>
+                <StyledMenuItem onClick={() => scrollTo("sizefire")}>SizeFire</StyledMenuItem>
             </StyledMenu>
         </>
     );
