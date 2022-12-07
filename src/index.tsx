@@ -8,9 +8,8 @@ import ThemeWrapper from "react-utils/theme/ThemeWrapper";
 import dark from "react-utils/theme/dark";
 import { UserWrapper } from "react-utils/Wrappers/UserWrapper";
 
-const root = ReactDOM.createRoot(
-    document.getElementById("root") as HTMLElement
-);
+const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
+
 root.render(
     <React.StrictMode>
         <ThemeWrapper theme={dark}>
