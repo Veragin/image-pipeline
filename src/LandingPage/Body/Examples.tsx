@@ -5,7 +5,9 @@ import styled from "styled-components";
 import baseImg from "Assets/landing/sprites/base.png";
 import { TTemplate } from "ImageSizer/Const";
 import { Button } from "@mui/material";
-import { eshopTemplate } from "ImageSizer/templates/customTemplate";
+import { eshopTemplate } from "ImageSizer/templates/eshopTemplate";
+import { spriteTemplate } from "ImageSizer/templates/spriteTemplate";
+import { neuralTemplate } from "ImageSizer/templates/neralTemplate";
 
 type Props = {
     onStart: (template?: TTemplate) => void;
@@ -41,7 +43,7 @@ export const Examples = ({ onStart }: Props) => {
                             "that will do all the work for you and converts all your animation sheets into useable form."
                         )}
                     </p>
-                    <TryButton onClick={() => onStart(eshopTemplate)} />
+                    <TryButton onClick={() => onStart(spriteTemplate)} />
                 </div>
             </StyledContainerBox>
             <StyledContainerBox>
@@ -53,6 +55,7 @@ export const Examples = ({ onStart }: Props) => {
                         )}
                         <Highlight> Image pipeline.</Highlight>
                     </p>
+                    <TryButton onClick={() => onStart(neuralTemplate)} />
                 </div>
                 <StyledImage src={baseImg} />
             </StyledContainerBox>

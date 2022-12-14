@@ -3,7 +3,7 @@ import { TTemplate } from "../Const";
 export const spriteTemplate: TTemplate = {
     id: 1,
     version: "1",
-    name: "sprite",
+    name: "Game sprites",
     tubes: [
         {
             tube: "select",

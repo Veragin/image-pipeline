@@ -2,7 +2,7 @@ import { TTemplate } from "../Const";
 
 export const eshopTemplate: TTemplate = {
     id: 1,
-    name: "eshop",
+    name: "Eshop",
     version: "1",
     tubes: [
         {
