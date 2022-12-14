@@ -1,8 +1,9 @@
 // obtain plugin
-var cc = initCookieConsent();
+// eslint-disable-next-line no-undef
+var cookieconsent = initCookieConsent();
 
 // run plugin with your configuration
-cc.run({
+cookieconsent.run({
     current_lang: "en",
     autoclear_cookies: true, // default: false
     page_scripts: true, // default: false
