@@ -1,4 +1,5 @@
 import { Button } from "@mui/material";
+import { TTemplate } from "ImageSizer/Const";
 import { Highlight } from "LandingPage/Components";
 import { spacingCss } from "react-utils/Components/globalCss";
 import { Column } from "react-utils/Components/StyledComponents";
@@ -8,7 +9,7 @@ import { Examples } from "./Examples";
 import { Sizefire } from "./Sizefire";
 
 type Props = {
-    onStart: () => void;
+    onStart: (template?: TTemplate) => void;
 };
 
 export const Body = ({ onStart }: Props) => {
@@ -27,13 +28,13 @@ export const Body = ({ onStart }: Props) => {
                             height="400"
                             src="https://www.youtube.com/embed/1lua66lpmyg"
                         ></iframe>
-                        <Button color="primary" variant="contained" onClick={onStart}>
+                        <Button color="primary" variant="contained" onClick={() => onStart()}>
                             {_("Start now")}
                         </Button>
                     </StyledCenterColumn>
                 </BoxContent>
                 <BoxContent title={_("Examples")} id="examples">
-                    <Examples />
+                    <Examples onStart={onStart} />
                 </BoxContent>
                 <BoxContent title={_("Sizefire")} id="sizefire">
                     <Sizefire />

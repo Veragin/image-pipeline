@@ -8,13 +8,15 @@ import { useState } from "react";
 import { TopBar } from "react-utils/Patterns/TopBar";
 import { TopControl } from "./TopControl";
 import { Pipeline } from "./Pipeline";
+import { TTemplate } from "./Const";
 
 type Props = {
     openLandingPage: () => void;
+    initTemplate?: TTemplate;
 };
 
-export const ImageSizer = observer(({ openLandingPage }: Props) => {
-    const [pipeline] = useState(new Pipeline());
+export const ImageSizer = observer(({ openLandingPage, initTemplate }: Props) => {
+    const [pipeline] = useState(new Pipeline(initTemplate));
 
     const tube = pipeline.tubeTree.activeTube;
     const collection = pipeline.tubeTree.activeColection;

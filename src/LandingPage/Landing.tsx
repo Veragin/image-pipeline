@@ -7,9 +7,10 @@ import { Highlight } from "./Components";
 import { useRef } from "react";
 import { PaintEngine } from "./PaintEngine/PaintEngine";
 import { useRunOnlyOnce } from "react-utils/basic/hooks";
+import { TTemplate } from "ImageSizer/Const";
 
 type Props = {
-    onStart: () => void;
+    onStart: (template?: TTemplate) => void;
 };
 
 export const Landing = ({ onStart }: Props) => {
@@ -46,7 +47,7 @@ export const Landing = ({ onStart }: Props) => {
                         <Button color="secondary" variant="text">
                             {_("Sign in")}
                         </Button>
-    </StyledButtonRow>*/}
+                    </StyledButtonRow>*/}
                 </StyledTop>
                 <StyledTitleCont>
                     <StyledTitle>
@@ -61,7 +62,7 @@ export const Landing = ({ onStart }: Props) => {
                 <StyledMenuItem onClick={() => scrollTo("examples")}>
                     {_("Examples")}
                 </StyledMenuItem>
-                <Button color="primary" variant="contained" onClick={onStart}>
+                <Button color="primary" variant="contained" onClick={() => onStart()}>
                     {_("Start right now")}
                 </Button>
                 <StyledMenuItem>{_("Docs")}</StyledMenuItem>

@@ -3,8 +3,8 @@ import { IMAGE_SIZER_TECHS, TImageSizerTubeNames, TTemplate } from "../Const";
 import { TubeTree } from "../TubeTree";
 import { generateRandomId } from "react-utils/basic/misc";
 
-export const loadTemplateToTubeTree = (tubeTree: TubeTree, recept: TTemplate) => {
-    recept.tubes.forEach((item) => {
+export const loadTemplateToTubeTree = (tubeTree: TubeTree, template: TTemplate) => {
+    template.tubes.forEach((item) => {
         const tube = new IMAGE_SIZER_TECHS[item.tube]();
         tube.setConfig(item.config as any);
         tubeTree.addTube(tube);

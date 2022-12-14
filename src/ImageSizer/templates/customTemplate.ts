@@ -1,8 +1,8 @@
 import { TTemplate } from "../Const";
 
-export const customRecept: TTemplate = {
+export const eshopTemplate: TTemplate = {
     id: 1,
-    name: "custom",
+    name: "eshop",
     version: "1",
     tubes: [
         {
@@ -10,8 +10,8 @@ export const customRecept: TTemplate = {
             config: {
                 method: "neighbor",
                 neighbor: {
-                    x: 10,
-                    y: 10,
+                    x: 0,
+                    y: 0,
                     threshold: 0.074,
                 },
                 inverse: true,
@@ -49,13 +49,43 @@ export const customRecept: TTemplate = {
         {
             tube: "scale",
             config: {
-                type: "box",
-                box: { width: 50, height: 50 },
+                box: {
+                    width: 460,
+                    height: 460,
+                },
             },
         },
         {
-            tube: "join",
-            config: { groupBy: 0 },
+            tube: "crop",
+            config: {
+                bbConfig: {
+                    padding: {
+                        bottom: 20,
+                        top: 20,
+                        left: 20,
+                        right: 20,
+                    },
+                },
+            },
+        },
+        {
+            tube: "select",
+            config: {
+                method: "color",
+                color: { pivot: { r: 0, g: 0, b: 0, a: 0 }, threshold: 0 },
+            },
+        },
+        {
+            tube: "color",
+            config: {
+                color: { r: 255, g: 248, b: 142, a: 1 },
+            },
+        },
+        {
+            tube: "download",
+            config: {
+                zip: true,
+            },
         },
     ],
 };

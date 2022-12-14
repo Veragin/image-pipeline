@@ -1,5 +1,5 @@
-import { customRecept } from "./customTemplate";
+import { eshopTemplate } from "./customTemplate";
 import { scissorsTemplate } from "./scissorsTemplate";
 import { spriteTemplate } from "./spriteTemplate";
 
-export const TEMPLATE_LIST = [scissorsTemplate, spriteTemplate, customRecept] as const;
+export const TEMPLATE_LIST = [scissorsTemplate, spriteTemplate, eshopTemplate] as const;

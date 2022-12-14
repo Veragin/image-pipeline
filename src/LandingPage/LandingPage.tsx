@@ -4,9 +4,10 @@ import styled from "styled-components";
 import { LandingPipe } from "./LandingPipe";
 import { Body } from "./Body/Body";
 import { Footer } from "./Footer";
+import { TTemplate } from "ImageSizer/Const";
 
 type Props = {
-    onStart: () => void;
+    onStart: (template?: TTemplate) => void;
 };
 
 export const LandingPage = ({ onStart }: Props) => {

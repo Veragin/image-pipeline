@@ -4,6 +4,7 @@ import { makeObservable, observable, runInAction } from "mobx";
 import { generateRandomId } from "react-utils/basic/misc";
 import { assertNotNullish } from "react-utils/basic/typeguards";
 import { TTemplate, IMAGE_SIZER_TECH_NAMES, IMAGE_SIZER_TECHS } from "./Const";
+import { loadTemplateToTubeTree } from "./templates/templateLoader";
 import { TubeDownload } from "./Tube/TubeDownload";
 import { TubeLoad } from "./Tube/TubeLoad";
 import { TubeTree } from "./TubeTree";
@@ -12,7 +13,11 @@ export class Pipeline {
     tubeTree = new TubeTree();
     processCounter: number | null = null;
 
-    constructor() {
+    constructor(initTemplate?: TTemplate) {
+        if (initTemplate) {
+            loadTemplateToTubeTree(this.tubeTree, initTemplate);
+        }
+
         makeObservable(this, {
             processCounter: observable,
         });

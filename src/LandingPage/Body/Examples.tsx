@@ -3,8 +3,15 @@ import { spacingCss } from "react-utils/Components/globalCss";
 import { Column, Row } from "react-utils/Components/StyledComponents";
 import styled from "styled-components";
 import baseImg from "Assets/landing/sprites/base.png";
+import { TTemplate } from "ImageSizer/Const";
+import { Button } from "@mui/material";
+import { eshopTemplate } from "ImageSizer/templates/customTemplate";
 
-export const Examples = () => {
+type Props = {
+    onStart: (template?: TTemplate) => void;
+};
+
+export const Examples = ({ onStart }: Props) => {
     return (
         <StyledColumn>
             <StyledContainerBox>
@@ -16,6 +23,7 @@ export const Examples = () => {
                         )}
                         <Highlight> Image pipeline!</Highlight>
                     </p>
+                    <TryButton onClick={() => onStart(eshopTemplate)} />
                 </div>
                 <StyledImage src={baseImg} />
             </StyledContainerBox>
@@ -33,6 +41,7 @@ export const Examples = () => {
                             "that will do all the work for you and converts all your animation sheets into useable form."
                         )}
                     </p>
+                    <TryButton onClick={() => onStart(eshopTemplate)} />
                 </div>
             </StyledContainerBox>
             <StyledContainerBox>
@@ -48,6 +57,16 @@ export const Examples = () => {
                 <StyledImage src={baseImg} />
             </StyledContainerBox>
         </StyledColumn>
+    );
+};
+
+const TryButton = ({ onClick }: { onClick: () => void }) => {
+    return (
+        <StyledRow>
+            <Button variant="contained" onClick={onClick}>
+                {_("Try it")}
+            </Button>
+        </StyledRow>
     );
 };
 
@@ -72,4 +91,8 @@ const StyledContainerBox = styled(Row)`
 const StyledImage = styled.img`
     width: 300px;
     height: 200px;
+`;
+
+const StyledRow = styled(Row)`
+    justify-content: center;
 `;
