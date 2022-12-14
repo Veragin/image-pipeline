@@ -46,6 +46,14 @@ export const TubeList = observer(({ tubeTree }: Props) => {
 const StyledReactSortable = styled(ReactSortable)`
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
+
+    /* chrome */
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
 `;
 
 const StyledCont = styled(Column)`
