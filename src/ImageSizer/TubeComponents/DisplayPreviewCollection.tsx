@@ -20,7 +20,7 @@ export const DisplayPreviewCollection = ({ collection, showInit }: Props) => {
 
     return (
         <StyledCont>
-            <InputTitle>{_("Output")}</InputTitle>
+            <InputTitle>{_("Preview")}</InputTitle>
             <StyledOptions>
                 <StyledOption>
                     <Radio
