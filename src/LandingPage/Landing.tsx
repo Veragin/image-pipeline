@@ -39,14 +39,14 @@ export const Landing = ({ onStart }: Props) => {
                     <a href="https://sizefire.com">
                         <StyledLogo src={logo} />
                     </a>
-                    <StyledButtonRow>
+                    {/*<StyledButtonRow>
                         <Button color="primary" variant="contained">
                             {_("Sign up")}
                         </Button>
                         <Button color="secondary" variant="text">
                             {_("Sign in")}
                         </Button>
-                    </StyledButtonRow>
+    </StyledButtonRow>*/}
                 </StyledTop>
                 <StyledTitleCont>
                     <StyledTitle>
@@ -91,9 +91,9 @@ const StyledTop = styled(Row)`
     padding: ${spacingCss(2)};
 `;
 
-const StyledButtonRow = styled(Row)`
+/*const StyledButtonRow = styled(Row)`
     gap: ${spacingCss(1)};
-`;
+`;*/
 
 const StyledLogo = styled.img`
     height: 42px;

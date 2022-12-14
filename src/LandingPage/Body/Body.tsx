@@ -2,7 +2,6 @@ import { Button } from "@mui/material";
 import { Highlight } from "LandingPage/Components";
 import { spacingCss } from "react-utils/Components/globalCss";
 import { Column } from "react-utils/Components/StyledComponents";
-import { ThePrimaryButton } from "react-utils/Components/TheButton";
 import styled from "styled-components";
 import { BoxContent } from "./BoxContent";
 import { Examples } from "./Examples";
@@ -35,9 +34,6 @@ export const Body = ({ onStart }: Props) => {
                 </BoxContent>
                 <BoxContent title={_("Examples")} id="examples">
                     <Examples />
-                </BoxContent>
-                <BoxContent title={_("Give us feedback")} id="feedback">
-                    feed
                 </BoxContent>
                 <BoxContent title={_("Sizefire")} id="sizefire">
                     <Sizefire />

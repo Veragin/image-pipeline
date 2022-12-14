@@ -19,7 +19,7 @@ export const Sizefire = () => {
                     <ThePrimaryButton
                         onClick={() => window.open("https://www.sizefire.com", "_blank")}
                     >
-                        Start now!
+                        Visit Sizefire
                     </ThePrimaryButton>
                 </div>
             </StyledColumn>
@@ -30,7 +30,7 @@ export const Sizefire = () => {
 
 const StyledRow = styled(Row)`
     padding: 0 ${spacingCss(5)};
-    gap: ${spacingCss(3)};
+    gap: ${spacingCss(5)};
     max-width: min(100%, 1000px);
     margin: 0 auto;
 `;
