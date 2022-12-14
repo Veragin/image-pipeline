@@ -59,13 +59,13 @@ export const Landing = ({ onStart }: Props) => {
                 <StyledMenuItem onClick={() => scrollTo("tutorial")}>
                     {_("Get started")}
                 </StyledMenuItem>
-                <StyledMenuItem onClick={() => scrollTo("examples")}>
-                    {_("Examples")}
-                </StyledMenuItem>
                 <Button color="primary" variant="contained" onClick={() => onStart()}>
                     {_("Start right now")}
                 </Button>
-                <StyledMenuItem>{_("Docs")}</StyledMenuItem>
+                <StyledMenuItem onClick={() => scrollTo("examples")}>
+                    {_("Examples")}
+                </StyledMenuItem>
+
                 <StyledMenuItem onClick={() => scrollTo("sizefire")}>SizeFire</StyledMenuItem>
             </StyledMenu>
         </>
