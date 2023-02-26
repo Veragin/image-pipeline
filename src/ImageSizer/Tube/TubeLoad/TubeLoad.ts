@@ -1,7 +1,7 @@
 import { makeObservable, observable, runInAction } from "mobx";
 
 import DriveFolderUploadRoundedIcon from "@mui/icons-material/DriveFolderUploadRounded";
-import { ImageCollection } from "../../ImageColection";
+import { ImageCollection, TImageItem } from "../../ImageColection";
 import { Tube } from "../Tube";
 import { TubeLoadComp } from "../../TubeComponents/TubeLoadComp";
 import { applyDeepPartial } from "react-utils/basic/misc";
@@ -15,6 +15,9 @@ export class TubeLoad extends Tube<TTubeLoadConfig> {
         _(
             "Load images into service. This tube cannot be removed, added more times and is the first tube in the pipeline."
         ),
+        _(
+            "Number of loaded images together ... will allow load more images together, 0 or 1 will load exactly one."
+        ),
         _("Selected image file will be used as a preview."),
         _("While you start the pipeline, all loaded files will be proccessed."),
         _("!! Using image with high resolution as an preview will may slow down configuration !!"),
@@ -24,8 +27,7 @@ export class TubeLoad extends Tube<TTubeLoadConfig> {
 
     sources: LoadSource[] = [];
     selectedIndex: null | number = null;
-    preview: ImageData | null = null;
-    previewName: string = "default";
+    previewCol: ImageCollection | null = null;
 
     constructor(private onStart: () => void) {
         super({
@@ -34,8 +36,7 @@ export class TubeLoad extends Tube<TTubeLoadConfig> {
         });
         makeObservable(this, {
             sources: observable,
-            preview: observable,
-            previewName: observable,
+            previewCol: observable,
         });
     }
 
@@ -43,10 +44,14 @@ export class TubeLoad extends Tube<TTubeLoadConfig> {
 
     setConfig(config: DeepPartial<TTubeLoadConfig>) {
         this.config = applyDeepPartial(this.config, config);
+
         const source = config?.source?.filter((s) => !!s) as string[] | undefined;
         if (source && source.length > 0) {
             this.loadRemote(source);
+            return;
         }
+
+        this.switchPreview(0);
     }
 
     load = async (files: FileList | null) => {
@@ -82,19 +87,17 @@ export class TubeLoad extends Tube<TTubeLoadConfig> {
     switchPreview = async (index: number) => {
         if (index >= this.sources.length) {
             runInAction(() => {
-                this.preview = null;
+                this.previewCol = null;
                 this.selectedIndex = null;
             });
             return;
         }
 
         this.selectedIndex = index;
-        const source = this.sources[index];
-        const preview = await source.getImageData();
+        const newCol = await this.createCollection(index);
 
         runInAction(() => {
-            this.preview = preview;
-            this.previewName = source.getName();
+            this.previewCol = newCol;
         });
 
         this.onStart();
@@ -102,6 +105,42 @@ export class TubeLoad extends Tube<TTubeLoadConfig> {
 
     getSourceNames = () => {
         return this.sources.map((s) => s.getName());
+    };
+
+    createCollection = async (index: number) => {
+        const col = new ImageCollection();
+
+        const batchSize = Math.abs(Math.floor(this.config.numberOfImgsTogether)) || 1;
+        const imgIndex = Math.floor(index / batchSize) * batchSize;
+        const maxIndex = Math.min(imgIndex + batchSize, this.sources.length);
+
+        const promises: Promise<TImageItem>[] = [];
+        for (let i = imgIndex; i < maxIndex; i++) {
+            promises.push(this.createImageItemFromIndex(i));
+        }
+
+        const items = await Promise.all(promises);
+        col.stack.push(...items);
+        col.folderName = items[0]?.name ?? "none";
+
+        return col;
+    };
+
+    private createImageItemFromIndex = async (index: number): Promise<TImageItem> => {
+        const data = await this.sources[index].getImageData();
+
+        const fileNameSplit = this.sources[index].getName().split(".");
+        const format = fileNameSplit.pop() ?? "png";
+        const name = fileNameSplit.join(".");
+
+        return {
+            data,
+            index,
+            name,
+            format,
+            selection: [],
+            objects: [],
+        };
     };
 }
 

@@ -72,14 +72,14 @@ export class TubeTree {
     }
 
     private updateTmpCollection = async (stopTubeId: number) => {
-        if (this.tubeLoad.preview === null) {
+        if (this.tubeLoad.previewCol === null) {
             runInAction(() => {
                 this.tmpCollection = new ImageCollection();
             });
             return;
         }
 
-        const col = this.computeCollection(this.tubeLoad.preview, this.tubeLoad.previewName);
+        const col = copyImageColection(this.tubeLoad.previewCol);
 
         for (let i = 0; i < this.stack.length; i++) {
             if (this.stack[i].id === stopTubeId) break;
@@ -89,24 +89,5 @@ export class TubeTree {
         runInAction(() => {
             this.tmpCollection = col;
         });
-    };
-
-    computeCollection = (imgData: ImageData, fileName: string) => {
-        const col = new ImageCollection();
-
-        const fileNameSplit = fileName.split(".");
-        const format = fileNameSplit.pop() ?? "png";
-        const name = fileNameSplit.join(".");
-        col.stack.push({
-            data: imgData,
-            index: 0,
-            name,
-            format,
-            selection: [],
-            objects: [],
-        });
-        col.folderName = name;
-
-        return col;
     };
 }

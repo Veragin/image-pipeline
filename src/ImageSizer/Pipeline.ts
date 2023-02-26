@@ -38,12 +38,9 @@ export class Pipeline {
             this.processCounter = 0;
         });
 
-        const sources = this.tubeTree.tubeLoad.sources;
-        for (let i = 0; i < sources.length; i++) {
-            const imgData = await sources[i].getImageData();
-            if (imgData === null) continue;
-
-            const col = this.tubeTree.computeCollection(imgData, sources[i].getName());
+        const load = this.tubeTree.tubeLoad;
+        for (let i = 0; i < load.sources.length; i += load.config.numberOfImgsTogether) {
+            const col = await load.createCollection(i);
 
             for (let i = 0; i < this.tubeTree.stack.length; i++) {
                 const tube = this.tubeTree.stack[i];

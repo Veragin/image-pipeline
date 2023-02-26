@@ -1,8 +1,9 @@
+import { assertNotNullish } from "react-utils/basic/typeguards";
 import { getCanvas } from "react-utils/canvas";
 
 export interface LoadSource {
     getName: () => string;
-    getImageData: () => Promise<ImageData | null>;
+    getImageData: () => Promise<ImageData>;
 }
 
 export class FileLoadSource implements LoadSource {
@@ -34,7 +35,7 @@ export class RemoteLoadSource implements LoadSource {
 const getImageData = (img: ImageBitmap | HTMLImageElement) => {
     const canvas = getCanvas(img.width, img.height);
     const ctx = canvas.getContext("2d");
-    if (!ctx) return null;
+    assertNotNullish(ctx, "Context was not created");
 
     ctx.drawImage(img, 0, 0);
 

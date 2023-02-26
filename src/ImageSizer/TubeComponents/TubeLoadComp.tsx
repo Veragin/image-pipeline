@@ -4,12 +4,13 @@ import { TubeLoad } from "../Tube/TubeLoad/TubeLoad";
 import { Radio } from "@mui/material";
 import { observer } from "mobx-react";
 import styled from "styled-components";
-import { TubeCompCont } from "./ConfigComp/ConfigUtils";
+import { ConfigComp, TubeCompCont } from "./ConfigComp/ConfigUtils";
 import { RsFile } from "react-utils/Components/RsInput/RsFile";
 import { spacingCss } from "react-utils/Components/globalCss";
 import { InputTitle } from "react-utils/Components/RsInput/InputTitle";
 import { Row } from "react-utils/Components/StyledComponents";
 import { WarningChip } from "./WarningChip";
+import RsInput from "react-utils/Components/RsInput/RsInput";
 
 const MAX_VISIBLE_SOURCE_COUNT = 50;
 
@@ -27,13 +28,24 @@ export const TubeLoadComp = observer(({ tube, collection }: Props) => {
 
     return (
         <TubeCompCont>
-            <RsFile
-                title={_("Load images")}
-                onChange={tube.load}
-                accept="image/*"
-                multiple
-                selectedCount={names.length}
-            />
+            <ConfigComp>
+                <RsFile
+                    title={_("Load images")}
+                    onChange={tube.load}
+                    accept="image/*"
+                    multiple
+                    selectedCount={names.length}
+                />
+                <RsInput
+                    title={_("Number of loaded images together")}
+                    value={String(tube.config.numberOfImgsTogether)}
+                    type="number"
+                    onChange={(v) => tube.setConfig({ numberOfImgsTogether: Number(v) })}
+                    helpTooltip={_(
+                        "Number of images that will be loaded together so you can join them"
+                    )}
+                />
+            </ConfigComp>
 
             <div>
                 <StyledRow>
