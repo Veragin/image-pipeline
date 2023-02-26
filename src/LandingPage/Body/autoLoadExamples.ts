@@ -8,7 +8,7 @@ export const scissorsLoadTemplate = JSON.parse(JSON.stringify(scissorsTemplate))
 scissorsLoadTemplate.tubes.unshift({
     tube: "load",
     config: {
-        source: ["/examples/handbag.webp"],
+        source: ["/examples/handbags.webp"],
     },
 });
 

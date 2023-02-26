@@ -20,7 +20,7 @@ export const scissorsTemplate: TTemplate = {
         {
             tube: "object",
             config: {
-                compactDistance: 4,
+                compactDistance: 10,
                 minimalHeight: 10,
                 minimalWidth: 10,
                 minimalPixelCount: 64,
