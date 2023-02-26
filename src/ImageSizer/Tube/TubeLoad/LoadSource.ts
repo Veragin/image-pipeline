@@ -24,6 +24,7 @@ export class RemoteLoadSource implements LoadSource {
 
         const promise = new Promise((resolve) => (img.onload = resolve));
         img.src = this.url;
+        img.crossOrigin = "Anonymous";
         await promise;
 
         return getImageData(img);

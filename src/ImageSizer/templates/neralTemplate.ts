@@ -9,7 +9,7 @@ export const neuralTemplate: TTemplate = {
             tube: "rename",
             config: {
                 image: {
-                    pattern: "{name}_0",
+                    pattern: "{name}_{index}_0",
                     regExp: "[^_]*",
                 },
             },
@@ -30,7 +30,7 @@ export const neuralTemplate: TTemplate = {
             tube: "rename",
             config: {
                 image: {
-                    pattern: "{name}_45",
+                    pattern: "{name}_{index}_45",
                     regExp: "[^_]*",
                 },
             },
@@ -51,7 +51,7 @@ export const neuralTemplate: TTemplate = {
             tube: "rename",
             config: {
                 image: {
-                    pattern: "{name}_90",
+                    pattern: "{name}_{index}_90",
                     regExp: "[^_]*",
                 },
             },
@@ -72,7 +72,7 @@ export const neuralTemplate: TTemplate = {
             tube: "rename",
             config: {
                 image: {
-                    pattern: "{name}_135",
+                    pattern: "{name}_{index}_135",
                     regExp: "[^_]*",
                 },
             },
@@ -93,7 +93,7 @@ export const neuralTemplate: TTemplate = {
             tube: "rename",
             config: {
                 image: {
-                    pattern: "{name}_180",
+                    pattern: "{name}_{index}_180",
                     regExp: "[^_]*",
                 },
             },
@@ -114,7 +114,7 @@ export const neuralTemplate: TTemplate = {
             tube: "rename",
             config: {
                 image: {
-                    pattern: "{name}_225",
+                    pattern: "{name}_{index}_225",
                     regExp: "[^_]*",
                 },
             },
@@ -135,7 +135,7 @@ export const neuralTemplate: TTemplate = {
             tube: "rename",
             config: {
                 image: {
-                    pattern: "{name}_270",
+                    pattern: "{name}_{index}_270",
                     regExp: "[^_]*",
                 },
             },
@@ -156,7 +156,7 @@ export const neuralTemplate: TTemplate = {
             tube: "rename",
             config: {
                 image: {
-                    pattern: "{name}_315",
+                    pattern: "{name}_{index}_315",
                     regExp: "[^_]*",
                 },
             },

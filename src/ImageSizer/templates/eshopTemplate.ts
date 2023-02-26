@@ -69,19 +69,6 @@ export const eshopTemplate: TTemplate = {
             },
         },
         {
-            tube: "select",
-            config: {
-                method: "color",
-                color: { pivot: { r: 0, g: 0, b: 0, a: 0 }, threshold: 0 },
-            },
-        },
-        {
-            tube: "color",
-            config: {
-                color: { r: 255, g: 248, b: 142, a: 1 },
-            },
-        },
-        {
             tube: "download",
             config: {
                 zip: true,

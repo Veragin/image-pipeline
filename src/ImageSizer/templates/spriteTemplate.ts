@@ -77,7 +77,7 @@ export const spriteTemplate: TTemplate = {
             tube: "join",
             config: {
                 groupBy: 0,
-                imageCountInRow: 4,
+                imageCountInRow: 5,
                 maxWidth: 500,
                 verticalGap: 0,
                 horizontalGap: 0,

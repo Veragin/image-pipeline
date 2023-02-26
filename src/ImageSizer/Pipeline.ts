@@ -13,6 +13,7 @@ export class Pipeline {
     constructor(initTemplate?: TTemplate) {
         if (initTemplate) {
             loadTemplateToTubeTree(this.tubeTree, initTemplate);
+            this.tubeTree.setActiveId(0);
         }
 
         makeObservable(this, {

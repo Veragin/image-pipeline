@@ -3,11 +3,15 @@ import { spacingCss } from "react-utils/Components/globalCss";
 import { Column, Row } from "react-utils/Components/StyledComponents";
 import styled from "styled-components";
 import baseImg from "Assets/landing/sprites/base.png";
+import massEditnig from "Assets/landing/examples/shopIcon.png";
 import { TTemplate } from "ImageSizer/Const";
 import { Button } from "@mui/material";
-import { eshopTemplate } from "ImageSizer/templates/eshopTemplate";
-import { spriteTemplate } from "ImageSizer/templates/spriteTemplate";
-import { neuralTemplate } from "ImageSizer/templates/neralTemplate";
+import {
+    scissorsLoadTemplate,
+    eshopLoadTemplate,
+    neuralLoadTemplate,
+    spriteLoadTemplate,
+} from "./autoLoadExamples";
 
 type Props = {
     onStart: (template?: TTemplate) => void;
@@ -18,16 +22,31 @@ export const Examples = ({ onStart }: Props) => {
         <StyledColumn>
             <StyledContainerBox>
                 <div>
+                    <StyledTitle>{_("Case: Scissors")}</StyledTitle>
+                    <p>
+                        {_(
+                            "Many images together in the large one and you need split them into separated files. With"
+                        )}
+                        <Highlight> Image pipeline </Highlight>
+                        {_("it is super easy.")}
+                    </p>
+                    <TryButton onClick={() => onStart(scissorsLoadTemplate)} />
+                </div>
+                <StyledImage src={baseImg} />
+            </StyledContainerBox>
+
+            <StyledContainerBox>
+                <div>
                     <StyledTitle>{_("Case: Eshop")}</StyledTitle>
                     <p>
                         {_(
-                            "Image that you are providing e-shop. You have got over 1000 photos of your product that needs to be uploaded to your website, but you need to enhace them to match your requirements. You need to have every photo same exact size and the product placed right in the middle. You can do it all manually by our hands or you can use"
+                            "Imagine that you are running an e-shop. You have over 1000 photos of your products that needs to be uploaded to your website, but you have to improve them to meet your requirements. You must have each photo same exact size and the product located directly in the middle. You can do it all manually with your hands or you can use"
                         )}
                         <Highlight> Image pipeline!</Highlight>
                     </p>
-                    <TryButton onClick={() => onStart(eshopTemplate)} />
+                    <TryButton onClick={() => onStart(eshopLoadTemplate)} />
                 </div>
-                <StyledImage src={baseImg} />
+                <StyledImage src={massEditnig} />
             </StyledContainerBox>
 
             <StyledContainerBox>
@@ -43,7 +62,7 @@ export const Examples = ({ onStart }: Props) => {
                             "that will do all the work for you and converts all your animation sheets into useable form."
                         )}
                     </p>
-                    <TryButton onClick={() => onStart(spriteTemplate)} />
+                    <TryButton onClick={() => onStart(spriteLoadTemplate)} />
                 </div>
             </StyledContainerBox>
             <StyledContainerBox>
@@ -55,7 +74,7 @@ export const Examples = ({ onStart }: Props) => {
                         )}
                         <Highlight> Image pipeline.</Highlight>
                     </p>
-                    <TryButton onClick={() => onStart(neuralTemplate)} />
+                    <TryButton onClick={() => onStart(neuralLoadTemplate)} />
                 </div>
                 <StyledImage src={baseImg} />
             </StyledContainerBox>
@@ -67,15 +86,15 @@ const TryButton = ({ onClick }: { onClick: () => void }) => {
     return (
         <StyledRow>
             <Button variant="contained" onClick={onClick}>
-                {_("Try it")}
+                {_("Show example")}
             </Button>
         </StyledRow>
     );
 };
 
 const StyledColumn = styled(Column)`
-    padding: 0 ${spacingCss(3)};
-    gap: ${spacingCss(3)};
+    padding: 0 ${spacingCss(4)};
+    gap: ${spacingCss(4)};
     max-width: min(100%, 1000px);
     margin: 0 auto;
 `;
@@ -87,8 +106,12 @@ const StyledTitle = styled(Highlight)`
 const StyledContainerBox = styled(Row)`
     border-radius: 12px;
     background-color: rgba(255, 255, 255, 0.3);
-    padding: ${spacingCss(2)};
+    padding: ${spacingCss(4)} ${spacingCss(2)};
     gap: ${spacingCss(10)};
+
+    & p {
+        margin: ${spacingCss(2)} 0 ${spacingCss(4)};
+    }
 `;
 
 const StyledImage = styled.img`

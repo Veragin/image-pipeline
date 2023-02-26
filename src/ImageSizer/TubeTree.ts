@@ -20,7 +20,6 @@ export class TubeTree {
             tmpCollection: observable,
             removeTube: action,
             addTube: action,
-            setActiveId: action,
             setTubeStack: action,
             activeTube: computed,
             activeColection: computed,
@@ -55,7 +54,9 @@ export class TubeTree {
 
     setActiveId = async (id: number) => {
         await this.updateTmpCollection(id);
-        this.activeId = id;
+        runInAction(() => {
+            this.activeId = id;
+        });
     };
 
     get activeTube() {

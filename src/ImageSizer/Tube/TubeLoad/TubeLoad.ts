@@ -1,4 +1,4 @@
-import { action, makeObservable, observable, runInAction } from "mobx";
+import { makeObservable, observable, runInAction } from "mobx";
 
 import DriveFolderUploadRoundedIcon from "@mui/icons-material/DriveFolderUploadRounded";
 import { ImageCollection } from "../../ImageColection";
