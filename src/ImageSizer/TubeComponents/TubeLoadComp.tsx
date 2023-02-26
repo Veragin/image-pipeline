@@ -1,6 +1,6 @@
 import { ImageCollection } from "../ImageColection";
 import { DisplayPreviewCollection } from "./DisplayPreviewCollection";
-import { TubeLoad } from "../Tube/TubeLoad";
+import { TubeLoad } from "../Tube/TubeLoad/TubeLoad";
 import { Radio } from "@mui/material";
 import { observer } from "mobx-react";
 import styled from "styled-components";
@@ -11,7 +11,7 @@ import { InputTitle } from "react-utils/Components/RsInput/InputTitle";
 import { Row } from "react-utils/Components/StyledComponents";
 import { WarningChip } from "./WarningChip";
 
-const MAX_VISIBLE_FILES_COUNT = 50;
+const MAX_VISIBLE_SOURCE_COUNT = 50;
 
 type Props = {
     tube: TubeLoad;
@@ -19,11 +19,11 @@ type Props = {
 };
 
 export const TubeLoadComp = observer(({ tube, collection }: Props) => {
-    const names = tube.getFileNames();
+    const names = tube.getSourceNames();
 
-    const visibleNames = names.filter((n, i) => i < MAX_VISIBLE_FILES_COUNT);
+    const visibleNames = names.filter((n, i) => i < MAX_VISIBLE_SOURCE_COUNT);
 
-    const showWarning = names.length > MAX_VISIBLE_FILES_COUNT;
+    const showWarning = names.length > MAX_VISIBLE_SOURCE_COUNT;
 
     return (
         <TubeCompCont>
@@ -40,7 +40,7 @@ export const TubeLoadComp = observer(({ tube, collection }: Props) => {
                     <InputTitle>{_("Loaded files")}</InputTitle>
                     {showWarning && (
                         <WarningChip
-                            title={_("Showing only first %d files", MAX_VISIBLE_FILES_COUNT)}
+                            title={_("Showing only first %d files", MAX_VISIBLE_SOURCE_COUNT)}
                         />
                     )}
                 </StyledRow>

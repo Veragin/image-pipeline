@@ -1,11 +1,12 @@
+import { TTubeGroup } from "ImageSizer/Const";
 import { action, makeObservable, observable } from "mobx";
 import { applyDeepPartial, generateRandomId } from "react-utils/basic/misc";
 
 import { ImageCollection } from "../ImageColection";
 
-export abstract class Tube<Config extends Object> {
+export class Tube<Config extends Object> {
     readonly id: number = generateRandomId();
-    readonly group: "transform" | "object" | "basic" = "basic";
+    readonly group: TTubeGroup = "basic";
     readonly name: string = "";
     readonly description: string | string[] = "";
 
@@ -16,15 +17,16 @@ export abstract class Tube<Config extends Object> {
     show = (imgCol: ImageCollection) => this.do(imgCol);
 
     config: Config;
-    setConfig = (config: DeepPartial<Config>) =>
-        (this.config = applyDeepPartial(this.config, config));
+    setConfig(config: DeepPartial<Config>) {
+        this.config = applyDeepPartial(this.config, config);
+    }
 
     constructor(config: Config) {
         this.config = config;
 
         makeObservable(this, {
             config: observable,
-            setConfig: action,
+            setConfig: action.bound,
         });
     }
 }

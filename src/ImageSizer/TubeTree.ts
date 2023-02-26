@@ -2,7 +2,7 @@ import { ImageCollection, copyImageColection } from "./ImageColection";
 import { action, computed, makeObservable, observable, runInAction } from "mobx";
 
 import { Tube } from "./Tube/Tube";
-import { TubeLoad } from "./Tube/TubeLoad";
+import { TubeLoad } from "./Tube/TubeLoad/TubeLoad";
 
 export class TubeTree {
     tubeLoad: TubeLoad;

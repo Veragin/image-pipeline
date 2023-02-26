@@ -1,12 +1,9 @@
 import { saveAs } from "file-saver";
 import JSZip from "jszip";
 import { makeObservable, observable, runInAction } from "mobx";
-import { generateRandomId } from "react-utils/basic/misc";
-import { assertNotNullish } from "react-utils/basic/typeguards";
-import { TTemplate, IMAGE_SIZER_TECH_NAMES, IMAGE_SIZER_TECHS } from "./Const";
-import { loadTemplateToTubeTree } from "./templates/templateLoader";
+import { TTemplate } from "./Const";
+import { exportTemplateFromTubeTree, loadTemplateToTubeTree } from "./templates/templateLoader";
 import { TubeDownload } from "./Tube/TubeDownload";
-import { TubeLoad } from "./Tube/TubeLoad";
 import { TubeTree } from "./TubeTree";
 
 export class Pipeline {
@@ -36,18 +33,16 @@ export class Pipeline {
     };
 
     private processTree = async (zip: JSZip | null) => {
-        const files = this.tubeTree.tubeLoad.files;
-        if (files === null || files.length === 0) return;
-
         runInAction(() => {
             this.processCounter = 0;
         });
 
-        for (let i = 0; i < files.length; i++) {
-            const imgData = await this.tubeTree.tubeLoad.readFile(files[i]);
+        const sources = this.tubeTree.tubeLoad.sources;
+        for (let i = 0; i < sources.length; i++) {
+            const imgData = await sources[i].getImageData();
             if (imgData === null) continue;
 
-            const col = this.tubeTree.computeCollection(imgData, files[i].name);
+            const col = this.tubeTree.computeCollection(imgData, sources[i].getName());
 
             for (let i = 0; i < this.tubeTree.stack.length; i++) {
                 const tube = this.tubeTree.stack[i];
@@ -69,29 +64,10 @@ export class Pipeline {
         });
     };
 
-    exportRecept = (fileName: string) => {
-        const recept: TTemplate = {
-            id: generateRandomId(),
-            version: "1",
-            name: "custom",
-            tubes: [],
-        };
+    exportTemplate = (fileName: string) => {
+        const template = exportTemplateFromTubeTree(this.tubeTree, "custom");
 
-        for (let tube of this.tubeTree.stack) {
-            if (tube instanceof TubeLoad) continue;
-
-            const tubeName = IMAGE_SIZER_TECH_NAMES.find(
-                (key) => tube instanceof IMAGE_SIZER_TECHS[key]
-            );
-            assertNotNullish(tubeName, "Tube is not registered in IMAGE_SIZER_TECHS");
-
-            recept.tubes.push({
-                tube: tubeName,
-                config: tube.config,
-            });
-        }
-
-        const blob = new Blob([JSON.stringify(recept)], { type: "text/plain;charset=utf-8" });
+        const blob = new Blob([JSON.stringify(template)], { type: "text/plain;charset=utf-8" });
         saveAs(blob, `${fileName}.json`);
     };
 }

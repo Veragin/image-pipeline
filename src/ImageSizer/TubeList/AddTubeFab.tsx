@@ -32,7 +32,7 @@ export const AddTubeFab = ({ addTube }: Props) => {
         </StyledButton>
     );
 
-    const tubes = IMAGE_SIZER_TECH_CLASSES.map((Item) => new Item());
+    const tubes = IMAGE_SIZER_TECH_CLASSES.map((Item) => new Item(() => {}));
 
     const basicTubes = tubes.filter((tube) => tube.group === "basic");
     const objectTubes = tubes.filter((tube) => tube.group === "object");

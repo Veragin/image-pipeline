@@ -72,7 +72,7 @@ export const TopControl = observer(({ pipeline }: Props) => {
                     <StyledPrimButton
                         color="primary"
                         onClick={() => {
-                            pipeline.exportRecept(fileName);
+                            pipeline.exportTemplate(fileName);
                             setOpenTemplateModal(false);
                         }}
                     >
@@ -86,7 +86,7 @@ export const TopControl = observer(({ pipeline }: Props) => {
                     msg={_(
                         "Processed %d/%d",
                         pipeline.processCounter,
-                        pipeline.tubeTree.tubeLoad.files?.length ?? 0
+                        pipeline.tubeTree.tubeLoad.sources.length ?? 0
                     )}
                 />
             ) : null}

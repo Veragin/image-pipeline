@@ -4,6 +4,7 @@ import { TTubeCutConfig, TubeCut } from "./Tube/TubeCut";
 import { TTubeDownloadConfig, TubeDownload } from "./Tube/TubeDownload";
 import { TTubeDuplicateConfig, TubeDuplicate } from "./Tube/TubeDuplicate";
 import { TTubeJoinConfig, TubeJoin } from "./Tube/TubeJoin";
+import { TTubeLoadConfig, TubeLoad } from "./Tube/TubeLoad/TubeLoad";
 import { TTubeMirrorConfig, TubeMirror } from "./Tube/TubeMirror";
 import { TTubeObjectConfig, TubeObject } from "./Tube/TubeObject";
 import { TTubeRenameConfig, TubeRename } from "./Tube/TubeRename";
@@ -11,7 +12,10 @@ import { TTubeRotateConfig, TubeRotate } from "./Tube/TubeRotate";
 import { TTubeScaleConfig, TubeScale } from "./Tube/TubeScale";
 import { TTubeSelectConfig, TubeSelect } from "./Tube/TubeSelect";
 
+export type TTubeGroup = "transform" | "object" | "basic" | "none";
+
 export const IMAGE_SIZER_TECHS = {
+    load: TubeLoad,
     select: TubeSelect,
     color: TubeColor,
     rename: TubeRename,
@@ -27,6 +31,10 @@ export const IMAGE_SIZER_TECHS = {
 } as const;
 
 export type TImageSizerTubeConfig =
+    | {
+          tube: "load";
+          config: DeepPartial<TTubeLoadConfig>;
+      }
     | {
           tube: "select";
           config: DeepPartial<TTubeSelectConfig>;
