@@ -110,7 +110,7 @@ export class TubeLoad extends Tube<TTubeLoadConfig> {
     createCollection = async (index: number) => {
         const col = new ImageCollection();
 
-        const batchSize = Math.abs(Math.floor(this.config.numberOfImgsTogether)) || 1;
+        const batchSize = Math.max(1, Math.floor(this.config.numberOfImgsTogether));
         const imgIndex = Math.floor(index / batchSize) * batchSize;
         const maxIndex = Math.min(imgIndex + batchSize, this.sources.length);
 

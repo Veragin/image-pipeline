@@ -19,7 +19,7 @@ export class FileLoadSource implements LoadSource {
 export class RemoteLoadSource implements LoadSource {
     constructor(private url: string) {}
 
-    getName = () => this.url;
+    getName = () => this.url.split("/").pop() ?? "";
     getImageData = async () => {
         const img = new Image();
 
