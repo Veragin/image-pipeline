@@ -1,7 +1,6 @@
 import { Button } from "@mui/material";
 import { Column, Row } from "react-utils/Components/StyledComponents";
 import logo from "Assets/logo/logo.svg";
-import schema from "Assets/landing/schema.png";
 import { spacingCss } from "react-utils/Components/globalCss";
 import styled from "styled-components";
 import { Highlight } from "./Components";
@@ -54,7 +53,6 @@ export const Landing = ({ onStart }: Props) => {
                     <StyledTitle>
                         Image <Highlight>Pipeline</Highlight>
                     </StyledTitle>
-                    <StyledSchema src={schema} />
                 </StyledTitleCont>
             </StyledDiv>
             <StyledMenu>
@@ -103,7 +101,7 @@ const StyledLogo = styled.img`
     cursor: pointer;
 `;
 
-const StyledTitleCont = styled(Row)`
+const StyledTitleCont = styled(Column)`
     width: 100%;
     height: 70vh;
     justify-content: space-evenly;
@@ -111,20 +109,13 @@ const StyledTitleCont = styled(Row)`
 `;
 
 const StyledTitle = styled(Column)`
-    gap: ${spacingCss(2)};
+    gap: ${spacingCss(1)};
     font-size: 64px;
     text-transform: uppercase;
     background-color: rgba(255, 255, 255, 0.4);
     box-shadow: 0 0 100px 100px rgba(255, 255, 255, 0.4);
     border-radius: 40%;
     align-items: center;
-`;
-
-const StyledSchema = styled.img`
-    background-color: rgba(255, 255, 255, 1);
-    box-shadow: 0 0 100px 100px rgba(255, 255, 255, 1);
-    border-radius: 30%;
-    height: 70%;
 `;
 
 const StyledMenu = styled(Row)`

@@ -1,12 +1,10 @@
-import { Button } from "@mui/material";
 import { TTemplate } from "ImageSizer/Const";
-import { Highlight } from "LandingPage/Components";
-import { spacingCss } from "react-utils/Components/globalCss";
 import { Column } from "react-utils/Components/StyledComponents";
 import styled from "styled-components";
 import { BoxContent } from "./BoxContent";
 import { Examples } from "./Examples";
 import { Sizefire } from "./Sizefire";
+import { GetStarted } from "./GetStarted";
 
 type Props = {
     onStart: (template?: TTemplate) => void;
@@ -18,20 +16,7 @@ export const Body = ({ onStart }: Props) => {
             <StyledPipeTube />
             <Column>
                 <BoxContent title={_("Get started")} id="tutorial">
-                    <StyledCenterColumn>
-                        <StyledText>
-                            Watch <Highlight>5 minute tutorial</Highlight> and get started right now
-                        </StyledText>
-                        <iframe
-                            title="youtube tutorial"
-                            width="600"
-                            height="400"
-                            src="https://www.youtube.com/embed/1lua66lpmyg"
-                        ></iframe>
-                        <Button color="primary" variant="contained" onClick={() => onStart()}>
-                            {_("Start now")}
-                        </Button>
-                    </StyledCenterColumn>
+                    <GetStarted onStart={onStart} />
                 </BoxContent>
                 <BoxContent title={_("Examples")} id="examples">
                     <Examples onStart={onStart} />
@@ -55,14 +40,4 @@ const StyledPipeTube = styled.div`
     top: 0;
     width: 20%;
     height: 100%;
-`;
-
-const StyledCenterColumn = styled(Column)`
-    width: 100%;
-    align-items: center;
-    gap: ${spacingCss(3)};
-`;
-
-const StyledText = styled.p`
-    margin: 0;
 `;
