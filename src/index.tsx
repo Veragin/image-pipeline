@@ -2,9 +2,9 @@ import { App } from "./App";
 import ReactDOM from "react-dom/client";
 import reportWebVitals from "./reportWebVitals";
 import React from "react";
-import ThemeWrapper from "react-utils/theme/ThemeWrapper";
 import dark from "react-utils/theme/dark";
 import { UserWrapper } from "react-utils/Wrappers/UserWrapper";
+import ThemeWrapper from "react-utils/Wrappers/ThemeWrapper";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 

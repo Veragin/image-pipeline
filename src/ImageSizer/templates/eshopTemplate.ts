@@ -43,7 +43,7 @@ export const eshopTemplate: TTemplate = {
         {
             tube: "color",
             config: {
-                color: { r: 0, g: 0, b: 0, a: 0 },
+                rgba: { r: 0, g: 0, b: 0, a: 0 },
             },
         },
         {

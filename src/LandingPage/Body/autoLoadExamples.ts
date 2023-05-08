@@ -117,5 +117,13 @@ neuralLoadTemplate.tubes.unshift(
             },
         },
     },
-    { tube: "color", config: { mode: "color", color: { r: 0, g: 0, b: 0, a: 0 } } }
+    {
+        tube: "color",
+        config: {
+            area: "selection",
+            mode: "fixed",
+            type: "rgba",
+            rgba: { r: 0, g: 0, b: 0, a: 0 },
+        },
+    }
 );

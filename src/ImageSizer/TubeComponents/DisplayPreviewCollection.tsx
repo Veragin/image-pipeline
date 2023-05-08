@@ -1,5 +1,5 @@
 import { ImageCollection, TImageItem, TImageObject } from "../ImageColection";
-import { applyColorToImage, getRandomColor } from "../functions/pixelUtils";
+import { getRandomColor } from "../functions/pixelUtils";
 import { useEffect, useRef, useState } from "react";
 
 import { Column, Row } from "react-utils/Components/StyledComponents";
@@ -7,6 +7,7 @@ import { spacingCss } from "react-utils/Components/globalCss";
 import styled from "styled-components";
 import { InputTitle } from "react-utils/Components/RsInput/InputTitle";
 import { Radio } from "@mui/material";
+import { applyColorToImage } from "ImageSizer/functions/colorModify";
 
 type TItemShow = "none" | "selection" | "objects";
 

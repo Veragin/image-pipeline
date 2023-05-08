@@ -1,6 +1,5 @@
 import { COLOR } from "react-utils/Const/Color";
 import { TColor } from "../../react-utils/Const/Types";
-import { TSelection } from "../ImageColection";
 
 export const pixelIndex = (pixel: TPoint, width: number) => (pixel.y * width + pixel.x) * 4;
 
@@ -19,27 +18,6 @@ export const getPixelFormPos = (i: number, width: number) => ({
     x: i % width,
     y: Math.floor(i / width),
 });
-
-export const applyColorToImage = (data: ImageData, selection: TSelection, color: TColor) => {
-    for (let r of selection) {
-        for (let i = r[0]; i <= r[1]; i++) {
-            data.data[i * 4] = color?.r ?? 0;
-            data.data[i * 4 + 1] = color?.g ?? 0;
-            data.data[i * 4 + 2] = color?.b ?? 0;
-            data.data[i * 4 + 3] = (color?.a ?? 0) * 255;
-        }
-    }
-};
-
-export const invertColorInImage = (data: ImageData, selection: TSelection) => {
-    for (let r of selection) {
-        for (let i = r[0]; i <= r[1]; i++) {
-            data.data[i * 4] = 255 - data.data[i * 4];
-            data.data[i * 4 + 1] = 255 - data.data[i * 4 + 1];
-            data.data[i * 4 + 2] = 255 - data.data[i * 4 + 2];
-        }
-    }
-};
 
 export const getRandomColor = () => ({
     r: Math.round(Math.random() * 255),
