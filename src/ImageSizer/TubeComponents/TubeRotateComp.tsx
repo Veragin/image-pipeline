@@ -1,5 +1,4 @@
 import { ImageCollection } from "../ImageColection";
-import RsInput from "react-utils/Components/RsInput/RsInput";
 import { DisplayPreviewCollection } from "./DisplayPreviewCollection";
 import { TubeRotate } from "../Tube/TubeRotate";
 import { observer } from "mobx-react";

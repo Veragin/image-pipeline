@@ -10,7 +10,6 @@ import { spacingCss } from "react-utils/Components/globalCss";
 import { InputTitle } from "react-utils/Components/RsInput/InputTitle";
 import { Row } from "react-utils/Components/StyledComponents";
 import { WarningChip } from "./WarningChip";
-import RsInput from "react-utils/Components/RsInput/RsInput";
 import RsNumber from "react-utils/Components/RsInput/RsNumber";
 
 const MAX_VISIBLE_SOURCE_COUNT = 50;

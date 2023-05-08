@@ -6,7 +6,6 @@ import { observer } from "mobx-react";
 import { TubeCompCont, ConfigComp, ConfigRow } from "./ConfigComp/ConfigUtils";
 import RsSelect from "react-utils/Components/RsInput/RsSelect";
 import { colorToHsv, hsvToRgb } from "react-utils/color";
-import RsInput from "react-utils/Components/RsInput/RsInput";
 import RsNumber from "react-utils/Components/RsInput/RsNumber";
 
 type Props = {
