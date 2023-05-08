@@ -108,8 +108,8 @@ const StyledTitleCont = styled(Column)`
     align-items: center;
 `;
 
-const StyledTitle = styled(Column)`
-    gap: ${spacingCss(1)};
+const StyledTitle = styled(Row)`
+    gap: ${spacingCss(3)};
     font-size: 64px;
     text-transform: uppercase;
     background-color: rgba(255, 255, 255, 0.4);
