@@ -7,6 +7,7 @@ import {
 import {
     alphaToSelection,
     colorToSelection,
+    hueToSelection,
     neighborToSelection,
     neighborToSelectionByBaseColor,
     neighborToSelectionByColor,
@@ -69,18 +70,25 @@ export class TubeSelect extends Tube<TTubeSelectConfig> {
             case "box":
                 return rectToSelection(this.config.box, item.data);
             case "color":
-                if (this.config.color.type === "color") {
-                    return colorToSelection(
-                        this.config.color.pivot,
-                        this.config.color.threshold,
-                        item.data
-                    );
-                } else {
-                    return alphaToSelection(
-                        this.config.color.alpha,
-                        this.config.color.threshold,
-                        item.data
-                    );
+                switch (this.config.color.type) {
+                    case "color":
+                        return colorToSelection(
+                            this.config.color.pivot,
+                            this.config.color.threshold,
+                            item.data
+                        );
+                    case "hue":
+                        return hueToSelection(
+                            this.config.color.hue,
+                            this.config.color.threshold,
+                            item.data
+                        );
+                    default:
+                        return alphaToSelection(
+                            this.config.color.alpha,
+                            this.config.color.threshold,
+                            item.data
+                        );
                 }
             case "neighbor":
                 if (this.config.neighbor.type === "pixel") {
@@ -120,9 +128,10 @@ export type TTubeSelectConfig = {
 
     box: TRect;
     color: {
-        type: "color" | "alpha";
+        type: "color" | "hue" | "saturation" | "alpha";
         pivot: TColor;
         alpha: number;
+        hue: number;
         threshold: number;
     };
     neighbor: {
@@ -146,6 +155,7 @@ const initConfig = (size: TSize): TTubeSelectConfig => ({
     color: {
         type: "color",
         pivot: COLOR.WHITE,
+        hue: 0,
         alpha: 0,
         threshold: 0,
     },

@@ -1,6 +1,7 @@
-import { TSelection } from '../ImageColection';
-import { colorFromPixel } from './pixelUtils';
-import { getHistograph } from './histograph';
+import { TSelection } from "../ImageColection";
+import { colorFromPixel } from "./pixelUtils";
+import { getHistograph } from "./histograph";
+import { rgbToHsv } from "react-utils/color";
 
 /******************************************************************
  ********* Color selection
@@ -20,8 +21,49 @@ const getIsColor = (color: TColor, threshold: number) => {
     const t = threshold * 255 * 255;
 
     return (r: number, g: number, b: number) =>
-        (r - color.r) * (r - color.r) + (g - color.g) * (g - color.g) + (b - color.b) * (b - color.b) <= t;
+        (r - color.r) * (r - color.r) +
+            (g - color.g) * (g - color.g) +
+            (b - color.b) * (b - color.b) <=
+        t;
 };
+
+/******************************************************************
+ ********* Hue selection
+ ******************************************************************/
+
+export const hueToSelection = (hue: number, threshold: number, imgData: ImageData) => {
+    const realHue = Math.abs(hue) % 360;
+    const t = threshold * 360 * (threshold * 360);
+
+    const isColor = (r: number, g: number, b: number) => {
+        const h = rgbToHsv(r, g, b).h;
+        return (h - realHue) * (h - realHue) < t;
+    };
+
+    return pixelSelection(isColor, imgData);
+};
+
+/******************************************************************
+ ********* Saturation selection
+ ******************************************************************/
+
+export const saturationToSelection = (
+    saturation: number,
+    threshold: number,
+    imgData: ImageData
+) => {
+    const isColor = getIsSaturation(saturation, threshold);
+
+    return pixelSelection(isColor, imgData);
+};
+
+const getIsSaturation = (saturation: number, t: number) => {
+    return (r: number, g: number, b: number) => rgbToHsv(r, g, b).s - saturation < t / 255;
+};
+
+/******************************************************************
+ ********* Alpha selection
+ ******************************************************************/
 
 export const alphaToSelection = (alpha: number, threshold: number, imgData: ImageData) => {
     const t = threshold * 255 * 255;
@@ -74,7 +116,11 @@ export const neighborToSelectionByBaseColor = (threshold: number, imgData: Image
     return neighborToSelectionByColor(color, threshold, imgData);
 };
 
-export const neighborToSelectionByColor = (color: TColor, threshold: number, imgData: ImageData) => {
+export const neighborToSelectionByColor = (
+    color: TColor,
+    threshold: number,
+    imgData: ImageData
+) => {
     const isColor = getIsColor(color, 0);
     const data = imgData.data;
 

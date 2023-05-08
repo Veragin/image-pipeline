@@ -12,6 +12,7 @@ type Props = {
     title: React.ReactNode;
     min?: number;
     max?: number;
+    step?: number;
 };
 
 const ToolbarProperty = ({ tooltip, title, ...props }: Props) => {

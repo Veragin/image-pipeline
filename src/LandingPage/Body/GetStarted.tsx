@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import { Highlight } from "LandingPage/Components";
-import { Column, Row } from "react-utils/Components/StyledComponents";
+import { Column } from "react-utils/Components/StyledComponents";
 import { spacingCss } from "react-utils/Components/globalCss";
 import styled from "styled-components";
 import schema from "Assets/landing/schema.png";

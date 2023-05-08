@@ -9,6 +9,7 @@ type Props = {
     type: "text" | "number";
     min?: number;
     max?: number;
+    step?: number;
 
     size?: number;
     autoFocus?: boolean;
@@ -23,6 +24,7 @@ const ToolbarInput = ({
     type,
     min,
     max,
+    step,
     autoFocus,
     size,
     onEnter,
@@ -55,6 +57,9 @@ const ToolbarInput = ({
             autoFocus={autoFocus}
             size={size}
             className={className}
+            step={step}
+            min={min}
+            max={max}
         />
     );
 };
