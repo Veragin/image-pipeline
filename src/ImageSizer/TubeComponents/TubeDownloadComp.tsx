@@ -8,6 +8,7 @@ import { ThePrimaryButton } from "../../react-utils/Components/TheButton";
 import { observer } from "mobx-react";
 import { TubeCompCont, ConfigComp } from "./ConfigComp/ConfigUtils";
 import { RsSwitch } from "react-utils/Components/RsInput/RsSwitch";
+import RsNumber from "react-utils/Components/RsInput/RsNumber";
 
 type Props = {
     tube: TubeDownload;
@@ -25,11 +26,13 @@ export const TubeDownloadComp = observer(({ tube, collection }: Props) => {
                     list={tubeTypeList}
                 />
 
-                <RsInput
+                <RsNumber
                     title={_("Quality")}
-                    value={String(tube.config.quality)}
-                    type="number"
-                    onChange={(v) => tube.setConfig({ quality: Number(v) })}
+                    value={tube.config.quality}
+                    onChange={(quality) => tube.setConfig({ quality })}
+                    min={0}
+                    max={1}
+                    step={0.05}
                     helpTooltip={_(
                         "Number between 0 and 1. Value 1 means that the generated image will be without any compression"
                     )}

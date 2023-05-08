@@ -4,6 +4,7 @@ import { DisplayPreviewCollection } from "./DisplayPreviewCollection";
 import { TubeRotate } from "../Tube/TubeRotate";
 import { observer } from "mobx-react";
 import { TubeCompCont, ConfigComp } from "./ConfigComp/ConfigUtils";
+import RsNumber from "react-utils/Components/RsInput/RsNumber";
 
 type Props = {
     tube: TubeRotate;
@@ -14,11 +15,11 @@ export const TubeRotateComp = observer(({ tube, collection }: Props) => {
     return (
         <TubeCompCont>
             <ConfigComp>
-                <RsInput
+                <RsNumber
                     title={_("Degree")}
-                    value={String(tube.config.angle)}
-                    type="number"
-                    onChange={(angle) => tube.setConfig({ angle: Number(angle) })}
+                    value={tube.config.angle}
+                    step={1}
+                    onChange={(angle) => tube.setConfig({ angle })}
                 />
             </ConfigComp>
 

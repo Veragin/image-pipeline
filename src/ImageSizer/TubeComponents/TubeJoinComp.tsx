@@ -1,9 +1,9 @@
 import { ImageCollection } from "../ImageColection";
-import RsInput from "react-utils/Components/RsInput/RsInput";
 import { DisplayPreviewCollection } from "./DisplayPreviewCollection";
 import { TubeJoin } from "../Tube/TubeJoin";
 import { observer } from "mobx-react";
 import { ConfigComp, TubeCompCont } from "./ConfigComp/ConfigUtils";
+import RsNumber from "react-utils/Components/RsInput/RsNumber";
 
 type Props = {
     tube: TubeJoin;
@@ -14,49 +14,52 @@ export const TubeJoinComp = observer(({ tube, collection }: Props) => {
     return (
         <TubeCompCont>
             <ConfigComp>
-                <RsInput
+                <RsNumber
                     title={_("Group by")}
-                    value={String(tube.config.groupBy)}
-                    type="number"
-                    onChange={(groupBy) => tube.setConfig({ groupBy: Number(groupBy) })}
+                    value={tube.config.groupBy}
+                    onChange={(groupBy) => tube.setConfig({ groupBy })}
                     helpTooltip={_("Number of pieces joined together. 0 means no limit.")}
+                    step={1}
+                    min={0}
                 />
-                <RsInput
+                <RsNumber
                     title={_("Image count in row")}
-                    value={String(tube.config.imageCountInRow)}
-                    type="number"
-                    onChange={(imageNumberOnRow) =>
+                    value={tube.config.imageCountInRow}
+                    onChange={(imageCountInRow) =>
                         tube.setConfig({
-                            imageCountInRow: Number(imageNumberOnRow),
+                            imageCountInRow,
                         })
                     }
+                    step={1}
+                    min={0}
                     helpTooltip={_(
                         "Define max number of piecies in each row in resulted image. Overfloating pieces will be wrapped. 0 means no limit."
                     )}
                 />
-                <RsInput
+                <RsNumber
                     title={_("Max Width")}
-                    value={String(tube.config.maxWidth)}
-                    type="number"
-                    onChange={(maxWidth) => tube.setConfig({ maxWidth: Number(maxWidth) })}
+                    value={tube.config.maxWidth}
+                    onChange={(maxWidth) => tube.setConfig({ maxWidth })}
+                    step={1}
+                    min={0}
                     helpTooltip={_(
                         "Define max width of resulted image. Overfloating pieces will be wrapped. 0 means no limit."
                     )}
                 />
-                <RsInput
+                <RsNumber
                     title={_("Vertical gap")}
-                    value={String(tube.config.verticalGap)}
-                    type="number"
-                    onChange={(verticalGap) => tube.setConfig({ verticalGap: Number(verticalGap) })}
+                    value={tube.config.verticalGap}
+                    onChange={(verticalGap) => tube.setConfig({ verticalGap })}
+                    step={1}
+                    min={0}
                     helpTooltip={_("Adds vertival gap between joined pieces")}
                 />
-                <RsInput
+                <RsNumber
                     title={_("Horizontal gap")}
-                    value={String(tube.config.horizontalGap)}
-                    type="number"
-                    onChange={(horizontalGap) =>
-                        tube.setConfig({ horizontalGap: Number(horizontalGap) })
-                    }
+                    value={tube.config.horizontalGap}
+                    onChange={(horizontalGap) => tube.setConfig({ horizontalGap })}
+                    step={1}
+                    min={0}
                     helpTooltip={_("Adds horizontal gap between joined pieces")}
                 />
             </ConfigComp>

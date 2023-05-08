@@ -1,12 +1,12 @@
 import { BbConfig } from "./ConfigComp/BbConfig";
 import { ImageCollection } from "../ImageColection";
-import RsInput from "../../react-utils/Components/RsInput/RsInput";
 import { DisplayPreviewCollection } from "./DisplayPreviewCollection";
 import { TubeObject } from "../Tube/TubeObject";
 import { observer } from "mobx-react";
 import { ConfigComp, ConfigRow, TubeCompCont } from "./ConfigComp/ConfigUtils";
 import { Column } from "react-utils/Components/StyledComponents";
 import { InputTitle } from "react-utils/Components/RsInput/InputTitle";
+import RsNumber from "react-utils/Components/RsInput/RsNumber";
 
 type Props = {
     tube: TubeObject;
@@ -20,34 +20,38 @@ export const TubeObjectComp = observer(({ tube, collection }: Props) => {
         <TubeCompCont>
             <ConfigRow>
                 <ConfigComp>
-                    <RsInput
+                    <RsNumber
                         title={_("Compact Distance")}
-                        value={String(tube.config.compactDistance)}
-                        type="number"
-                        onChange={(v) => tube.setConfig({ compactDistance: Number(v) })}
+                        value={tube.config.compactDistance}
+                        onChange={(v) => tube.setConfig({ compactDistance: v })}
+                        step={1}
+                        min={0}
                         helpTooltip={_(
                             "Number of pixels that are still compacted. Value 0 means that pixels are compact only if they are next to each other. Value 2 means that that there can be 2 pixels gap between selected pixels, but they are still compact."
                         )}
                     />
-                    <RsInput
+                    <RsNumber
                         title={_("Minimal pixel count")}
-                        value={String(tube.config.minimalPixelCount)}
-                        type="number"
-                        onChange={(v) => tube.setConfig({ minimalPixelCount: Number(v) })}
+                        value={tube.config.minimalPixelCount}
+                        onChange={(v) => tube.setConfig({ minimalPixelCount: v })}
+                        step={1}
+                        min={0}
                         helpTooltip={_("Minimal number of compact pixels that define an object.")}
                     />
-                    <RsInput
+                    <RsNumber
                         title={_("Minimal width")}
-                        value={String(tube.config.minimalWidth)}
-                        type="number"
-                        onChange={(v) => tube.setConfig({ minimalWidth: Number(v) })}
+                        value={tube.config.minimalWidth}
+                        onChange={(v) => tube.setConfig({ minimalWidth: v })}
+                        step={1}
+                        min={0}
                         helpTooltip={_("Minimal width of compact pixels that define an object.")}
                     />
-                    <RsInput
+                    <RsNumber
                         title={_("Minimal height")}
-                        value={String(tube.config.minimalHeight)}
-                        type="number"
-                        onChange={(v) => tube.setConfig({ minimalHeight: Number(v) })}
+                        value={tube.config.minimalHeight}
+                        onChange={(v) => tube.setConfig({ minimalHeight: v })}
+                        step={1}
+                        min={0}
                         helpTooltip={_("Minimal height of compact pixels that define an object.")}
                     />
                 </ConfigComp>

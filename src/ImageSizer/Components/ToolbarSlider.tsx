@@ -1,8 +1,9 @@
-import { convertToPercentString, parsePercentFromString } from './Utils';
-import styled, { css } from 'styled-components';
+import { convertToPercentString, parsePercentFromString } from "./Utils";
+import styled, { css } from "styled-components";
 
-import ToolbarInput from './ToolbarInput';
-import { observer } from 'mobx-react';
+import ToolbarInput from "./ToolbarInput";
+import { observer } from "mobx-react";
+import { useState } from "react";
 
 type Props = {
     value: number;
@@ -11,12 +12,13 @@ type Props = {
     step?: number;
 };
 
-const ToolbarSlider = ({
-    value,
-    onChange,
-    visible = true,
-    step = 0.01,
-}: Props) => {
+const ToolbarSlider = ({ value, onChange, visible = true, step = 0.01 }: Props) => {
+    const [tmpValue, setTmpValue] = useState(convertToPercentString(value));
+
+    if (parsePercentFromString(tmpValue) !== value) {
+        setTmpValue(convertToPercentString(value));
+    }
+
     return (
         <>
             <StyledSlider
@@ -29,8 +31,12 @@ const ToolbarSlider = ({
                 $visible={visible}
             />
             <ToolbarInput
-                value={convertToPercentString(value)}
-                onChange={(s) => onChange(parsePercentFromString(s))}
+                value={tmpValue}
+                onChange={(s) => {
+                    setTmpValue(s);
+                    onChange(parsePercentFromString(s));
+                }}
+                onBlur={() => setTmpValue(convertToPercentString(value))}
                 type="text"
                 size={4}
                 className="percent"
@@ -46,9 +52,7 @@ const StyledSlider = styled.input<{ $visible: boolean }>`
     height: 4px;
     border-radius: 6px;
     ${({ theme, $visible }) => css`
-        background-color: ${$visible
-            ? theme.palette.secondary.light
-            : theme.palette.grey[300]};
+        background-color: ${$visible ? theme.palette.secondary.light : theme.palette.grey[300]};
         border-radius: ${theme.measurements.borderRadius}px;
     `}
 
@@ -58,9 +62,7 @@ const StyledSlider = styled.input<{ $visible: boolean }>`
         width: 12px;
         cursor: pointer;
         ${({ theme, $visible }) => css`
-            background-color: ${$visible
-                ? theme.palette.secondary.main
-                : theme.palette.grey[500]};
+            background-color: ${$visible ? theme.palette.secondary.main : theme.palette.grey[500]};
             border-radius: 50%;
         `}
     }
@@ -70,9 +72,7 @@ const StyledSlider = styled.input<{ $visible: boolean }>`
         width: 12px;
         cursor: pointer;
         ${({ theme, $visible }) => css`
-            background-color: ${$visible
-                ? theme.palette.secondary.main
-                : theme.palette.grey[500]};
+            background-color: ${$visible ? theme.palette.secondary.main : theme.palette.grey[500]};
             border-radius: 50%;
         `}
     }

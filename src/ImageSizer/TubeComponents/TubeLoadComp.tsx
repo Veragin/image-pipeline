@@ -11,6 +11,7 @@ import { InputTitle } from "react-utils/Components/RsInput/InputTitle";
 import { Row } from "react-utils/Components/StyledComponents";
 import { WarningChip } from "./WarningChip";
 import RsInput from "react-utils/Components/RsInput/RsInput";
+import RsNumber from "react-utils/Components/RsInput/RsNumber";
 
 const MAX_VISIBLE_SOURCE_COUNT = 50;
 
@@ -36,11 +37,12 @@ export const TubeLoadComp = observer(({ tube, collection }: Props) => {
                     multiple
                     selectedCount={names.length}
                 />
-                <RsInput
+                <RsNumber
                     title={_("Number of loaded images together")}
-                    value={String(tube.config.numberOfImgsTogether)}
-                    type="number"
-                    onChange={(v) => tube.setConfig({ numberOfImgsTogether: Number(v) })}
+                    value={tube.config.numberOfImgsTogether}
+                    onChange={(numberOfImgsTogether) => tube.setConfig({ numberOfImgsTogether })}
+                    step={1}
+                    min={0}
                     helpTooltip={_(
                         "Number of images that will be loaded together so you can join them"
                     )}

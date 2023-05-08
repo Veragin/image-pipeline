@@ -3,8 +3,8 @@ import { DisplayPreviewCollection } from "./DisplayPreviewCollection";
 import { observer } from "mobx-react";
 import { TubeDuplicate } from "ImageSizer/Tube/TubeDuplicate";
 import { ConfigComp, TubeCompCont } from "./ConfigComp/ConfigUtils";
-import RsInput from "react-utils/Components/RsInput/RsInput";
 import { RsSwitch } from "react-utils/Components/RsInput/RsSwitch";
+import RsNumber from "react-utils/Components/RsInput/RsNumber";
 
 type Props = {
     tube: TubeDuplicate;
@@ -15,11 +15,12 @@ export const TubeDuplicateComp = observer(({ tube, collection }: Props) => {
     return (
         <TubeCompCont>
             <ConfigComp>
-                <RsInput
+                <RsNumber
                     title={_("Count")}
-                    value={String(tube.config.count)}
-                    type="number"
-                    onChange={(count) => tube.setConfig({ count: Number(count) })}
+                    value={tube.config.count}
+                    step={1}
+                    min={0}
+                    onChange={(count) => tube.setConfig({ count })}
                 />
                 <RsSwitch
                     title={_("Should inverse selection")}

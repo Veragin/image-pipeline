@@ -7,6 +7,7 @@ import { TubeCompCont, ConfigComp, ConfigRow } from "./ConfigComp/ConfigUtils";
 import RsSelect from "react-utils/Components/RsInput/RsSelect";
 import { colorToHsv, hsvToRgb } from "react-utils/color";
 import RsInput from "react-utils/Components/RsInput/RsInput";
+import RsNumber from "react-utils/Components/RsInput/RsNumber";
 
 type Props = {
     tube: TubeColor;
@@ -14,6 +15,8 @@ type Props = {
 };
 
 export const TubeColorComp = observer(({ tube, collection }: Props) => {
+    const isFixed = tube.config.mode === "fixed";
+
     return (
         <TubeCompCont>
             <ConfigRow>
@@ -46,7 +49,7 @@ export const TubeColorComp = observer(({ tube, collection }: Props) => {
                 </ConfigComp>
                 {tube.config.mode !== "invert" && (
                     <ConfigComp>
-                        {tube.config.mode === "fixed" &&
+                        {isFixed &&
                             (tube.config.type === "rgba" ? (
                                 <ToolbarColor
                                     label={_("Color")}
@@ -62,39 +65,35 @@ export const TubeColorComp = observer(({ tube, collection }: Props) => {
                             ))}
                         {tube.config.type === "rgba" && (
                             <>
-                                <RsInput
+                                <RsNumber
                                     title={_("Red")}
-                                    value={String(tube.config.rgba.r)}
-                                    type="number"
-                                    onChange={(r) => tube.setRgba({ r: Number(r) })}
-                                    min={-255}
+                                    value={tube.config.rgba.r}
+                                    onChange={(r) => tube.setRgba({ r })}
+                                    min={isFixed ? 0 : -255}
                                     max={255}
                                     step={1}
                                 />
-                                <RsInput
+                                <RsNumber
                                     title={_("Green")}
-                                    value={String(tube.config.rgba.g)}
-                                    type="number"
-                                    onChange={(g) => tube.setRgba({ g: Number(g) })}
-                                    min={-255}
+                                    value={tube.config.rgba.g}
+                                    onChange={(g) => tube.setRgba({ g })}
+                                    min={isFixed ? 0 : -255}
                                     max={255}
                                     step={1}
                                 />
-                                <RsInput
+                                <RsNumber
                                     title={_("Blue")}
-                                    value={String(tube.config.rgba.b)}
-                                    type="number"
-                                    onChange={(b) => tube.setRgba({ b: Number(b) })}
-                                    min={-255}
+                                    value={tube.config.rgba.b}
+                                    onChange={(b) => tube.setRgba({ b })}
+                                    min={isFixed ? 0 : -255}
                                     max={255}
                                     step={1}
                                 />
-                                <RsInput
+                                <RsNumber
                                     title={_("Alpha")}
-                                    value={String(tube.config.rgba.a)}
-                                    type="number"
-                                    onChange={(a) => tube.setRgba({ a: Number(a) })}
-                                    min={-1}
+                                    value={tube.config.rgba.a}
+                                    onChange={(a) => tube.setRgba({ a })}
+                                    min={isFixed ? 0 : -1}
                                     max={1}
                                     step={0.05}
                                 />
@@ -102,39 +101,35 @@ export const TubeColorComp = observer(({ tube, collection }: Props) => {
                         )}
                         {tube.config.type === "hsva" && (
                             <>
-                                <RsInput
+                                <RsNumber
                                     title={_("Hue")}
-                                    value={String(tube.config.hsva.h)}
-                                    type="number"
-                                    onChange={(h) => tube.setHvsa({ h: Number(h) })}
-                                    min={-359}
+                                    value={tube.config.hsva.h}
+                                    onChange={(h) => tube.setHvsa({ h })}
+                                    min={isFixed ? 0 : -359}
                                     max={359}
                                     step={1}
                                 />
-                                <RsInput
+                                <RsNumber
                                     title={_("Saturation")}
-                                    value={String(tube.config.hsva.s)}
-                                    type="number"
-                                    onChange={(s) => tube.setHvsa({ s: Number(s) })}
-                                    min={-1}
+                                    value={tube.config.hsva.s}
+                                    onChange={(s) => tube.setHvsa({ s })}
+                                    min={isFixed ? 0 : -1}
                                     max={1}
                                     step={0.05}
                                 />
-                                <RsInput
+                                <RsNumber
                                     title={_("Value")}
-                                    value={String(tube.config.hsva.v)}
-                                    type="number"
-                                    onChange={(v) => tube.setHvsa({ v: Number(v) })}
-                                    min={-1}
+                                    value={tube.config.hsva.v}
+                                    onChange={(v) => tube.setHvsa({ v })}
+                                    min={isFixed ? 0 : -1}
                                     max={1}
                                     step={0.05}
                                 />
-                                <RsInput
+                                <RsNumber
                                     title={_("Alpha")}
-                                    value={String(tube.config.hsva.a)}
-                                    type="number"
-                                    onChange={(a) => tube.setHvsa({ a: Number(a) })}
-                                    min={-1}
+                                    value={tube.config.hsva.a}
+                                    onChange={(a) => tube.setHvsa({ a })}
+                                    min={isFixed ? 0 : -1}
                                     max={1}
                                     step={0.05}
                                 />
