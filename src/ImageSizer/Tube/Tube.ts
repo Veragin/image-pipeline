@@ -14,6 +14,7 @@ export class Tube<Config extends Object> {
     comp: React.FC<TCompProps> = () => null;
 
     do = async (imgCol: ImageCollection) => {};
+    doGPU = async (imgCol: ImageCollection) => {};
     show = (imgCol: ImageCollection) => this.do(imgCol);
 
     config: Config;

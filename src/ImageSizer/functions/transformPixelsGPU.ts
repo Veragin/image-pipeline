@@ -1,33 +1,39 @@
 import { pixelIndex } from "./pixelUtils";
 import { rotatePoint } from "react-utils/Math";
+import { GPU } from "gpu.js";
+import { pixelIndexGPU } from "./pixelUtilsGPU";
 
-export const mirrorPixels = (imgData: ImageData, vertical: boolean, horizontal: boolean) => {
+const gpu = new GPU();
+gpu.addFunction(pixelIndexGPU);
+
+export const mirrorPixelsGPU = (imgData: ImageData, vertical: boolean, horizontal: boolean) => {
     if (!vertical && !horizontal) return imgData;
 
-    const arr = new Uint8ClampedArray(imgData.width * imgData.height * 4);
+    // !!! GPU handles imagest horizontally mirrored
+    const kernel = gpu.createKernel(
+        function (data: number[], vertical: boolean, horizontal: boolean) {
+            const x = vertical ? this.output.x - this.thread.x - 1 : this.thread.x;
+            const y = horizontal ? this.thread.y : this.output.y - this.thread.y - 1;
+            const newIndex = pixelIndexGPU(x, y, this.output.x);
 
-    for (let y = 0; y < imgData.height; y++) {
-        for (let x = 0; x < imgData.width; x++) {
-            const index = pixelIndex({ x, y }, imgData.width);
-            const newindex = pixelIndex(
-                {
-                    x: vertical ? imgData.width - x - 1 : x,
-                    y: horizontal ? imgData.height - y - 1 : y,
-                },
-                imgData.width
+            this.color(
+                data[newIndex] / 255,
+                data[newIndex + 1] / 255,
+                data[newIndex + 2] / 255,
+                data[newIndex + 3] / 255
             );
-
-            arr[index] = imgData.data[newindex];
-            arr[index + 1] = imgData.data[newindex + 1];
-            arr[index + 2] = imgData.data[newindex + 2];
-            arr[index + 3] = imgData.data[newindex + 3];
+        },
+        {
+            output: [imgData.width, imgData.height],
+            graphical: true,
         }
-    }
+    );
 
-    return new ImageData(arr, imgData.width, imgData.height);
+    kernel(imgData.data, vertical, horizontal);
+    return new ImageData(kernel.getPixels() as any, imgData.width, imgData.height);
 };
 
-export const rotatePixels = (imgData: ImageData, alpha: number) => {
+export const rotatePixelsGPU = (imgData: ImageData, alpha: number) => {
     const arr = new Uint8ClampedArray(imgData.width * imgData.height * 4);
 
     const offset = { x: imgData.width / 2, y: imgData.height / 2 };
@@ -49,7 +55,7 @@ export const rotatePixels = (imgData: ImageData, alpha: number) => {
     return new ImageData(arr, imgData.width, imgData.height);
 };
 
-export const scalePixels = (imgData: ImageData, size: TSize) => {
+export const scalePixelsGPU = (imgData: ImageData, size: TSize) => {
     const arr = new Uint8ClampedArray(size.width * size.height * 4);
 
     for (let y = 0; y < size.height; y++) {
