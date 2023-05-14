@@ -1,12 +1,8 @@
-import loadImage from "get-image-data";
+import { loadImageData } from "react-utils/canvas";
 import { mirrorPixels, rotatePixels, scalePixels } from "./transformPixels";
 import { mirrorPixelsGPU, rotatePixelsGPU, scalePixelsGPU } from "./transformPixelsGPU";
 
-const dataPromise = new Promise<ImageData>((resolve) =>
-    loadImage("./src/Assets/landing/sprites/base.png", (err: unknown, info: any) => {
-        resolve(info);
-    })
-);
+const dataPromise = loadImageData("./examples/handbag_3.png");
 
 export const testAll = async () => {
     console.log("TEST: transformPixels");

@@ -9,6 +9,7 @@ import { PaintEngine } from "./PaintEngine/PaintEngine";
 import { useRunOnlyOnce } from "react-utils/basic/hooks";
 import { TTemplate } from "ImageSizer/Const";
 import { testGPU } from "ImageSizer/functions/testGPU";
+import { isDev } from "react-utils/basic/misc";
 
 type Props = {
     onStart: (template?: TTemplate) => void;
@@ -64,12 +65,22 @@ export const Landing = ({ onStart }: Props) => {
                     color="primary"
                     variant="contained"
                     onClick={() => {
-                        testGPU();
                         onStart();
                     }}
                 >
                     {_("Start right now")}
                 </Button>
+                {isDev() && (
+                    <Button
+                        color="primary"
+                        variant="contained"
+                        onClick={() => {
+                            testGPU();
+                        }}
+                    >
+                        {_("Test")}
+                    </Button>
+                )}
                 <StyledMenuItem onClick={() => scrollTo("examples")}>
                     {_("Examples")}
                 </StyledMenuItem>
