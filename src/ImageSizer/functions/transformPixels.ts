@@ -73,14 +73,14 @@ export const scalePixels = (imgData: ImageData, size: TSize) => {
 };
 
 const getInterpolarColorFromPos = (imgData: ImageData, pos: TPoint) => {
-    if (pos.x < 0 || pos.y < 0 || pos.x >= imgData.width || pos.y >= imgData.height) {
+    if (pos.x < 0 || pos.y < 0 || pos.x > imgData.width - 1 || pos.y > imgData.height - 1) {
         return { r: 0, g: 0, b: 0, a: 0 };
     }
 
     const a = { x: Math.floor(pos.x), y: Math.floor(pos.y) };
-    const b = { x: Math.floor(pos.x) + 1, y: Math.floor(pos.y) };
-    const c = { x: Math.floor(pos.x) + 1, y: Math.floor(pos.y) + 1 };
-    const d = { x: Math.floor(pos.x), y: Math.floor(pos.y) + 1 };
+    const b = { x: Math.ceil(pos.x), y: Math.floor(pos.y) };
+    const c = { x: Math.ceil(pos.x), y: Math.ceil(pos.y) };
+    const d = { x: Math.floor(pos.x), y: Math.ceil(pos.y) };
 
     const ai = pixelIndex(a, imgData.width);
     const bi = pixelIndex(b, imgData.width);

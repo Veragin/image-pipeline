@@ -1,28 +1,32 @@
-import { COLOR } from "react-utils/Const/Color";
-import { TColor } from "../../react-utils/Const/Types";
+export type TPointGPU = [number, number];
+export type TColorGPU = [number, number, number, number];
 
-export function pixelIndexGPU(x: number, y: number, width: number) {
-    return (y * width + x) * 4;
+export function pixelIndexGPU(pixel: TPointGPU, width: number) {
+    return (pixel[1] * width + pixel[0]) * 4;
 }
 
-export function getPixelFormPosGPU(i: number, width: number) {
+export function getPixelFormPosGPU(i: number, width: number): TPointGPU {
     return [i % width, Math.floor(i / width)];
 }
 
-export const colorFromPixelGPU = (pixel: TPoint, imgData: ImageData): TColor => {
-    if (pixel.x >= imgData.width || pixel.y >= imgData.height) return COLOR.INVISIBLE;
-    const index = pixelIndexGPU(pixel.x, pixel.y, imgData.width);
-    return {
-        r: imgData.data[index],
-        g: imgData.data[index + 1],
-        b: imgData.data[index + 2],
-        a: imgData.data[index + 3],
-    };
-};
+export function rotatePointGPU(alpha: number, s: TPointGPU, a: TPointGPU): TPointGPU {
+    return [
+        s[0] + Math.cos(alpha) * (a[0] - s[0]) - Math.sin(alpha) * (a[1] - s[1]),
+        s[1] + Math.sin(alpha) * (a[0] - s[0]) + Math.cos(alpha) * (a[1] - s[1]),
+    ];
+}
 
-export const getRandomColorGPU = () => ({
-    r: Math.round(Math.random() * 255),
-    g: Math.round(Math.random() * 255),
-    b: Math.round(Math.random() * 255),
-    a: Math.random(),
-});
+export function colorFromPixelGPU(
+    pixel: TPointGPU,
+    data: number[],
+    width: number,
+    height: number
+): TColorGPU {
+    if (pixel[0] >= width || pixel[1] >= height) return [0, 0, 0, 0];
+    const index = pixelIndexGPU(pixel, width);
+    return [data[index] / 255, data[index + 1] / 255, data[index + 2] / 255, data[index + 3] / 255];
+}
+
+export function getRandomColorGPU(): TColorGPU {
+    return [Math.random(), Math.random(), Math.random(), Math.random()];
+}

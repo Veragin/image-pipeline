@@ -1,10 +1,10 @@
-import { pixelIndex } from "./pixelUtils";
-import { rotatePoint } from "react-utils/Math";
 import { GPU } from "gpu.js";
-import { pixelIndexGPU } from "./pixelUtilsGPU";
+import { TColorGPU, TPointGPU, pixelIndexGPU, rotatePointGPU } from "./pixelUtilsGPU";
 
 const gpu = new GPU();
 gpu.addFunction(pixelIndexGPU);
+gpu.addFunction(rotatePointGPU);
+gpu.addFunction(getInterpolarColorFromPosGPU);
 
 export const mirrorPixelsGPU = (imgData: ImageData, vertical: boolean, horizontal: boolean) => {
     if (!vertical && !horizontal) return imgData;
@@ -14,7 +14,7 @@ export const mirrorPixelsGPU = (imgData: ImageData, vertical: boolean, horizonta
         function (data: number[], vertical: boolean, horizontal: boolean) {
             const x = vertical ? this.output.x - this.thread.x - 1 : this.thread.x;
             const y = horizontal ? this.thread.y : this.output.y - this.thread.y - 1;
-            const newIndex = pixelIndexGPU(x, y, this.output.x);
+            const newIndex = pixelIndexGPU([x, y], this.output.x);
 
             this.color(
                 data[newIndex] / 255,
@@ -33,87 +33,91 @@ export const mirrorPixelsGPU = (imgData: ImageData, vertical: boolean, horizonta
     return new ImageData(kernel.getPixels() as any, imgData.width, imgData.height);
 };
 
-export const rotatePixelsGPU = (imgData: ImageData, alpha: number) => {
-    const arr = new Uint8ClampedArray(imgData.width * imgData.height * 4);
+export const rotatePixelsGPU = (imgData: ImageData, angle: number) => {
+    console.log("angle", angle);
+    const kernel = gpu.createKernel(
+        function (data: number[], angle: number) {
+            const pixel = [this.thread.x, this.output.y - 1 - this.thread.y] as TPointGPU;
+            const offset = [this.output.x / 2, this.output.y / 2] as TPointGPU;
 
-    const offset = { x: imgData.width / 2, y: imgData.height / 2 };
+            const pos = rotatePointGPU(angle, offset, pixel);
+            const color = getInterpolarColorFromPosGPU(data, pos, this.output.x, this.output.y);
 
-    for (let y = 0; y < imgData.height; y++) {
-        for (let x = 0; x < imgData.width; x++) {
-            const pos = rotatePoint(alpha, offset, { x, y });
-
-            const color = getInterpolarColorFromPos(imgData, pos);
-            const index = pixelIndex({ x, y }, imgData.width);
-
-            arr[index] = color.r;
-            arr[index + 1] = color.g;
-            arr[index + 2] = color.b;
-            arr[index + 3] = color.a;
+            this.color(color[0], color[1], color[2], color[3]);
+        },
+        {
+            output: [imgData.width, imgData.height],
+            graphical: true,
         }
-    }
+    );
 
-    return new ImageData(arr, imgData.width, imgData.height);
+    kernel(imgData.data, angle);
+    return new ImageData(kernel.getPixels() as any, imgData.width, imgData.height);
 };
 
 export const scalePixelsGPU = (imgData: ImageData, size: TSize) => {
-    const arr = new Uint8ClampedArray(size.width * size.height * 4);
+    const kernel = gpu.createKernel(
+        function (data: number[], dataWidth: number, dataHeight: number) {
+            const pixel = [this.output.x - this.thread.x - 1, this.thread.y] as TPointGPU;
+            const pos = [
+                (pixel[0] * dataWidth) / this.output.x,
+                (pixel[1] * dataHeight) / this.output.y,
+            ] as TPointGPU;
+            const color = getInterpolarColorFromPosGPU(data, pos, dataWidth, dataHeight);
 
-    for (let y = 0; y < size.height; y++) {
-        for (let x = 0; x < size.width; x++) {
-            const pos = {
-                x: (x * imgData.width) / size.width,
-                y: (y * imgData.height) / size.height,
-            };
-
-            const color = getInterpolarColorFromPos(imgData, pos);
-            const index = pixelIndex({ x, y }, size.width);
-
-            arr[index] = color.r;
-            arr[index + 1] = color.g;
-            arr[index + 2] = color.b;
-            arr[index + 3] = color.a;
+            this.color(color[0], color[1], color[2], color[3]);
+        },
+        {
+            output: [size.width, size.height],
+            graphical: true,
         }
-    }
+    );
 
-    return new ImageData(arr, size.width, size.height);
+    kernel(imgData.data, imgData.width, imgData.height);
+    return new ImageData(kernel.getPixels() as any, size.width, size.height);
 };
 
-const getInterpolarColorFromPos = (imgData: ImageData, pos: TPoint) => {
-    if (pos.x < 0 || pos.y < 0 || pos.x >= imgData.width || pos.y >= imgData.height) {
-        return { r: 0, g: 0, b: 0, a: 0 };
+function getInterpolarColorFromPosGPU(
+    data: number[],
+    pixel: TPointGPU,
+    dataWidth: number,
+    dataHeight: number
+): TColorGPU {
+    if (pixel[0] < 0 || pixel[1] < 0 || pixel[0] > dataWidth - 1 || pixel[1] > dataHeight - 1) {
+        return [0, 0, 0, 0];
     }
 
-    const a = { x: Math.floor(pos.x), y: Math.floor(pos.y) };
-    const b = { x: Math.floor(pos.x) + 1, y: Math.floor(pos.y) };
-    const c = { x: Math.floor(pos.x) + 1, y: Math.floor(pos.y) + 1 };
-    const d = { x: Math.floor(pos.x), y: Math.floor(pos.y) + 1 };
+    const a = [Math.floor(pixel[0]), Math.floor(pixel[1])] as TPointGPU;
+    const b = [Math.ceil(pixel[0]), Math.floor(pixel[1])] as TPointGPU;
+    const c = [Math.ceil(pixel[0]), Math.ceil(pixel[1])] as TPointGPU;
+    const d = [Math.floor(pixel[0]), Math.ceil(pixel[1])] as TPointGPU;
 
-    const ai = pixelIndex(a, imgData.width);
-    const bi = pixelIndex(b, imgData.width);
-    const ci = pixelIndex(c, imgData.width);
-    const di = pixelIndex(d, imgData.width);
+    const ai = pixelIndexGPU(a, dataWidth);
+    const bi = pixelIndexGPU(b, dataWidth);
+    const ci = pixelIndexGPU(c, dataWidth);
+    const di = pixelIndexGPU(d, dataWidth);
 
-    const l1 = Math.abs(pos.x - a.x);
-    const p1 = {
-        r: imgData.data[ai] * (1 - l1) + imgData.data[bi] * l1,
-        g: imgData.data[ai + 1] * (1 - l1) + imgData.data[bi + 1] * l1,
-        b: imgData.data[ai + 2] * (1 - l1) + imgData.data[bi + 2] * l1,
-        a: imgData.data[ai + 3] * (1 - l1) + imgData.data[bi + 3] * l1,
-    };
+    const l1 = Math.abs(pixel[0] - a[0]);
+    const p1 = [
+        data[ai] * (1 - l1) + data[bi] * l1,
+        data[ai + 1] * (1 - l1) + data[bi + 1] * l1,
+        data[ai + 2] * (1 - l1) + data[bi + 2] * l1,
+        data[ai + 3] * (1 - l1) + data[bi + 3] * l1,
+    ];
 
-    const l2 = Math.abs(pos.x - d.x);
-    const p2 = {
-        r: imgData.data[di] * (1 - l2) + imgData.data[ci] * l2,
-        g: imgData.data[di + 1] * (1 - l2) + imgData.data[ci + 1] * l2,
-        b: imgData.data[di + 2] * (1 - l2) + imgData.data[ci + 2] * l2,
-        a: imgData.data[di + 3] * (1 - l2) + imgData.data[ci + 3] * l2,
-    };
+    const l2 = Math.abs(pixel[0] - d[0]);
+    const p2 = [
+        data[di] * (1 - l2) + data[ci] * l2,
+        data[di + 1] * (1 - l2) + data[ci + 1] * l2,
+        data[di + 2] * (1 - l2) + data[ci + 2] * l2,
+        data[di + 3] * (1 - l2) + data[ci + 3] * l2,
+    ];
 
-    const l3 = Math.abs(pos.y - a.y);
-    return {
-        r: Math.round(p1.r * (1 - l3) + p2.r * l3),
-        g: Math.round(p1.g * (1 - l3) + p2.g * l3),
-        b: Math.round(p1.b * (1 - l3) + p2.b * l3),
-        a: Math.round(p1.a * (1 - l3) + p2.a * l3),
-    };
-};
+    const l3 = Math.abs(pixel[1] - a[1]);
+    return [
+        (p1[0] * (1 - l3) + p2[0] * l3) / 255,
+        (p1[1] * (1 - l3) + p2[1] * l3) / 255,
+        (p1[2] * (1 - l3) + p2[2] * l3) / 255,
+        (p1[3] * (1 - l3) + p2[3] * l3) / 255,
+    ];
+}
