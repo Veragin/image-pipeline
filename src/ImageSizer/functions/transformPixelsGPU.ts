@@ -1,5 +1,5 @@
-import { GPU } from "gpu.js";
-import { TColorGPU, TPointGPU, pixelIndexGPU, rotatePointGPU } from "./pixelUtilsGPU";
+import { GPU } from 'gpu.js';
+import { TColorGPU, TPointGPU, pixelIndexGPU, rotatePointGPU } from './pixelUtilsGPU';
 
 const gpu = new GPU();
 gpu.addFunction(pixelIndexGPU);
@@ -34,7 +34,7 @@ export const mirrorPixelsGPU = (imgData: ImageData, vertical: boolean, horizonta
 };
 
 export const rotatePixelsGPU = (imgData: ImageData, angle: number) => {
-    console.log("angle", angle);
+    console.log('angle', angle);
     const kernel = gpu.createKernel(
         function (data: number[], angle: number) {
             const pixel = [this.thread.x, this.output.y - 1 - this.thread.y] as TPointGPU;
@@ -58,7 +58,7 @@ export const rotatePixelsGPU = (imgData: ImageData, angle: number) => {
 export const scalePixelsGPU = (imgData: ImageData, size: TSize) => {
     const kernel = gpu.createKernel(
         function (data: number[], dataWidth: number, dataHeight: number) {
-            const pixel = [this.output.x - this.thread.x - 1, this.thread.y] as TPointGPU;
+            const pixel = [this.thread.x, this.output.y - this.thread.y - 1] as TPointGPU;
             const pos = [
                 (pixel[0] * dataWidth) / this.output.x,
                 (pixel[1] * dataHeight) / this.output.y,
