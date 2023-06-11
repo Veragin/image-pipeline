@@ -1,9 +1,9 @@
-import { convertToPercentString, parsePercentFromString } from "./Utils";
-import styled, { css } from "styled-components";
+import { convertToPercentString, parsePercentFromString, roundNumber } from './Utils';
+import styled, { css } from 'styled-components';
 
-import ToolbarInput from "./ToolbarInput";
-import { observer } from "mobx-react";
-import { useState } from "react";
+import ToolbarInput from './ToolbarInput';
+import { observer } from 'mobx-react';
+import { useState } from 'react';
 
 type Props = {
     value: number;
@@ -15,7 +15,7 @@ type Props = {
 const ToolbarSlider = ({ value, onChange, visible = true, step = 0.01 }: Props) => {
     const [tmpValue, setTmpValue] = useState(convertToPercentString(value));
 
-    if (parsePercentFromString(tmpValue) !== value) {
+    if (parsePercentFromString(tmpValue) !== roundNumber(value)) {
         setTmpValue(convertToPercentString(value));
     }
 
