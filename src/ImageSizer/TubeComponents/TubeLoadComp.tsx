@@ -1,16 +1,16 @@
-import { ImageCollection } from "../ImageColection";
-import { DisplayPreviewCollection } from "./DisplayPreviewCollection";
-import { TubeLoad } from "../Tube/TubeLoad/TubeLoad";
-import { Radio } from "@mui/material";
-import { observer } from "mobx-react";
-import styled from "styled-components";
-import { ConfigComp, TubeCompCont } from "./ConfigComp/ConfigUtils";
-import { RsFile } from "react-utils/Components/RsInput/RsFile";
-import { spacingCss } from "react-utils/Components/globalCss";
-import { InputTitle } from "react-utils/Components/RsInput/InputTitle";
-import { Row } from "react-utils/Components/StyledComponents";
-import { WarningChip } from "./WarningChip";
-import RsNumber from "react-utils/Components/RsInput/RsNumber";
+import { ImageCollection } from '../ImageColection';
+import { DisplayPreviewCollection } from './DisplayPreviewCollection';
+import { TubeLoad } from '../Tube/TubeLoad/TubeLoad';
+import { Radio } from '@mui/material';
+import { observer } from 'mobx-react';
+import styled from 'styled-components';
+import { ConfigComp, TubeCompCont } from './ConfigComp/ConfigUtils';
+import { RsFile } from 'react-utils/Components/RsInput/RsFile';
+import { spacingCss } from 'react-utils/Components/globalCss';
+import { InputTitle } from 'react-utils/Components/RsInput/InputTitle';
+import { Row } from 'react-utils/Components/StyledComponents';
+import { WarningChip } from './WarningChip';
+import RsNumber from 'react-utils/Components/RsInput/RsNumber';
 
 const MAX_VISIBLE_SOURCE_COUNT = 50;
 
@@ -30,30 +30,30 @@ export const TubeLoadComp = observer(({ tube, collection }: Props) => {
         <TubeCompCont>
             <ConfigComp>
                 <RsFile
-                    title={_("Load images")}
+                    title={_('Load images')}
                     onChange={tube.load}
                     accept="image/*"
                     multiple
                     selectedCount={names.length}
                 />
                 <RsNumber
-                    title={_("Number of loaded images together")}
+                    title={_('Number of loaded images together')}
                     value={tube.config.numberOfImgsTogether}
                     onChange={(numberOfImgsTogether) => tube.setConfig({ numberOfImgsTogether })}
                     step={1}
                     min={0}
-                    helpTooltip={_(
-                        "Number of images that will be loaded together so you can join them"
+                    helpTitle={_(
+                        'Number of images that will be loaded together so you can join them'
                     )}
                 />
             </ConfigComp>
 
             <div>
                 <StyledRow>
-                    <InputTitle>{_("Loaded files")}</InputTitle>
+                    <InputTitle>{_('Loaded files')}</InputTitle>
                     {showWarning && (
                         <WarningChip
-                            title={_("Showing only first %d files", MAX_VISIBLE_SOURCE_COUNT)}
+                            title={_('Showing only first %d files', MAX_VISIBLE_SOURCE_COUNT)}
                         />
                     )}
                 </StyledRow>
