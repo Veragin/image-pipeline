@@ -1,16 +1,16 @@
-import { Download, PlayArrow } from "@mui/icons-material";
-import { Fab, Tooltip } from "@mui/material";
-import { observer } from "mobx-react";
-import { useState } from "react";
-import { spacingCss } from "react-utils/Components/globalCss";
-import RsInput from "react-utils/Components/RsInput/RsInput";
-import { RsSwitch } from "react-utils/Components/RsInput/RsSwitch";
-import { RsModal } from "react-utils/Components/RsModal";
-import { Spinner } from "react-utils/Components/Spinner";
-import { Column, Row } from "react-utils/Components/StyledComponents";
-import { ThePrimaryButton } from "react-utils/Components/TheButton";
-import styled from "styled-components";
-import { Pipeline } from "./Pipeline";
+import { Download, PlayArrow } from '@mui/icons-material';
+import { Fab, Tooltip } from '@mui/material';
+import { observer } from 'mobx-react';
+import { useState } from 'react';
+import { spacingCss } from 'react-utils/Components/globalCss';
+import { RsInput } from 'react-utils/Components/RsInput/RsInput';
+import { RsSwitch } from 'react-utils/Components/RsInput/RsSwitch';
+import { RsModal } from 'react-utils/Components/RsModal';
+import { Spinner } from 'react-utils/Components/Spinner';
+import { Column, Row } from 'react-utils/Components/StyledComponents';
+import { ThePrimaryButton } from 'react-utils/Components/TheButton';
+import styled from 'styled-components';
+import { Pipeline } from './Pipeline';
 
 type Props = {
     pipeline: Pipeline;
@@ -19,9 +19,9 @@ type Props = {
 export const TopControl = observer(({ pipeline }: Props) => {
     const [openStartModal, setOpenStartModal] = useState(false);
     const [useZip, setUseZip] = useState(false);
-    const [zipName, setZipName] = useState("pipeline");
+    const [zipName, setZipName] = useState('pipeline');
     const [openTemplateModal, setOpenTemplateModal] = useState(false);
-    const [fileName, setFileName] = useState("template");
+    const [fileName, setFileName] = useState('template');
 
     const start = () => {
         pipeline.run(useZip ? zipName : null);
@@ -30,7 +30,7 @@ export const TopControl = observer(({ pipeline }: Props) => {
 
     return (
         <StyledRow>
-            <Tooltip title={_("Start process")}>
+            <Tooltip title={_('Start process')}>
                 <Fab color="primary" size="small" onClick={() => setOpenStartModal(true)}>
                     <PlayArrow />
                 </Fab>
@@ -38,25 +38,25 @@ export const TopControl = observer(({ pipeline }: Props) => {
             <RsModal
                 open={openStartModal}
                 onClose={() => setOpenStartModal(false)}
-                title={_("Start Pipeline")}
+                title={_('Start Pipeline')}
             >
                 <StyledCont>
                     <RsSwitch
-                        title={_("Zip")}
+                        title={_('Zip')}
                         value={useZip}
                         onChange={setUseZip}
-                        helpTooltip={_("All images will be wrapped into one zip file.")}
+                        helpTooltip={_('All images will be wrapped into one zip file.')}
                     />
                     {useZip && (
-                        <RsInput title={_("Zip name")} value={zipName} onChange={setZipName} />
+                        <RsInput title={_('Zip name')} value={zipName} onChange={setZipName} />
                     )}
                     <StyledPrimButton color="primary" onClick={() => start()}>
-                        {_("Start")}
+                        {_('Start')}
                     </StyledPrimButton>
                 </StyledCont>
             </RsModal>
 
-            <Tooltip title={_("Export template")}>
+            <Tooltip title={_('Export template')}>
                 <Fab color="primary" size="small" onClick={() => setOpenTemplateModal(true)}>
                     <Download />
                 </Fab>
@@ -64,10 +64,10 @@ export const TopControl = observer(({ pipeline }: Props) => {
             <RsModal
                 open={openTemplateModal}
                 onClose={() => setOpenTemplateModal(false)}
-                title={_("Download template")}
+                title={_('Download template')}
             >
                 <StyledCont>
-                    <RsInput title={_("File name")} value={fileName} onChange={setFileName} />
+                    <RsInput title={_('File name')} value={fileName} onChange={setFileName} />
 
                     <StyledPrimButton
                         color="primary"
@@ -76,7 +76,7 @@ export const TopControl = observer(({ pipeline }: Props) => {
                             setOpenTemplateModal(false);
                         }}
                     >
-                        {_("Download")}
+                        {_('Download')}
                     </StyledPrimButton>
                 </StyledCont>
             </RsModal>
@@ -84,7 +84,7 @@ export const TopControl = observer(({ pipeline }: Props) => {
             {pipeline.processCounter !== null ? (
                 <Spinner
                     msg={_(
-                        "Processed %d/%d",
+                        'Processed %d/%d',
                         pipeline.processCounter,
                         pipeline.tubeTree.tubeLoad.sources.length ?? 0
                     )}

@@ -6,7 +6,7 @@ import { observer } from 'mobx-react';
 import { ConfigComp, ConfigRow, TubeCompCont } from './ConfigComp/ConfigUtils';
 import { Column } from 'react-utils/Components/StyledComponents';
 import { InputTitle } from 'react-utils/Components/RsInput/InputTitle';
-import RsNumber from 'react-utils/Components/RsInput/RsNumber';
+import { RsNumber } from 'react-utils/Components/RsInput/RsNumber';
 
 type Props = {
     tube: TubeObject;

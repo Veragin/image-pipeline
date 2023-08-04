@@ -3,7 +3,7 @@ import { DisplayPreviewCollection } from './DisplayPreviewCollection';
 import { TubeJoin } from '../Tube/TubeJoin';
 import { observer } from 'mobx-react';
 import { ConfigComp, TubeCompCont } from './ConfigComp/ConfigUtils';
-import RsNumber from 'react-utils/Components/RsInput/RsNumber';
+import { RsNumber } from 'react-utils/Components/RsInput/RsNumber';
 
 type Props = {
     tube: TubeJoin;

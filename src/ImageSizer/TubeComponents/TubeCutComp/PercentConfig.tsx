@@ -1,23 +1,23 @@
-import RsInput from "react-utils/Components/RsInput/RsInput";
-import { TubeCut } from "../../Tube/TubeCut";
-import { observer } from "mobx-react";
-import { useState } from "react";
+import { RsInput } from 'react-utils/Components/RsInput/RsInput';
+import { TubeCut } from '../../Tube/TubeCut';
+import { observer } from 'mobx-react';
+import { useState } from 'react';
 
 type Props = {
     tube: TubeCut;
 };
 
 export const PercentConfig = observer(({ tube }: Props) => {
-    const [columnsInput, setColumnsInput] = useState(tube.config.percent.columns.join(", "));
-    const [rowsInput, setRowsInput] = useState(tube.config.percent.rows.join(", "));
+    const [columnsInput, setColumnsInput] = useState(tube.config.percent.columns.join(', '));
+    const [rowsInput, setRowsInput] = useState(tube.config.percent.rows.join(', '));
 
-    if (tube.config.type !== "percent") return null;
+    if (tube.config.type !== 'percent') return null;
 
     const changeColumns = (v: string) => {
         setColumnsInput(v);
 
         const data = v
-            .split(", ")
+            .split(', ')
             .map((v) => parseFloat(v))
             .filter((n) => !Number.isNaN(n));
 
@@ -38,7 +38,7 @@ export const PercentConfig = observer(({ tube }: Props) => {
         setRowsInput(v);
 
         const data = v
-            .split(",")
+            .split(',')
             .map((s) => s.trim())
             .map((v) => parseFloat(v))
             .filter((n) => !Number.isNaN(n));
@@ -59,12 +59,12 @@ export const PercentConfig = observer(({ tube }: Props) => {
     return (
         <>
             <RsInput
-                title={_("Columns")}
+                title={_('Columns')}
                 type="text"
                 value={columnsInput}
                 onChange={changeColumns}
             />
-            <RsInput title={_("Rows")} type="text" value={rowsInput} onChange={changeRows} />
+            <RsInput title={_('Rows')} type="text" value={rowsInput} onChange={changeRows} />
         </>
     );
 });
