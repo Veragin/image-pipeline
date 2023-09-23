@@ -22,8 +22,9 @@ export const StartPipelineModal = ({ onClose, pipeline }: Props) => {
         onClose();
     };
 
-    const displayWarn = !pipeline.tubeTree.hasDownloadTube;
-    const allowDownalod = !displayWarn;
+    const showNoDownloadAlert = !pipeline.tubeTree.hasDownloadTube;
+    const showNoImageAlert = pipeline.tubeTree.tubeLoad.sources.length === 0;
+    const allowDownalod = !showNoDownloadAlert && !showNoImageAlert;
 
     return (
         <StyledCont>
@@ -32,11 +33,16 @@ export const StartPipelineModal = ({ onClose, pipeline }: Props) => {
                     'Process all loaded images through the pipeline. Download tubes will execute downloads or will append images to the final zip.'
                 )}
             </span>
-            {displayWarn && (
+            {showNoDownloadAlert && (
                 <Alert severity="error">
                     {_(
-                        'There is no Download tube in your pipeline. Running of this pipeline will have no effect.'
+                        'No Download tube in your pipeline. Running of this pipeline will have no effect.'
                     )}
+                </Alert>
+            )}
+            {showNoImageAlert && (
+                <Alert severity="error">
+                    {_('No images loaded via Load tube. Nothing to process.')}
                 </Alert>
             )}
             {allowDownalod && (
