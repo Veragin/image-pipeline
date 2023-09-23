@@ -1,7 +1,7 @@
 import { ImageCollection } from '../ImageColection';
 import { DisplayPreviewCollection } from './DisplayPreviewCollection';
 import { TubeLoad } from '../Tube/TubeLoad/TubeLoad';
-import { Radio } from '@mui/material';
+import { IconButton, Radio, Tooltip } from '@mui/material';
 import { observer } from 'mobx-react';
 import styled from 'styled-components';
 import { ConfigComp, TubeCompCont } from './ConfigComp/ConfigUtils';
@@ -11,6 +11,7 @@ import { InputTitle } from 'react-utils/Components/RsInput/InputTitle';
 import { Row } from 'react-utils/Components/StyledComponents';
 import { WarningChip } from './WarningChip';
 import { RsNumber } from 'react-utils/Components/RsInput/RsNumber';
+import { DeleteIcon } from 'react-utils/Components/Icons';
 
 const MAX_VISIBLE_SOURCE_COUNT = 50;
 
@@ -65,7 +66,17 @@ export const TubeLoadComp = observer(({ tube, collection }: Props) => {
                                 checked={i === tube.selectedIndex}
                                 onChange={() => tube.switchPreview(i)}
                             />
-                            {name}
+                            <Tooltip title={name}>
+                                <StyledName>{name}</StyledName>
+                            </Tooltip>
+                            <IconButton
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    tube.deleteSource(i);
+                                }}
+                            >
+                                <DeleteIcon />
+                            </IconButton>
                         </StyledFileName>
                     ))}
                 </StyledCont>
@@ -85,14 +96,18 @@ const StyledCont = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     max-height: 50vh;
+    gap: ${spacingCss(1)};
 `;
 
 const StyledFileName = styled.label`
     display: flex;
     font-size: 14px;
-    gap: ${spacingCss(1)};
+    gap: ${spacingCss(0.5)};
     align-items: center;
     cursor: pointer;
+`;
+
+const StyledName = styled.span`
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;

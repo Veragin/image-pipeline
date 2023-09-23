@@ -1,26 +1,26 @@
-import { makeObservable, observable, runInAction } from "mobx";
+import { makeObservable, observable, runInAction } from 'mobx';
 
-import DriveFolderUploadRoundedIcon from "@mui/icons-material/DriveFolderUploadRounded";
-import { ImageCollection, TImageItem } from "../../ImageColection";
-import { Tube } from "../Tube";
-import { TubeLoadComp } from "../../TubeComponents/TubeLoadComp";
-import { applyDeepPartial } from "react-utils/basic/misc";
-import { FileLoadSource, LoadSource, RemoteLoadSource } from "./LoadSource";
+import DriveFolderUploadRoundedIcon from '@mui/icons-material/DriveFolderUploadRounded';
+import { ImageCollection, TImageItem } from '../../ImageColection';
+import { Tube } from '../Tube';
+import { TubeLoadComp } from '../../TubeComponents/TubeLoadComp';
+import { applyDeepPartial } from 'react-utils/basic/misc';
+import { FileLoadSource, LoadSource, RemoteLoadSource } from './LoadSource';
 
 export class TubeLoad extends Tube<TTubeLoadConfig> {
     id = 0;
-    name = "Load";
-    readonly group = "none";
+    name = 'Load';
+    readonly group = 'none';
     description = [
         _(
-            "Load images into service. This tube cannot be removed, added more times and is the first tube in the pipeline."
+            'Load images into service. This tube cannot be removed, added more times and is the first tube in the pipeline.'
         ),
         _(
-            "Number of loaded images together ... will allow load more images together, 0 or 1 will load exactly one."
+            'Number of loaded images together ... will allow load more images together, 0 or 1 will load exactly one.'
         ),
-        _("Selected image file will be used as a preview."),
-        _("While you start the pipeline, all loaded files will be proccessed."),
-        _("!! Using image with high resolution as an preview will may slow down configuration !!"),
+        _('Selected image file will be used as a preview.'),
+        _('While you start the pipeline, all loaded files will be proccessed.'),
+        _('!! Using image with high resolution as an preview will may slow down configuration !!'),
     ];
     icon = DriveFolderUploadRoundedIcon;
     comp = TubeLoadComp;
@@ -64,7 +64,7 @@ export class TubeLoad extends Tube<TTubeLoadConfig> {
 
         runInAction(() => {
             this.config.source = [];
-            this.sources = newSources;
+            this.sources = [...this.sources, ...newSources];
         });
 
         await this.switchPreview(0);
@@ -103,6 +103,12 @@ export class TubeLoad extends Tube<TTubeLoadConfig> {
         this.onStart();
     };
 
+    deleteSource = (index: number) => {
+        runInAction(() => {
+            this.sources = this.sources.filter((_, i) => i !== index);
+        });
+    };
+
     getSourceNames = () => {
         return this.sources.map((s) => s.getName());
     };
@@ -121,7 +127,7 @@ export class TubeLoad extends Tube<TTubeLoadConfig> {
 
         const items = await Promise.all(promises);
         col.stack.push(...items);
-        col.folderName = items[0]?.name ?? "none";
+        col.folderName = items[0]?.name ?? 'none';
 
         return col;
     };
@@ -129,9 +135,9 @@ export class TubeLoad extends Tube<TTubeLoadConfig> {
     private createImageItemFromIndex = async (index: number): Promise<TImageItem> => {
         const data = await this.sources[index].getImageData();
 
-        const fileNameSplit = this.sources[index].getName().split(".");
-        const format = fileNameSplit.pop() ?? "png";
-        const name = fileNameSplit.join(".");
+        const fileNameSplit = this.sources[index].getName().split('.');
+        const format = fileNameSplit.pop() ?? 'png';
+        const name = fileNameSplit.join('.');
 
         return {
             data,
