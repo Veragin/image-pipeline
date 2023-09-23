@@ -1,14 +1,14 @@
-import { Column, Row } from "react-utils/Components/StyledComponents";
+import { Column, Row } from 'react-utils/Components/StyledComponents';
 
-import { TubeComp } from "./TubeComponents/TubeComp";
-import { TubeList } from "./TubeList/TubeList";
-import { observer } from "mobx-react";
-import styled from "styled-components";
-import { useState } from "react";
-import { TopBar } from "react-utils/Patterns/TopBar";
-import { TopControl } from "./TopControl";
-import { Pipeline } from "./Pipeline";
-import { TTemplate } from "./Const";
+import { TubeComp } from './TubeComponents/TubeComp';
+import { TubeList } from './TubeList/TubeList';
+import { observer } from 'mobx-react';
+import styled from 'styled-components';
+import { useState } from 'react';
+import { TopBar } from 'react-utils/Patterns/TopBar';
+import { TopControl } from './TopControl/TopControl';
+import { Pipeline } from './Pipeline';
+import { TTemplate } from './Const';
 
 type Props = {
     openLandingPage: () => void;
@@ -25,7 +25,7 @@ export const ImageSizer = observer(({ openLandingPage, initTemplate }: Props) =>
         <StyledCont>
             <TopBar
                 onHome={openLandingPage}
-                onUser={() => console.log("open user")}
+                onUser={() => console.log('open user')}
                 logoComp={<TopControl pipeline={pipeline} />}
                 darkMode
             />

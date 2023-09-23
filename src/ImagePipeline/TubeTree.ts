@@ -1,8 +1,9 @@
-import { ImageCollection, copyImageColection } from "./ImageColection";
-import { action, computed, makeObservable, observable, runInAction } from "mobx";
+import { ImageCollection, copyImageColection } from './ImageColection';
+import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 
-import { Tube } from "./Tube/Tube";
-import { TubeLoad } from "./Tube/TubeLoad/TubeLoad";
+import { Tube } from './Tube/Tube';
+import { TubeLoad } from './Tube/TubeLoad/TubeLoad';
+import { TubeDownload } from './Tube/TubeDownload';
 
 export class TubeTree {
     tubeLoad: TubeLoad;
@@ -69,6 +70,10 @@ export class TubeTree {
         this.activeTube?.show(res);
 
         return res;
+    }
+
+    get hasDownloadTube() {
+        return this.stack.some((t) => t instanceof TubeDownload);
     }
 
     private updateTmpCollection = async (stopTubeId: number) => {
