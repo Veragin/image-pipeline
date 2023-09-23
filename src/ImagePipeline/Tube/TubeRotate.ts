@@ -1,14 +1,14 @@
-import { ImageCollection } from "../ImageColection";
-import Rotate90DegreesCwRoundedIcon from "@mui/icons-material/Rotate90DegreesCwRounded";
-import { Tube } from "./Tube";
-import { TubeRotateComp } from "../TubeComponents/TubeRotateComp";
-import { rotatePixels } from "../functions/transformPixels";
-import { rotatePixelsGPU } from "ImageSizer/functions/transformPixelsGPU";
+import { ImageCollection } from '../ImageColection';
+import Rotate90DegreesCwRoundedIcon from '@mui/icons-material/Rotate90DegreesCwRounded';
+import { Tube } from './Tube';
+import { TubeRotateComp } from '../TubeComponents/TubeRotateComp';
+import { rotatePixels } from '../functions/transformPixels';
+import { rotatePixelsGPU } from 'ImagePipeline/functions/transformPixelsGPU';
 
 export class TubeRotate extends Tube<TTubeRotateConfig> {
-    name = "Rotate";
-    readonly group = "transform";
-    description = _("Rotate image by degree. Angle should be number between 0 and 360");
+    name = 'Rotate';
+    readonly group = 'transform';
+    description = _('Rotate image by degree. Angle should be number between 0 and 360');
     icon = Rotate90DegreesCwRoundedIcon;
     comp = TubeRotateComp;
 

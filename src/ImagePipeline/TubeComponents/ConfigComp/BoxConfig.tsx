@@ -1,9 +1,9 @@
-import { Column, Row } from "../../../react-utils/Components/StyledComponents";
-import ToolbarProperty from "ImageSizer/Components/ToolbarProperty";
-import { observer } from "mobx-react";
-import { spacingCss } from "react-utils/Components/globalCss";
-import styled from "styled-components";
-import { InputTitle } from "react-utils/Components/RsInput/InputTitle";
+import { Column, Row } from '../../../react-utils/Components/StyledComponents';
+import ToolbarProperty from 'ImagePipeline/Components/ToolbarProperty';
+import { observer } from 'mobx-react';
+import { spacingCss } from 'react-utils/Components/globalCss';
+import styled from 'styled-components';
+import { InputTitle } from 'react-utils/Components/RsInput/InputTitle';
 
 type Props = {
     type?: string;
@@ -12,11 +12,11 @@ type Props = {
 };
 
 export const BoxConfig = observer(({ type, box, onChange }: Props) => {
-    if (type !== undefined && type !== "box") return null;
+    if (type !== undefined && type !== 'box') return null;
 
     return (
         <StyledColumn>
-            <InputTitle>{_("Box config")}</InputTitle>
+            <InputTitle>{_('Box config')}</InputTitle>
             <StyledRow>
                 <ToolbarProperty
                     title="X"

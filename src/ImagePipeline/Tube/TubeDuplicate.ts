@@ -1,13 +1,13 @@
-import ContentCopyRoundedIcon from "@mui/icons-material/ContentCopyRounded";
-import { inverseSelection } from "ImageSizer/functions/selections";
-import { TubeDuplicateComp } from "ImageSizer/TubeComponents/TubeDuplicateComp";
-import { copyImageColection, ImageCollection, TImageItem } from "../ImageColection";
-import { Tube } from "./Tube";
+import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
+import { inverseSelection } from 'ImagePipeline/functions/selections';
+import { TubeDuplicateComp } from 'ImagePipeline/TubeComponents/TubeDuplicateComp';
+import { copyImageColection, ImageCollection, TImageItem } from '../ImageColection';
+import { Tube } from './Tube';
 
 export class TubeDuplicate extends Tube<TTubeDuplicateConfig> {
-    name = "Duplicate";
-    readonly group = "object";
-    description = _("Duplicate image multiple times. Duplicates can have inverted selection.");
+    name = 'Duplicate';
+    readonly group = 'object';
+    description = _('Duplicate image multiple times. Duplicates can have inverted selection.');
     icon = ContentCopyRoundedIcon;
     comp = TubeDuplicateComp;
 

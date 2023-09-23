@@ -1,4 +1,4 @@
-import { getPixelFormPos } from "ImageSizer/functions/pixelUtils";
+import { getPixelFormPos } from 'ImagePipeline/functions/pixelUtils';
 import {
     CHANGE_ANIMATION_COUNT,
     CHANGE_ANIMATION_DURATION_MS,
@@ -8,9 +8,9 @@ import {
     SPRITE_MIN_SPEED,
     SPRITE_PROGRESS_DURATION_MS,
     SPRITE_SIZE,
-} from "./const";
-import { CHNAGE_SPRITE_SHEET_IMAGE, SPRITE_IMAGES, TSpriteType } from "./images";
-import { randomFromRange, randomSpriteType } from "./utils";
+} from './const';
+import { CHNAGE_SPRITE_SHEET_IMAGE, SPRITE_IMAGES, TSpriteType } from './images';
+import { randomFromRange, randomSpriteType } from './utils';
 
 export class Sprite {
     type: TSpriteType;

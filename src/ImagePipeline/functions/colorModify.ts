@@ -1,5 +1,5 @@
-import { TSelection } from "ImageSizer/ImageColection";
-import { THsvColor, hsvToRgb, rgbToHsv } from "react-utils/color";
+import { TSelection } from 'ImagePipeline/ImageColection';
+import { THsvColor, hsvToRgb, rgbToHsv } from 'react-utils/color';
 
 /****************************************************
  ************ Apply color

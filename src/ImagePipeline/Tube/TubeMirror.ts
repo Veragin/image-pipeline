@@ -1,14 +1,14 @@
-import FlipRoundedIcon from "@mui/icons-material/FlipRounded";
-import { ImageCollection } from "../ImageColection";
-import { Tube } from "./Tube";
-import { TubeMirrorComp } from "../TubeComponents/TubeMirrorComp";
-import { mirrorPixels } from "../functions/transformPixels";
-import { mirrorPixelsGPU } from "ImageSizer/functions/transformPixelsGPU";
+import FlipRoundedIcon from '@mui/icons-material/FlipRounded';
+import { ImageCollection } from '../ImageColection';
+import { Tube } from './Tube';
+import { TubeMirrorComp } from '../TubeComponents/TubeMirrorComp';
+import { mirrorPixels } from '../functions/transformPixels';
+import { mirrorPixelsGPU } from 'ImagePipeline/functions/transformPixelsGPU';
 
 export class TubeMirror extends Tube<TTubeMirrorConfig> {
-    name = "Mirror";
-    readonly group = "transform";
-    description = _("Mirror image vertically and horizontally.");
+    name = 'Mirror';
+    readonly group = 'transform';
+    description = _('Mirror image vertically and horizontally.');
     icon = FlipRoundedIcon;
     comp = TubeMirrorComp;
 

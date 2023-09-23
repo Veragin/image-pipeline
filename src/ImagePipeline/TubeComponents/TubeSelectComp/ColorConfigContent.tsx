@@ -1,9 +1,9 @@
-import { observer } from "mobx-react";
-import ToolbarColor from "ImageSizer/Components/ToolbarColor";
-import ToolbarProperty from "ImageSizer/Components/ToolbarProperty";
-import { TubeSelect } from "ImageSizer/Tube/TubeSelect";
-import { useState } from "react";
-import { ToolbarHue } from "ImageSizer/Components/ToolbarHue";
+import { observer } from 'mobx-react';
+import ToolbarColor from 'ImagePipeline/Components/ToolbarColor';
+import ToolbarProperty from 'ImagePipeline/Components/ToolbarProperty';
+import { TubeSelect } from 'ImagePipeline/Tube/TubeSelect';
+import { useState } from 'react';
+import { ToolbarHue } from 'ImagePipeline/Components/ToolbarHue';
 
 type Props = {
     tube: TubeSelect;
@@ -13,10 +13,10 @@ export const ColorConfigContent = observer(({ tube }: Props) => {
     const [color, setColor] = useState(tube.config.color.pivot);
 
     switch (tube.config.color.type) {
-        case "color":
+        case 'color':
             return (
                 <ToolbarColor
-                    label={_("Color")}
+                    label={_('Color')}
                     value={color}
                     onChange={(v) => {
                         setColor(v);
@@ -26,7 +26,7 @@ export const ColorConfigContent = observer(({ tube }: Props) => {
                     }}
                 />
             );
-        case "hue":
+        case 'hue':
             return (
                 <ToolbarHue
                     value={String(tube.config.color.hue)}
@@ -37,7 +37,7 @@ export const ColorConfigContent = observer(({ tube }: Props) => {
                     }
                 />
             );
-        case "alpha":
+        case 'alpha':
             return (
                 <ToolbarProperty
                     title="Alpha"
@@ -48,7 +48,7 @@ export const ColorConfigContent = observer(({ tube }: Props) => {
                             alpha: Number(v),
                         })
                     }
-                    type={"number"}
+                    type={'number'}
                     min={0}
                     max={1}
                     step={0.05}

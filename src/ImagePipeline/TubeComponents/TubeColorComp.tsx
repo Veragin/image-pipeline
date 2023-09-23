@@ -1,7 +1,7 @@
 import { ImageCollection } from '../ImageColection';
 import { TTubeColorArea, TTubeColorColorType, TTubeColorMode, TubeColor } from '../Tube/TubeColor';
 import { DisplayPreviewCollection } from './DisplayPreviewCollection';
-import ToolbarColor from 'ImageSizer/Components/ToolbarColor';
+import ToolbarColor from 'ImagePipeline/Components/ToolbarColor';
 import { observer } from 'mobx-react';
 import { TubeCompCont, ConfigComp, ConfigRow } from './ConfigComp/ConfigUtils';
 import RsSelect from 'react-utils/Components/RsInput/RsSelect';

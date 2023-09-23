@@ -1,15 +1,15 @@
-import { ImageCollection, TImageItem, TImageObject } from "../ImageColection";
-import { getRandomColor } from "../functions/pixelUtils";
-import { useEffect, useRef, useState } from "react";
+import { ImageCollection, TImageItem, TImageObject } from '../ImageColection';
+import { getRandomColor } from '../functions/pixelUtils';
+import { useEffect, useRef, useState } from 'react';
 
-import { Column, Row } from "react-utils/Components/StyledComponents";
-import { spacingCss } from "react-utils/Components/globalCss";
-import styled from "styled-components";
-import { InputTitle } from "react-utils/Components/RsInput/InputTitle";
-import { Radio } from "@mui/material";
-import { applyColorToImage } from "ImageSizer/functions/colorModify";
+import { Column, Row } from 'react-utils/Components/StyledComponents';
+import { spacingCss } from 'react-utils/Components/globalCss';
+import styled from 'styled-components';
+import { InputTitle } from 'react-utils/Components/RsInput/InputTitle';
+import { Radio } from '@mui/material';
+import { applyColorToImage } from 'ImagePipeline/functions/colorModify';
 
-type TItemShow = "none" | "selection" | "objects";
+type TItemShow = 'none' | 'selection' | 'objects';
 
 type Props = {
     collection: ImageCollection;
@@ -17,35 +17,35 @@ type Props = {
 };
 
 export const DisplayPreviewCollection = ({ collection, showInit }: Props) => {
-    const [show, setShow] = useState<TItemShow>(showInit ?? "none");
+    const [show, setShow] = useState<TItemShow>(showInit ?? 'none');
 
     return (
         <StyledCont>
-            <InputTitle>{_("Preview")}</InputTitle>
+            <InputTitle>{_('Preview')}</InputTitle>
             <StyledOptions>
                 <StyledOption>
                     <Radio
                         size="small"
-                        onChange={() => setShow("none")}
-                        checked={show === "none"}
+                        onChange={() => setShow('none')}
+                        checked={show === 'none'}
                     />
-                    {_("None")}
+                    {_('None')}
                 </StyledOption>
                 <StyledOption>
                     <Radio
                         size="small"
-                        onChange={() => setShow("selection")}
-                        checked={show === "selection"}
+                        onChange={() => setShow('selection')}
+                        checked={show === 'selection'}
                     />
-                    {_("Selection")}
+                    {_('Selection')}
                 </StyledOption>
                 <StyledOption>
                     <Radio
                         size="small"
-                        onChange={() => setShow("objects")}
-                        checked={show === "objects"}
+                        onChange={() => setShow('objects')}
+                        checked={show === 'objects'}
                     />
-                    {_("objects")}
+                    {_('objects')}
                 </StyledOption>
             </StyledOptions>
             <StyledDisplayCont>
@@ -94,13 +94,13 @@ const DisplayItem = ({ data, show }: ItemProps) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
     useEffect(() => {
-        const ctx = canvasRef.current?.getContext("2d");
+        const ctx = canvasRef.current?.getContext('2d');
 
         if (canvasRef.current && ctx) {
             canvasRef.current.width = data.data.width;
             canvasRef.current.height = data.data.height;
-            canvasRef.current.style.width = data.data.width + "px";
-            canvasRef.current.style.height = data.data.height + "px";
+            canvasRef.current.style.width = data.data.width + 'px';
+            canvasRef.current.style.height = data.data.height + 'px';
 
             let img = data.data;
 
@@ -110,7 +110,7 @@ const DisplayItem = ({ data, show }: ItemProps) => {
 
             ctx.putImageData(img, 0, 0);
 
-            if (show === "objects") {
+            if (show === 'objects') {
                 drawObjects(ctx, data.objects);
             }
         }
@@ -123,14 +123,14 @@ const getColoredImage = (data: TImageItem, show: TItemShow) => {
     const newData = new ImageData(data.data.width, data.data.height);
     newData.data.set(data.data.data);
 
-    if (show === "selection") {
+    if (show === 'selection') {
         applyColorToImage(newData, data.selection, {
             r: 255,
             g: 0,
             b: 0,
             a: 1,
         });
-    } else if (show === "objects") {
+    } else if (show === 'objects') {
         for (let obj of data.objects) {
             const color = getRandomColor();
             applyColorToImage(newData, obj.selection, color);
@@ -142,7 +142,7 @@ const getColoredImage = (data: TImageItem, show: TItemShow) => {
 
 const drawObjects = (ctx: CanvasRenderingContext2D, objects: TImageObject[]) => {
     for (let obj of objects) {
-        ctx.strokeStyle = "black";
+        ctx.strokeStyle = 'black';
         ctx.strokeRect(obj.rect.x, obj.rect.y, obj.rect.width, obj.rect.height);
     }
 };

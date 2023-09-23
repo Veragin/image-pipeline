@@ -1,15 +1,15 @@
-import { Button } from "@mui/material";
-import { Column, Row } from "react-utils/Components/StyledComponents";
-import logo from "Assets/logo/logo.svg";
-import { spacingCss } from "react-utils/Components/globalCss";
-import styled from "styled-components";
-import { Highlight } from "./Components";
-import { useRef } from "react";
-import { PaintEngine } from "./PaintEngine/PaintEngine";
-import { useRunOnlyOnce } from "react-utils/basic/hooks";
-import { TTemplate } from "ImageSizer/Const";
-import { testGPU } from "ImageSizer/functions/testGPU";
-import { isDev } from "react-utils/basic/misc";
+import { Button } from '@mui/material';
+import { Column, Row } from 'react-utils/Components/StyledComponents';
+import logo from 'Assets/logo/logo.svg';
+import { spacingCss } from 'react-utils/Components/globalCss';
+import styled from 'styled-components';
+import { Highlight } from './Components';
+import { useRef } from 'react';
+import { PaintEngine } from './PaintEngine/PaintEngine';
+import { useRunOnlyOnce } from 'react-utils/basic/hooks';
+import { TTemplate } from 'ImagePipeline/Const';
+import { testGPU } from 'ImagePipeline/functions/testGPU';
+import { isDev } from 'react-utils/basic/misc';
 
 type Props = {
     onStart: (template?: TTemplate) => void;
@@ -30,7 +30,7 @@ export const Landing = ({ onStart }: Props) => {
         const y = (element?.getBoundingClientRect().top ?? 0) + window.scrollY;
         window.scroll({
             top: y,
-            behavior: "smooth",
+            behavior: 'smooth',
         });
     };
 
@@ -58,8 +58,8 @@ export const Landing = ({ onStart }: Props) => {
                 </StyledTitleCont>
             </StyledDiv>
             <StyledMenu>
-                <StyledMenuItem onClick={() => scrollTo("tutorial")}>
-                    {_("Get started")}
+                <StyledMenuItem onClick={() => scrollTo('tutorial')}>
+                    {_('Get started')}
                 </StyledMenuItem>
                 <Button
                     color="primary"
@@ -68,7 +68,7 @@ export const Landing = ({ onStart }: Props) => {
                         onStart();
                     }}
                 >
-                    {_("Start right now")}
+                    {_('Start right now')}
                 </Button>
                 {isDev() && (
                     <Button
@@ -78,14 +78,14 @@ export const Landing = ({ onStart }: Props) => {
                             testGPU();
                         }}
                     >
-                        {_("Test")}
+                        {_('Test')}
                     </Button>
                 )}
-                <StyledMenuItem onClick={() => scrollTo("examples")}>
-                    {_("Examples")}
+                <StyledMenuItem onClick={() => scrollTo('examples')}>
+                    {_('Examples')}
                 </StyledMenuItem>
 
-                <StyledMenuItem onClick={() => scrollTo("sizefire")}>SizeFire</StyledMenuItem>
+                <StyledMenuItem onClick={() => scrollTo('sizefire')}>SizeFire</StyledMenuItem>
             </StyledMenu>
         </>
     );

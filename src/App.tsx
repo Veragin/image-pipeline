@@ -1,7 +1,7 @@
-import { ImageSizer } from "./ImageSizer/ImageSizer";
-import { LandingPage } from "./LandingPage/LandingPage";
-import { useState } from "react";
-import { TTemplate } from "ImageSizer/Const";
+import { ImageSizer } from './ImagePipeline/ImageSizer';
+import { LandingPage } from './LandingPage/LandingPage';
+import { useState } from 'react';
+import { TTemplate } from 'ImagePipeline/Const';
 
 export const App = () => {
     const [isStarted, setIsStarted] = useState<TTemplate | undefined | null>(null);

@@ -1,5 +1,5 @@
-import { TTubeJoinConfig } from "ImageSizer/Tube/TubeJoin";
-import { countSizeOfJoinedElements } from "./join";
+import { TTubeJoinConfig } from 'ImagePipeline/Tube/TubeJoin';
+import { countSizeOfJoinedElements } from './join';
 
 const createBasicConfig = (): TTubeJoinConfig => ({
     maxWidth: 0,
@@ -9,8 +9,8 @@ const createBasicConfig = (): TTubeJoinConfig => ({
     horizontalGap: 0,
 });
 
-describe("join", () => {
-    it("countSizeOfJoindElements no limitss", () => {
+describe('join', () => {
+    it('countSizeOfJoindElements no limitss', () => {
         const sizes: TSize[] = Array<TSize>(10).fill({ width: 10, height: 10 });
 
         const res = countSizeOfJoinedElements(sizes, createBasicConfig());
@@ -23,7 +23,7 @@ describe("join", () => {
         `);
     });
 
-    it("countSizeOfJoindElements max items on row limit", () => {
+    it('countSizeOfJoindElements max items on row limit', () => {
         const sizes: TSize[] = Array<TSize>(10).fill({ width: 10, height: 10 });
 
         const config = createBasicConfig();
@@ -38,7 +38,7 @@ describe("join", () => {
         `);
     });
 
-    it("countSizeOfJoindElements max width of row", () => {
+    it('countSizeOfJoindElements max width of row', () => {
         const sizes: TSize[] = Array<TSize>(10).fill({ width: 10, height: 10 });
 
         const config = createBasicConfig();
@@ -53,7 +53,7 @@ describe("join", () => {
         `);
     });
 
-    it("countSizeOfJoindElements both limites", () => {
+    it('countSizeOfJoindElements both limites', () => {
         const sizes: TSize[] = Array<TSize>(12).fill({ width: 18, height: 4 });
 
         const config = createBasicConfig();
@@ -69,7 +69,7 @@ describe("join", () => {
         `);
     });
 
-    it("countSizeOfJoindElements max width of row with gap", () => {
+    it('countSizeOfJoindElements max width of row with gap', () => {
         const sizes: TSize[] = Array<TSize>(10).fill({ width: 10, height: 10 });
 
         const config = createBasicConfig();
@@ -86,7 +86,7 @@ describe("join", () => {
         `);
     });
 
-    it("countSizeOfJoindElements gap change layout", () => {
+    it('countSizeOfJoindElements gap change layout', () => {
         const sizes: TSize[] = Array<TSize>(10).fill({ width: 10, height: 10 });
 
         const config = createBasicConfig();

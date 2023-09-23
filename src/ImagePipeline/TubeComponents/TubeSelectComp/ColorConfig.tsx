@@ -1,11 +1,11 @@
-import { Row } from "react-utils/Components/StyledComponents";
-import { TubeSelect } from "ImageSizer/Tube/TubeSelect";
-import ToolbarSlider from "ImageSizer/Components/ToolbarSlider";
-import { observer } from "mobx-react";
-import styled from "styled-components";
-import { useState } from "react";
-import RsSelect from "react-utils/Components/RsInput/RsSelect";
-import { ColorConfigContent } from "./ColorConfigContent";
+import { Row } from 'react-utils/Components/StyledComponents';
+import { TubeSelect } from 'ImagePipeline/Tube/TubeSelect';
+import ToolbarSlider from 'ImagePipeline/Components/ToolbarSlider';
+import { observer } from 'mobx-react';
+import styled from 'styled-components';
+import { useState } from 'react';
+import RsSelect from 'react-utils/Components/RsInput/RsSelect';
+import { ColorConfigContent } from './ColorConfigContent';
 
 type Props = {
     tube: TubeSelect;
@@ -14,19 +14,19 @@ type Props = {
 export const ColorConfig = observer(({ tube }: Props) => {
     const [threshold, setThreshold] = useState(tube.config.color.threshold);
 
-    if (tube.config.method !== "color") return null;
+    if (tube.config.method !== 'color') return null;
 
     return (
         <>
             <RsSelect
-                title={_("Color config")}
+                title={_('Color config')}
                 value={tube.config.color.type}
                 setValue={(v) => tube.setConfigColor({ type: v as any })}
                 list={typeOptions}
             />
             <ColorConfigContent tube={tube} />
             <StyledRow>
-                <StyledTitle>{_("Threshold")}</StyledTitle>
+                <StyledTitle>{_('Threshold')}</StyledTitle>
                 <ToolbarSlider
                     value={threshold}
                     onChange={(v) => {
@@ -44,16 +44,16 @@ export const ColorConfig = observer(({ tube }: Props) => {
 
 const typeOptions = [
     {
-        title: _("Color"),
-        value: "color",
+        title: _('Color'),
+        value: 'color',
     },
     {
-        title: _("Hue"),
-        value: "hue",
+        title: _('Hue'),
+        value: 'hue',
     },
     {
-        title: _("Alpha"),
-        value: "alpha",
+        title: _('Alpha'),
+        value: 'alpha',
     },
 ];
 

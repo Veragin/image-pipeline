@@ -1,14 +1,14 @@
-import { TTubeGroup } from "ImageSizer/Const";
-import { action, makeObservable, observable } from "mobx";
-import { applyDeepPartial, generateRandomId } from "react-utils/basic/misc";
+import { TTubeGroup } from 'ImagePipeline/Const';
+import { action, makeObservable, observable } from 'mobx';
+import { applyDeepPartial, generateRandomId } from 'react-utils/basic/misc';
 
-import { ImageCollection } from "../ImageColection";
+import { ImageCollection } from '../ImageColection';
 
 export class Tube<Config extends Object> {
     readonly id: number = generateRandomId();
-    readonly group: TTubeGroup = "basic";
-    readonly name: string = "";
-    readonly description: string | string[] = "";
+    readonly group: TTubeGroup = 'basic';
+    readonly name: string = '';
+    readonly description: string | string[] = '';
 
     icon: React.FC = () => null;
     comp: React.FC<TCompProps> = () => null;

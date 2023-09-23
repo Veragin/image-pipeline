@@ -1,35 +1,35 @@
-import { scissorsTemplate } from "ImageSizer/templates/scissorsTemplate";
-import { eshopTemplate } from "ImageSizer/templates/eshopTemplate";
-import { spriteTemplate } from "ImageSizer/templates/spriteTemplate";
-import { neuralTemplate } from "ImageSizer/templates/neralTemplate";
-import { TTemplate } from "ImageSizer/Const";
+import { scissorsTemplate } from 'ImagePipeline/templates/scissorsTemplate';
+import { eshopTemplate } from 'ImagePipeline/templates/eshopTemplate';
+import { spriteTemplate } from 'ImagePipeline/templates/spriteTemplate';
+import { neuralTemplate } from 'ImagePipeline/templates/neralTemplate';
+import { TTemplate } from 'ImagePipeline/Const';
 
 export const scissorsLoadTemplate = JSON.parse(JSON.stringify(scissorsTemplate)) as TTemplate;
 scissorsLoadTemplate.tubes.unshift({
-    tube: "load",
+    tube: 'load',
     config: {
-        source: ["/examples/handbags.webp"],
+        source: ['/examples/handbags.webp'],
     },
 });
 
 export const spriteLoadTemplate = JSON.parse(JSON.stringify(spriteTemplate)) as TTemplate;
 spriteLoadTemplate.tubes.unshift({
-    tube: "load",
+    tube: 'load',
     config: {
-        source: ["/examples/zombie.jpg"],
+        source: ['/examples/zombie.jpg'],
     },
 });
 
 export const eshopLoadTemplate = JSON.parse(JSON.stringify(eshopTemplate)) as TTemplate;
 eshopLoadTemplate.tubes.unshift({
-    tube: "load",
+    tube: 'load',
     config: {
         source: [
-            "/examples/handbag_0.png",
-            "/examples/handbag_1.png",
-            "/examples/handbag_2.png",
-            "/examples/handbag_3.png",
-            "/examples/handbag_4.png",
+            '/examples/handbag_0.png',
+            '/examples/handbag_1.png',
+            '/examples/handbag_2.png',
+            '/examples/handbag_3.png',
+            '/examples/handbag_4.png',
         ],
     },
 });
@@ -37,34 +37,34 @@ eshopLoadTemplate.tubes.unshift({
 export const neuralLoadTemplate = JSON.parse(JSON.stringify(neuralTemplate)) as TTemplate;
 neuralLoadTemplate.tubes.unshift(
     {
-        tube: "load",
+        tube: 'load',
         config: {
-            source: ["/examples/numbers.png"],
+            source: ['/examples/numbers.png'],
         },
     },
     {
-        tube: "rename",
+        tube: 'rename',
         config: {
             image: {
-                pattern: "handNumbers",
+                pattern: 'handNumbers',
             },
         },
     },
     {
-        tube: "select",
+        tube: 'select',
         config: {
-            mode: "newSelect",
-            method: "color",
+            mode: 'newSelect',
+            method: 'color',
             inverse: true,
             box: { x: 0, y: 0, width: 500, height: 500 },
             color: {
-                type: "alpha",
+                type: 'alpha',
                 pivot: { r: 255, g: 255, b: 255, a: 1 },
                 alpha: 0,
                 threshold: 0.004,
             },
             neighbor: {
-                type: "pixel",
+                type: 'pixel',
                 x: 0,
                 y: 0,
                 color: { r: 255, g: 255, b: 255, a: 1 },
@@ -73,7 +73,7 @@ neuralLoadTemplate.tubes.unshift(
         },
     },
     {
-        tube: "object",
+        tube: 'object',
         config: {
             compactDistance: 4,
             minimalHeight: 0,
@@ -81,35 +81,35 @@ neuralLoadTemplate.tubes.unshift(
             minimalWidth: 0,
             bbConfig: {
                 isFitActive: true,
-                fitTo: { width: 250, height: 250, vertical: "center", horizontal: "center" },
+                fitTo: { width: 250, height: 250, vertical: 'center', horizontal: 'center' },
                 padding: { top: 0, bottom: 0, left: 0, right: 0 },
             },
         },
     },
     {
-        tube: "cut",
+        tube: 'cut',
         config: {
-            type: "object",
+            type: 'object',
             fixed: { width: 24, height: 24 },
             percent: { columns: [], rows: [] },
-            sort: "none",
+            sort: 'none',
         },
     },
     {
-        tube: "select",
+        tube: 'select',
         config: {
-            mode: "newSelect",
-            method: "old",
+            mode: 'newSelect',
+            method: 'old',
             inverse: false,
             box: { x: 0, y: 0, width: 500, height: 500 },
             color: {
-                type: "color",
+                type: 'color',
                 pivot: { r: 255, g: 255, b: 255, a: 1 },
                 alpha: 0,
                 threshold: 0,
             },
             neighbor: {
-                type: "pixel",
+                type: 'pixel',
                 x: 0,
                 y: 0,
                 color: { r: 255, g: 255, b: 255, a: 1 },
@@ -118,11 +118,11 @@ neuralLoadTemplate.tubes.unshift(
         },
     },
     {
-        tube: "color",
+        tube: 'color',
         config: {
-            area: "selection",
-            mode: "fixed",
-            type: "rgba",
+            area: 'selection',
+            mode: 'fixed',
+            type: 'rgba',
             rgba: { r: 0, g: 0, b: 0, a: 0 },
         },
     }

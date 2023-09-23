@@ -1,7 +1,7 @@
 import { ImageCollection } from '../ImageColection';
 import { DisplayPreviewCollection } from './DisplayPreviewCollection';
 import { observer } from 'mobx-react';
-import { TubeDuplicate } from 'ImageSizer/Tube/TubeDuplicate';
+import { TubeDuplicate } from 'ImagePipeline/Tube/TubeDuplicate';
 import { ConfigComp, TubeCompCont } from './ConfigComp/ConfigUtils';
 import { RsSwitch } from 'react-utils/Components/RsInput/RsSwitch';
 import { RsNumber } from 'react-utils/Components/RsInput/RsNumber';

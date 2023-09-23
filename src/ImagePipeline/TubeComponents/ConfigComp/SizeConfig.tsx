@@ -1,8 +1,8 @@
-import { Row } from "../../../react-utils/Components/StyledComponents";
-import ToolbarProperty from "ImageSizer/Components/ToolbarProperty";
-import { observer } from "mobx-react";
-import { spacingCss } from "react-utils/Components/globalCss";
-import styled from "styled-components";
+import { Row } from '../../../react-utils/Components/StyledComponents';
+import ToolbarProperty from 'ImagePipeline/Components/ToolbarProperty';
+import { observer } from 'mobx-react';
+import { spacingCss } from 'react-utils/Components/globalCss';
+import styled from 'styled-components';
 
 type Props = {
     show?: boolean;

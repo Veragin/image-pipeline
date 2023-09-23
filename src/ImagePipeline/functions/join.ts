@@ -1,5 +1,5 @@
-import { TTubeJoinConfig } from "ImageSizer/Tube/TubeJoin";
-import { getPixelFormPos, pixelIndex } from "./pixelUtils";
+import { TTubeJoinConfig } from 'ImagePipeline/Tube/TubeJoin';
+import { getPixelFormPos, pixelIndex } from './pixelUtils';
 
 export const joinPixels = (imgDatas: ImageData[], config: TTubeJoinConfig) => {
     const size = countSizeOfJoinedElements(imgDatas, config);

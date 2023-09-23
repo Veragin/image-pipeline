@@ -1,17 +1,17 @@
-import { Highlight } from "LandingPage/Components";
-import { spacingCss } from "react-utils/Components/globalCss";
-import { Column, Row } from "react-utils/Components/StyledComponents";
-import styled from "styled-components";
-import baseImg from "Assets/landing/sprites/base.png";
-import massEditnig from "Assets/landing/examples/shopIcon.png";
-import { TTemplate } from "ImageSizer/Const";
-import { Button } from "@mui/material";
+import { Highlight } from 'LandingPage/Components';
+import { spacingCss } from 'react-utils/Components/globalCss';
+import { Column, Row } from 'react-utils/Components/StyledComponents';
+import styled from 'styled-components';
+import baseImg from 'Assets/landing/sprites/base.png';
+import massEditnig from 'Assets/landing/examples/shopIcon.png';
+import { TTemplate } from 'ImagePipeline/Const';
+import { Button } from '@mui/material';
 import {
     scissorsLoadTemplate,
     eshopLoadTemplate,
     neuralLoadTemplate,
     spriteLoadTemplate,
-} from "./autoLoadExamples";
+} from './autoLoadExamples';
 
 type Props = {
     onStart: (template?: TTemplate) => void;
@@ -22,13 +22,13 @@ export const Examples = ({ onStart }: Props) => {
         <StyledColumn>
             <StyledContainerBox>
                 <div>
-                    <StyledTitle>{_("Case: Scissors")}</StyledTitle>
+                    <StyledTitle>{_('Case: Scissors')}</StyledTitle>
                     <p>
                         {_(
-                            "Many images together in the large one and you need split them into separated files. With"
+                            'Many images together in the large one and you need split them into separated files. With'
                         )}
                         <Highlight> Image pipeline </Highlight>
-                        {_("it is super easy.")}
+                        {_('it is super easy.')}
                     </p>
                     <TryButton onClick={() => onStart(scissorsLoadTemplate)} />
                 </div>
@@ -37,10 +37,10 @@ export const Examples = ({ onStart }: Props) => {
 
             <StyledContainerBox>
                 <div>
-                    <StyledTitle>{_("Case: Eshop")}</StyledTitle>
+                    <StyledTitle>{_('Case: Eshop')}</StyledTitle>
                     <p>
                         {_(
-                            "Imagine that you are running an e-shop. You have over 1000 photos of your products that needs to be uploaded to your website, but you have to improve them to meet your requirements. You must have each photo same exact size and the product located directly in the middle. You can do it all manually with your hands or you can use"
+                            'Imagine that you are running an e-shop. You have over 1000 photos of your products that needs to be uploaded to your website, but you have to improve them to meet your requirements. You must have each photo same exact size and the product located directly in the middle. You can do it all manually with your hands or you can use'
                         )}
                         <Highlight> Image pipeline!</Highlight>
                     </p>
@@ -52,14 +52,14 @@ export const Examples = ({ onStart }: Props) => {
             <StyledContainerBox>
                 <StyledImage src={baseImg} />
                 <div>
-                    <StyledTitle>{_("Case: Game sprites")}</StyledTitle>
+                    <StyledTitle>{_('Case: Game sprites')}</StyledTitle>
                     <p>
                         {_(
-                            "You are creating a game, you found the greatest sprites for animation for your game, but you need to made background transparent and every animation frame is different size or is there some annoying padding. Create a"
+                            'You are creating a game, you found the greatest sprites for animation for your game, but you need to made background transparent and every animation frame is different size or is there some annoying padding. Create a'
                         )}
                         <Highlight> pipeline </Highlight>
                         {_(
-                            "that will do all the work for you and converts all your animation sheets into useable form."
+                            'that will do all the work for you and converts all your animation sheets into useable form.'
                         )}
                     </p>
                     <TryButton onClick={() => onStart(spriteLoadTemplate)} />
@@ -67,10 +67,10 @@ export const Examples = ({ onStart }: Props) => {
             </StyledContainerBox>
             <StyledContainerBox>
                 <div>
-                    <StyledTitle>{_("Case: Neural network - dataset")}</StyledTitle>
+                    <StyledTitle>{_('Case: Neural network - dataset')}</StyledTitle>
                     <p>
                         {_(
-                            "You would like to train your own neural network. You already have some dataset of images but for better robustability you would like to generate some more data by mirroring, rotating or recoloring your dataset, so that your neural network will handle these variants as well. But how can you do that? You probably can use some downloaded script or write your script that will transform your data, but what if there will be some more userfriendly solution such as"
+                            'You would like to train your own neural network. You already have some dataset of images but for better robustability you would like to generate some more data by mirroring, rotating or recoloring your dataset, so that your neural network will handle these variants as well. But how can you do that? You probably can use some downloaded script or write your script that will transform your data, but what if there will be some more userfriendly solution such as'
                         )}
                         <Highlight> Image pipeline.</Highlight>
                     </p>
@@ -86,7 +86,7 @@ const TryButton = ({ onClick }: { onClick: () => void }) => {
     return (
         <StyledRow>
             <Button variant="contained" onClick={onClick}>
-                {_("Show example")}
+                {_('Show example')}
             </Button>
         </StyledRow>
     );

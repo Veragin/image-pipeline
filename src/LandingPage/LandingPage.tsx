@@ -1,10 +1,10 @@
-import { Column } from "react-utils/Components/StyledComponents";
-import { Landing } from "./Landing";
-import styled from "styled-components";
-import { LandingPipe } from "./LandingPipe";
-import { Body } from "./Body/Body";
-import { Footer } from "./Footer";
-import { TTemplate } from "ImageSizer/Const";
+import { Column } from 'react-utils/Components/StyledComponents';
+import { Landing } from './Landing';
+import styled from 'styled-components';
+import { LandingPipe } from './LandingPipe';
+import { Body } from './Body/Body';
+import { Footer } from './Footer';
+import { TTemplate } from 'ImagePipeline/Const';
 
 type Props = {
     onStart: (template?: TTemplate) => void;
