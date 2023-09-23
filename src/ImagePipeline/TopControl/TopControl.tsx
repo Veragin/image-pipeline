@@ -80,8 +80,8 @@ export const TopControl = observer(({ pipeline }: Props) => {
 });
 
 const StyledRow = styled(Row)`
-    gap: ${spacingCss(1)};
-    padding: 0 ${spacingCss(1)};
+    gap: ${spacingCss(2)};
+    padding: 0 ${spacingCss(2)};
 `;
 
 const StyledCont = styled(Column)`

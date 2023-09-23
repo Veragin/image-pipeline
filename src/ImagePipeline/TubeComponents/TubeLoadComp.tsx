@@ -4,7 +4,7 @@ import { TubeLoad } from '../Tube/TubeLoad/TubeLoad';
 import { IconButton, Radio, Tooltip } from '@mui/material';
 import { observer } from 'mobx-react';
 import styled from 'styled-components';
-import { ConfigComp, TubeCompCont } from './ConfigComp/ConfigUtils';
+import { ConfigComp, ConfigRow, TubeCompCont } from './ConfigComp/ConfigUtils';
 import { RsFile } from 'react-utils/Components/RsInput/RsFile';
 import { spacingCss } from 'react-utils/Components/globalCss';
 import { InputTitle } from 'react-utils/Components/RsInput/InputTitle';
@@ -29,25 +29,31 @@ export const TubeLoadComp = observer(({ tube, collection }: Props) => {
 
     return (
         <TubeCompCont>
-            <ConfigComp>
-                <RsFile
-                    title={_('Load images')}
-                    onChange={tube.load}
-                    accept="image/*"
-                    multiple
-                    selectedCount={names.length}
-                />
-                <RsNumber
-                    title={_('Number of loaded images together')}
-                    value={tube.config.numberOfImgsTogether}
-                    onChange={(numberOfImgsTogether) => tube.setConfig({ numberOfImgsTogether })}
-                    step={1}
-                    min={0}
-                    helpTitle={_(
-                        'Number of images that will be loaded together so you can join them'
-                    )}
-                />
-            </ConfigComp>
+            <ConfigRow>
+                <ConfigComp>
+                    <RsFile
+                        title={_('Load images')}
+                        onChange={tube.load}
+                        accept="image/*"
+                        multiple
+                        selectedCount={names.length}
+                    />
+                </ConfigComp>
+                <ConfigComp>
+                    <RsNumber
+                        title={_('Number of loaded images together')}
+                        value={tube.config.numberOfImgsTogether}
+                        onChange={(numberOfImgsTogether) =>
+                            tube.setConfig({ numberOfImgsTogether })
+                        }
+                        step={1}
+                        min={0}
+                        helpTitle={_(
+                            'Number of images that will be loaded together so you can join them'
+                        )}
+                    />
+                </ConfigComp>
+            </ConfigRow>
 
             <div>
                 <StyledRow>

@@ -6,8 +6,9 @@ import { Column, Row } from 'react-utils/Components/StyledComponents';
 import { spacingCss } from 'react-utils/Components/globalCss';
 import styled from 'styled-components';
 import { InputTitle } from 'react-utils/Components/RsInput/InputTitle';
-import { Radio } from '@mui/material';
+import { Radio, Tooltip } from '@mui/material';
 import { applyColorToImage } from 'ImagePipeline/functions/colorModify';
+import HelpRoundedIcon from '@mui/icons-material/HelpRounded';
 
 type TItemShow = 'none' | 'selection' | 'objects';
 
@@ -23,31 +24,26 @@ export const DisplayPreviewCollection = ({ collection, showInit }: Props) => {
         <StyledCont>
             <InputTitle>{_('Preview')}</InputTitle>
             <StyledOptions>
-                <StyledOption>
-                    <Radio
-                        size="small"
-                        onChange={() => setShow('none')}
-                        checked={show === 'none'}
-                    />
-                    {_('None')}
-                </StyledOption>
-                <StyledOption>
-                    <Radio
-                        size="small"
-                        onChange={() => setShow('selection')}
-                        checked={show === 'selection'}
-                    />
-                    {_('Selection')}
-                </StyledOption>
-                <StyledOption>
-                    <Radio
-                        size="small"
-                        onChange={() => setShow('objects')}
-                        checked={show === 'objects'}
-                    />
-                    {_('objects')}
-                </StyledOption>
+                <Option
+                    label={_('None')}
+                    checked={show === 'none'}
+                    onClick={() => setShow('none')}
+                    helpInfo={_('Display just the image')}
+                />
+                <Option
+                    label={_('Selection')}
+                    checked={show === 'selection'}
+                    onClick={() => setShow('selection')}
+                    helpInfo={_('Display selected pixels by Select tube')}
+                />
+                <Option
+                    label={_('Objects')}
+                    checked={show === 'objects'}
+                    onClick={() => setShow('objects')}
+                    helpInfo={_('Display objects founded by Object tube')}
+                />
             </StyledOptions>
+
             <StyledDisplayCont>
                 {collection.stack.map((item, i) => (
                     <DisplayItem key={i} data={item} show={show} />
@@ -65,13 +61,6 @@ const StyledOptions = styled(Row)`
     gap: ${spacingCss(3)};
 `;
 
-const StyledOption = styled.label`
-    display: flex;
-    cursor: pointer;
-    align-items: center;
-    font-size: 14px;
-`;
-
 const StyledDisplayCont = styled(Row)`
     gap: ${spacingCss(1)};
     padding: ${spacingCss(1)};
@@ -79,6 +68,43 @@ const StyledDisplayCont = styled(Row)`
     flex-wrap: wrap;
     overflow-y: auto;
     flex: 1;
+`;
+
+/******************************************
+ ****** Option
+ ******************************************/
+
+type OptionProps = {
+    label: string;
+    onClick: () => void;
+    helpInfo: string;
+    checked: boolean;
+};
+
+const Option = ({ label, onClick, helpInfo, checked }: OptionProps) => {
+    return (
+        <StyledOption>
+            <Radio size="small" onChange={onClick} checked={checked} />
+            {label}
+            <Tooltip title={helpInfo}>
+                <StyledIcon />
+            </Tooltip>
+        </StyledOption>
+    );
+};
+
+const StyledOption = styled.label`
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    font-size: 14px;
+`;
+
+const StyledIcon = styled(HelpRoundedIcon)`
+    width: 14px;
+    height: 14px;
+    margin-left: ${spacingCss(0.5)};
+    color: ${({ theme }) => theme.palette.secondary.main};
 `;
 
 /******************************************
@@ -125,9 +151,9 @@ const getColoredImage = (data: TImageItem, show: TItemShow) => {
 
     if (show === 'selection') {
         applyColorToImage(newData, data.selection, {
-            r: 255,
-            g: 0,
-            b: 0,
+            r: 204,
+            g: 68,
+            b: 255,
             a: 1,
         });
     } else if (show === 'objects') {
