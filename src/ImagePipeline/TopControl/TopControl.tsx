@@ -47,6 +47,11 @@ export const TopControl = observer(({ pipeline }: Props) => {
                 title={_('Download template')}
             >
                 <StyledCont>
+                    <span>
+                        {_(
+                            'Download template of this pipeline into .json file. This file can be loaded in the future by add template button and will set up the pipeline exactlly same.'
+                        )}
+                    </span>
                     <RsInput title={_('File name')} value={fileName} onChange={setFileName} />
 
                     <StyledPrimButton
@@ -81,7 +86,7 @@ const StyledRow = styled(Row)`
 
 const StyledCont = styled(Column)`
     align-items: center;
-    row-gap: ${spacingCss(1)};
+    row-gap: ${spacingCss(2)};
 `;
 
 const StyledPrimButton = styled(ThePrimaryButton)`

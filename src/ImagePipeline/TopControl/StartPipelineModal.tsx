@@ -3,7 +3,7 @@ import { Pipeline } from 'ImagePipeline/Pipeline';
 import { useState } from 'react';
 import { RsInput } from 'react-utils/Components/RsInput/RsInput';
 import { RsSwitch } from 'react-utils/Components/RsInput/RsSwitch';
-import { Column } from 'react-utils/Components/StyledComponents';
+import { Column, Row } from 'react-utils/Components/StyledComponents';
 import { ThePrimaryButton } from 'react-utils/Components/TheButton';
 import { spacingCss } from 'react-utils/Components/globalCss';
 import styled from 'styled-components';
@@ -27,6 +27,11 @@ export const StartPipelineModal = ({ onClose, pipeline }: Props) => {
 
     return (
         <StyledCont>
+            <span>
+                {_(
+                    'Process all loaded images through the pipeline. Download tubes will execute downloads or will append images to the final zip.'
+                )}
+            </span>
             {displayWarn && (
                 <Alert severity="error">
                     {_(
@@ -35,15 +40,18 @@ export const StartPipelineModal = ({ onClose, pipeline }: Props) => {
                 </Alert>
             )}
             {allowDownalod && (
-                <RsSwitch
-                    title={_('Zip')}
-                    value={useZip}
-                    onChange={setUseZip}
-                    helpTooltip={_('All images will be wrapped into one zip file.')}
-                />
+                <StyledRow>
+                    <RsSwitch
+                        title={_('Zip')}
+                        value={useZip}
+                        onChange={setUseZip}
+                        helpTooltip={_('All images will be wrapped into one zip file.')}
+                    />
+                    {useZip && (
+                        <RsInput title={_('Zip file name')} value={zipName} onChange={setZipName} />
+                    )}
+                </StyledRow>
             )}
-
-            {useZip && <RsInput title={_('Zip name')} value={zipName} onChange={setZipName} />}
 
             {allowDownalod ? (
                 <StyledPrimButton onClick={() => start()}>{_('Start')}</StyledPrimButton>
@@ -56,7 +64,14 @@ export const StartPipelineModal = ({ onClose, pipeline }: Props) => {
 
 const StyledCont = styled(Column)`
     align-items: center;
-    row-gap: ${spacingCss(1)};
+    row-gap: ${spacingCss(2)};
+`;
+
+const StyledRow = styled(Row)`
+    align-items: center;
+    row-gap: ${spacingCss(2)};
+    justify-content: start;
+    width: 100%;
 `;
 
 const StyledPrimButton = styled(ThePrimaryButton)`

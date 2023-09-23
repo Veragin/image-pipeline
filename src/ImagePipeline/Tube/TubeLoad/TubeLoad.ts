@@ -15,9 +15,6 @@ export class TubeLoad extends Tube<TTubeLoadConfig> {
         _(
             'Load images into service. This tube cannot be removed, added more times and is the first tube in the pipeline.'
         ),
-        _(
-            'Number of loaded images together ... will allow load more images together, 0 or 1 will load exactly one.'
-        ),
         _('Selected image file will be used as a preview.'),
         _('While you start the pipeline, all loaded files will be proccessed.'),
         _('!! Using image with high resolution as an preview will may slow down configuration !!'),
