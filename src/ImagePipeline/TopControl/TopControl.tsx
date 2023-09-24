@@ -23,7 +23,7 @@ export const TopControl = observer(({ pipeline }: Props) => {
 
     return (
         <StyledRow>
-            <Tooltip title={_('Start process')}>
+            <Tooltip title={_('Start pipeline')}>
                 <Fab color="primary" size="small" onClick={() => setOpenStartModal(true)}>
                     <PlayArrow />
                 </Fab>
