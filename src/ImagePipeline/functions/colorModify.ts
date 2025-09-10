@@ -61,9 +61,9 @@ export const shiftColorInImage = (data: ImageData, selection: TSelection | null,
         data,
         selection
     )((i) => {
-        data.data[i * 4] = capColorValue(data.data[i * 4] + color?.r ?? 0);
-        data.data[i * 4 + 1] = capColorValue(data.data[i * 4 + 1] + color?.g ?? 0);
-        data.data[i * 4 + 2] = capColorValue(data.data[i * 4 + 2] + color?.b ?? 0);
+        data.data[i * 4] = capColorValue(data.data[i * 4] + (color?.r ?? 0));
+        data.data[i * 4 + 1] = capColorValue(data.data[i * 4 + 1] + (color?.g ?? 0));
+        data.data[i * 4 + 2] = capColorValue(data.data[i * 4 + 2] + (color?.b ?? 0));
         data.data[i * 4 + 3] = capColorValue(data.data[i * 4 + 3] + (color?.a ?? 0) * 255);
     });
 };
