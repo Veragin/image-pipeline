@@ -39,17 +39,9 @@ export const Landing = ({ onStart }: Props) => {
             <StyledDiv>
                 <StyledCanvas ref={canvasRef} />
                 <StyledTop>
-                    <a href="https://sizefire.com">
+                    <a href="https://veragin.com">
                         <StyledLogo src={logo} />
                     </a>
-                    {/*<StyledButtonRow>
-                        <Button color="primary" variant="contained">
-                            {_("Sign up")}
-                        </Button>
-                        <Button color="secondary" variant="text">
-                            {_("Sign in")}
-                        </Button>
-                    </StyledButtonRow>*/}
                 </StyledTop>
                 <StyledTitleCont>
                     <StyledTitle>
