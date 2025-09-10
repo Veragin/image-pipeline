@@ -3,7 +3,6 @@ import { Landing } from './Landing';
 import styled from 'styled-components';
 import { LandingPipe } from './LandingPipe';
 import { Body } from './Body/Body';
-import { Footer } from './Footer';
 import { TTemplate } from 'ImagePipeline/Const';
 
 type Props = {
@@ -16,7 +15,6 @@ export const LandingPage = ({ onStart }: Props) => {
             <Landing onStart={onStart} />
             <LandingPipe />
             <Body onStart={onStart} />
-            <Footer />
         </StyledCont>
     );
 };

@@ -3,7 +3,7 @@ import { Column } from 'react-utils/Components/StyledComponents';
 import styled from 'styled-components';
 import { BoxContent } from './BoxContent';
 import { Examples } from './Examples';
-import { Sizefire } from './Sizefire';
+import { Crossroad } from './Crossroad';
 import { GetStarted } from './GetStarted';
 
 type Props = {
@@ -21,8 +21,8 @@ export const Body = ({ onStart }: Props) => {
                 <BoxContent title={_('Examples')} id="examples">
                     <Examples onStart={onStart} />
                 </BoxContent>
-                <BoxContent title={_('Sizefire')} id="sizefire">
-                    <Sizefire />
+                <BoxContent title={_('Crossroad')} id="crossroad">
+                    <Crossroad />
                 </BoxContent>
             </Column>
         </StyledPipeCont>
