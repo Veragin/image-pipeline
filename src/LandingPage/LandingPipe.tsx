@@ -1,12 +1,12 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import { ReactComponent as PipeEnter } from "Assets/landing/pipeEnter1.svg";
-import { Highlight } from "./Components";
+import PipeEnter from 'Assets/landing/pipeEnter1.svg';
+import { Highlight } from './Components';
 
 export const LandingPipe = () => {
     return (
         <StyledPipeCont>
-            <StyledPipeEnter />
+            <StyledPipeEnter src={PipeEnter} />
             <StyledTextOne>
                 Modify all your images <br />
                 <Highlight>the way you need</Highlight>
@@ -22,7 +22,7 @@ export const LandingPipe = () => {
     );
 };
 
-const StyledPipeEnter = styled(PipeEnter)`
+const StyledPipeEnter = styled.img`
     width: 100%;
 `;
 

@@ -1,8 +1,8 @@
-import { spacingCss } from "react-utils/Components/globalCss";
-import { Column, Row } from "react-utils/Components/StyledComponents";
-import styled from "styled-components";
-import { ReactComponent as TubeJoin } from "Assets/landing/tubeJoin.svg";
-import { Highlight } from "LandingPage/Components";
+import { spacingCss } from 'react-utils/Components/globalCss';
+import { Column, Row } from 'react-utils/Components/StyledComponents';
+import styled from 'styled-components';
+import TubeJoin from 'Assets/landing/tubeJoin.svg';
+import { Highlight } from 'LandingPage/Components';
 
 type Props = {
     title: string;
@@ -16,7 +16,7 @@ export const BoxContent = ({ children, title, id }: Props) => {
             <StyledTube />
             <StyledContentBody>
                 <StyledTitleCont>
-                    <StyledTubeJoin />
+                    <StyledTubeJoin src={TubeJoin} />
                     <StyledTitle>{title}</StyledTitle>
                 </StyledTitleCont>
 
@@ -47,7 +47,7 @@ const StyledTitleCont = styled(Row)`
     margin-left: -20vw;
 `;
 
-const StyledTubeJoin = styled(TubeJoin)`
+const StyledTubeJoin = styled.img`
     width: 20vw;
     z-index: 1;
     height: min-content;
