@@ -3,7 +3,6 @@ import Rotate90DegreesCwRoundedIcon from '@mui/icons-material/Rotate90DegreesCwR
 import { Tube } from './Tube';
 import { TubeRotateComp } from '../TubeComponents/TubeRotateComp';
 import { rotatePixels } from '../functions/transformPixels';
-import { rotatePixelsGPU } from 'ImagePipeline/functions/transformPixelsGPU';
 
 export class TubeRotate extends Tube<TTubeRotateConfig> {
     name = 'Rotate';
@@ -25,14 +24,6 @@ export class TubeRotate extends Tube<TTubeRotateConfig> {
 
         imgCol.stack.forEach((item) => {
             item.data = rotatePixels(item.data, angle);
-        });
-    };
-
-    doGPU = async (imgCol: ImageCollection) => {
-        const angle = (this.config.angle / 180) * Math.PI;
-
-        imgCol.stack.forEach((item) => {
-            item.data = rotatePixelsGPU(item.data, angle);
         });
     };
 }

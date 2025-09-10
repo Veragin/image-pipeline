@@ -3,7 +3,6 @@ import { ImageCollection } from '../ImageColection';
 import { Tube } from './Tube';
 import { TubeMirrorComp } from '../TubeComponents/TubeMirrorComp';
 import { mirrorPixels } from '../functions/transformPixels';
-import { mirrorPixelsGPU } from 'ImagePipeline/functions/transformPixelsGPU';
 
 export class TubeMirror extends Tube<TTubeMirrorConfig> {
     name = 'Mirror';
@@ -24,12 +23,6 @@ export class TubeMirror extends Tube<TTubeMirrorConfig> {
     do = async (imgCol: ImageCollection) => {
         imgCol.stack.forEach((item) => {
             item.data = mirrorPixels(item.data, this.config.vertical, this.config.horizontal);
-        });
-    };
-
-    doGPU = async (imgCol: ImageCollection) => {
-        imgCol.stack.forEach((item) => {
-            item.data = mirrorPixelsGPU(item.data, this.config.vertical, this.config.horizontal);
         });
     };
 }

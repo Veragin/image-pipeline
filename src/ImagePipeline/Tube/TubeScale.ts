@@ -3,7 +3,6 @@ import { ImageCollection } from '../ImageColection';
 import { Tube } from './Tube';
 import { TubeScaleComp } from '../TubeComponents/TubeScaleComp';
 import { scalePixels } from '../functions/transformPixels';
-import { scalePixelsGPU } from 'ImagePipeline/functions/transformPixelsGPU';
 
 export class TubeScale extends Tube<TTubeScaleConfig> {
     name = 'Scale';
@@ -33,17 +32,6 @@ export class TubeScale extends Tube<TTubeScaleConfig> {
         const promises = imgCol.stack.map(async (item) => {
             const size = this.computeSize(item.data);
             item.data = scalePixels(item.data, size);
-            item.selection = [];
-            item.objects = [];
-        });
-
-        await Promise.all(promises);
-    };
-
-    doGPU = async (imgCol: ImageCollection) => {
-        const promises = imgCol.stack.map(async (item) => {
-            const size = this.computeSize(item.data);
-            item.data = scalePixelsGPU(item.data, size);
             item.selection = [];
             item.objects = [];
         });

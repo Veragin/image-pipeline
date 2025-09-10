@@ -8,8 +8,8 @@ import { useRef } from 'react';
 import { PaintEngine } from './PaintEngine/PaintEngine';
 import { useRunOnlyOnce } from 'react-utils/basic/hooks';
 import { TTemplate } from 'ImagePipeline/Const';
-import { testGPU } from 'ImagePipeline/functions/testGPU';
 import { isDev } from 'react-utils/basic/misc';
+import { compute } from 'gpuTest/compute';
 
 type Props = {
     onStart: (template?: TTemplate) => void;
@@ -75,7 +75,7 @@ export const Landing = ({ onStart }: Props) => {
                         color="primary"
                         variant="contained"
                         onClick={() => {
-                            testGPU();
+                            compute();
                         }}
                     >
                         {_('Test')}
