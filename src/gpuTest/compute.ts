@@ -1,10 +1,20 @@
+import code from './mirror.wgsl?raw';
+
 const BUFFER_SIZE = 1000;
+console.log(code);
 
 export const compute = async () => {
     const { device } = await getStuff();
 
     const bindGroupLayout = device.createBindGroupLayout({
         entries: [
+            {
+                binding: 0,
+                visibility: GPUShaderStage.COMPUTE,
+                buffer: {
+                    type: 'storage' as GPUBufferBindingType,
+                },
+            },
             {
                 binding: 1,
                 visibility: GPUShaderStage.COMPUTE,
@@ -38,24 +48,7 @@ export const compute = async () => {
     });
 
     const module = device.createShaderModule({
-        code: `
-            @group(0) @binding(1)
-            var<storage, read_write> output: array<f32>;
-
-            @compute @workgroup_size(64)
-            fn main(
-                @builtin(global_invocation_id)
-                global_id : vec3<u32>,
-
-                @builtin(local_invocation_id)
-                local_id : vec3<u32>,
-            ) {
-                if(global_id.x >= arrayLength(&output)) {
-                    return;
-                }
-                output[global_id.x] = f32(global_id.x) * 1000. + f32(local_id.x);
-            }
-        `,
+        code,
     });
 
     const pipeline = device.createComputePipeline({

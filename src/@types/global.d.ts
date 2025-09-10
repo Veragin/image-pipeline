@@ -5,3 +5,8 @@ declare interface Window {
 
 declare var _lang: import('LanguageStore').TLanguage;
 declare var _: (s: string, ...args: (number | string)[]) => string;
+
+declare module '*.wgsl' {
+    const value: string;
+    export default value;
+}
