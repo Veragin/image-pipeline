@@ -17,8 +17,6 @@ export class TubeRotate extends Tube<TTubeRotateConfig> {
         });
     }
 
-    show = (imgCol: ImageCollection) => this.doGPU(imgCol);
-
     do = async (imgCol: ImageCollection) => {
         const angle = (this.config.angle / 180) * Math.PI;
 

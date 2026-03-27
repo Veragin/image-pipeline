@@ -18,8 +18,6 @@ export class TubeMirror extends Tube<TTubeMirrorConfig> {
         });
     }
 
-    show = (imgCol: ImageCollection) => this.doGPU(imgCol);
-
     do = async (imgCol: ImageCollection) => {
         imgCol.stack.forEach((item) => {
             item.data = mirrorPixels(item.data, this.config.vertical, this.config.horizontal);

@@ -26,8 +26,6 @@ export class TubeScale extends Tube<TTubeScaleConfig> {
         });
     }
 
-    show = (imgCol: ImageCollection) => this.doGPU(imgCol);
-
     do = async (imgCol: ImageCollection) => {
         const promises = imgCol.stack.map(async (item) => {
             const size = this.computeSize(item.data);
