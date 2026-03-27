@@ -1,5 +1,6 @@
-import { pixelIndex } from "./pixelUtils";
-import { rotatePoint } from "react-utils/Math";
+import { TTubeScaleMode } from 'ImagePipeline/Tube/TubeScale';
+import { pixelIndex } from './pixelUtils';
+import { rotatePoint } from 'react-utils/Math';
 
 export const mirrorPixels = (imgData: ImageData, vertical: boolean, horizontal: boolean) => {
     if (!vertical && !horizontal) return imgData;
@@ -14,7 +15,7 @@ export const mirrorPixels = (imgData: ImageData, vertical: boolean, horizontal: 
                     x: vertical ? imgData.width - x - 1 : x,
                     y: horizontal ? imgData.height - y - 1 : y,
                 },
-                imgData.width
+                imgData.width,
             );
 
             arr[index] = imgData.data[newindex];
@@ -49,15 +50,40 @@ export const rotatePixels = (imgData: ImageData, alpha: number) => {
     return new ImageData(arr, imgData.width, imgData.height);
 };
 
-export const scalePixels = (imgData: ImageData, size: TSize) => {
+export const scalePixels = (imgData: ImageData, size: TSize, mode: TTubeScaleMode) => {
     const arr = new Uint8ClampedArray(size.width * size.height * 4);
+
+    const computePos = (() => {
+        if (mode === 'fit') {
+            return (x: number, y: number): TPoint => ({
+                x: (x * imgData.width) / size.width,
+                y: (y * imgData.height) / size.height,
+            });
+        }
+
+        const isImageTaller = size.height / size.width < imgData.height / imgData.width;
+        const constrainByHeight = mode === 'contain' ? isImageTaller : !isImageTaller;
+
+        if (constrainByHeight) {
+            const scale = size.height / imgData.height;
+            const offsetX = (size.width - imgData.width * scale) / 2;
+            return (x: number, y: number): TPoint => ({
+                x: (x - offsetX) / scale,
+                y: (y * imgData.height) / size.height,
+            });
+        } else {
+            const scale = size.width / imgData.width;
+            const offsetY = (size.height - imgData.height * scale) / 2;
+            return (x: number, y: number): TPoint => ({
+                x: (x * imgData.width) / size.width,
+                y: (y - offsetY) / scale,
+            });
+        }
+    })();
 
     for (let y = 0; y < size.height; y++) {
         for (let x = 0; x < size.width; x++) {
-            const pos = {
-                x: (x * imgData.width) / size.width,
-                y: (y * imgData.height) / size.height,
-            };
+            const pos = computePos(x, y);
 
             const color = getInterpolarColorFromPos(imgData, pos);
             const index = pixelIndex({ x, y }, size.width);

@@ -20,6 +20,7 @@ export class TubeScale extends Tube<TTubeScaleConfig> {
     constructor() {
         super({
             type: 'box',
+            mode: 'fit',
             box: { width: 50, height: 50 },
             padding: { width: 20, height: 20 },
             percent: { width: 2, height: 2 },
@@ -29,7 +30,7 @@ export class TubeScale extends Tube<TTubeScaleConfig> {
     do = async (imgCol: ImageCollection) => {
         const promises = imgCol.stack.map(async (item) => {
             const size = this.computeSize(item.data);
-            item.data = scalePixels(item.data, size);
+            item.data = scalePixels(item.data, size, this.config.mode);
             item.selection = [];
             item.objects = [];
         });
@@ -59,9 +60,11 @@ export class TubeScale extends Tube<TTubeScaleConfig> {
 }
 
 export type TTubeScaleType = 'box' | 'padding' | 'percent';
+export type TTubeScaleMode = 'fit' | 'cover' | 'contain';
 
 export type TTubeScaleConfig = {
     type: TTubeScaleType;
+    mode: TTubeScaleMode;
     box: TSize;
     padding: TSize;
     percent: TSize;
